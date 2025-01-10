@@ -29,14 +29,12 @@ Extension for Remnawave Panel (TBD).
 [![GitHub Tag](https://img.shields.io/github/v/tag/remnawave/node)](https://github.com/remnawave/node)
 [![Docker Hub](https://img.shields.io/docker/v/remnawave/node?label=docker)](https://hub.docker.com/r/remnawave/node)
 
-## Remnawace Node Contract (internal usage)
+## Internal Contracts
+
+### Remnawace Node Contract (internal usage)
 
 [![npm version](https://img.shields.io/npm/v/@remnawave/node-contract)](https://www.npmjs.com/package/@remnawave/node-contract)
 
-### Remnawave Panel Backend
+### Remnawace Backend Contract (internal usage)
 
-TBD
-
-### Remnawave Panel Frontend
-
-TBD
+[![npm version](https://img.shields.io/npm/v/@remnawave/backend-contract)](https://www.npmjs.com/package/@remnawave/backend-contract)
