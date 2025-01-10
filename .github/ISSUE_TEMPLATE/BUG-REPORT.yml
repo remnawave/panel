@@ -1,0 +1,32 @@
+name: 🐞 Bug report
+description: 'Submit Remnawave Frontend/Backend bug'
+title: '🐞 [BUG] - <title>'
+labels: ['bug']
+body:
+  - type: checkboxes
+    attributes:
+      label: Integrity requirements
+      description: |-
+        Please check all of the following options to prove that you have read and understood the requirements, otherwise this issue will be closed.
+      options:
+        - label: I provided the complete config and logs, rather than just providing the truncated parts based on my own judgment.
+          required: true
+        - label: I searched issues and did not find any similar issues.
+          required: true
+        - label: The problem can be successfully reproduced in the latest release
+          required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: |-
+        Please provide a detailed description of the error. And the information you think valuable.
+        If the problem occurs after the update, please provide the **specific** version
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction Method
+      description: |-
+        Based on the configuration you provided below, provide the method to reproduce the bug.
+    validations:
+      required: true
