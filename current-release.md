@@ -1,2 +1,2 @@
-Backend: v0.5.2
-Frontend: v0.5.2
+Backend: v0.5.3
+Frontend: v0.5.3
