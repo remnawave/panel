@@ -39,7 +39,7 @@ const config: Config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     routeBasePath: '/',
-                    editUrl: 'https://github.com/remnawave/panel/tree/main/docs'
+                    editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
                 blog: false
                 // theme: {
