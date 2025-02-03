@@ -4,20 +4,20 @@ import type { Config } from '@docusaurus/types'
 import { themes as prismThemes } from 'prism-react-renderer'
 
 const config: Config = {
-    title: 'My Site',
-    tagline: 'Dinosaurs are cool',
+    title: 'Remnawave Documentation',
+    tagline: 'Remnawave Documentation',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
-    url: 'https://your-docusaurus-site.example.com',
+    url: 'https://remna.st',
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/',
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'facebook', // Usually your GitHub org/user name.
-    projectName: 'docusaurus', // Usually your repo name.
+    organizationName: 'remnawave', // Usually your GitHub org/user name.
+    projectName: 'panel', // Usually your repo name.
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -39,8 +39,7 @@ const config: Config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     routeBasePath: '/',
-                    editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/'
+                    editUrl: 'https://github.com/remnawave/panel/tree/main/docs'
                 },
                 blog: false
                 // theme: {
@@ -53,10 +52,14 @@ const config: Config = {
     themeConfig: {
         // Replace with your project's social card
         image: 'img/docusaurus-social-card.jpg',
+        sidebar: {
+            hideable: true,
+            autoCollapseCategories: false
+        },
         navbar: {
-            title: 'My Site',
+            title: 'Remnawave',
             logo: {
-                alt: 'My Site Logo',
+                alt: 'Remnawave Logo',
                 src: 'img/logo.svg'
             },
             items: [
@@ -66,11 +69,11 @@ const config: Config = {
                     position: 'left',
                     label: 'Tutorial'
                 },
-                { to: '/blog', label: 'Blog', position: 'left' },
+
                 {
-                    href: 'https://github.com/facebook/docusaurus',
+                    href: 'https://github.com/remnawave',
                     label: 'GitHub',
-                    position: 'right'
+                    position: 'left'
                 }
             ]
         },
@@ -81,8 +84,8 @@ const config: Config = {
                     title: 'Docs',
                     items: [
                         {
-                            label: 'Tutorial',
-                            to: '/docs/intro'
+                            label: 'Introduction',
+                            to: '/'
                         }
                     ]
                 },
@@ -90,16 +93,8 @@ const config: Config = {
                     title: 'Community',
                     items: [
                         {
-                            label: 'Stack Overflow',
-                            href: 'https://stackoverflow.com/questions/tagged/docusaurus'
-                        },
-                        {
-                            label: 'Discord',
-                            href: 'https://discordapp.com/invite/docusaurus'
-                        },
-                        {
-                            label: 'X',
-                            href: 'https://x.com/docusaurus'
+                            label: 'Telegram',
+                            href: 'https://t.me/remnawave'
                         }
                     ]
                 },
@@ -107,17 +102,13 @@ const config: Config = {
                     title: 'More',
                     items: [
                         {
-                            label: 'Blog',
-                            to: '/blog'
-                        },
-                        {
                             label: 'GitHub',
-                            href: 'https://github.com/facebook/docusaurus'
+                            href: 'https://github.com/remnawave'
                         }
                     ]
                 }
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`
+            copyright: `Copyright © ${new Date().getFullYear()} Remnawave`
         },
         colorMode: {
             defaultMode: 'dark',
