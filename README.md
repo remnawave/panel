@@ -1,8 +1,6 @@
-### Remnawave
+# Remnawave
 
-TODO
-
-> Click on the badges above to view the package on NPM or GitHub.
+Learn more about Remnawave [here](https://remna.st).
 
 ### XTLS SDK
 
