@@ -16,7 +16,7 @@ Backend, Node and Frontend are fully written in TypeScript with [NestJS](https:/
 
 ## Quick start
 
-<Button label="Start using Remnawave" variant="secondary" outline link="#using"  />
+<Button label="Start using Remnawave" variant="secondary" outline link="/installation/quick-start" />
 
 ## Components
 
