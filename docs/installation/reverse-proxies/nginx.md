@@ -8,7 +8,7 @@ title: Nginx
 
 In this guide we will use Nginx as a reverse proxy for requests to Remnawave.
 We will redirect a domain to our server, issue an SSL certificate and configure Nginx.
-Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env-variables) before continuing.
+Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
 ## Configuration
 
