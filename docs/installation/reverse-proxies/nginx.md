@@ -15,7 +15,7 @@ Complete [Quick Start](/installation/quick-start) and [Env Variables](/installat
 Requirements:
 
 - Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env-variables)
+- Completed [Env Variables](/installation/env)
 - Registered domain name (e.g. `my-super-panel.com`)
 
 :::warning
