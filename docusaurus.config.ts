@@ -27,10 +27,10 @@ const config: Config = {
                     routeBasePath: '/',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
-                blog: false
-                // theme: {
-                //     customCss: './src/css/custom.css'
-                // }
+                blog: false,
+                theme: {
+                    customCss: './src/css/custom.css'
+                }
             } satisfies Preset.Options
         ]
     ],
@@ -110,7 +110,18 @@ const config: Config = {
 
         prism: {
             darkTheme: prismThemes.oneDark,
-            additionalLanguages: ['bash']
+            additionalLanguages: ['bash', 'nginx'],
+            magicComments: [
+                {
+                    className: 'theme-code-block-highlighted-line',
+                    line: 'highlight-next-line',
+                    block: { start: 'highlight-start', end: 'highlight-end' }
+                },
+                {
+                    className: 'code-block-error-line',
+                    line: 'highlight-next-line-red'
+                }
+            ]
         }
     } satisfies Preset.ThemeConfig
 }

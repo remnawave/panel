@@ -137,3 +137,17 @@ docker compose up -d
 ```bash
 docker compose logs -f
 ```
+
+7. Remnawave is now running on `http://127.0.0.1:3000`.
+
+Now we are ready to move on the Reverse Proxy installation.
+
+:::danger
+
+Do not expose the services to the public internet, use only `127.0.0.1` for Remnawave services.
+
+You must use Nginx/Caddy/Apache/etc. to expose the services to the public internet.
+
+<Button label="Continue to Reverse Proxy installation" link="/installation/rp/nginx" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+
+:::

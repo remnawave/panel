@@ -1,8 +1,8 @@
-position: 2 # float position is supported
-label: 'Installation'
+position: 2.5 # float position is supported
+label: 'Reverse Proxies'
 collapsible: true # make the category collapsible
 collapsed: false # keep the category open by default
 className: red
 link:
     type: generated-index
-    title: Installation overview
+    title: Reverse Proxy configuration
