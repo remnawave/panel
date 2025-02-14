@@ -224,7 +224,7 @@ POSTGRES_DB=database_name
 Port for the node inside Docker container.
 
 ```bash
-APP_PORT=3001
+APP_PORT=3000
 ```
 
 ### SSL_CERT
