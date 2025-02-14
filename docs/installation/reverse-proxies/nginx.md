@@ -139,6 +139,12 @@ Acme.sh will take care of renewing the certificate automatically every 60 days, 
 
 ### Simple configuration
 
+Also, we need to generate a dhparam.pem file.
+
+```bash
+curl https://ssl-config.mozilla.org/ffdhe2048.txt > ~/remnawave/nginx/dhparam.pem
+```
+
 Create a file `nginx.conf` in the `~/remnawave/nginx` folder.
 
 ```bash
@@ -156,160 +162,100 @@ Review configuration below, look for red highlighted lines.
 :::
 
 ```nginx title="nginx.conf"
-user                 nginx;
-pid                  /var/run/nginx.pid;
-worker_processes     auto;
-worker_rlimit_nofile 65535;
-
-# Load modules
-include              /etc/nginx/modules-enabled/*.conf;
-
-events {
-    multi_accept       on;
-    worker_connections 65535;
+upstream remnawave {
+    server 127.0.0.1:3000;
 }
 
-http {
-    charset                utf-8;
-    sendfile               on;
-    tcp_nopush             on;
-    tcp_nodelay            on;
-    server_tokens          off;
-    log_not_found          off;
-    types_hash_max_size    2048;
-    types_hash_bucket_size 64;
-    client_max_body_size   16M;
+# Connection header for WebSocket reverse proxy
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    "" close;
+}
 
-    # MIME
-    include                mime.types;
-    default_type           application/octet-stream;
+server {
+    // highlight-next-line-red
+    server_name REPLACE_WITH_YOUR_DOMAIN;
 
-    # Logging
-    access_log             off;
-    error_log              /dev/null;
+    listen 443 ssl reuseport;
+    listen [::]:443 ssl reuseport;
+    http2 on;
 
-    # SSL
-    ssl_session_timeout    1d;
-    ssl_session_cache      shared:SSL:10m;
-    ssl_session_tickets    off;
+    location / {
+        proxy_http_version 1.1;
+        proxy_pass http://remnawave;
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
 
-    # Mozilla Intermediate configuration
-    ssl_protocols          TLSv1.2 TLSv1.3;
-    ssl_ciphers            ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+
+    # SSL Configuration (Mozilla Intermediate Guidelines)
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ecdh_curve X25519:prime256v1:secp384r1;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
+    ssl_prefer_server_ciphers off;
+
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:MozSSL:10m; # ~40,000 sessions
+    ssl_dhparam "/etc/nginx/ssl/dhparam.pem";
+    ssl_certificate "/etc/nginx/ssl/fullchain.pem";
+    ssl_certificate_key "/etc/nginx/ssl/privkey.key";
 
     # OCSP Stapling
-    ssl_stapling           on;
-    ssl_stapling_verify    on;
-    resolver               1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220 valid=60s;
-    resolver_timeout       2s;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    ssl_trusted_certificate "/etc/nginx/ssl/fullchain.pem";
+    resolver 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220;
 
-    # Connection header for WebSocket reverse proxy
-    map $http_upgrade $connection_upgrade {
-        default upgrade;
-        ""      close;
-    }
+    # HTTP Strict Transport Security (HSTS)
+    proxy_hide_header Strict-Transport-Security;
+    add_header Strict-Transport-Security "max-age=15552000" always;
 
-    map $remote_addr $proxy_forwarded_elem {
-
-        # IPv4 addresses can be sent as-is
-        ~^[0-9.]+$        "for=$remote_addr";
-
-        # IPv6 addresses need to be bracketed and quoted
-        ~^[0-9A-Fa-f:.]+$ "for=\"[$remote_addr]\"";
-
-        # Unix domain socket names cannot be represented in RFC 7239 syntax
-        default           "for=unknown";
-    }
-
-    map $http_forwarded $proxy_add_forwarded {
-
-        # If the incoming Forwarded header is syntactically valid, append to it
-        "~^(,[ \\t]*)*([!#$%&'*+.^_`|~0-9A-Za-z-]+=([!#$%&'*+.^_`|~0-9A-Za-z-]+|\"([\\t \\x21\\x23-\\x5B\\x5D-\\x7E\\x80-\\xFF]|\\\\[\\t \\x21-\\x7E\\x80-\\xFF])*\"))?(;([!#$%&'*+.^_`|~0-9A-Za-z-]+=([!#$%&'*+.^_`|~0-9A-Za-z-]+|\"([\\t \\x21\\x23-\\x5B\\x5D-\\x7E\\x80-\\xFF]|\\\\[\\t \\x21-\\x7E\\x80-\\xFF])*\"))?)*([ \\t]*,([ \\t]*([!#$%&'*+.^_`|~0-9A-Za-z-]+=([!#$%&'*+.^_`|~0-9A-Za-z-]+|\"([\\t \\x21\\x23-\\x5B\\x5D-\\x7E\\x80-\\xFF]|\\\\[\\t \\x21-\\x7E\\x80-\\xFF])*\"))?(;([!#$%&'*+.^_`|~0-9A-Za-z-]+=([!#$%&'*+.^_`|~0-9A-Za-z-]+|\"([\\t \\x21\\x23-\\x5B\\x5D-\\x7E\\x80-\\xFF]|\\\\[\\t \\x21-\\x7E\\x80-\\xFF])*\"))?)*)?)*$" "$http_forwarded, $proxy_forwarded_elem";
-
-        # Otherwise, replace it
-        default "$proxy_forwarded_elem";
-    }
-
-    # Load configs
-    include /etc/nginx/conf.d/*.conf;
-
-    # your domain
-    server {
-        listen                               443 ssl  reuseport;
-        listen                               [::]:443 ssl reuseport;
-        http2                                on;
-        // highlight-next-line-red
-        server_name                          REPLACE_WITH_YOUR_DOMAIN;
-
-        # SSL
-        ssl_certificate                      /etc/nginx/ssl/fullchain.pem;
-        ssl_certificate_key                  /etc/nginx/ssl/privkey.key;
-
-        # security headers
-        add_header X-XSS-Protection          "1; mode=block" always;
-        add_header X-Content-Type-Options    "nosniff" always;
-        add_header Referrer-Policy           "no-referrer-when-downgrade" always;
-        add_header Content-Security-Policy   "default-src 'self' http: https: ws: wss: data: blob: 'unsafe-inline'; frame-ancestors 'self';" always;
-        add_header Permissions-Policy        "interest-cohort=()" always;
-        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-
-        # . files
-        location ~ /\.(?!well-known) {
-            deny all;
-        }
-
-        # logging
-        access_log /var/log/nginx/access.log combined buffer=512k flush=1m;
-        error_log  /var/log/nginx/error.log warn;
-
-        # reverse proxy
-        location / {
-            proxy_pass                         http://127.0.0.1:3000;
-            proxy_set_header Host              $host;
-            proxy_http_version                 1.1;
-            proxy_cache_bypass                 $http_upgrade;
-
-            # Proxy SSL
-            proxy_ssl_server_name              on;
-
-            # Proxy headers
-            proxy_set_header Upgrade           $http_upgrade;
-            proxy_set_header Connection        $connection_upgrade;
-            proxy_set_header X-Real-IP         $remote_addr;
-            proxy_set_header Forwarded         $proxy_add_forwarded;
-            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-Host  $host;
-            proxy_set_header X-Forwarded-Port  $server_port;
-
-            # Proxy timeouts
-            proxy_connect_timeout              60s;
-            proxy_send_timeout                 60s;
-            proxy_read_timeout                 60s;
-        }
-
-        # favicon.ico
-        location = /favicon.ico {
-            log_not_found off;
-        }
-
-        # robots.txt
-        location = /robots.txt {
-            log_not_found off;
-        }
-
-        # gzip
-        gzip            on;
-        gzip_vary       on;
-        gzip_proxied    any;
-        gzip_comp_level 6;
-        gzip_types      text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
-    }
-
-
-
-
+    # Gzip Compression
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_min_length 256;
+    gzip_types
+    application/atom+xml
+    application/geo+json
+    application/javascript
+    application/x-javascript
+    application/json
+    application/ld+json
+    application/manifest+json
+    application/rdf+xml
+    application/rss+xml
+    application/xhtml+xml
+    application/xml
+    font/eot
+    font/otf
+    font/ttf
+    image/svg+xml
+    text/css
+    text/javascript
+    text/plain
+    text/xml;
 }
+
+server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name _;
+
+    ssl_reject_handshake on;
+}
+
 ```
 
 ### Create docker-compose.yml
@@ -325,13 +271,14 @@ Paste the following configuration.
 ```yaml title="docker-compose.yml"
 services:
     remnawave-nginx:
-        image: nginx:latest
+        image: nginx:1.26
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:
-            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+            - ./dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
             - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-            - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
+            - ./privkey.pem:/etc/nginx/ssl/privkey.key:ro
         restart: always
         network_mode: host
 ```
