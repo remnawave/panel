@@ -185,8 +185,10 @@ scrape_configs:
 
 Enable webhook.
 
+Possible values: `true`, `false`.
+
 ```bash
-WEBHOOK_ENABLED=true
+WEBHOOK_ENABLED=false
 ```
 
 If webhook is enabled, you must set up the URL and secret.
