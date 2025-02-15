@@ -85,12 +85,14 @@ SUB_WEBPAGE_URL=https://example.com
 
 ### SUBSCRIPTION PUBLIC DOMAIN
 
+Default path for subscription URL is `/api/sub/<sub uuid>`.
+
 This value is used for a easy access to subscription URL in Frontend and API.
 
 Must be a valid domain, without http/https. Do not place `/` to end of domain/path.
 
 ```bash
-SUB_PUBLIC_DOMAIN=example.com
+SUB_PUBLIC_DOMAIN=example.com/api/sub
 ```
 
 ### User statuses
