@@ -52,7 +52,10 @@ You can set up the same `chat id` for `TELEGRAM_ADMIN_ID` and `NODES_NOTIFY_CHAT
 
 `NODES_NOTIFY_CHAT_ID` is used to send notifications of nodes status changes, so it is recommended to set it up to a channel with turned on notifications.
 
+`IS_TELEGRAM_ENABLED` is used to enable/disable Telegram notifications. Possible values: `true`, `false`.
+
 ```bash
+IS_TELEGRAM_ENABLED=false
 TELEGRAM_BOT_TOKEN=change_me
 TELEGRAM_ADMIN_ID=change_me
 NODES_NOTIFY_CHAT_ID=change_me
