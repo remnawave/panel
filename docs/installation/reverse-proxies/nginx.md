@@ -278,7 +278,7 @@ services:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
             - ./dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
             - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-            - ./privkey.pem:/etc/nginx/ssl/privkey.key:ro
+            - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
         restart: always
         network_mode: host
 ```
