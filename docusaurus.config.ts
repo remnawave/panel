@@ -35,6 +35,20 @@ const config: Config = {
         ]
     ],
 
+    plugins: [
+        // [
+        //     '@docusaurus/plugin-client-redirects',
+        //     {
+        //         redirects: [
+        //             // /docs/oldDoc -> /docs/newDoc
+        //             {
+        //                 to: '/',
+        //                 from: '/'
+        //             }
+        //         ]
+        //     }
+        // ]
+    ],
     themeConfig: {
         // image: 'img/docusaurus-social-card.jpg',
 
