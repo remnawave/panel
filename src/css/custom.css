@@ -11,3 +11,7 @@
     padding: 0 var(--ifm-pre-padding);
     border-left: 3px solid #ff000080;
 }
+
+.footer {
+    background-color: #1b1b1d;
+}
