@@ -39,12 +39,18 @@ Be sure to generate strong secrets!
 
 :::
 
+You can generate secrets with the following command:
+
+```bash
+openssl rand -base64 64
+```
+
 ```bash
 JWT_AUTH_SECRET=change_me
 JWT_API_TOKENS_SECRET=change_me
 ```
 
-### TELEGRAM
+### Telegram
 
 This values are used to send notifications to the Telegram bot.
 
@@ -160,6 +166,12 @@ Do not use default credentials in production.
 
 :::
 
+You can generate secrets with the following command:
+
+```bash
+openssl rand -base64 64
+```
+
 ```bash
 METRICS_USER=admin
 METRICS_PASS=change_me
@@ -204,7 +216,13 @@ Do not use default credentials in production.
 
 :::
 
-`WEBHOOK_SECRET_HEADER` is used to sign the webhook payload, must be exact 64 characters. Only a-z, 0-9, A-Z are allowed.
+`WEBHOOK_SECRET_HEADER` is used to sign the webhook payload, must be at least 32 characters. Only a-z, 0-9, A-Z are allowed.
+
+You can generate secrets with the following command:
+
+```bash
+openssl rand -base64 64
+```
 
 ```bash
 WEBHOOK_URL=https://webhook.site/1234567890
