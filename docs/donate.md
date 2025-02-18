@@ -4,7 +4,7 @@ slug: /donate
 title: 💎 Donate
 ---
 
-If you want to support the Remnawave project, you can donate to the following addresses.
+If you want to support the Remnawave project, you can donate to the following addresses
 
 ### Bitcoin
 
