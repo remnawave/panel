@@ -68,6 +68,10 @@ const config: Config = {
                         ogDescription: 'Remnawave API Specification',
                         ogTitle: 'Remnawave API Specification'
                     },
+                    hideTestRequestButton: true,
+                    customCss: `a[href="https://www.scalar.com"][target="_blank"] {
+                                display: none !important;
+                    }`,
                     darkMode: true,
                     hiddenClients: [
                         'asynchttp',
