@@ -2,6 +2,7 @@ import type * as Preset from '@docusaurus/preset-classic'
 import type { Config } from '@docusaurus/types'
 
 import { themes as prismThemes } from 'prism-react-renderer'
+import { ScalarOptions } from '@scalar/docusaurus'
 
 const config: Config = {
     title: 'Remnawave Documentation',
@@ -48,6 +49,49 @@ const config: Config = {
         //         ]
         //     }
         // ]
+        [
+            '@scalar/docusaurus',
+            {
+                label: '🔗 API Specification',
+                route: '/api',
+                showNavLink: true, // optional, default is true
+                configuration: {
+                    spec: {
+                        url: 'https://cdn.remna.st/docs/openapi.json'
+                    },
+                    theme: 'purple',
+                    hideDarkModeToggle: true,
+                    searchHotKey: 'k',
+                    metaData: {
+                        title: 'Remnawave API Specification',
+                        description: 'Remnawave API Specification',
+                        ogDescription: 'Remnawave API Specification',
+                        ogTitle: 'Remnawave API Specification'
+                    },
+                    darkMode: true,
+                    hiddenClients: [
+                        'asynchttp',
+                        'nethttp',
+                        'okhttp',
+                        'unirest',
+                        'nsurlsession',
+                        'httr',
+                        'native',
+                        'libcurl',
+                        'httpclient',
+                        'restsharp',
+                        'clj_http',
+                        'webrequest',
+                        'restmethod',
+                        'cohttp'
+                    ],
+                    defaultHttpClient: {
+                        targetKey: 'js',
+                        clientKey: 'axios'
+                    }
+                }
+            } as ScalarOptions
+        ]
     ],
     themeConfig: {
         // image: 'img/docusaurus-social-card.jpg',
