@@ -42,7 +42,7 @@ Be sure to generate strong secrets!
 You can generate secrets with the following command:
 
 ```bash
-openssl rand -base64 64
+openssl rand -hex 64
 ```
 
 ```bash
@@ -169,7 +169,7 @@ Do not use default credentials in production.
 You can generate secrets with the following command:
 
 ```bash
-openssl rand -base64 64
+openssl rand -hex 64
 ```
 
 ```bash
