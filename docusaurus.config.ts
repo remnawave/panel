@@ -28,7 +28,30 @@ const config: Config = {
                     routeBasePath: '/',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
-                blog: false,
+                // blog: {
+                //     showReadingTime: true,
+                //     editUrl: 'https://github.com/remnawave/panel/tree/main'
+                // },
+                blog: {
+                    routeBasePath: '/blog',
+                    path: 'blog',
+                    showReadingTime: true,
+                    // showLastUpdateAuthor: true,
+                    // showLastUpdateTime: true,
+                    // authorsMapPath: './blog/authors.yaml',
+                    postsPerPage: 5,
+                    feedOptions: {
+                        type: 'all',
+                        description:
+                            'Keep up to date with upcoming Docusaurus releases and articles by following our feed!',
+                        copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+                        xslt: true
+                    },
+                    blogTitle: 'Docusaurus blog',
+                    blogDescription: 'Read blog posts about Docusaurus from the team',
+                    blogSidebarCount: 'ALL',
+                    blogSidebarTitle: 'All our posts'
+                },
                 theme: {
                     customCss: './src/css/custom.css'
                 }

@@ -6,12 +6,41 @@ title: Env variables
 
 ## Main Panel (aka Backend) {#panel}
 
-### APP_PORT
+### App Port
 
 Port for the main panel inside Docker container.
 
 ```bash
 APP_PORT=3000
+```
+
+### Metrics port
+
+Port for the metrics inside Docker container.
+
+```bash
+METRICS_PORT=3001
+```
+
+### API Instances
+
+Number of API instances to run.
+
+Possible values:
+
+- `max` (start instances on all cores)
+- `<number>` (start instances on number of cores)
+- `-1` (start instances on all cores - 1)
+
+Leave default value to start 1 instance. \
+Most users will not need to change this value, it can help to achieve better performance with 40k+ users.
+
+:::warning
+Do not set this value more that physical cores count in your machine.
+:::
+
+```bash
+API_INSTANCES=1
 ```
 
 ### DATABASE_URL
@@ -177,7 +206,7 @@ METRICS_USER=admin
 METRICS_PASS=change_me
 ```
 
-Metrics are available at `/api/metrics` path.
+Metrics are available at `/metrics` path on `METRICS_PORT`.
 
 Sample Prometheus config:
 
@@ -191,7 +220,7 @@ scrape_configs:
       scheme: http
       metrics_path: /api/metrics
       static_configs:
-          - targets: ['remnawave:3000']
+          - targets: ['remnawave:3001']
       scrape_interval: 30s
       basic_auth:
           username: admin

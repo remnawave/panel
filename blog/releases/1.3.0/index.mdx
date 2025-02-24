@@ -1,0 +1,87 @@
+---
+title: Release v1.3.0
+authors: remnawave
+tags: [release]
+date: 2025-02-21
+draft: true
+---
+
+# Release v1.3.0
+
+**🚧 Breaking Changes Alert 🚧**
+
+This release contains breaking changes. Please review the following sections carefully before upgrading.
+
+{/* truncate */}
+
+## 🔄 Breaking Changes
+
+### Metrics Port Configuration
+
+- Prometheus metrics endpoint now runs on a separate port
+- Added new `METRICS_PORT` environment variable
+- Metrics endpoint path changed from `/api/metrics` to `/metrics`
+- No longer served on the main application port. Please use new `METRICS_PORT` environment variable to access metrics.
+
+### 🧬 API changes
+
+1. All user endpoints now include `lastConnectedNode` information
+
+2. Enhanced subscription information in responses
+
+3. Traffic reset strategy changed
+
+    `CALENDAR_MONTH`, `YEAR` is **removed**.
+
+    `MONTH` now uses the same strategy as `CALENDAR_MONTH` before.
+
+    :::warning
+    **If you use API, please review your codebase to reflect these changes.**
+    :::
+
+    :::info
+    There is no need to manually change reset strategy for existing users, it will be changed automatically when you upgrade.
+    :::
+
+4. Traffic reset strategy also use new logic.
+
+    `DAY` – every day at 00:00 UTC
+
+    `WEEK` – every week at Monday 00:00 UTC (night from Sunday to Monday)
+
+    `MONTH` – every month at the first day of month at 00:00 UTC
+
+## 🔧 How to Upgrade
+
+1. Add the required new environment variables:
+    - `METRICS_PORT`
+    - `API_INSTANCES`
+2. Update your monitoring configuration to use the new metrics port
+3. Update your API clients. Change deprecated `CALENDAR_MONTH`, `YEAR` to `MONTH` or `WEEK` or `DAY`.
+
+:::warning
+It will be impossible to downgrade to previous version, because of migration of reset strategy.
+:::
+
+## ✨ New Features
+
+### Multiple Instances Support
+
+- Bulk user deletion is now available. Delete many users with selected status with ease.
+- Added support for running multiple API instances
+- New `API_INSTANCES` environment variable to control instance scaling
+- Flexible scaling options:
+    - `max`: Utilize all available CPU cores
+    - `<number>`: Run a specific number of instances
+    - `-1`: Use all cores except one
+
+> ⚠️ **Important**: Never set instance count higher than your server's physical core count
+
+### Frontend
+
+- i18n in now supported. Currently, Russian, English and Persian languages are supported.
+
+## 🐛 Bug Fixes
+
+- [x] Fixed an error, when you tried to use Telegram bot for notifications, but it is already had getUpdates or webhook active.
+- [x] Other minor fixes and improvements.
