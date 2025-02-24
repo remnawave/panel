@@ -43,12 +43,12 @@ const config: Config = {
                     feedOptions: {
                         type: 'all',
                         description:
-                            'Keep up to date with upcoming Docusaurus releases and articles by following our feed!',
-                        copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+                            'Keep up to date with upcoming Remnawave releases and articles by following our feed!',
+                        copyright: `Copyright © ${new Date().getFullYear()} Remnawave`,
                         xslt: true
                     },
-                    blogTitle: 'Docusaurus blog',
-                    blogDescription: 'Read blog posts about Docusaurus from the team',
+                    blogTitle: 'Remnawave blog',
+                    blogDescription: 'Read blog posts about Remnawave from the team',
                     blogSidebarCount: 'ALL',
                     blogSidebarTitle: 'All our posts'
                 },
@@ -142,6 +142,7 @@ const config: Config = {
                     position: 'left',
                     label: 'Tutorial'
                 },
+                { to: 'blog', label: '🚀 Releases', position: 'left' },
 
                 {
                     href: 'https://github.com/remnawave',
