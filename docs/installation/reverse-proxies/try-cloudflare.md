@@ -44,6 +44,7 @@ nano docker-compose.yml
 ```
 
 ```yaml title="docker-compose.yml"
+services:
   remnawave-try-cloudflare:
     container_name: remnawave-try-cloudflare
     hostname: remnawave-try-cloudflare
