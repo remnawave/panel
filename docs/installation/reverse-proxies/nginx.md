@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 slug: /installation/rp/nginx
 title: Nginx
 ---
@@ -7,7 +7,7 @@ title: Nginx
 ## Overview
 
 In this guide we will use Nginx as a reverse proxy for requests to Remnawave.
-We will redirect a domain to our server, issue an SSL certificate and configure Nginx.
+We will redirect a domain to our server, issue a SSL certificate and configure Nginx.
 Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
 ## Configuration
@@ -163,7 +163,7 @@ Review configuration below, look for red highlighted lines.
 
 ```nginx title="nginx.conf"
 upstream remnawave {
-    server 127.0.0.1:3000;
+    server remnawave:3000;
 }
 
 # Connection header for WebSocket reverse proxy
@@ -280,7 +280,10 @@ services:
             - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
             - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
         restart: always
-        network_mode: host
+        ports:
+            - '0.0.0.0:443:443'
+        networks:
+            - remnawave-network
 ```
 
 ### Start the container
