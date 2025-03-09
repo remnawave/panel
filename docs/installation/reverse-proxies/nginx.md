@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 slug: /installation/rp/nginx
 title: Nginx
 ---
@@ -281,7 +281,7 @@ services:
             - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
         restart: always
         ports:
-            - 443:443
+            - '0.0.0.0:443:443'
         networks:
             - remnawave-network
 ```

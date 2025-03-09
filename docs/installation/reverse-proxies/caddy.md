@@ -1,12 +1,12 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 slug: /installation/rp/caddy
 title: Caddy
 ---
 
 ## Overview
 
-In this guide we will use Caddy as a reverse proxy for requests to Remnawave. 
+In this guide we will use Caddy as a reverse proxy for requests to Remnawave.
 We will redirect a domain to our server and configure Caddy. Caddy will handle issue of SSL certificates by itself.
 Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
@@ -83,7 +83,7 @@ Some DNS providers have a different interface, but the process is the same.
 Create a file `Caddyfile` in the `~/remnawave/caddy` folder.
 
 ```bash
-cd ~/remnawave/caddy && nano Caddyfile
+mkdir -p ~/remnawave/caddy && cd ~/remnawave/caddy && nano Caddyfile
 ```
 
 Paste the following configuration.
@@ -125,7 +125,7 @@ services:
         hostname: caddy
         restart: always
         ports:
-          - 443:443
+            - '0.0.0.0:443:443'
         networks:
             - remnawave-network
         volumes:
