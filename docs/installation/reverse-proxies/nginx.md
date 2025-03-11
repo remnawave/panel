@@ -284,6 +284,12 @@ services:
             - '0.0.0.0:443:443'
         networks:
             - remnawave-network
+
+networks:
+  remnawave-network:
+    name: remnawave-network
+    driver: bridge
+    external: true
 ```
 
 ### Start the container

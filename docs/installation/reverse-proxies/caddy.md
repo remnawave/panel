@@ -132,6 +132,12 @@ services:
             - ./Caddyfile:/etc/caddy/Caddyfile
             - caddy-ssl-data:/data
 
+networks:
+  remnawave-network:
+    name: remnawave-network
+    driver: bridge
+    external: true
+
 volumes:
     caddy-ssl-data:
         driver: local
