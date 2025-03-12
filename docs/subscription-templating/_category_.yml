@@ -1,0 +1,8 @@
+position: 3 # float position is supported
+label: 'Subscription templating'
+collapsible: true # make the category collapsible
+collapsed: false # keep the category open by default
+className: red
+link:
+    type: generated-index
+    title: Subscription templating overview

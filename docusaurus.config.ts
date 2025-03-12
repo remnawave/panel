@@ -206,6 +206,14 @@ const config: Config = {
                 {
                     className: 'code-block-error-line',
                     line: 'highlight-next-line-red'
+                },
+                {
+                    className: 'code-block-success-line',
+                    line: 'highlight-next-line-green'
+                },
+                {
+                    className: 'code-block-warning-line',
+                    line: 'highlight-next-line-yellow'
                 }
             ]
         }
