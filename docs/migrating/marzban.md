@@ -14,4 +14,4 @@ WIP
 
 ## Migration
 
-<Button label="Check out migration tools" link="https://t.me/remnawave/migrate" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+<Button label="Check out migration tools" link="https://github.com/remnawave/migrate" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
