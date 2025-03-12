@@ -8,8 +8,7 @@ title: Subscription templates [beta]
 
 - Completed [Quick Start](/installation/quick-start)
 - Completed [Env Variables](/installation/env)
-- Completed [Reverse Proxies](/installation/reverse-proxies)
-- Completed [Installation](/installation)
+- Completed [Reverse Proxies](/category/reverse-proxies)
 
 ## Page screenshot
 
