@@ -1,0 +1,8 @@
+position: 2.5 # float position is supported
+label: 'Node install'
+collapsible: true # make the category collapsible
+collapsed: false # keep the category open by default
+className: red
+link:
+    type: generated-index
+    title: Node installation guide

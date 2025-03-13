@@ -106,21 +106,6 @@ Example: `FRONT_END_DOMAIN=panel.example.com`
 FRONT_END_DOMAIN=*
 ```
 
-### SUBSCRIPTION INFO
-
-This values will be passed to response headers in subscription response.
-
-A lot of clients relay on these headers.
-
-For example, `SUB_UPDATE_INTERVAL` is used to update subscription in Streisand, Clash Verge and other clients.
-
-```bash
-SUB_SUPPORT_URL=https://support.example.com
-SUB_PROFILE_TITLE=Subscription Profile
-SUB_UPDATE_INTERVAL=12
-SUB_WEBPAGE_URL=https://example.com
-```
-
 ### SUBSCRIPTION PUBLIC DOMAIN
 
 Default path for subscription URL is `/api/sub/<sub uuid>`.
@@ -131,33 +116,6 @@ Must be a valid domain, without http/https. Do not place `/` to end of domain/pa
 
 ```bash
 SUB_PUBLIC_DOMAIN=example.com/api/sub
-```
-
-### User statuses
-
-It can be used to customize user statuses remarks, which will see user if their status in not ACTIVE.
-
-Must be an array of strings, each string is a remark.
-
-```bash
-EXPIRED_USER_REMARKS=["⚠️ Subscription expired","Contact support"]
-DISABLED_USER_REMARKS=["❌ Subscription disabled","Contact support"]
-LIMITED_USER_REMARKS=["🔴 Subscription limited","Contact support"]
-```
-
-### Admin credentials
-
-Be sure to change the credentials.
-
-:::danger
-
-Do not use default credentials in production.
-
-:::
-
-```bash
-SUPERADMIN_USERNAME=change_me
-SUPERADMIN_PASSWORD=change_me
 ```
 
 ### Docs
@@ -218,7 +176,7 @@ global:
 scrape_configs:
     - job_name: 'remnawave'
       scheme: http
-      metrics_path: /api/metrics
+      metrics_path: /metrics
       static_configs:
           - targets: ['remnawave:3001']
       scrape_interval: 30s
@@ -267,28 +225,4 @@ CLOUDFLARE_TOKEN=ey...
 POSTGRES_USER=username
 POSTGRES_PASSWORD=password
 POSTGRES_DB=database_name
-```
-
-## Node {#node}
-
-### APP_PORT
-
-Port for the node inside Docker container.
-
-```bash
-APP_PORT=3000
-```
-
-### SSL_CERT
-
-It can be retrieved from the main panel.
-
-:::warning
-
-Do not share your certificate with anyone.
-
-:::
-
-```bash
-SSL_CERT=PUT CERTIFICATE HERE
 ```
