@@ -31,7 +31,7 @@ This guide is written for Debian 12, instructions may vary for other distributio
 1. Create separate directory for the project.
 
 ```bash
-mkdir remnanode && cd remnanode
+mkdir -p ~/remnanode && cd ~/remnanode
 ```
 
 2. Create and configure the environment variables.
@@ -39,42 +39,36 @@ mkdir remnanode && cd remnanode
 ```bash
 nano .env
 ```
+
 3. Add the following content to the .env file:
 
 :::info
-APP_PORT and SSL_CERT can be found in the main panel under the Nodes tab, after clicking the Create node button.
+SSL_CERT can be found in the main panel under the Nodes tab, after clicking the Create node button.
+APP_PORT can be customized, make sure it's not used by other services.
 :::
 
 ```bash title=".env"
 APP_PORT=2222
 
-SSL_CERT="-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyAcjyADzLmB21Hz6NnnJ
-L8Zoeo0iiPHS/rL/2xI/laBR2aEC58ippctZGU9akcD+hAPS9KsuRBDsSSnVpd1A
-f+WiCCKouQCc7C9vbtJx4q6Dh7XThomBHLF5Xnlsa3z+ZES3uMHsSZy5IHdBdJ26
-3CCT/Po+GVlc1fCMPHZh9sgZPPNXu22puqVFI1XIG795zzrclTsWsJiIN8VjC7bO
-HisC7aBqHIByld6dE7TVDTrtlMJFwZXx1J5+AM19pwcsGuuakYRdgbavt/P30wEN
-6+TjSSfV/x4Lm5Tdpqc2DHAgsaEEbxoTtcMG7WCqySLYiJZyEHe0P2k0pLTJjBcz
-XQIDAQAB
------END PUBLIC KEY-----"
+SSL_CERT=CERT_FROM_MAIN_PANEL
 ```
 
 :::caution  
 Ensure that APP_PORT is only accessible from your panel IP!
 :::
 
-
-4. Create `docker-compose.yml` file, example below.
+1. Create `docker-compose.yml` file, example below.
 
 ```yaml title="docker-compose.yml"
 services:
-  remnanode:
-    container_name: remnanode
-    hostname: remnanode
-    image: remnawave/node:latest
-    env_file:
-      - .env
-    network_mode: host
+    remnanode:
+        container_name: remnanode
+        hostname: remnanode
+        image: remnawave/node:latest
+        restart: always
+        network_mode: host
+        env_file:
+            - .env
 ```
 
 5. Run containers.

@@ -113,6 +113,26 @@ services:
             - .env
         networks:
             - remnawave-network
+        depends_on:
+            remnawave-db:
+                condition: service_healthy
+            remnawave-redis:
+                condition: service_healthy
+
+    remnawave-redis:
+        image: valkey/valkey:8.0.2-alpine
+        container_name: remnawave-redis
+        hostname: remnawave-redis
+        restart: always
+        networks:
+            - remnawave-network
+        volumes:
+            - remnawave-redis-data:/data
+        healthcheck:
+            test: ['CMD', 'valkey-cli', 'ping']
+            interval: 3s
+            timeout: 10s
+            retries: 3
 
 networks:
     remnawave-network:
@@ -125,6 +145,10 @@ volumes:
         driver: local
         external: false
         name: remnawave-db-data
+    remnawave-redis-data:
+        driver: local
+        external: false
+        name: remnawave-redis-data
 ```
 
 5. Run containers.
