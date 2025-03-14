@@ -7,8 +7,6 @@ date: 2025-03-14
 
 # Release v1.4.x
 
-**🚧 Breaking Changes Alert 🚧**
-
 <Button
     label="Check out full changelog"
     variant="secondary"
@@ -16,9 +14,9 @@ date: 2025-03-14
     link="https://hub.remna.st/changelog/remnawave-v1-4-0-a-stellar-upgrade"
 />
 
-## Critical changes before updating
+## Remnawave Panel
 
-### Remnawave Panel
+### Updating backend
 
 1. Update docker-compose.yml.
 
@@ -149,9 +147,18 @@ EXPIRED_USER_REMARKS
 DISABLED_USER_REMARKS
 // highlight-next-line-red
 LIMITED_USER_REMARKS
+// highlight-next-line-red
+SUPERADMIN_PASSWORD
+// highlight-next-line-red
+SUPERADMIN_USERNAME
 ```
 
-5. Add new .env variables:
+Don't worry about the removed variables, they are moved to dashboard settings.
+Check out "Subscription Settings" section in dashboard.
+
+Superadmin credentials now is stored in database and you will be prompted to create a superadmin account after updating.
+
+1. Add new .env variables:
 
 ```title=".env"
 // highlight-next-line-green
@@ -168,7 +175,24 @@ REDIS_PORT=6379
 docker compose pull && docker compose down && docker compose up -d && docker compose logs -f -t
 ```
 
-### Remnawave Node (Remnanode)
+### About subscription templates
+
+In previous versions of Remnawave, you could can mount custom templates for Sing-box, Mihomo, and Stash with setup similar to this:
+
+```yaml title="docker-compose.yml"
+volumes:
+    - ./custom/configs/clash/stash_template.yml:/var/lib/remnawave/configs/stash/stash_template.yml
+    - ./custom/configs/clash/clash_template.yml:/var/lib/remnawave/configs/clash/clash_template.yml
+    - ./custom/configs/singbox/singbox_legacy.json:/var/lib/remnawave/configs/singbox/singbox_legacy.json
+    - ./custom/configs/singbox/singbox_template.json:/var/lib/remnawave/configs/singbox/singbox_template.json
+```
+
+In v1.4.x, we've removed support of _mounting_ custom templates from docker-compose.yml.
+
+Now, you can only use templates from dashboard.  
+Check out new section in dashboard `Templates`.
+
+## Remnawave Node (Remnanode)
 
 1. Update with command:
 
