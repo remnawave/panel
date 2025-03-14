@@ -97,10 +97,6 @@ export CALENDAR_STRATEGY="false"   # Use calendar strategy for traffic
 export PRESERVE_STATUS="true"     # Preserve user statuses
 ```
 
-:::danger
-Do not use default credentials (e.g., `admin` or weak passwords) in production. Ensure that `MARZBAN_PASSWORD` and `REMNAWAVE_TOKEN` are strong and unique!
-:::
-
 :::tip
 Set `LAST_USERS="0"` to migrate all users. Use a smaller number (e.g., `5`) for testing purposes.
 :::
