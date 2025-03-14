@@ -11,7 +11,7 @@ date: 2025-03-14
     label="Check out full changelog"
     variant="secondary"
     outline
-    link="https://hub.remna.st/changelog/remnawave-v1-4-0-a-stellar-upgrade"
+    link="https://hub.remna.st/changelog/remnawave-v1-4-0"
 />
 
 ## Remnawave Panel
