@@ -142,7 +142,12 @@ const config: Config = {
                     position: 'left',
                     label: 'Tutorial'
                 },
-                { to: 'blog', label: '🚀 Releases', position: 'left' },
+                {
+                    href: 'https://hub.remna.st/changelog',
+                    label: '🚀 Releases',
+                    position: 'left'
+                },
+                { to: 'blog', label: '📚 Blog', position: 'left' },
 
                 {
                     href: 'https://github.com/remnawave',
