@@ -86,3 +86,52 @@ docker compose logs -f
 7. Remnanode is now running.
 
 Now we are ready to create a Node in the main panel.
+
+## Advanced usage
+
+### GeoSite files
+
+You can mount additional geosite files into the `/usr/local/share/xray/` directory in the container.
+
+:::caution  
+Do not mount the entire folder. Otherwise, you will overwrite the xray geosite files. Mount files individually.
+:::
+
+Add the following to the `docker-compose.yml` file:
+
+```yaml
+services:
+    remnanode:
+        container_name: remnanode
+        hostname: remnanode
+        image: remnawave/node:latest
+        restart: always
+        network_mode: host
+        env_file:
+            - .env
+        // highlight-next-line-green
+        volumes:
+            // highlight-next-line-green
+            - './zapret.dat:/usr/local/share/xray/zapret.dat'
+```
+
+Usage in xray config:
+
+```json
+  "routing": {
+    "rules": [
+       // Other rules
+      {
+        "type": "field",
+        "domain": [
+          "ext:zapret.dat:zapret"
+        ],
+        "inboundTag": [ // Optional
+          "VLESS_TCP_REALITY"
+        ],
+        "outboundTag": "NOT_RU_OUTBOUND"
+      }
+      // Other rules
+    ]
+  }
+```
