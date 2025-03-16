@@ -110,7 +110,7 @@ Do not fully replace the existing configuration, only add a new location block t
 
 :::
 
-Firsly, add a new upstream block to the top of configuration file.
+Firstly, add a new upstream block to the top of configuration file.
 
 Pay attention to the green lines, they are the ones you need to add.
 
