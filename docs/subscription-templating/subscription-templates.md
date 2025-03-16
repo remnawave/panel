@@ -71,7 +71,7 @@ Please, replace `panel.com` with URL which Remnawave Dashboard is available at. 
 ### Step 3: Start the container
 
 ```bash
-docker-compose up -d && docker-compose logs -f
+docker compose up -d && docker compose logs -f
 ```
 
 ## Configuration of reverse proxy
@@ -244,7 +244,7 @@ networks:
 Now, you need to restart Nginx container.
 
 ```bash
-docker-compose down && docker-compose up -d && docker-compose logs -f
+docker compose down && docker compose up -d && docker compose logs -f
 ```
 
 ## Usage
