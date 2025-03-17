@@ -126,7 +126,7 @@ Paste the following configuration.
 
 Please, replace `REPLACE_WITH_YOUR_EMAIL` with your email.
 
-Review configuration below, look for red highlighted lines.
+Review configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -153,7 +153,7 @@ providers:
 certificatesResolvers:
   letsencrypt:
     acme:
-      // highlight-next-line-red
+      // highlight-next-line-yellow
       email: REPLACE_WITH_YOUR_EMAIL
       storage: /letsencrypt/acme.json
       httpChallenge:
@@ -180,7 +180,7 @@ Paste the following configuration.
 
 Please, replace `REPLACE_WITH_YOUR_DOMAIN` with your domain name.
 
-Review configuration below, look for red highlighted lines.
+Review configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -188,7 +188,7 @@ Review configuration below, look for red highlighted lines.
 http:
   routers:
     remnawave:
-      // highlight-next-line-red
+      // highlight-next-line-yellow
       rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
       entrypoints:
         - http
@@ -197,7 +197,7 @@ http:
       service: remnawave
 
     remnawave-secure:
-      // highlight-next-line-red
+      // highlight-next-line-yellow
       rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
       entrypoints:
         - https
@@ -244,7 +244,7 @@ Paste the following configuration.
 
 Please, replace `REPLACE_WITH_YOUR_IP` with your allowed IPs (or ranges of allowed IPs by using CIDR notation).
 
-Review configuration below, look for red highlighted lines.
+Review configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -262,7 +262,7 @@ http:
     ip-allow-list:
       ipAllowList:
         sourceRange:
-          // highlight-next-line-red
+          // highlight-next-line-yellow
           - "REPLACE_WITH_YOUR_IP"
         ipStrategy:
           excludedIPs:
@@ -301,7 +301,7 @@ http:
       entrypoints:
         - https
       middlewares:
-        // highlight-next-line-red
+        // highlight-next-line-yellow
         - ip-allow-list
       tls:
         certResolver: letsencrypt
