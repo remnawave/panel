@@ -202,7 +202,8 @@ http:
       entrypoints:
         - https
       middlewares:
-      tls: true
+      tls:
+        certResolver: letsencrypt
       service: remnawave
 
   middlewares:
@@ -302,7 +303,8 @@ http:
       middlewares:
         // highlight-next-line-red
         - ip-allow-list
-      tls: true
+      tls:
+        certResolver: letsencrypt
       service: remnawave
 
   middlewares:
