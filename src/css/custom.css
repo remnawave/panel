@@ -19,6 +19,14 @@
     padding: 0 var(--ifm-pre-padding);
     border-left: 3px solid #00ff0080;
 }
+
+.code-block-warning-line {
+    background-color: #ffff0020;
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+    border-left: 3px solid #ffff0080;
+}
 .footer {
     background-color: #1b1b1d;
 }
