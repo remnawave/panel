@@ -247,6 +247,58 @@ Now, you need to restart Nginx container.
 docker-compose down && docker-compose up -d && docker-compose logs -f
 ```
 
+### Traefik
+
+If you have already configured Traefik, you need create a new dynamic configuration file `remnawave-sub-page.yml` in the `~/remnawave/traefik/config` folder.
+
+```bash
+cd ~/remnawave/traefik/config && nano remnawave-sub-page.yml
+```
+
+Paste the following configuration.
+
+:::warning
+
+Please, replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
+
+Review configuration below, look for yellow highlighted lines.
+
+:::
+
+```yaml title="remnawave-sub-page.yml"
+http:
+  routers:
+    remnawave-sub-page:
+      // highlight-next-line-yellow
+      rule: "Host(`SUBSCRIPTION_PAGE_DOMAIN`)"
+      entrypoints:
+        - http
+      middlewares:
+        - remnawave-sub-page-https-redirect
+      service: remnawave-sub-page
+
+    remnawave-sub-page-secure:
+      // highlight-next-line-yellow
+      rule: "Host(`SUBSCRIPTION_PAGE_DOMAIN`)"
+      entrypoints:
+        - https
+      middlewares:
+      tls:
+        certResolver: letsencrypt
+      service: remnawave-sub-page
+
+  middlewares:
+    remnawave-sub-page-https-redirect:
+      redirectScheme:
+        scheme: https
+
+  services:
+    remnawave-sub-page:
+      loadBalancer:
+        servers:
+          - url: "http://remnawave-subscription-page:3010"
+```
+
 ## Usage
 
 Now, you can use subscription templates.
