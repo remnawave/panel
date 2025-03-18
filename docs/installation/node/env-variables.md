@@ -8,7 +8,8 @@ title: Env variables
 
 ### APP_PORT
 
-:::caution  
+:::warning
+Do not use port 61001 as APP_PORT - it is a service port!
 Ensure that APP_PORT is only accessible from your panel IP!
 :::
 
