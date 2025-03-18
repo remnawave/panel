@@ -193,7 +193,7 @@ http:
       entrypoints:
         - http
       middlewares:
-        - remnawave-redirect
+        - remnawave-https-redirect
       service: remnawave
 
     remnawave-secure:
@@ -207,7 +207,7 @@ http:
       service: remnawave
 
   middlewares:
-    remnawave-redirect:
+    remnawave-https-redirect:
       redirectScheme:
         scheme: https
 
@@ -256,7 +256,7 @@ Cloudflare regularly updates its IP ranges. To do this, you can use the [officia
 
 :::
 
-```yaml title="remnawave.yml"
+```yaml title="ip_allow_list.yml"
 http:
   middlewares:
     ip-allow-list:
@@ -285,6 +285,12 @@ http:
 
 Then you need to connect the middleware `ip-allow-list` to the configuration file `remnawave.yml`
 
+```bash
+nano remnawave.yml.yml
+```
+
+Pay attention to the green line, they are the ones you need to add.
+
 ```yaml title="remnawave.yml"
 http:
   routers:
@@ -293,7 +299,7 @@ http:
       entrypoints:
         - http
       middlewares:
-        - remnawave-redirect
+        - remnawave-https-redirect
       service: remnawave
 
     remnawave-secure:
@@ -301,14 +307,14 @@ http:
       entrypoints:
         - https
       middlewares:
-        // highlight-next-line-yellow
+        // highlight-next-line-green
         - ip-allow-list
       tls:
         certResolver: letsencrypt
       service: remnawave
 
   middlewares:
-    remnawave-redirect:
+    remnawave-https-redirect:
       redirectScheme:
         scheme: https
 
