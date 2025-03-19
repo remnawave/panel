@@ -35,3 +35,11 @@ UQB9lc8hoUHH1I_cTfcay9pw7s9G2SkNuf_Ca8ZiBkSF6CUh
 ```
 Fhr9ZwN8vyh2T6UsNtcNCcau8qHCy92NZKTvAxdrFXKz
 ```
+
+### RUB (Tribute)
+
+<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnav" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+
+### EUR (Tribute)
+
+<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnm7" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
