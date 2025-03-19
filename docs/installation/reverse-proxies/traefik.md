@@ -171,7 +171,7 @@ accessLog:
 Create a file `remnawave.yml` in the `~/remnawave/traefik/config` folder.
 
 ```bash
-mkdir -p ~/remnawave/traefi/config && cd ~/remnawave/traefik/config && nano remnawave.yml
+mkdir -p ~/remnawave/traefik/config && cd ~/remnawave/traefik/config && nano remnawave.yml
 ```
 
 Paste the following configuration.
