@@ -22,6 +22,15 @@ Port for the metrics inside Docker container.
 METRICS_PORT=3001
 ```
 
+### REDIS
+
+Redis Host and Port.
+
+```bash
+REDIS_HOST=remnawave-redis
+REDIS_PORT=6379
+```
+
 ### API Instances
 
 Number of API instances to run.
