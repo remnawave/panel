@@ -31,7 +31,7 @@ This guide is written for Debian 12, instructions may vary for other distributio
 1. Create separate directory for the project.
 
 ```bash
-mkdir -p ~/remnanode && cd ~/remnanode
+mkdir -p /opt/remnanode && cd /opt/remnanode
 ```
 
 2. Create and configure the environment variables.
