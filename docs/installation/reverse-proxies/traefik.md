@@ -76,48 +76,48 @@ Some DNS providers have a different interface, but the process is the same.
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `~/remnawave/traefik` folder.
+Create a file `docker-compose.yml` in the `/opt/remnawave/traefik` folder.
 
 ```bash
-mkdir -p ~/remnawave/traefik && cd ~/remnawave/traefik && nano docker-compose.yml
+mkdir -p /opt/remnawave/traefik && cd /opt/remnawave/traefik && nano docker-compose.yml
 ```
 
 Paste the following configuration.
 
 ```yaml title="docker-compose.yml"
 services:
-  traefik:
-    image: traefik:latest
-    container_name: traefik
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      - remnawave-network
-    ports:
-      - 80:80
-      - 443:443
-    environment:
-      - TZ=Europe/Moscow
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik.yml:/traefik.yml:ro
-      - ./letsencrypt:/letsencrypt
-      - ./config:/config:ro
-      - ./logs:/var/log/traefik
+    traefik:
+        image: traefik:latest
+        container_name: traefik
+        restart: unless-stopped
+        security_opt:
+            - no-new-privileges:true
+        networks:
+            - remnawave-network
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            - TZ=Europe/Moscow
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - ./traefik.yml:/traefik.yml:ro
+            - ./letsencrypt:/letsencrypt
+            - ./config:/config:ro
+            - ./logs:/var/log/traefik
 networks:
-  remnawave-network:
-    name: remnawave-network
-    driver: bridge
-    external: false
+    remnawave-network:
+        name: remnawave-network
+        driver: bridge
+        external: false
 ```
 
 ### Create static configuration file
 
-Creating a static configuration file `traefik.yml` in the `~/remnawave/traefik` folder.
+Creating a static configuration file `traefik.yml` in the `/opt/remnawave/traefik` folder.
 
 ```bash
-cd ~/remnawave/traefik && nano traefik.yml
+cd /opt/remnawave/traefik && nano traefik.yml
 ```
 
 Paste the following configuration.
@@ -168,10 +168,10 @@ accessLog:
 
 ### Create dynamic configuration file
 
-Create a file `remnawave.yml` in the `~/remnawave/traefik/config` folder.
+Create a file `remnawave.yml` in the `/opt/remnawave/traefik/config` folder.
 
 ```bash
-mkdir -p ~/remnawave/traefik/config && cd ~/remnawave/traefik/config && nano remnawave.yml
+mkdir -p /opt/remnawave/traefik/config && cd /opt/remnawave/traefik/config && nano remnawave.yml
 ```
 
 Paste the following configuration.
@@ -235,7 +235,7 @@ Open the configured domain name in the browser and you will see login page.
 If you want to restrict access to the panel by IP, create a middleware named `ip_allow_list.yml`
 
 ```bash
-cd ~/remnawave/traefik/config && nano ip_allow_list.yml
+cd /opt/remnawave/traefik/config && nano ip_allow_list.yml
 ```
 
 Paste the following configuration.
@@ -258,72 +258,69 @@ Cloudflare regularly updates its IP ranges. To do this, you can use the [officia
 
 ```yaml title="ip_allow_list.yml"
 http:
-  middlewares:
-    ip-allow-list:
-      ipAllowList:
-        sourceRange:
-          // highlight-next-line-yellow
-          - "REPLACE_WITH_YOUR_IP"
-        ipStrategy:
-          excludedIPs:
-            - 73.245.48.0/20
-            - 103.21.244.0/22
-            - 103.22.200.0/22
-            - 103.31.4.0/22
-            - 141.101.64.0/18
-            - 108.162.192.0/18
-            - 190.93.240.0/20
-            - 188.114.96.0/20
-            - 197.234.240.0/22
-            - 198.41.128.0/17
-            - 162.158.0.0/15
-            - 104.16.0.0/13
-            - 104.24.0.0/14
-            - 172.64.0.0/13
-            - 131.0.72.0/22
+    middlewares:
+        ip-allow-list:
+            ipAllowList:
+                sourceRange: // highlight-next-line-yellow
+                    - "REPLACE_WITH_YOUR_IP"
+                ipStrategy:
+                    excludedIPs:
+                        - 73.245.48.0/20
+                        - 103.21.244.0/22
+                        - 103.22.200.0/22
+                        - 103.31.4.0/22
+                        - 141.101.64.0/18
+                        - 108.162.192.0/18
+                        - 190.93.240.0/20
+                        - 188.114.96.0/20
+                        - 197.234.240.0/22
+                        - 198.41.128.0/17
+                        - 162.158.0.0/15
+                        - 104.16.0.0/13
+                        - 104.24.0.0/14
+                        - 172.64.0.0/13
+                        - 131.0.72.0/22
 ```
 
 Then you need to connect the middleware `ip-allow-list` to the configuration file `remnawave.yml`
 
 ```bash
-nano remnawave.yml.yml
+nano remnawave.yml
 ```
 
 Pay attention to the green line, they are the ones you need to add.
 
 ```yaml title="remnawave.yml"
 http:
-  routers:
-    remnawave:
-      rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
-      entrypoints:
-        - http
-      middlewares:
-        - remnawave-https-redirect
-      service: remnawave
+    routers:
+        remnawave:
+            rule: 'Host(`REPLACE_WITH_YOUR_DOMAIN`)'
+            entrypoints:
+                - http
+            middlewares:
+                - remnawave-https-redirect
+            service: remnawave
 
-    remnawave-secure:
-      rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
-      entrypoints:
-        - https
-      middlewares:
-        // highlight-next-line-green
-        - ip-allow-list
-      tls:
-        certResolver: letsencrypt
-      service: remnawave
+        remnawave-secure:
+            rule: 'Host(`REPLACE_WITH_YOUR_DOMAIN`)'
+            entrypoints:
+                - https
+            middlewares: // highlight-next-line-green
+                - ip-allow-list
+            tls:
+                certResolver: letsencrypt
+            service: remnawave
 
-  middlewares:
-    remnawave-https-redirect:
-      redirectScheme:
-        scheme: https
+    middlewares:
+        remnawave-https-redirect:
+            redirectScheme:
+                scheme: https
 
-  services:
-    remnawave:
-      loadBalancer:
-        servers:
-          - url: "http://remnawave:3000"
-
+    services:
+        remnawave:
+            loadBalancer:
+                servers:
+                    - url: 'http://remnawave:3000'
 ```
 
 ## Troubleshooting

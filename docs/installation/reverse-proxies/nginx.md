@@ -110,7 +110,7 @@ curl https://get.acme.sh | sh -s email=EMAIL && source ~/.bashrc
 ### Create a folder for the certificates
 
 ```bash
-mkdir -p ~/remnawave/nginx && cd ~/remnawave/nginx
+mkdir -p /opt/remnawave/nginx && cd /opt/remnawave/nginx
 ```
 
 ### Issue a certificate
@@ -122,7 +122,7 @@ Do not use domain zones: .ru, .su, .рф. Currently ZeroSSL does not support the
 :::
 
 ```bash
-acme.sh --issue --standalone -d 'DOMAIN' --key-file ~/remnawave/nginx/privkey.key --fullchain-file ~/remnawave/nginx/fullchain.pem --alpn --tlsport 8443
+acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --alpn --tlsport 8443
 ```
 
 :::info
@@ -142,13 +142,13 @@ Acme.sh will take care of renewing the certificate automatically every 60 days, 
 Also, we need to generate a dhparam.pem file.
 
 ```bash
-curl https://ssl-config.mozilla.org/ffdhe2048.txt > ~/remnawave/nginx/dhparam.pem
+curl https://ssl-config.mozilla.org/ffdhe2048.txt > /opt/remnawave/nginx/dhparam.pem
 ```
 
-Create a file `nginx.conf` in the `~/remnawave/nginx` folder.
+Create a file `nginx.conf` in the `/opt/remnawave/nginx` folder.
 
 ```bash
-cd ~/remnawave/nginx && nano nginx.conf
+cd /opt/remnawave/nginx && nano nginx.conf
 ```
 
 Paste the following configuration.
@@ -260,10 +260,10 @@ server {
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `~/remnawave/nginx` folder.
+Create a file `docker-compose.yml` in the `/opt/remnawave/nginx` folder.
 
 ```bash
-cd ~/remnawave/nginx && nano docker-compose.yml
+cd /opt/remnawave/nginx && nano docker-compose.yml
 ```
 
 Paste the following configuration.
@@ -286,10 +286,10 @@ services:
             - remnawave-network
 
 networks:
-  remnawave-network:
-    name: remnawave-network
-    driver: bridge
-    external: true
+    remnawave-network:
+        name: remnawave-network
+        driver: bridge
+        external: true
 ```
 
 ### Start the container

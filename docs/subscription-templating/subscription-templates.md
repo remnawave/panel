@@ -35,7 +35,7 @@ SUB_PUBLIC_DOMAIN=subdomain.panel.com
 ### Step 1: Creating docker-compose.yml file
 
 ```bash
-mkdir -p ~/remnawave/subscription && cd ~/remnawave/subscription && nano docker-compose.yml
+mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano docker-compose.yml
 ```
 
 ### Step 2: Paste the following configuration
@@ -64,7 +64,7 @@ networks:
 
 :::warning
 
-Please, replace `panel.com` with URL which Remnawave Dashboard is available at. Only plain domain name without any subdomains, path or port is not allowed!
+Please, replace `panel.com` with URL which Remnawave Dashboard is available at. Only plain domain name without any path or port is not allowed!
 
 :::
 
@@ -89,13 +89,13 @@ If you have already configured Nginx, you need to add a new location block to yo
 Issue a certificate for the subscription page domain name:
 
 ```bash
-acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file ~/remnawave/nginx/subdomain_privkey.key --fullchain-file ~/remnawave/nginx/subdomain_fullchain.pem --alpn --tlsport 8443
+acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file /opt/remnawave/nginx/subdomain_privkey.key --fullchain-file /opt/remnawave/nginx/subdomain_fullchain.pem --alpn --tlsport 8443
 ```
 
 Open Nginx configuration file:
 
 ```bash
-cd ~/remnawave/nginx && nano nginx.conf
+cd /opt/remnawave/nginx && nano nginx.conf
 ```
 
 :::warning
@@ -210,7 +210,7 @@ server {
 Now lets modify docker-compose.yml file to add new certificate path.
 
 ```bash
-cd ~/remnawave/nginx && nano docker-compose.yml
+cd /opt/remnawave/nginx && nano docker-compose.yml
 ```
 
 ```yaml title="docker-compose.yml"
@@ -249,10 +249,10 @@ docker compose down && docker compose up -d && docker compose logs -f
 
 ### Traefik
 
-If you have already configured Traefik, you need create a new dynamic configuration file `remnawave-sub-page.yml` in the `~/remnawave/traefik/config` folder.
+If you have already configured Traefik, you need create a new dynamic configuration file `remnawave-sub-page.yml` in the `/opt/remnawave/traefik/config` folder.
 
 ```bash
-cd ~/remnawave/traefik/config && nano remnawave-sub-page.yml
+cd /opt/remnawave/traefik/config && nano remnawave-sub-page.yml
 ```
 
 Paste the following configuration.

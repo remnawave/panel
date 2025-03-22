@@ -49,7 +49,7 @@ This guide written for Ubuntu 22.04, instructions may vary for other distributio
 1. Create separate directory for the project.
 
 ```bash
-mkdir remnawave && cd remnawave
+mkdir /opt/remnawave && cd /opt/remnawave
 ```
 
 2. Download and configure the environment variables.

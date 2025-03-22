@@ -21,7 +21,7 @@ date: 2025-03-14
 1. Update docker-compose.yml.
 
 ```bash
-cd ~/remnawave && nano docker-compose.yml
+cd /opt/remnawave && nano docker-compose.yml
 ```
 
 2. Replace your current configuration with the new one:
@@ -127,7 +127,7 @@ volumes:
 3. Moving on to the .env file.
 
 ```bash
-cd ~/remnawave && nano .env
+cd /opt/remnawave && nano .env
 ```
 
 4. Remove old .env variables:
@@ -197,5 +197,5 @@ Check out new section in dashboard `Templates`.
 1. Update with command:
 
 ```bash
-cd ~/remnanode && docker compose pull && docker compose down && docker compose up -d && docker compose logs -f -t
+cd /opt/remnanode && docker compose pull && docker compose down && docker compose up -d && docker compose logs -f -t
 ```
