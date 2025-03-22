@@ -80,10 +80,10 @@ Some DNS providers have a different interface, but the process is the same.
 
 ### Simple configuration
 
-Create a file `Caddyfile` in the `~/remnawave/caddy` folder.
+Create a file `Caddyfile` in the `/opt/remnawave/caddy` folder.
 
 ```bash
-mkdir -p ~/remnawave/caddy && cd ~/remnawave/caddy && nano Caddyfile
+mkdir -p /opt/remnawave/caddy && cd /opt/remnawave/caddy && nano Caddyfile
 ```
 
 Paste the following configuration.
@@ -109,10 +109,10 @@ https://REPLACE_WITH_YOUR_DOMAIN {
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `~/remnawave/caddy` folder.
+Create a file `docker-compose.yml` in the `/opt/remnawave/caddy` folder.
 
 ```bash
-cd ~/remnawave/caddy && nano docker-compose.yml
+cd /opt/remnawave/caddy && nano docker-compose.yml
 ```
 
 Paste the following configuration.
@@ -133,10 +133,10 @@ services:
             - caddy-ssl-data:/data
 
 networks:
-  remnawave-network:
-    name: remnawave-network
-    driver: bridge
-    external: true
+    remnawave-network:
+        name: remnawave-network
+        driver: bridge
+        external: true
 
 volumes:
     caddy-ssl-data:
