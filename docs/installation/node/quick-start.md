@@ -28,19 +28,25 @@ You can find the list of all environment variables in the [Environment Variables
 This guide is written for Debian 12, instructions may vary for other distributions.
 :::
 
-1. Create separate directory for the project.
+1. First of all, you need to install docker.
+
+```bash
+sudo curl -fsSL https://get.docker.com | sh
+```
+
+2. Create separate directory for the project.
 
 ```bash
 mkdir -p /opt/remnanode && cd /opt/remnanode
 ```
 
-2. Create and configure the environment variables.
+3. Create and configure the environment variables.
 
 ```bash
 nano .env
 ```
 
-3. Add the following content to the .env file:
+4. Add the following content to the .env file:
 
 :::info
 SSL_CERT can be found in the main panel under the Nodes tab, after clicking the Create node button.
@@ -58,7 +64,7 @@ Do not use port 61001 as APP_PORT - it is a service port!
 Ensure that APP_PORT is only accessible from your panel IP!
 :::
 
-1. Create `docker-compose.yml` file, example below.
+5. Create `docker-compose.yml` file, example below.
 
 ```yaml title="docker-compose.yml"
 services:
@@ -72,19 +78,19 @@ services:
             - .env
 ```
 
-5. Run containers.
+6. Run containers.
 
 ```bash
 docker compose up -d
 ```
 
-6. Check the logs.
+7. Check the logs.
 
 ```bash
 docker compose logs -f
 ```
 
-7. Remnanode is now running.
+8. Remnanode is now running.
 
 Now we are ready to create a Node in the main panel.
 

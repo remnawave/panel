@@ -46,25 +46,31 @@ Be sure to change the default credentials in the environment variables.
 This guide written for Ubuntu 22.04, instructions may vary for other distributions.
 :::
 
-1. Create separate directory for the project.
+1. First of all, you need to install docker.
+
+```bash
+sudo curl -fsSL https://get.docker.com | sh
+```
+
+2. Create separate directory for the project.
 
 ```bash
 mkdir /opt/remnawave && cd /opt/remnawave
 ```
 
-2. Download and configure the environment variables.
+3. Download and configure the environment variables.
 
 ```bash
 curl -o .env https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample
 ```
 
-3. Configure the environment variables.
+4. Configure the environment variables.
 
 ```bash
 nano .env
 ```
 
-4. Create `docker-compose.yml` file, example below.
+5. Create `docker-compose.yml` file, example below.
 
 :::danger
 
@@ -151,19 +157,19 @@ volumes:
         name: remnawave-redis-data
 ```
 
-5. Run containers.
+6. Run containers.
 
 ```bash
 docker compose up -d
 ```
 
-6. Check the logs.
+7. Check the logs.
 
 ```bash
 docker compose logs -f
 ```
 
-7. Remnawave is now running on `http://127.0.0.1:3000`.
+8. Remnawave is now running on `http://127.0.0.1:3000`.
 
 Now we are ready to move on the Reverse Proxy installation.
 
