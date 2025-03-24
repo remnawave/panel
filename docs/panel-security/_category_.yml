@@ -1,0 +1,8 @@
+position: 4 # float position is supported
+label: 'Panel Security'
+collapsible: true # make the category collapsible
+collapsed: false # keep the category open by default
+className: red
+link:
+    type: generated-index
+    title: Panel Security overview
