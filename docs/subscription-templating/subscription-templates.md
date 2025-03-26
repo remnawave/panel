@@ -51,6 +51,8 @@ services:
         // highlight-next-line-red
             - REMNAWAVE_PLAIN_DOMAIN=panel.com
             - SUBSCRIPTION_PAGE_PORT=3010
+            - META_TITLE=Subscription Page Title
+            - META_DESCRIPTION=Subscription Page Description
         ports:
             - '127.0.0.1:3010:3010'
         networks:
