@@ -51,6 +51,8 @@ services:
         // highlight-next-line-red
             - REMNAWAVE_PLAIN_DOMAIN=panel.com
             - SUBSCRIPTION_PAGE_PORT=3010
+            - META_TITLE=Subscription Page Title
+            - META_DESCRIPTION=Subscription Page Description
         ports:
             - '127.0.0.1:3010:3010'
         networks:
@@ -242,6 +244,94 @@ networks:
 ```
 
 Now, you need to restart Nginx container.
+
+```bash
+docker compose down && docker compose up -d && docker compose logs -f
+```
+
+### Caddy
+
+If you have already configured Caddy, you need to add a new site block to Caddyfile.
+
+Open Caddyfile:
+
+```bash
+cd /opt/remnawave/caddy && nano Caddyfile
+```
+
+:::warning
+
+Please, replace `SUBSCRIPTION_PAGE_DOMAIN` with your domain name.
+
+Review configuration below, look for green highlighted lines.
+
+:::
+
+:::danger
+
+Do not fully replace the existing configuration, only add a new site block to Caddyfile.
+
+:::
+
+Firstly, add a new site block to the end of configuration file.
+
+Pay attention to the green lines, they are the ones you need to add.
+
+```caddy title="Caddyfile"
+https://REPLACE_WITH_YOUR_DOMAIN {
+        reverse_proxy * http://remnawave:3000
+}
+:443 {
+    tls internal
+    respond 204
+}
+
+// highlight-next-line-green
+https://SUBSCRIPTION_PAGE_DOMAIN {
+// highlight-next-line-green
+        reverse_proxy * http://remnawave-subscription-page:3010
+// highlight-next-line-green
+}
+```
+
+Now, you need to restart Caddy container.
+
+```bash
+docker compose down && docker compose up -d && docker compose logs -f
+```
+
+#### Caddy with security settings
+
+:::info
+
+If you use Caddy configuration with [security setting](/category/panel-security), you need to make some changes to the `docker-compose` file of the subscription page.
+
+:::
+
+Open `docker-compose.yml`:
+
+```bash
+cd /opt/remnawave/subscription && nano docker-compose.yml
+```
+
+:::warning
+
+Please use the docker container name and port `remnawave:3000` instead of the URL `panel.com` which Remnawave Dashboard is available at.
+And also add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription page can send requests to the panel API inside the docker network via the `http` protocol.
+
+Review configuration below, look for yelow highlighted line and make the changes into it. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
+:::
+
+
+```yaml title="docker-compose.yml"
+environment:
+            // highlight-next-line-yellow
+            - REMNAWAVE_PLAIN_DOMAIN=remnawave:3000
+            // highlight-next-line-green
+            - REQUEST_REMNAWAVE_SCHEME=http
+```
+
+Now, you need to restart Subscription Page container.
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f

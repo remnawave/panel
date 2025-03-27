@@ -261,7 +261,8 @@ http:
     middlewares:
         ip-allow-list:
             ipAllowList:
-                sourceRange: // highlight-next-line-yellow
+                sourceRange:
+                    // highlight-next-line-yellow
                     - "REPLACE_WITH_YOUR_IP"
                 ipStrategy:
                     excludedIPs:
@@ -305,7 +306,8 @@ http:
             rule: 'Host(`REPLACE_WITH_YOUR_DOMAIN`)'
             entrypoints:
                 - https
-            middlewares: // highlight-next-line-green
+            middlewares:
+                // highlight-next-line-green
                 - ip-allow-list
             tls:
                 certResolver: letsencrypt
