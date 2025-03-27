@@ -51,8 +51,8 @@ services:
         // highlight-next-line-red
             - REMNAWAVE_PLAIN_DOMAIN=panel.com
             - SUBSCRIPTION_PAGE_PORT=3010
-            - META_TITLE=Subscription Page Title
-            - META_DESCRIPTION=Subscription Page Description
+            - META_TITLE="Subscription Page Title"
+            - META_DESCRIPTION="Subscription Page Description"
         ports:
             - '127.0.0.1:3010:3010'
         networks:
@@ -322,13 +322,11 @@ And also add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription pa
 Review configuration below, look for yelow highlighted line and make the changes into it. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
 :::
 
-
 ```yaml title="docker-compose.yml"
-environment:
-            // highlight-next-line-yellow
-            - REMNAWAVE_PLAIN_DOMAIN=remnawave:3000
-            // highlight-next-line-green
-            - REQUEST_REMNAWAVE_SCHEME=http
+environment: // highlight-next-line-yellow
+    - REMNAWAVE_PLAIN_DOMAIN=remnawave:3000
+    // highlight-next-line-green
+    - REQUEST_REMNAWAVE_SCHEME=http
 ```
 
 Now, you need to restart Subscription Page container.
