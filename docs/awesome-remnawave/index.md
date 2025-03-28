@@ -30,15 +30,9 @@ Bash script to fast install Remnawave node
 
 Author: [DigneZzZ](https://github.com/dignezzz)
 
-#### Latest brench Install
+#### Latest branch Install
 ```bash
 sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
-```
-
-#### Dev brench Install
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
-```
 
 #### Install Only Script in the System
 ```bash
