@@ -69,7 +69,7 @@ Console commands: (`remnanode` + ...)
 <br />
 
 <div style="display: flex; justify-content: center;">
-  <img src="https://github.com/user-attachments/assets/1d206538-23b5-49b3-a300-61337c7e2f12" alt="Xray Checker" width="600" />
+  <img src="https://github.com/user-attachments/assets/1d206538-23b5-49b3-a300-61337c7e2f12" alt="RemnaNode" width="600" />
 </div>
 
 
