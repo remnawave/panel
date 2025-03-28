@@ -24,6 +24,57 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
+### RemnaNode - console script with installation.
+
+Bash script to fast install Remnawave node
+
+Author: [DigneZzZ](https://github.com/dignezzz)
+
+#### Latest brench Install
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
+```
+
+#### Dev brench Install
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
+```
+
+#### Install Only Script in the System
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install-script
+```
+
+Working directory: `/opt/remnanode`
+
+App directory for custom `xray`: `/var/lib/remnanode`
+
+Console commands: (`remnanode` + ...)
+
+```bash
+  up                  – Start services
+  down                – Stop services
+  restart             – Restart services
+  status              – Show status
+  logs                – Show logs
+  install             – Install or reinstall Remnanode
+  update              – Update to the latest version
+  uninstall           – Uninstall Remnanode
+  install-script      – Install the Remnanode script
+  uninstall-script    – Uninstall the Remnanode script
+  edit                – Edit docker-compose.yml (using nano or vi)
+  core-update         – Update or change the Xray core
+```
+
+<br />
+
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/1d206538-23b5-49b3-a300-61337c7e2f12" alt="Xray Checker" width="600" />
+</div>
+
+
+---
+
 ## Add project to the list
 
 If you want to add project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave/index.md).
