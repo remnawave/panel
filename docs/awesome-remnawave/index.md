@@ -30,40 +30,28 @@ Bash script to fast install Remnawave node
 
 Author: [DigneZzZ](https://github.com/dignezzz)
 
-#### Latest branch Install
+#### DEV branch Install
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
-
-#### Install Only Script in the System
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install-script
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
 ```
+
+If you want the latest branch, delete `--dev`.
+
 
 Working directory: `/opt/remnanode`
 
 App directory for custom `xray`: `/var/lib/remnanode`
 
-Console commands: (`remnanode` + ...)
+After install, use `remnanode help` for more information.
 
-```bash
-  up                  – Start services
-  down                – Stop services
-  restart             – Restart services
-  status              – Show status
-  logs                – Show logs
-  install             – Install or reinstall Remnanode
-  update              – Update to the latest version
-  uninstall           – Uninstall Remnanode
-  install-script      – Install the Remnanode script
-  uninstall-script    – Uninstall the Remnanode script
-  edit                – Edit docker-compose.yml (using nano or vi)
-  core-update         – Update or change the Xray core
-```
-
+<br />
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
+</div>
 <br />
 
 <div style="display: flex; justify-content: center;">
-  <img src="https://github.com/user-attachments/assets/1d206538-23b5-49b3-a300-61337c7e2f12" alt="RemnaNode" width="600" />
+  <img src="/awesome/remnanode-script.webp" alt="RemnaNode script" width="600" />
 </div>
 
 
