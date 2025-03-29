@@ -34,7 +34,7 @@ Download the precompiled Remnawave migration tool from the GitHub releases page.
 
 ```bash
 # Create and navigate to a working directory
-mkdir -p ~/remnawave && cd ~/remnawave
+mkdir -p ~/opt/remnawave && cd ~/opt/remnawave
 
 # Download the latest version (v1.3.0 as of this guide)
 wget https://github.com/remnawave/migrate/releases/download/v1.3.0/remnawave-migrate-v1.3.0-linux-amd64.tar.gz
@@ -74,38 +74,39 @@ The migration tool uses command-line flags to configure the migration. Below is 
 
 The tool supports the following flags and their corresponding environment variables:
 
-| Flag                  | Environment Variable    | Description                                    | Default   |
-|-----------------------|-------------------------|------------------------------------------------|-----------|
-| `--panel-type`        | `PANEL_TYPE`           | Source panel type (`marzban` or `marzneshin`)  | `marzban` |
-| `--panel-url`         | `PANEL_URL`            | Source panel URL (e.g., `https://marzban.example.com`) | -         |
-| `--panel-username`    | `PANEL_USERNAME`       | Source panel admin username                    | -         |
-| `--panel-password`    | `PANEL_PASSWORD`       | Source panel admin password                    | -         |
-| `--remnawave-url`     | `REMNAWAVE_URL`        | Destination panel URL (e.g., `https://remnawave.example.com`) | -         |
-| `--remnawave-token`   | `REMNAWAVE_TOKEN`      | Destination panel API token                    | -         |
-| `--batch-size`        | `BATCH_SIZE`           | Number of users to process per batch           | `100`     |
-| `--last-users`        | `LAST_USERS`           | Migrate only the last N users (0 = all users)  | `0`       |
-| `--preferred-strategy`| `PREFERRED_STRATEGY`   | Traffic reset strategy for all users           | -         |
-| `--preserve-status`   | `PRESERVE_STATUS`      | Preserve user status from source panel         | `false`   |
+| Flag                   | Environment Variable | Description                                                   | Default   |
+| ---------------------- | -------------------- | ------------------------------------------------------------- | --------- |
+| `--panel-type`         | `PANEL_TYPE`         | Source panel type (`marzban` or `marzneshin`)                 | `marzban` |
+| `--panel-url`          | `PANEL_URL`          | Source panel URL (e.g., `https://marzban.example.com`)        | -         |
+| `--panel-username`     | `PANEL_USERNAME`     | Source panel admin username                                   | -         |
+| `--panel-password`     | `PANEL_PASSWORD`     | Source panel admin password                                   | -         |
+| `--remnawave-url`      | `REMNAWAVE_URL`      | Destination panel URL (e.g., `https://remnawave.example.com`) | -         |
+| `--remnawave-token`    | `REMNAWAVE_TOKEN`    | Destination panel API token                                   | -         |
+| `--batch-size`         | `BATCH_SIZE`         | Number of users to process per batch                          | `100`     |
+| `--last-users`         | `LAST_USERS`         | Migrate only the last N users (0 = all users)                 | `0`       |
+| `--preferred-strategy` | `PREFERRED_STRATEGY` | Traffic reset strategy for all users                          | -         |
+| `--preserve-status`    | `PRESERVE_STATUS`    | Preserve user status from source panel                        | `false`   |
 
 :::tip
+
 - Use `--last-users=5` for a test migration with a small subset of users.
 - Obtain your Remnawave API token from the Remnawave panel settings (e.g., under API or Integrations).
-:::
+  :::
 
 ## 4. Post-Migration Verification {#post-migration-verification}
 
 ### 4.1. What to Check
 
 After migration, verify the following on the Remnawave panel:
+
 1. **User Count**: Ensure the number of migrated users matches the source.
 2. **Data Integrity**:
-   - Usernames
-   - Passwords
-   - Traffic limits
-   - Expiration dates
-   - User statuses (if `--preserve-status` was used)
+    - Usernames
+    - Passwords
+    - Traffic limits
+    - Expiration dates
+    - User statuses (if `--preserve-status` was used)
 
 :::tip
 Log in to the Remnawave panel and spot-check a few users to confirm data accuracy.
 :::
-

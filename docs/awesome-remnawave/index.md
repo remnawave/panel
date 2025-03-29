@@ -24,19 +24,19 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
-### RemnaNode - console script with installation.
+### Remnawave Node installation script
 
 Bash script to fast install Remnawave node
 
 Author: [DigneZzZ](https://github.com/dignezzz)
 
 #### DEV branch Install
+
 ```bash
 sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
 ```
 
 If you want the latest branch, delete `--dev`.
-
 
 Working directory: `/opt/remnanode`
 
@@ -50,10 +50,9 @@ After install, use `remnanode help` for more information.
 </div>
 <br />
 
-<div style="display: flex; justify-content: center;">
+<div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/remnanode-script.webp" alt="RemnaNode script" width="600" />
 </div>
-
 
 ---
 
