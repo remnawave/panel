@@ -54,11 +54,11 @@ services:
     restart: always
     command: tunnel --no-autoupdate --url http://remnawave:3000 remnawave-cf
 
-    networks:
-        remnawave-network:
-        name: remnawave-network
-        driver: bridge
-        external: true
+networks:
+    remnawave-network:
+    name: remnawave-network
+    driver: bridge
+    external: true
 ```
 
 ### Start the container
