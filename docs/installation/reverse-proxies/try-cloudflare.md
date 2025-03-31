@@ -56,9 +56,9 @@ services:
 
 networks:
     remnawave-network:
-    name: remnawave-network
-    driver: bridge
-    external: true
+        name: remnawave-network
+        driver: bridge
+        external: true
 ```
 
 ### Start the container
