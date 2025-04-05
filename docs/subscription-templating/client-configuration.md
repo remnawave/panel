@@ -259,7 +259,11 @@ volumes:
     - ./app-config.json:/app/dist/assets/app-config.json
 ```
 
-Restart is not needed.
+Restart the subscription-page container to apply the changes.
+
+```bash
+docker compose down && docker compose up -d && docker compose logs -f
+```
 
 ### Full Example
 
