@@ -110,3 +110,77 @@ After migration, verify the following on the Remnawave panel:
 :::tip
 Log in to the Remnawave panel and spot-check a few users to confirm data accuracy.
 :::
+
+
+## 5. Supporting Legacy Subscription Pages {#supporting-legacy-subscription-pages}
+
+After migrating to Remnawave, the only way to ensure support and rendering of legacy Marzban subscription pages is by using the repository at [https://github.com/remnawave/subscription-page/](https://github.com/remnawave/subscription-page/).
+
+### 5.1. Default Docker Compose Configuration
+
+By default, the `docker-compose.yml` file for the subscription page service looks like this:
+
+```yaml
+services:
+  remnawave-subscription-page:
+    image: remnawave/subscription-page:latest
+    container_name: remnawave-subscription-page
+    hostname: remnawave-subscription-page
+    restart: always
+    environment:
+      - REMNAWAVE_PLAIN_DOMAIN=domain.com
+      - SUBSCRIPTION_PAGE_PORT=3010
+    ports:
+      - '127.0.0.1:3010:3010'
+    networks:
+      - remnawave-network
+
+networks:
+  remnawave-network:
+    driver: bridge
+    external: true
+```
+
+### 5.2. Adjusting for Marzban Compatibility
+
+During migration, you need to ensure compatibility with Marzban subscription paths and enable decryption of Marzban subscription links. To achieve this, extend the `environment` section as follows:
+
+```yaml
+environment:
+  - REMNAWAVE_PLAIN_DOMAIN=domain.com
+  - SUBSCRIPTION_PAGE_PORT=3010
+  - MARZBAN_LEGACY_LINK_ENABLED=true
+  - MARZBAN_LEGACY_SECRET_KEY=secret
+  - REMNAWAVE_API_TOKEN=token
+  - CUSTOM_SUB_PREFIX=custom
+```
+
+#### Configuration Options Explained
+
+| Variable                     | Description                                                                                     | Example Value       |
+|------------------------------|-------------------------------------------------------------------------------------------------|---------------------|
+| `REMNAWAVE_PLAIN_DOMAIN`     | The address of your Remnawave panel (without `https://`).                                       | `domain.com`        |
+| `SUBSCRIPTION_PAGE_PORT`     | The port on which the subscription page service runs.                                           | `3010`              |
+| `MARZBAN_LEGACY_LINK_ENABLED`| Enables support for legacy Marzban subscription links. Must be `true` to use the options below. | `true`              |
+| `MARZBAN_LEGACY_SECRET_KEY`  | The secret key from your Marzban database, required for decrypting legacy links.                | `secret`            |
+| `REMNAWAVE_API_TOKEN`        | The API token generated from your Remnawave panel dashboard (under "API Tokens").               | `token`             |
+| `CUSTOM_SUB_PREFIX`          | A custom prefix for subscription URLs to match your Marzban setup (e.g., `sub`).                | `custom`            |
+
+:::tip
+- If `MARZBAN_LEGACY_LINK_ENABLED` is set to `true`, all subsequent variables (`MARZBAN_LEGACY_SECRET_KEY`, `REMNAWAVE_API_TOKEN`, and `CUSTOM_SUB_PREFIX`) must be provided.
+- To retrieve the `MARZBAN_LEGACY_SECRET_KEY`, query your Marzban database with:  
+  ```sql
+  SELECT secret_key FROM jwt LIMIT 1;
+  ```
+  The method to connect to your database depends on your Marzban setup (e.g., SQLite, PostgreSQL, etc.).
+- Generate the `REMNAWAVE_API_TOKEN` from the Remnawave dashboard under the "API Tokens" section.
+:::
+
+### 5.3. Verifying Legacy Support
+
+After deploying the updated configuration:
+1. Restart the `remnawave-subscription-page` service:
+   ```bash
+   docker compose up -d --force-recreate
+   ```
+2. Test an old Marzban subscription link to ensure it resolves correctly and displays user data on the Remnawave subscription page.
