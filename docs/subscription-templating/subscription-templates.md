@@ -22,10 +22,10 @@ This guide requires you have already configured Remnawave Dashboard and Reverse 
 
 ### Change Remnawave Dashboard port
 
-Open `~/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
+Open `~/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
 
 ```bash
-cd ~/remnawave && nano .env
+cd ~/opt/remnawave && nano .env
 ```
 
 ```env title=".env"
