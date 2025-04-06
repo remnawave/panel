@@ -36,7 +36,7 @@ docker compose pull && docker compose down && docker compose up -d && docker com
 
 ### 2. Recreate admin user with RESCUE CLI
 
-1.5.x version of Remnawave Panel uses password hashing algorithm, so old admin user will not be able to login.
+1.5.x version of Remnawave Panel uses a new password hashing algorithm, so old admin user will not be able to login.
 
 ```bash
 docker exec -it remnawave remnawave
