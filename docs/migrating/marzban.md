@@ -75,7 +75,7 @@ The migration tool uses command-line flags to configure the migration. Below is 
 The tool supports the following flags and their corresponding environment variables:
 
 | Flag                   | Environment Variable | Description                                                   | Default   |
-| ---------------------- | -------------------- | ------------------------------------------------------------- | --------- |
+|------------------------|----------------------|---------------------------------------------------------------|-----------|
 | `--panel-type`         | `PANEL_TYPE`         | Source panel type (`marzban` or `marzneshin`)                 | `marzban` |
 | `--panel-url`          | `PANEL_URL`          | Source panel URL (e.g., `https://marzban.example.com`)        | -         |
 | `--panel-username`     | `PANEL_USERNAME`     | Source panel admin username                                   | -         |
@@ -88,10 +88,9 @@ The tool supports the following flags and their corresponding environment variab
 | `--preserve-status`    | `PRESERVE_STATUS`    | Preserve user status from source panel                        | `false`   |
 
 :::tip
-
 - Use `--last-users=5` for a test migration with a small subset of users.
 - Obtain your Remnawave API token from the Remnawave panel settings (e.g., under API or Integrations).
-  :::
+:::
 
 ## 4. Post-Migration Verification {#post-migration-verification}
 
@@ -101,12 +100,104 @@ After migration, verify the following on the Remnawave panel:
 
 1. **User Count**: Ensure the number of migrated users matches the source.
 2. **Data Integrity**:
-    - Usernames
-    - Passwords
-    - Traffic limits
-    - Expiration dates
-    - User statuses (if `--preserve-status` was used)
+   - Usernames
+   - Passwords
+   - Traffic limits
+   - Expiration dates
+   - User statuses (if `--preserve-status` was used)
 
 :::tip
 Log in to the Remnawave panel and spot-check a few users to confirm data accuracy.
 :::
+
+## 5. Supporting Legacy Subscription Pages {#supporting-legacy-subscription-pages}
+
+After migrating to Remnawave, the only way to ensure support and rendering of legacy Marzban subscription pages is by using the repository at [https://github.com/remnawave/subscription-page/](https://github.com/remnawave/subscription-page/).
+
+### 5.1. Default Docker Compose Configuration
+
+By default, the `docker-compose.yml` file for the subscription page service looks like this:
+
+```yaml
+services:
+  remnawave-subscription-page:
+    image: remnawave/subscription-page:latest
+    container_name: remnawave-subscription-page
+    hostname: remnawave-subscription-page
+    restart: always
+    environment:
+      - REMNAWAVE_PLAIN_DOMAIN=domain.com
+      - SUBSCRIPTION_PAGE_PORT=3010
+    ports:
+      - '127.0.0.1:3010:3010'
+    networks:
+      - remnawave-network
+
+networks:
+  remnawave-network:
+    driver: bridge
+    external: true
+```
+
+### 5.2. Adjusting for Marzban Compatibility
+
+During migration, you need to ensure compatibility with Marzban subscription paths and enable decryption of Marzban subscription links. Replace the `environment` section in the default configuration with the following:
+
+```yaml
+services:
+  remnawave-subscription-page:
+    image: remnawave/subscription-page:latest
+    container_name: remnawave-subscription-page
+    hostname: remnawave-subscription-page
+    restart: always
+    environment:
+      - REMNAWAVE_PLAIN_DOMAIN=domain.com
+      - SUBSCRIPTION_PAGE_PORT=3010
+      - MARZBAN_LEGACY_LINK_ENABLED=true
+      - MARZBAN_LEGACY_SECRET_KEY=secret
+      - REMNAWAVE_API_TOKEN=token
+      - CUSTOM_SUB_PREFIX=custom
+    ports:
+      - '127.0.0.1:3010:3010'
+    networks:
+      - remnawave-network
+
+networks:
+  remnawave-network:
+    driver: bridge
+    external: true
+```
+
+#### Configuration Options Explained
+
+| Variable                     | Description                                                                                     | Example Value       |
+|------------------------------|-------------------------------------------------------------------------------------------------|---------------------|
+| `REMNAWAVE_PLAIN_DOMAIN`     | The address of your Remnawave panel (without `https://`).                                       | `panel.domain.com`        |
+| `SUBSCRIPTION_PAGE_PORT`     | The port on which the subscription page service runs.                                           | `3010`              |
+| `MARZBAN_LEGACY_LINK_ENABLED`| Enables support for legacy Marzban subscription links. Must be `true` to use the options below. | `true`              |
+| `MARZBAN_LEGACY_SECRET_KEY`  | The secret key from your Marzban database, required for decrypting legacy links.                | `secret`            |
+| `REMNAWAVE_API_TOKEN`        | The API token generated from your Remnawave panel dashboard (under "API Tokens").               | `token`             |
+| `CUSTOM_SUB_PREFIX`          | A custom prefix for subscription URLs to match your Marzban setup (e.g., `sub`).                | `sub`            |
+
+:::tip
+- If `MARZBAN_LEGACY_LINK_ENABLED` is set to `true`, all subsequent variables (`MARZBAN_LEGACY_SECRET_KEY`, `REMNAWAVE_API_TOKEN`, and `CUSTOM_SUB_PREFIX`) must be provided.
+- To retrieve the `MARZBAN_LEGACY_SECRET_KEY`, query your Marzban database with:  
+  ```sql
+  SELECT secret_key FROM jwt LIMIT 1;
+  ```
+  For example, if your Marzban database is in a Docker container named `marzban-mysql`, connect to it using:  
+  ```bash
+  docker exec -it marzban-mysql mysql -uroot -pPassword
+  ```
+  Replace `marzban-mysql` and `Password` with your actual container name and root password.
+- Generate the `REMNAWAVE_API_TOKEN` from the Remnawave dashboard under the "API Tokens" section.
+:::
+
+### 5.3. Verifying Legacy Support
+
+After deploying the updated configuration:
+1. Restart the `remnawave-subscription-page` service:
+   ```bash
+   docker compose up -d --force-recreate
+   ```
+2. Test an old Marzban subscription link to ensure it resolves correctly and displays user data on the Remnawave subscription page.
