@@ -48,9 +48,9 @@ After entering the Rescue CLI, select option 'Reset superadmin' and follow the i
 
 You will be prompted to create a new superadmin user.
 
-### 4. Getting new Node SSL_CERT
+### 4. Getting new SSL_CERT
 
-In Remnawave Dashboard, go to `Nodes` -> `Managment` and copy new `SSL_CERT`.
+In Remnawave Dashboard, go to `Nodes` -> `Management` and copy new `SSL_CERT`.
 
 ### 5. Update Remnawave Node (Remnanode)
 
