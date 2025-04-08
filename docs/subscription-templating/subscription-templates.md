@@ -53,8 +53,6 @@ services:
             - SUBSCRIPTION_PAGE_PORT=3010
             - META_TITLE="Subscription Page Title"
             - META_DESCRIPTION="Subscription Page Description"
-        // highlight-next-line-green
-            - CUSTOM_SUB_PREFIX=custom
         ports:
             - '127.0.0.1:3010:3010'
         networks:
@@ -73,9 +71,14 @@ Please, replace `panel.com` with URL which Remnawave Dashboard is available at. 
 :::
 
 :::tip
+You can replace it parameter with, for example,
 
-You can replace the `- CUSTOM_SUB_PREFIX=custom` parameter with, for example, `- CUSTOM_SUB_PREFIX=sub` to get an additional nested path for the subscription page.
-But in that case, in `.env` for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.
+```bash
+- CUSTOM_SUB_PREFIX=sub
+```
+
+to get an additional nested path for the subscription page.  
+But in that case, in `.env` for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
 And you will need to specify similar changes to the valid path in your configurations for nginx or caddy.
 
 :::
