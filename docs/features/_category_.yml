@@ -1,0 +1,8 @@
+position: 9 # float position is supported
+label: 'Features'
+collapsible: true # make the category collapsible
+collapsed: true # keep the category open by default
+className: red
+link:
+    type: generated-index
+    title: Features overview
