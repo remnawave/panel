@@ -19,9 +19,11 @@ Remnawave will use HWID and other headers to limit the number of devices that ca
 Remnawave will strictly enforce the limit on the number of devices that can request a subscription.
 
 :::danger
-If `HWID_DEVICE_LIMIT_ENABLED` is set to `true`, it will be impossible to get a subscription if the client application does not send the HWID.
+If `HWID_DEVICE_LIMIT_ENABLED` is set to `true`, it will be **impossible** to get a subscription if the client application does not send the HWID.
 
 Enable only if you will use only supported applications.
+
+Remnawave will return `404` error if the HWID is not sent.
 :::
 
 ### .env configuration
