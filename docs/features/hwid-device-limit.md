@@ -84,7 +84,7 @@ Not all client applications send HWID header. Here is the list of applications, 
 ## For app developers
 
 :::info
-Inital header standart is offered by [Happ](https://happ.su).
+Initial header standart is offered by [Happ](https://happ.su).
 :::
 
 Remnawave is using this headers to identify HWID and device.
