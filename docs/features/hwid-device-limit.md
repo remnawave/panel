@@ -9,6 +9,11 @@ This feature currenly in beta and only a few applications currenly support it.
 
 :::
 
+:::tip
+**HWID Device Limit** is fully optional and **disabled by default**.
+
+:::
+
 ## Overview
 
 HWID Device Limit is a feature that allows you to restrict the number of devices that can request a subscription.
