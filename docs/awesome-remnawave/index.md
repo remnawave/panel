@@ -56,7 +56,7 @@ After install, use `remnanode help` for more information.
 
 ---
 
-### REMNAWAVE-REVERSE-PROXY
+### Remnawave Reverse Proxy (eGAMES)
 
 Server Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
 
