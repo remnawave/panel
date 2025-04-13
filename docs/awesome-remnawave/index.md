@@ -56,6 +56,36 @@ After install, use `remnanode help` for more information.
 
 ---
 
+### REMNAWAVE-REVERSE-PROXY
+
+Server Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
+
+Author: [eGamesAPI](https://github.com/eGamesAPI)
+
+#### Installation
+
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/eGamesAPI/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)
+```
+
+Features:
+- Support for automatic configuration updates via subscription
+- NGINX reverse proxy setup in combination with Xray
+- Cloudflare SSL certificates with automatic renewal
+- UFW setup for access management
+- BBR optimization for TCP connections
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/eGamesAPI/remnawave-reverse-proxy" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-reverse-proxy.webp" alt="REMNAWAVE-REVERSE-PROXY" width="600" />
+</div>
+
+---
+
 ## Add project to the list
 
 If you want to add project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave/index.md).
