@@ -62,6 +62,10 @@ Server Using NGINX Reverse Proxy. This script is designed to streamline the setu
 
 Author: [eGamesAPI](https://github.com/eGamesAPI)
 
+#### Installation Guidelines
+
+Please read the [Installation Guidelines](https://github.com/eGamesAPI/remnawave-reverse-proxy/blob/main/README.md) before proceeding with the installation.
+
 #### Installation
 
 ```bash
