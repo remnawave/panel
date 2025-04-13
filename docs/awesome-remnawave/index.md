@@ -56,15 +56,50 @@ After install, use `remnanode help` for more information.
 
 ---
 
+### Remnawave Reverse Proxy (eGAMES)
+
+Server Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
+
+Author: [eGamesAPI](https://github.com/eGamesAPI)
+
+#### Installation Guidelines
+
+Please read the [Installation Guidelines](https://github.com/eGamesAPI/remnawave-reverse-proxy/blob/main/README.md) before proceeding with the installation.
+
+#### Installation
+
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/eGamesAPI/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)
+```
+
+Features:
+
+- Support for automatic configuration updates via subscription
+- NGINX reverse proxy setup in combination with Xray
+- Cloudflare SSL certificates with automatic renewal
+- UFW setup for access management
+- BBR optimization for TCP connections
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/eGamesAPI/remnawave-reverse-proxy" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-reverse-proxy.webp" alt="REMNAWAVE-REVERSE-PROXY" width="600" />
+</div>
+
+---
+
 ### Remnawave Backup Script
 
 A bash script to create backups of the Remnawave database and configurations. Backups are sent to a Telegram chat for easy access. The script backs up the following:
 
 - The Remnawave database as `db_backup.sql`
 - Either the entire specified folder (e.g., `/opt/remnawave` or user-defined) or specific files:
-  - `docker-compose.yml`
-  - `.env`
-  - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
+    - `docker-compose.yml`
+    - `.env`
+    - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
 
 Author: [DigneZzZ](https://github.com/DigneZzZ)
 
@@ -90,11 +125,12 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. **Warning: This is a beta version. Use with extreme caution, especially on a live Remnawave panel, as it may overwrite critical data or cause instability.**
 
 The script performs the following:
+
 - Clears all existing data in the specified database and restores it from `db_backup.sql`
 - Restores files to the chosen directory (e.g., `/opt/remnawave` or user-defined), including:
-  - `docker-compose.yml`
-  - `.env`
-  - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
+    - `docker-compose.yml`
+    - `.env`
+    - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
 - Starts containers to ensure the restored setup is operational
 
 Author: [DigneZzZ](https://github.com/DigneZzZ)
@@ -113,7 +149,6 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/remnawave-restore.webp" alt="Remnawave Restore Script" width="600" />
 </div>
-
 
 ---
 
