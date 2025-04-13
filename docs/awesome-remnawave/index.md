@@ -56,7 +56,7 @@ After install, use `remnanode help` for more information.
 
 ---
 
-### Remnawave Reverse Proxy (eGAMES)
+### Remnawave Reverse Proxy from eGames
 
 Server Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
 
@@ -120,7 +120,7 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 
 ---
 
-### Remnawave Restore Script (BETA)
+### Remnawave Restore Script (Beta)
 
 A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. **Warning: This is a beta version. Use with extreme caution, especially on a live Remnawave panel, as it may overwrite critical data or cause instability.**
 
