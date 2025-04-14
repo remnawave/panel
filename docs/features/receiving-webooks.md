@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 slug: /features/webhooks
-title: Receieving webhooks
+title: Receiving webhooks
 ---
 
 ## Overview
