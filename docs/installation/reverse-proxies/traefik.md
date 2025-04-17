@@ -325,6 +325,56 @@ http:
                     - url: 'http://remnawave:3000'
 ```
 
+### Allowing public access to the subscription path
+
+For the subscription system to work correctly, the `/api/sub/` path must be publicly accessible.  
+At the same time, the rest of the panel should remain protected by IP-based restrictions.
+
+To achieve this, you need to define two separate routers for the same domain — one for `/api/sub/` (open access), and one for everything else (restricted).
+
+Open the file `remnawave.yml` again:
+
+```bash
+nano /opt/remnawave/traefik/config/remnawave.yml
+```
+And update the router configuration as follows:
+```
+http:
+  routers:
+    remnawave-sub:
+      // highlight-next-line-yellow
+      rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`) && PathPrefix(`/api/sub/`)"
+      entrypoints:
+        - https
+      service: remnawave
+      tls:
+        certResolver: letsencrypt
+
+    remnawave-secure:
+      // highlight-next-line-yellow
+      rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
+      entrypoints:
+        - https
+      middlewares:
+        // highlight-next-line-green
+        - ip-allow-list
+      service: remnawave
+      tls:
+        certResolver: letsencrypt
+
+  middlewares:
+    remnawave-https-redirect:
+      redirectScheme:
+        scheme: https
+
+  services:
+    remnawave:
+      loadBalancer:
+        servers:
+          - url: "http://remnawave:3000"
+```
+This configuration makes the /api/sub/ path publicly accessible, while the rest of the panel remains IP-restricted.
+
 ## Troubleshooting
 
 <Button label="Ask community" link="https://t.me/+YxzE4bOmEog2Zjhi" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
