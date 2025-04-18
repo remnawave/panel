@@ -174,6 +174,7 @@ The application requires the following environment variables to be set:
 | `REMNAWAVE_TOKEN` | Authentication token for Remnawave API                                                                        |
 | `BUY_LINK`        | The URL for purchase actions                                                                                  |
 | `CRYPTO_LINK`     | Allows using encrypted links (currently supported Happ application)                                           |
+| `REDIRECT_LINK`     | Allows you to specify a **custom redirect page URL** for deep links. Useful for handling protocols like `v2box://` in Telegram Desktop (Windows). For more details and examples, see [Telegram Deep Link Redirect](https://github.com/maposia/redirect-page/tree/main)                                         |
 
 #### Install and Run
 
