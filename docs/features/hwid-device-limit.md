@@ -5,7 +5,7 @@ title: HWID device limit
 ---
 
 :::info
-This feature currenly in beta and only a few applications currenly support it.
+This feature work only with a few applications, which currently support sending HWID header.
 
 :::
 
@@ -56,6 +56,8 @@ PROVIDER_ID="123456"
 
 There is a option to set custom limit for each user. If is no value set, fallback(`HWID_FALLBACK_DEVICE_LIMIT`) limit will be used.
 
+There also an option to disable HWID Device Limit for specific user.
+
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/features/hwid-device-limit/hwid-user-limits.webp" alt="HWID User Limits" width="800" />
 </div>
@@ -85,6 +87,7 @@ Not all client applications send HWID header. Here is the list of applications, 
 :::
 
 - [Happ](https://happ.su)
+- [v2RayTun](https://docs.v2raytun.com/overview/supported-headers)
 
 ## For app developers
 
