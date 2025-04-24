@@ -338,7 +338,8 @@ Open the file `remnawave.yml` again:
 nano /opt/remnawave/traefik/config/remnawave.yml
 ```
 And update the router configuration as follows:
-```
+
+```yaml title="remnawave.yml"
 http:
   routers:
     remnawave-sub:
@@ -373,6 +374,7 @@ http:
         servers:
           - url: "http://remnawave:3000"
 ```
+
 This configuration makes the /api/sub/ path publicly accessible, while the rest of the panel remains IP-restricted.
 
 ## Troubleshooting

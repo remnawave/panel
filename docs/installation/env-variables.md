@@ -110,7 +110,7 @@ You can use group chat with topics for notifications. For this use `NODES_NOTIFY
 ```bash
 NODES_NOTIFY_THREAD_ID=change_me
 TELEGRAM_ADMIN_THREAD_ID=change_me
-````
+```
 
 ### FRONT_END_DOMAIN
 
