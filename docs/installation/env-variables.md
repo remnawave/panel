@@ -45,7 +45,7 @@ Leave default value to start 1 instance. \
 Most users will not need to change this value, it can help to achieve better performance with 40k+ users.
 
 :::warning
-Do not set this value more that physical cores count in your machine.
+Do not set this value more than physical cores count in your machine.
 :::
 
 ```bash
