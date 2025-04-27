@@ -336,7 +336,6 @@ Also, the following pre-requisites must be met:
 
 Following format must be used:
 
-
 ```md
 ### Project name
 
