@@ -267,7 +267,7 @@ docker compose up -d && docker compose logs -f
 </div>
 ---
 
-### Ansible playbook for install Remnawave
+### Ansible playbook for Install Remnawave
 
 This project helps install Remnawave via Ansible.
 
