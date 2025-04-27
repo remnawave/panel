@@ -269,7 +269,7 @@ docker compose up -d && docker compose logs -f
 
 ### Ansible playbook for install Remnawave
 
-This project for install remnaware via ansible.
+This project helps install Remnawave via Ansible.
 
 Author: [iphizic](https://github.com/iphizic)
 
@@ -281,7 +281,7 @@ Author: [iphizic](https://github.com/iphizic)
 
 #### Now make Python .env:
   ```bash
-    pythhon3 -m venv .env
+    python3 -m venv .env
   ```
 
 #### Activate .env:
@@ -297,16 +297,16 @@ Author: [iphizic](https://github.com/iphizic)
   Make inventory like inventory.yml.example in inventory dir
   In directory group_vars make all.yml like all.yml.example
 
-#### `Optional` Make somw user but not root
+#### `Optional` Make some user but not root
    `!!!ATTENTION for start this playbook we need username like in Github 
 and all.yml`
    ```bash
      ansible-playbook prepare-playbook.yml -u root -k
    ```
-   First question its root password
-   Second question its password for create user
+   First question it is root password
+   Second question it is password for the created user
    
-#### Run install remnaware:
+#### Run install Remnaware:
   ```bash
      ansible-playbook playbook.yml -K
    ```
