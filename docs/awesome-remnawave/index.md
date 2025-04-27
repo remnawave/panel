@@ -265,6 +265,60 @@ docker compose up -d && docker compose logs -f
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/remnawave-telegram-sub-mini-app.webp" alt="Remnawave Telegram Subscription Mini App" width="600" />
 </div>
+---
+
+### Ansible playbook for instal remnaware
+
+This project for install remnaware via ansible.
+
+Author: [iphizic](https://github.com/iphizic)
+
+#### Clone repo and change dir
+  ```bash
+    git clone https://github.com/iphizic/remna-playbook.git
+    cd remna-playbook
+  ```
+
+#### Now make Python .env:
+  ```bash
+    pythhon3 -m venv .env
+  ```
+
+#### Activate .env:
+  ```bash
+    source .env/bin/activate
+  ```
+#### Install Ansible and requirements:
+  ```bash
+    pip install -r requirements.txt
+    ansible-galaxy install -r requirements.yml
+  ```
+#### Make inventory and other vars
+  Make inventory like inventory.yml.example in inventory dir
+  In directory group_vars make all.yml like all.yml.example
+
+#### `Optional` Make somw user but not root
+   `!!!ATTENTION for start this playbook we need username like in Github 
+and all.yml`
+   ```bash
+     ansible-playbook prepare-playbook.yml -u root -k
+   ```
+   First question its root password
+   Second question its password for create user
+   
+#### Run install remnaware:
+  ```bash
+     ansible-playbook playbook.yml -K
+   ```
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/iphizic/remna-playbook" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/ansible.webp" alt="Ansible playbook for installation" width="600" />
+</div>
 
 ---
 
@@ -280,6 +334,7 @@ Also, the following pre-requisites must be met:
 - [x] Project must be related to Remnawave or **useful for Remnawave users**.
 
 Following format must be used:
+
 
 ```md
 ### Project name
