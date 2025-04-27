@@ -299,7 +299,7 @@ ansible-galaxy install -r requirements.yml
 
 #### `Optional` Make some user but not root
 :::warning
-For start this playbook we need username like in Github and all.yml 
+To run this playbook, the GitHub username must match the username in all.yml
 :::
 ```bash
 ansible-playbook prepare-playbook.yml -u root -k
