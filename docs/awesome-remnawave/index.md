@@ -163,7 +163,7 @@ Features:
 
 Author: [maposia](https://github.com/maposia)
 
-### Environment Variables
+#### Environment Variables
 
 The application requires the following environment variables to be set:
 
