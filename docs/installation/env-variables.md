@@ -227,7 +227,7 @@ WEBHOOK_SECRET_HEADER=vsmu67Kmg6R8FjIOF1WUY8LWBHie4scdEqrfsKmyf4IAf8dY3nFS0wwYHk
 
 ### Shared environment variables
 
-These variables are not used by Remnawave iteself, but can be used by the Postgres database or Cloudflare Tunnel, if you run them from the same `docker-compose.yml` file.
+These variables are not used by Remnawave itself, but can be used by the Postgres database or Cloudflare Tunnel, if you run them from the same `docker-compose.yml` file.
 
 ```bash
 CLOUDFLARE_TOKEN=ey...
