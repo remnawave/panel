@@ -332,7 +332,7 @@ cd /opt/remnawave/subscription && nano docker-compose.yml
 Please use the docker container name and port (`remnawave:3000`) instead of the panel URL (`panel.com`).
 You also need to add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription page can send requests to the panel API inside the docker network via the `http` protocol.
 
-Review the configuration below, look for yelow highlighted line and make the necessary changes. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
+Review the configuration below, look for yellow highlighted line and make the necessary changes. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
 :::
 
 ```yaml title="docker-compose.yml"
