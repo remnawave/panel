@@ -6,29 +6,27 @@ title: Caddy
 
 ## Overview
 
-In this guide we will use Caddy as a reverse proxy for requests to Remnawave.
-We will redirect a domain to our server and configure Caddy. Caddy will handle issue of SSL certificates by itself.
+In this guide we will be using Caddy as a reverse proxy to access the Remnawave panel.
+We will point a domain name to our server and configure Caddy. Caddy will handle issuance of the SSL certificates by itself.
 Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
-## Configuration
+## Prerequisites
 
-Requirements:
-
-- Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env)
+- Completing [Quick Start](/installation/quick-start)
+- Completing [Env Variables](/installation/env)
 - Registered domain name (e.g. `my-super-panel.com`)
 
 :::warning
 
-You should have a registered domain name to continue.
+You need to have a registered domain name to continue.
 
 :::
 
 ## Point domain to your server
 
-Check out your server IP address, it is better to use a static IPv4 address.
+Check your server's IP address. It is better to use a static IPv4 address.
 
-Now, you need to point your domain to your server.
+Now, you need to point your domain name to this IP address.
 
 For example, it will be `my-super-panel.com` -> `193.122.122.122`.
 
@@ -39,48 +37,46 @@ There are two ways to do this:
 
 ### DNS provider
 
-If you use Cloudflare, you need to add a record to your DNS.
+If you are using Cloudflare, you need to add a A/AAAA record (for IPv4 and IPv6 respectively) to your DNS records.
 
 Log in to your Cloudflare account [here](https://dash.cloudflare.com/login).
-Select domain, which you want to point to your server.
+Select the desired domain.
 
 On the left side of the page, click on `DNS` and then click on `Records`.
 
 Click on `Create record`.
 
-Select `Type` as `A` and `Name` as `@`.
+Set the `Type` to `A` and the `Name` to `@`.
 
 :::info
 
-If you want to use subdomains, you should write subdomain name (e.g. `panel`) in the `Name` field.
+If you want to use subdomains, you should enter the subdomain name (e.g. `panel`) in the `Name` field.
 
 :::
 
-In the `IPv4 address` field, you should write your server IP address.
+Enter your server's IP address in the `IPv4 address` field.
 
 Click on `Save`.
 
-Now, you need to wait for the DNS to be updated.
+Now you need to wait a while for the DNS records to be updated.
 
 :::info
 
-There are a big difference between yellow cloud (domain is proxied with Cloudflare) and grey cloud (domain is not proxied with Cloudflare) in the Cloudflare control panel.
+There is a big difference between yellow cloud (domain is proxied by Cloudflare) and grey cloud (domain is not proxied by Cloudflare) in the Cloudflare control panel.
 
-We will return later to this topic in this guide, but for now it really depends on you.
-
-If Cloudflare works fine in your region, it is better to proxy the domain with Cloudflare. (Yellow cloud)
+If Cloudflare works fine in your region, it is better to proxy the domain through Cloudflare. (Yellow cloud)
 
 :::
 
 ![static](/reverse-proxies/nginx/cloudflare-dns.webp)
 
-Some DNS providers have a different interface, but the process is the same.
+Some DNS providers have a different interface, but the overall process is the same.
 
 ## Caddy configuration
 
 ### Simple configuration
 
-Create a file `Caddyfile` in the `/opt/remnawave/caddy` folder.
+Create a file called `Caddyfile` in the `/opt/remnawave/caddy` directory.
 
 ```bash
 mkdir -p /opt/remnawave/caddy && cd /opt/remnawave/caddy && nano Caddyfile
@@ -92,7 +88,7 @@ Paste the following configuration.
 
 Please, replace `REPLACE_WITH_YOUR_DOMAIN` with your domain name.
 
-Review configuration below, look for red highlighted lines.
+Review the configuration below, look for red highlighted lines.
 
 :::
 
@@ -109,7 +105,7 @@ https://REPLACE_WITH_YOUR_DOMAIN {
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `/opt/remnawave/caddy` folder.
+Create a `docker-compose.yml` file in the `/opt/remnawave/caddy` directory.
 
 ```bash
 cd /opt/remnawave/caddy && nano docker-compose.yml
@@ -153,7 +149,7 @@ docker compose up -d && docker compose logs -f -t
 
 ### Open the panel in the browser
 
-Open the configured domain name in the browser and you will see login page.
+Open the configured domain name in the browser and you will see the login page.
 
 ![login-page](/reverse-proxies/nginx/login-page.webp)
 

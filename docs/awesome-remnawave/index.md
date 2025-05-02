@@ -8,7 +8,7 @@ title: ❤️ Awesome Remnawave
 
 ### Xray Checker
 
-Xray Checker is a tool for monitoring proxy server availability with support for VLESS, VMess, Trojan, and Shadowsocks protocols. It automatically tests connections through Xray Core and provides metrics for Prometheus, as well as API endpoints for integration with monitoring systems.
+Xray Checker is a tool for monitoring proxy server availability with support for VLESS, VMess, Trojan, and Shadowsocks protocols. It automatically tests connections through Xray Core and provides metrics for Prometheus, as well as API endpoints for integration with various monitoring systems.
 
 Author: [kutovoys](https://github.com/kutovoys)
 
@@ -26,7 +26,7 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ### Remnawave Node installation script
 
-Bash script to fast install Remnawave node
+Bash script to quickly install Remnawave node
 
 Author: [DigneZzZ](https://github.com/dignezzz)
 
@@ -36,13 +36,13 @@ Author: [DigneZzZ](https://github.com/dignezzz)
 sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
 ```
 
-If you want the latest branch, delete `--dev`.
+If you want to use the latest branch, delete `--dev`.
 
 Working directory: `/opt/remnanode`
 
 App directory for custom `xray`: `/var/lib/remnanode`
 
-After install, use `remnanode help` for more information.
+After installation, use `remnanode help` for more information.
 
 <br />
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
@@ -58,7 +58,7 @@ After install, use `remnanode help` for more information.
 
 ### Remnawave Reverse Proxy from eGames
 
-Server Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
+Server Setup Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to.
 
 Author: [eGamesAPI](https://github.com/eGamesAPI)
 
@@ -178,13 +178,13 @@ The application requires the following environment variables to be set:
 
 #### Install and Run
 
-1. Create new directory for mini app
+1. Create a new directory for the mini app
 
 ```bash
 mkdir /opt/remnawave-telegram-sub-mini-app && cd /opt/remnawave-telegram-sub-mini-app
 ```
 
-2. Download and configure the environment variables.
+2. Download the sample environment variables.
 
 ```bash
 curl -o .env https://raw.githubusercontent.com/maposia/remnawave-telegram-mini-bot/refs/heads/main/.env.example
@@ -202,7 +202,7 @@ nano .env
 nano docker-compose.yml
 ```
 
-Example below.
+Example below:
 
 ```yaml
 services:
@@ -228,7 +228,7 @@ remnawave-mini-app:
 ```
 
 Uncomment if you want to use your own template downloaded from the Remnawave panel.  
-P.S. file must be placed in the same directory with this `docker-compose.yml` file
+P.S. File must be placed in the same directory as this `docker-compose.yml` file
 
 ```yaml
 volumes:
@@ -255,7 +255,7 @@ docker compose up -d && docker compose logs -f
 ```
 
 2. Mini app is now running on http://127.0.0.1:3020  
-   Now we are ready to move on the Reverse Proxy installation.
+   Now we are ready to move on to Reverse Proxy installation.
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://github.com/maposia/remnawave-telegram-sub-mini-app" variant="secondary" size="md" outline />
@@ -325,16 +325,16 @@ ansible-playbook playbook.yml -K
 
 ## Add project to the list
 
-If you want to add project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave/index.md).
+If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave/index.md).
 
-Make sure that is your target branch is `main`.
+Make sure that the target branch is `main`.
 
-Also, the following pre-requisites must be met:
+Also, the following requirements must be met:
 
 - [x] Project must be open source.
 - [x] Project must be related to Remnawave or **useful for Remnawave users**.
 
-Following format must be used:
+The following format must be used:
 
 ```md
 ### Project name
@@ -351,6 +351,6 @@ Use the examples above to add your project to the list.
 :::info
 
 Please, use [https://squoosh.app/](https://squoosh.app/) to compress the image. Format must be `webp`.  
-Place the image to folder `static/awesome`.
+Add the image to the `static/awesome` directory.
 
 :::

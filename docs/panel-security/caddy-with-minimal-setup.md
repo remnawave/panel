@@ -63,14 +63,14 @@ volumes:
 
 ## Configuring .env variables
 
-Need to be set as domain for your Remnawave panel. Caddy will automatically create a certificate for this domain.
+You need to set a domain name for your Remnawave panel. Caddy will automatically issue a certificate for this domain.
 
 ```bash
 REMNAWAVE_PANEL_DOMAIN=panel.domain.com
 ```
 
 Admin credentials.
-Be sure to set strong password.
+Make sure to use a strong password.
 
 ```bash
 AUTHP_ADMIN_USER=admin
@@ -98,7 +98,7 @@ First of all, you need to select one of our predefined setups.
 - [x] Special API-keys can be issued for /api/\* endpoints.
 - [x] Full domain protection.
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/minimal-security-setup-with-mfa/Caddyfile
@@ -112,15 +112,15 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 :::danger
 
-This setup exposes `/api/*` endpoints to the public internet.
+This setup exposes the `/api/*` endpoints to the public internet.
 
-All endpoint will no require authentication, but still using Remnawave security features.
+All endpoint will not require authentication, but will still use the Remnawave security features.
 
-We recommend to use [full security setup with MFA](#full) for production environments with issuing API-keys.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys.
 
 :::
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/minimal-security-setup-with-mfa-with-api-without-auth/Caddyfile
@@ -134,13 +134,13 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 :::danger
 
-This setup exposes `/api/sub/*` endpoints to the public internet.
+This setup exposes the `/api/sub/*` endpoints to the public internet.
 
-We recommend to use [full security setup with MFA](#full) for production environments with issuing API-keys and using [@remnawave/subscription-page](/subscription-templating/installation) for public subscription page.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys and using [@remnawave/subscription-page](/subscription-templating/installation) for public subscription page.
 
 :::
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/minimal-security-setup-with-mfa-with-api-without-auth/Caddyfile
@@ -160,9 +160,9 @@ After the container is running, you can access the panel at `https://panel.domai
 
 After that, you will be redirected to the login page of Caddy Auth.
 
-On the first start, you will be promted to create an MFA.
+On the first start, you will be promted to create a MFA method.
 
-We recommend to use [Google Authenticator](https://www.google.com/search?q=google+authenticator) for this.
+We recommend using [Google Authenticator](https://www.google.com/search?q=google+authenticator) for this.
 
 ### Disable MFA
 

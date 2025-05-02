@@ -6,9 +6,9 @@ title: Quick start
 
 ## Installation
 
-Remnanode consists of one part:
+Remnanode consists of only one part:
 
-- Node (with XRay Core inside)
+- Node (with Xray Core inside)
 
 Minimum requirements for Node:
 
@@ -25,22 +25,22 @@ You can find the list of all environment variables in the [Environment Variables
 ## Installation
 
 :::info
-This guide is written for Debian 12, instructions may vary for other distributions.
+This guide was written for Debian 12, instructions may vary for other distributions.
 :::
 
-1. First of all, you need to install docker.
+1. To use Remnanode you will need to install docker, if not already.
 
 ```bash
 sudo curl -fsSL https://get.docker.com | sh
 ```
 
-2. Create separate directory for the project.
+2. Create a directory for the project files.
 
 ```bash
 mkdir -p /opt/remnanode && cd /opt/remnanode
 ```
 
-3. Create and configure the environment variables.
+3. Create and edit the `.env` file.
 
 ```bash
 nano .env
@@ -49,8 +49,8 @@ nano .env
 4. Add the following content to the .env file:
 
 :::info
-SSL_CERT can be found in the main panel under the Nodes tab, after clicking the Create node button.
-APP_PORT can be customized, make sure it's not used by other services.
+SSL_CERT can be found in the main panel under the Nodes tab, Management page, after clicking the Create new node button.
+APP_PORT can be customized, make sure it's not being used by other services.
 :::
 
 ```bash title=".env"
@@ -61,10 +61,10 @@ SSL_CERT=CERT_FROM_MAIN_PANEL
 
 :::warning
 Do not use port 61001 as APP_PORT - it is a service port!
-Ensure that APP_PORT is only accessible from your panel IP!
+Make sure APP_PORT is only accessible from your panel IP!
 :::
 
-5. Create `docker-compose.yml` file, example below.
+5. Create a `docker-compose.yml` file, example below:
 
 ```yaml title="docker-compose.yml"
 services:
@@ -78,7 +78,7 @@ services:
             - .env
 ```
 
-6. Run containers.
+6. Run the container.
 
 ```bash
 docker compose up -d
@@ -92,7 +92,7 @@ docker compose logs -f
 
 8. Remnanode is now running.
 
-Now we are ready to create a Node in the main panel.
+Now we are ready to create a new node in the main panel.
 
 ## Advanced usage
 
@@ -101,7 +101,7 @@ Now we are ready to create a Node in the main panel.
 You can mount additional geosite files into the `/usr/local/share/xray/` directory in the container.
 
 :::caution  
-Do not mount the entire folder. Otherwise, you will overwrite the xray geosite files. Mount files individually.
+Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite files. Mount each file individually.
 :::
 
 Add the following to the `docker-compose.yml` file:

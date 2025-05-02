@@ -6,27 +6,28 @@ title: Traefik
 
 ## Overview
 
-In this guide we will use Traefik as a reverse proxy for requests to Remnawave. We will redirect a domain to our server and configure Traefik. Traefik will handle issue of SSL certificates by itself.
+In this guide we will be using Traefik as a reverse proxy to access the Remnawave panel. We will point a domain name to our server and configure Traefik. Traefik will handle the issuance of SSL certificates by itself.
 Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
 ## Prerequisites
 
-- Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env)
+- Completing [Quick Start](/installation/quick-start)
+- Completing [Env Variables](/installation/env)
+- Registered domain name (e.g. `my-super-panel.com`)
 
 :::warning
 
-You should have a registered domain name to continue.
+You need to have a registered domain name to continue.
 
 :::
 
 ## Point domain to your server
 
-Check out your server IP address, it is better to use a static IPv4 address.
+Check your server's IP address. It is better to use a static IPv4 address.
 
-Now, you need to point your domain to your server.
+Now, you need to point your domain name to this IP address.
 
-For example, it will be my-super-panel.com -> 193.122.122.122.
+For example, it will be `my-super-panel.com` -> `193.122.122.122`.
 
 There are two ways to do this:
 
@@ -35,48 +36,46 @@ There are two ways to do this:
 
 ### DNS provider
 
-If you use Cloudflare, you need to add a record to your DNS.
+If you are using Cloudflare, you need to add a A/AAAA record (for IPv4 and IPv6 respectively) to your DNS records.
 
 Log in to your Cloudflare account [here](https://dash.cloudflare.com/login).
-Select domain, which you want to point to your server.
+Select the desired domain.
 
 On the left side of the page, click on `DNS` and then click on `Records`.
 
 Click on `Create record`.
 
-Select `Type` as `A` and `Name` as `@`.
+Set the `Type` to `A` and the `Name` to `@`.
 
 :::info
 
-If you want to use subdomains, you should write subdomain name (e.g. `panel`) in the `Name` field.
+If you want to use subdomains, you should enter the subdomain name (e.g. `panel`) in the `Name` field.
 
 :::
 
-In the `IPv4 address` field, you should write your server IP address.
+Enter your server's IP address in the `IPv4 address` field.
 
 Click on `Save`.
 
-Now, you need to wait for the DNS to be updated.
+Now you need to wait a while for the DNS records to be updated.
 
 :::info
 
-There are a big difference between yellow cloud (domain is proxied with Cloudflare) and grey cloud (domain is not proxied with Cloudflare) in the Cloudflare control panel.
+There is a big difference between yellow cloud (domain is proxied by Cloudflare) and grey cloud (domain is not proxied by Cloudflare) in the Cloudflare control panel.
 
-We will return later to this topic in this guide, but for now it really depends on you.
-
-If Cloudflare works fine in your region, it is better to proxy the domain with Cloudflare. (Yellow cloud)
+If Cloudflare works fine in your region, it is better to proxy the domain through Cloudflare. (Yellow cloud)
 
 :::
 
 ![static](/reverse-proxies/nginx/cloudflare-dns.webp)
 
-Some DNS providers have a different interface, but the process is the same.
+Some DNS providers have a different interface, but the overall process is the same.
 
 ## Traefik configuration
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `/opt/remnawave/traefik` folder.
+Create a `docker-compose.yml` file in the `/opt/remnawave/traefik` directory.
 
 ```bash
 mkdir -p /opt/remnawave/traefik && cd /opt/remnawave/traefik && nano docker-compose.yml
@@ -114,7 +113,7 @@ networks:
 
 ### Create static configuration file
 
-Creating a static configuration file `traefik.yml` in the `/opt/remnawave/traefik` folder.
+Creating a static configuration file called `traefik.yml` in the `/opt/remnawave/traefik` directory.
 
 ```bash
 cd /opt/remnawave/traefik && nano traefik.yml
@@ -124,9 +123,9 @@ Paste the following configuration.
 
 :::warning
 
-Please, replace `REPLACE_WITH_YOUR_EMAIL` with your email.
+Please replace `REPLACE_WITH_YOUR_EMAIL` with your email.
 
-Review configuration below, look for yellow highlighted lines.
+Review the configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -168,7 +167,7 @@ accessLog:
 
 ### Create dynamic configuration file
 
-Create a file `remnawave.yml` in the `/opt/remnawave/traefik/config` folder.
+Create a file called `remnawave.yml` in the `/opt/remnawave/traefik/config` directory.
 
 ```bash
 mkdir -p /opt/remnawave/traefik/config && cd /opt/remnawave/traefik/config && nano remnawave.yml
@@ -178,9 +177,9 @@ Paste the following configuration.
 
 :::warning
 
-Please, replace `REPLACE_WITH_YOUR_DOMAIN` with your domain name.
+Please replace `REPLACE_WITH_YOUR_DOMAIN` with your domain name.
 
-Review configuration below, look for yellow highlighted lines.
+Review the configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -226,13 +225,13 @@ docker compose up -d && docker compose logs -f -t
 
 ### Open the panel in the browser
 
-Open the configured domain name in the browser and you will see login page.
+Open the configured domain name in the browser and you will see the login page.
 
 ![login-page](/reverse-proxies/nginx/login-page.webp)
 
 ### Restricting access to the panel by IP
 
-If you want to restrict access to the panel by IP, create a middleware named `ip_allow_list.yml`
+If you want to restrict access to the panel by IP, you can create a middleware file named `ip_allow_list.yml`
 
 ```bash
 cd /opt/remnawave/traefik/config && nano ip_allow_list.yml
@@ -242,17 +241,17 @@ Paste the following configuration.
 
 :::warning
 
-Please, replace `REPLACE_WITH_YOUR_IP` with your allowed IPs (or ranges of allowed IPs by using CIDR notation).
+Please replace `REPLACE_WITH_YOUR_IP` with your allowed IP address (or ranges of allowed IPs by using CIDR notation).
 
-Review configuration below, look for yellow highlighted lines.
+Review the configuration below, look for yellow highlighted lines.
 
 :::
 
 :::info
 
-If your domain is proxied by Cloudflare, then you need to specify the IP ranges belonging to Cloudflare in the `excludedIPs` list.
+If your domain name is proxied by Cloudflare, then you need to specify the IP ranges belonging to Cloudflare in the `excludedIPs` list.
 
-Cloudflare regularly updates its IP ranges. To do this, you can use the [official Cloudflare page](https://www.cloudflare.com/ips/) to make sure that you have an up-to-date list.
+Cloudflare regularly updates its IP ranges so it's a good practice to use the [official Cloudflare page](https://www.cloudflare.com/ips/) to make sure that you have an up-to-date list.
 
 :::
 
@@ -283,13 +282,13 @@ http:
                         - 131.0.72.0/22
 ```
 
-Then you need to connect the middleware `ip-allow-list` to the configuration file `remnawave.yml`
+Then you need to add the middleware `ip-allow-list` to the `remnawave.yml` configuration file.
 
 ```bash
 nano remnawave.yml
 ```
 
-Pay attention to the green line, they are the ones you need to add.
+Pay attention to the green line which is the one you need to add.
 
 ```yaml title="remnawave.yml"
 http:
@@ -337,7 +336,7 @@ Open the file `remnawave.yml` again:
 ```bash
 nano /opt/remnawave/traefik/config/remnawave.yml
 ```
-And update the router configuration as follows:
+Update the router configuration as follows:
 ```
 http:
   routers:
@@ -373,7 +372,7 @@ http:
         servers:
           - url: "http://remnawave:3000"
 ```
-This configuration makes the /api/sub/ path publicly accessible, while the rest of the panel remains IP-restricted.
+This configuration makes the /api/sub/ path publicly accessible, while access to the rest of the panel remains IP-restricted.
 
 ## Troubleshooting
 

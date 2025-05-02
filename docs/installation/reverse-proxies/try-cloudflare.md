@@ -6,12 +6,12 @@ title: Try Cloudflare
 
 ## Overview
 
-In this guide we will use trial version of Cloudflare Tunnel to expose Remnawave to the public internet.
+In this guide we will be using the trial version of Cloudflare Tunnel to expose Remnawave to the public internet.
 
 ## Prerequisites
 
-- Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env)
+- Completing [Quick Start](/installation/quick-start)
+- Completing [Env Variables](/installation/env)
 
 :::warning
 
@@ -31,13 +31,13 @@ Do not use TryCloudflare in production, it is only for development and testing p
 
 ## Setup
 
-Firstly lets create a folder for our docker-compose.yml file.
+Firstly lets create a directory for our docker-compose.yml file.
 
 ```bash
 mkdir -p /opt/remnawave/try-cloudflare && cd /opt/remnawave/try-cloudflare
 ```
 
-Create a file `docker-compose.yml` and paste the following configuration.
+Create a file called `docker-compose.yml` and paste the following configuration inside of it.
 
 ```bash
 nano docker-compose.yml
@@ -67,7 +67,7 @@ networks:
 docker compose up -d && docker compose logs -f
 ```
 
-Check out the logs, and find the following lines:
+Check out the logs, and look for the following lines:
 
 ```
 
@@ -77,15 +77,15 @@ INF |  https://usually-43434-wow-poor.trycloudflare.com                         
 INF +--------------------------------------------------------------------------------------------+
 ```
 
-Open the following URL in the browser to access Remnawave.
+Open the displayed URL in the browser to access Remnawave.
 
 :::danger
 
 Do not use TryCloudflare in production, it is only for development and testing purposes!
 
-TryCloudflare has a few limitations.
+TryCloudflare has limitations.
 
-If you need similar setup for production, please use Cloudflare Tunnel or Nginx/Caddy/etc.
+If you need a similar setup for production, please use Cloudflare Tunnel or Nginx/Caddy/etc.
 
 :::
 

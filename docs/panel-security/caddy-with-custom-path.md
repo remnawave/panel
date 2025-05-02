@@ -14,7 +14,7 @@ First of all, create a directory for Caddy.
 mkdir -p ~/opt/remnawave/caddy && cd ~/opt/remnawave/caddy
 ```
 
-And create a `docker-compose.yml` file.
+Then create a `docker-compose.yml` file.
 
 ```bash
 touch docker-compose.yml && nano docker-compose.yml
@@ -65,22 +65,22 @@ volumes:
 
 ## Configuring .env variables
 
-Need to be set as domain for your Remnawave panel. Caddy will automatically create a certificate for this domain.
+You need to set a domain name for your Remnawave panel. Caddy will automatically issue a certificate for it.
 
 ```bash
 REMNAWAVE_PANEL_DOMAIN=panel.domain.com
 ```
 
 Custom login route.
-This path will be used for ONLY login page. There is will be no redirect if you open dashboard without previously authenticated.
-Only person who knows this path will be able to access the panel.
+This path will be used ONLY for the login page. There will be no redirect if you open the dashboard without being previously authenticated.
+Only people who know this path will be able to access the panel.
 
 ```bash
 REMNAWAVE_CUSTOM_LOGIN_ROUTE=supersecretroute
 ```
 
 Admin credentials.
-Be sure to set strong password.
+Make sure to use a strong password.
 
 ```bash
 AUTHP_ADMIN_USER=admin
@@ -102,7 +102,7 @@ First of all, you need to select one of our predefined setups.
 
 :::info
 
-We recommend to use [full security setup with MFA](#full) for production environments with issuing API-keys.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys.
 
 :::
 
@@ -120,7 +120,7 @@ You will able to login only via this path (REMNAWAVE_CUSTOM_LOGIN_ROUTE).
 - [x] Special API-keys can be issued for /api/\* endpoints.
 - [x] Full domain protection.
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/custom-webpath-with-auth-and-protected-api-route/Caddyfile
@@ -134,15 +134,15 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 :::danger
 
-This setup exposes `/api/*` endpoints to the public internet.
+This setup exposes the `/api/*` endpoints to the public internet.
 
-All endpoint will no require authentication, but still using Remnawave security features.
+All endpoint will not require authentication, but will still use the Remnawave security features.
 
-We recommend to use [full security setup with MFA](#full) for production environments with issuing API-keys.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys.
 
 :::
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/custom-webpath-with-auth-with-api-without-auth/Caddyfile
@@ -156,13 +156,13 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 :::danger
 
-This setup exposes `/api/sub/*` endpoints to the public internet.
+This setup exposes the `/api/sub/*` endpoints to the public internet.
 
-We recommend to use [full security setup with MFA](#full) for production environments with issuing API-keys and using [@remnawave/subscription-page](/subscription-templating/installation) for public subscription page.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys and use [@remnawave/subscription-page](/subscription-templating/installation) for public subscription page.
 
 :::
 
-Run command below to download the Caddyfile.
+Run the command below to download the Caddyfile.
 
 ```bash
 curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/refs/heads/main/examples/custom-webpath-with-auth-with-opened-api-sub/Caddyfile
@@ -170,7 +170,7 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 ## Running the container
 
-After you selected one of the setups above, you can start the container with the following command.
+After you have selected one of the setups above, you can start the container with the following command.
 
 ```bash
 docker compose up -d && docker compose logs -f
@@ -180,13 +180,13 @@ docker compose up -d && docker compose logs -f
 
 After the container is running, you can access the panel at `https://panel.domain.com/REMNAWAVE_CUSTOM_LOGIN_ROUTE`.
 
-On the first start, you will be promted to create an MFA.
+On the first start, you will be promted to add a MFA method.
 
-We recommend to use [Google Authenticator](https://www.google.com/search?q=google+authenticator) for this.
+We recommend using [Google Authenticator](https://www.google.com/search?q=google+authenticator).
 
 ### Disable MFA
 
-If you want to completly disable MFA, you can do this by editing the `Caddyfile`.
+If you want to completely disable MFA, you can do this by editing the `Caddyfile`.
 
 Open the `Caddyfile` and change the following line:
 
@@ -221,9 +221,9 @@ You can access the Auth Portal page at `https://<your-domain>/REMNAWAVE_CUSTOM_L
 
 ![Auth Portal page](/security/auth-portal.webp)
 
-Here you can quickly go to Remnawave dashboard or manage some of Auth Portal settings.
+Here you can quickly go to the Remnawave dashboard or manage some of Auth Portal settings.
 
-In the MFA section, you can delete or add new MFA devices.
+In the MFA section, you can delete or add new MFA methods.
 
 ## Issuing API-keys
 
