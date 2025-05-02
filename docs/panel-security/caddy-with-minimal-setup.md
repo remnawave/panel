@@ -114,7 +114,7 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 This setup exposes the `/api/*` endpoints to the public internet.
 
-All endpoint will not require authentication, but will still use the Remnawave security features.
+All endpoints will not require authentication, but will still use the Remnawave security features.
 
 We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys.
 
