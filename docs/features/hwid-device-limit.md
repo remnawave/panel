@@ -107,7 +107,7 @@ user-agent: <user_agent>
 
 The only required item is `x-hwid`. Other headers are optional and can be used to identify the device more accurately.
 
-If your application has the ability to enable additonal features based on where the subscription is coming from, Remnawave can send a provider id in the response headers, which you can use to figure out where the subscription is coming from.
+If your application has the ability to enable additional features based on where the subscription is coming from, Remnawave can send a provider id in the response headers, which you can use to figure out where the subscription is coming from.
 
 ```bash
 providerid: 12345
