@@ -350,7 +350,7 @@ docker compose down && docker compose up -d && docker compose logs -f
 
 ### Traefik
 
-If you have already configured Traefik, you need create a new dynamic configuration file called `remnawave-sub-page.yml` in the `/opt/remnawave/traefik/config` directory.
+If you have already configured Traefik, you need to create a new dynamic configuration file called `remnawave-sub-page.yml` in the `/opt/remnawave/traefik/config` directory.
 
 ```bash
 cd /opt/remnawave/traefik/config && nano remnawave-sub-page.yml
