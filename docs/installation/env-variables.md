@@ -212,7 +212,7 @@ Do not use the default credentials in production.
 
 :::
 
-`WEBHOOK_SECRET_HEADER` is used to sign the webhook payload. It Must be at least 32 characters long. Only a-z, 0-9, A-Z are allowed.
+`WEBHOOK_SECRET_HEADER` is used to sign the webhook payload. It must be at least 32 characters long. Only a-z, 0-9, A-Z are allowed.
 
 You can use the following command to generate secrets:
 
