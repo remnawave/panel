@@ -160,7 +160,7 @@ After the container is running, you can access the panel at `https://panel.domai
 
 After that, you will be redirected to the login page of Caddy Auth.
 
-On the first start, you will be promted to create a MFA method.
+On the first start, you will be prompted to create a MFA method.
 
 We recommend using [Google Authenticator](https://www.google.com/search?q=google+authenticator) for this.
 
