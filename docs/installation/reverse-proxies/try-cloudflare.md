@@ -31,7 +31,7 @@ Do not use TryCloudflare in production, it is only for development and testing p
 
 ## Setup
 
-Firstly lets create a directory for our docker-compose.yml file.
+Firstly let's create a directory for our docker-compose.yml file.
 
 ```bash
 mkdir -p /opt/remnawave/try-cloudflare && cd /opt/remnawave/try-cloudflare
