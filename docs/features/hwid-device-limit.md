@@ -46,7 +46,7 @@ PROVIDER_ID="123456"
 
 `HWID_DEVICE_LIMIT_ENABLED` - enables device limit restriction.
 
-`HWID_FALLBACK_DEVICE_LIMIT` - the default device limit that will be used if the a user does not have their own limit set.
+`HWID_FALLBACK_DEVICE_LIMIT` - the default device limit that will be used if a user does not have their own limit set.
 
 `HWID_MAX_DEVICES_ANNOUNCE` - the message that will be displayed to the user if they exceed the device limit. (Header: `announce`)
 
