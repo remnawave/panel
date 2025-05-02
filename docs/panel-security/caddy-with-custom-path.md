@@ -180,7 +180,7 @@ docker compose up -d && docker compose logs -f
 
 After the container is running, you can access the panel at `https://panel.domain.com/REMNAWAVE_CUSTOM_LOGIN_ROUTE`.
 
-On the first start, you will be promted to add a MFA method.
+On the first start, you will be prompted to add a MFA method.
 
 We recommend using [Google Authenticator](https://www.google.com/search?q=google+authenticator).
 
