@@ -6,29 +6,27 @@ title: Nginx
 
 ## Overview
 
-In this guide we will use Nginx as a reverse proxy for requests to Remnawave.
-We will redirect a domain to our server, issue a SSL certificate and configure Nginx.
-Complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
+In this guide we will be using Nginx as a reverse proxy to access the Remnawave panel.
+We will point a domain name to our server, issue a SSL certificate and configure Nginx.
+You should complete [Quick Start](/installation/quick-start) and [Env Variables](/installation/env) before continuing.
 
-## Configuration
+## Prerequisites
 
-Requirements:
-
-- Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env)
+- Completing [Quick Start](/installation/quick-start)
+- Completing [Env Variables](/installation/env)
 - Registered domain name (e.g. `my-super-panel.com`)
 
 :::warning
 
-You should have a registered domain name to continue.
+You need to have a registered domain name to continue.
 
 :::
 
 ## Point domain to your server
 
-Check out your server IP address, it is better to use a static IPv4 address.
+Check your server's IP address. It is better to use a static IPv4 address.
 
-Now, you need to point your domain to your server.
+Now, you need to point your domain name to this IP address.
 
 For example, it will be `my-super-panel.com` -> `193.122.122.122`.
 
@@ -39,42 +37,40 @@ There are two ways to do this:
 
 ### DNS provider
 
-If you use Cloudflare, you need to add a record to your DNS.
+If you are using Cloudflare, you need to add a A/AAAA record (for IPv4 and IPv6 respectively) to your DNS records.
 
 Log in to your Cloudflare account [here](https://dash.cloudflare.com/login).
-Select domain, which you want to point to your server.
+Select the desired domain.
 
 On the left side of the page, click on `DNS` and then click on `Records`.
 
 Click on `Create record`.
 
-Select `Type` as `A` and `Name` as `@`.
+Set the `Type` to `A` and the `Name` to `@`.
 
 :::info
 
-If you want to use subdomains, you should write subdomain name (e.g. `panel`) in the `Name` field.
+If you want to use subdomains, you should enter the subdomain name (e.g. `panel`) in the `Name` field.
 
 :::
 
-In the `IPv4 address` field, you should write your server IP address.
+Enter your server's IP address in the `IPv4 address` field.
 
 Click on `Save`.
 
-Now, you need to wait for the DNS to be updated.
+Now you need to wait a while for the DNS records to be updated.
 
 :::info
 
-There are a big difference between yellow cloud (domain is proxied with Cloudflare) and grey cloud (domain is not proxied with Cloudflare) in the Cloudflare control panel.
+There is a big difference between yellow cloud (domain is proxied by Cloudflare) and grey cloud (domain is not proxied by Cloudflare) in the Cloudflare control panel.
 
-We will return later to this topic in this guide, but for now it really depends on you.
-
-If Cloudflare works fine in your region, it is better to proxy the domain with Cloudflare. (Yellow cloud)
+If Cloudflare works fine in your region, it is better to proxy the domain through Cloudflare. (Yellow cloud)
 
 :::
 
 ![static](/reverse-proxies/nginx/cloudflare-dns.webp)
 
-Some DNS providers have a different interface, but the process is the same.
+Some DNS providers have a different interface, but the overall process is the same.
 
 ## Issue an SSL certificate
 
@@ -97,7 +93,7 @@ sudo apt-get install cron socat
 
 :::info
 
-You can use any email address to issue the certificate, but it is recommended to use a valid email address.
+You can use any email address to issue the certificate, but it is recommended to use a valid one.
 
 :::
 
@@ -115,7 +111,7 @@ mkdir -p /opt/remnawave/nginx && cd /opt/remnawave/nginx
 
 ### Issue a certificate
 
-Replace `DOMAIN` with your domain name, which you want to issue a certificate for.
+Replace `DOMAIN` with the domain name you want to issue a certificate for.
 
 :::warning
 Do not use domain zones: .ru, .su, .рф. Currently ZeroSSL does not support these zones.
@@ -126,26 +122,26 @@ acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey
 ```
 
 :::info
-Make sure that you have a **8443** port open on your server, it is used for the certificate issuance.
+Make sure that port **8443** is open on your server. It is required for certificate issuance.
 :::
 
 ![](/reverse-proxies/nginx/issue-cert.webp)
 
-This screenshot shows that the certificate is issued.
+This shows that the certificate is issued.
 
-Acme.sh will take care of renewing the certificate automatically every 60 days, just make sure that you have a **8443** port open (and not busy) on your server.
+Acme.sh will take care of automatically renewing the certificate every 60 days, just make sure that you have a **8443** port open (and not busy) on your server.
 
 ## Nginx configuration
 
 ### Simple configuration
 
-Also, we need to generate a dhparam.pem file.
+We are going to need a dhparam.pem file.
 
 ```bash
 curl https://ssl-config.mozilla.org/ffdhe2048.txt > /opt/remnawave/nginx/dhparam.pem
 ```
 
-Create a file `nginx.conf` in the `/opt/remnawave/nginx` folder.
+Create a file called `nginx.conf` in the `/opt/remnawave/nginx` directory.
 
 ```bash
 cd /opt/remnawave/nginx && nano nginx.conf
@@ -157,7 +153,7 @@ Paste the following configuration.
 
 Please, replace `REPLACE_WITH_YOUR_DOMAIN` with your domain name.
 
-Review configuration below, look for red highlighted lines.
+Review the configuration below, look for red highlighted lines.
 
 :::
 
@@ -260,7 +256,7 @@ server {
 
 ### Create docker-compose.yml
 
-Create a file `docker-compose.yml` in the `/opt/remnawave/nginx` folder.
+Create a `docker-compose.yml` file in the `/opt/remnawave/nginx` directory.
 
 ```bash
 cd /opt/remnawave/nginx && nano docker-compose.yml
@@ -300,7 +296,7 @@ docker compose up -d && docker compose logs -f -t
 
 ### Open the panel in the browser
 
-Open the configured domain name in the browser and you will see login page.
+Open the configured domain name in the browser and you will see the login page.
 
 ![login-page](/reverse-proxies/nginx/login-page.webp)
 

@@ -4,4 +4,4 @@ slug: /panel-overview/home
 title: Home
 ---
 
-Work in progress, page will be updated soon.
+Work in progress, this page will be updated soon.
