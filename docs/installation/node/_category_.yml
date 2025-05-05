@@ -1,5 +1,5 @@
 position: 3 # float position is supported
-label: 'Node install'
+label: 'Node installation'
 collapsible: true # make the category collapsible
 collapsed: true # keep the category open by default
 className: red

@@ -93,7 +93,7 @@ export interface IPlatformConfig {
 
 ## Usage Guide
 
-This guide explains how to configure client applications for different platforms in Remnawave.
+This guide explains how to add client applications for different platforms to the Remnawave subscription page.
 
 ### Configuration Structure
 
@@ -123,7 +123,7 @@ Each platform contains an array of application configurations that follow the `I
 | `name`                                | string  | Yes      | Display name of the application                      |
 | `isFeatured`                          | boolean | Yes      | Whether the app should be featured in the UI         |
 | `isNeedBase64Encoding`                | boolean | No       | Whether the subscription URL needs Base64 encoding   |
-| `urlScheme`                           | string  | Yes      | App URL scheme for launching app with subscription   |
+| `urlScheme`                           | string  | Yes      | URL scheme for launching the app with subscription   |
 | `installationStep`                    | object  | Yes      | Instructions for installing the application          |
 | `addSubscriptionStep`                 | object  | Yes      | Instructions for adding a subscription               |
 | `connectAndUseStep`                   | object  | Yes      | Instructions for connecting to VPN                   |

@@ -12,7 +12,7 @@ This guide walks you through migrating your data from a Marzban panel to a Remna
 
 ### 1.1. Installing Required Dependencies
 
-Ensure your server has the necessary tools installed by updating the system packages and installing Git and wget.
+Make sure your server has the necessary tools installed by updating the system packages and installing Git and wget.
 
 ```bash
 # Update system packages
@@ -42,7 +42,7 @@ wget https://github.com/remnawave/migrate/releases/download/v1.3.0/remnawave-mig
 
 ### 2.2. Extracting the Tool
 
-Unpack the downloaded archive to access the migration binary.
+Unpack the downloaded archive to access the binary.
 
 ```bash
 # Extract the tarball
@@ -57,7 +57,7 @@ After extraction, you should see the `remnawave-migrate` binary in your director
 
 ### 3.1. Setting Up Migration Parameters
 
-The migration tool uses command-line flags to configure the migration. Below is an example command with all required parameters. Replace the placeholder values with your actual server details.
+The migration tool uses command-line flags for configuration. Below is an example command with all the required parameters. Replace the placeholder values with your actual server details.
 
 ```bash
 ./remnawave-migrate \

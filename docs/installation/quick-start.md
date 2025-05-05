@@ -33,7 +33,7 @@ You can find the list of all environment variables in the [Environment Variables
 
 :::warning
 
-Be sure to change the default credentials in the environment variables.
+Make sure to change the default credentials in the environment variables.
 
 :::
 
@@ -43,22 +43,22 @@ Be sure to change the default credentials in the environment variables.
 
 :::info
 
-This guide written for Ubuntu 22.04, instructions may vary for other distributions.
+This guide was written for Ubuntu 22.04, instructions may vary for other distributions.
 :::
 
-1. First of all, you need to install docker.
+1. In order to use Remnawave you will need to install docker, if not already.
 
 ```bash
 sudo curl -fsSL https://get.docker.com | sh
 ```
 
-2. Create separate directory for the project.
+2. Create a directory for the project files.
 
 ```bash
 mkdir /opt/remnawave && cd /opt/remnawave
 ```
 
-3. Download and configure the environment variables.
+3. Download the environment variables sample file.
 
 ```bash
 curl -o .env https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample
@@ -70,15 +70,15 @@ curl -o .env https://raw.githubusercontent.com/remnawave/backend/refs/heads/main
 nano .env
 ```
 
-5. Create `docker-compose.yml` file, example below.
+5. Create a `docker-compose.yml` file for the panel, you can use the example below.
 
 :::danger
 
-Do not expose the services to the public internet, use only `127.0.0.1` for Remnawave services.
+Do not expose the services to the public internet; use only `127.0.0.1` for Remnawave services.
 
-You must use Nginx/Caddy/Apache/etc. to expose the services to the public internet.
+You should use a reverse proxy like Nginx, Caddy, Apache, etc. to expose the services publicly.
 
-This guide does not cover the configuration of the reverse proxy, but just a bit later we will use Cloudflare Tunnel to expose the services to the public internet.
+The documentation provides guides on using these reverse proxies or Cloudflare Tunnel in combination with Remnawave.
 
 :::
 
@@ -157,7 +157,7 @@ volumes:
         name: remnawave-redis-data
 ```
 
-6. Run containers.
+6. Run the containers.
 
 ```bash
 docker compose up -d
@@ -171,13 +171,13 @@ docker compose logs -f
 
 8. Remnawave is now running on `http://127.0.0.1:3000`.
 
-Now we are ready to move on the Reverse Proxy installation.
+Now we are ready to move on to Reverse Proxy installation.
 
 :::danger
 
-Do not expose the services to the public internet, use only `127.0.0.1` for Remnawave services.
+Do not expose the services to the public internet; use only `127.0.0.1` for Remnawave services.
 
-You must use Nginx/Caddy/Apache/etc. to expose the services to the public internet.
+You should use a reverse proxy like Nginx, Caddy, Apache, etc. to expose the services publicly.
 
 <Button label="Continue to Reverse Proxy installation" link="/installation/rp/nginx" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
 

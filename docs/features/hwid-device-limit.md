@@ -5,7 +5,7 @@ title: HWID device limit
 ---
 
 :::info
-This feature work only with a few applications, which currently support sending HWID header.
+This feature works only with a few client applications (which currently support sending a HWID header when receiving the subscription content).
 
 :::
 
@@ -16,19 +16,17 @@ This feature work only with a few applications, which currently support sending 
 
 ## Overview
 
-HWID Device Limit is a feature that allows you to restrict the number of devices that can request a subscription.
+HWID Device Limit is a feature that allows you to restrict the number of devices that can use a subscription.
 
 If the `HWID_DEVICE_LIMIT_ENABLED` variable is set to `true`,
-Remnawave will use HWID and other headers to limit the number of devices that can request a subscription.
+Remnawave will use HWID and other headers to limit the number of devices that can use a subscription.
 
-Remnawave will strictly enforce the limit on the number of devices that can request a subscription.
+Remnawave will strictly enforce the limit on the number of devices that can add the subscription.
 
 :::danger
-If `HWID_DEVICE_LIMIT_ENABLED` is set to `true`, it will be **impossible** to get a subscription if the client application does not send the HWID.
+If `HWID_DEVICE_LIMIT_ENABLED` is set to `true` and you do not disable the HWID limit for a user in the panel, it will be **impossible** for them to get a subscription if their client application does not send a HWID header.
 
-Enable only if you will use only supported applications.
-
-Remnawave will return `404` error if the HWID is not sent.
+Remnawave will return a `404` error if no HWID header is sent.
 :::
 
 ### .env configuration
@@ -37,7 +35,7 @@ Remnawave will return `404` error if the HWID is not sent.
 ### HWID DEVICE DETECTION AND LIMITATION ###
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=5
-HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of devices for your subscription."
+HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
 
 
 ### HWID DEVICE DETECTION PROVIDER ID ###
@@ -48,15 +46,15 @@ PROVIDER_ID="123456"
 
 `HWID_DEVICE_LIMIT_ENABLED` - enables device limit restriction.
 
-`HWID_FALLBACK_DEVICE_LIMIT` - device limit that will be used if the user does not have their own limit set.
+`HWID_FALLBACK_DEVICE_LIMIT` - the default device limit that will be used if a user does not have their own limit set.
 
-`HWID_MAX_DEVICES_ANNOUNCE` - message that will be displayed to the user if they exceed the device limit. (Header: `announce`)
+`HWID_MAX_DEVICES_ANNOUNCE` - the message that will be displayed to the user if they exceed the device limit. (Header: `announce`)
 
 ### User limits
 
-There is a option to set custom limit for each user. If is no value set, fallback(`HWID_FALLBACK_DEVICE_LIMIT`) limit will be used.
+You have the option to set a custom limit for each user. If no value is specified, the fallback limit (`HWID_FALLBACK_DEVICE_LIMIT`) will be used.
 
-There also an option to disable HWID Device Limit for specific user.
+There is also an option to disable HWID Device Limit for each user.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/features/hwid-device-limit/hwid-user-limits.webp" alt="HWID User Limits" width="800" />
@@ -64,7 +62,7 @@ There also an option to disable HWID Device Limit for specific user.
 
 ---
 
-In user card, you can see list of devices, which user used to get the subscription. You can delete any device from the list and simple search for device by HWID is also available.
+In the user card, you can see the list of devices that user has added the subscription onto. You have the option to delete devices from the list. Searching for devices by HWID is also available.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/features/hwid-device-limit/hwid-user-devices-list.webp" alt="HWID Device Limit Settings" width="800" />
@@ -75,15 +73,15 @@ In user card, you can see list of devices, which user used to get the subscripti
 ```bash
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=1
-HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of devices for your subscription."
+HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
 ```
 
-In this case, user will be able to use only one device and only in application, which will send `x-hwid` header.
+In this case, the user will be able to use only one device - only in applications that support sending the `x-hwid` header.
 
 ### Supported applications
 
 :::info
-Not all client applications send HWID header. Here is the list of applications, which currently support this feature.
+Not all client applications send a HWID header. Here is the list of applications which currently support this feature.
 :::
 
 - [Happ](https://happ.su)
@@ -92,12 +90,12 @@ Not all client applications send HWID header. Here is the list of applications, 
 ## For app developers
 
 :::info
-Initial header standart is offered by [Happ](https://happ.su).
+A standard for providing headers is offered by [Happ](https://happ.su).
 :::
 
-Remnawave is using this headers to identify HWID and device.
+Remnawave is using these headers to identify the HWID and the device.
 
-Your applicatoins should send this headers when user is adding the subscription.
+To enable support for the HWID feature in your client, the application should send the following headers when the user is adding the subscription.
 
 ```bash
 x-hwid: vfjdhk66csdjhk
@@ -107,9 +105,9 @@ x-device-model: Iphone 14 Pro Max
 user-agent: <user_agent>
 ```
 
-The only required header is `x-hwid`. Other headers are optional and can be used to identify the device more accurately.
+The only required item is `x-hwid`. Other headers are optional and can be used to identify the device more accurately.
 
-If your application use some additonal features, Remnawave will send provider id in the response headers.
+If your application has the ability to enable additional features based on where the subscription is coming from, Remnawave can send a provider id in the response headers, which you can use to figure out where the subscription is coming from.
 
 ```bash
 providerid: 12345

@@ -6,9 +6,9 @@ title: Subscription templates [beta]
 
 ## Prerequisites
 
-- Completed [Quick Start](/installation/quick-start)
-- Completed [Env Variables](/installation/env)
-- Completed [Reverse Proxies](/category/reverse-proxies)
+- Completing [Quick Start](/installation/quick-start)
+- Completing [Env Variables](/installation/env)
+- Completing [Reverse Proxies](/category/reverse-proxies)
 
 ## Page screenshot
 
@@ -16,13 +16,13 @@ title: Subscription templates [beta]
 
 ## Installation
 
-Firstly, make sure you have completed [Quick Start](/installation/quick-start) and [Env Variables](/installation/env).
+Please pay attention to the prerequisites above.
 
-This guide requires you have already configured Remnawave Dashboard and Reverse Proxies.
+This guide requires that you have already configured Remnawave Dashboard and Reverse Proxies.
 
-### Change Remnawave Dashboard port
+### Change the Subscription Page Environment Variable
 
-Open `~/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
+Edit the `~/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
 
 ```bash
 cd ~/opt/remnawave && nano .env
@@ -32,7 +32,7 @@ cd ~/opt/remnawave && nano .env
 SUB_PUBLIC_DOMAIN=subdomain.panel.com
 ```
 
-### Step 1: Creating docker-compose.yml file
+### Step 1: Create a docker-compose.yml file
 
 ```bash
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano docker-compose.yml
@@ -66,7 +66,7 @@ networks:
 
 :::warning
 
-Please, replace `panel.com` with URL which Remnawave Dashboard is available at. Only plain domain name without any path or port is not allowed!
+Please replace `panel.com` with the URL at which the Remnawave Dashboard is available. Only plain domain name without any path or port is allowed!
 
 :::
 
@@ -78,7 +78,7 @@ You can replace it parameter with, for example,
 ```
 
 to get an additional nested path for the subscription page.  
-But in that case, in `.env` for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
+But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
 And you will need to specify similar changes to the valid path in your configurations for nginx or caddy.
 
 :::
@@ -89,17 +89,17 @@ And you will need to specify similar changes to the valid path in your configura
 docker compose up -d && docker compose logs -f
 ```
 
-## Configuration of reverse proxy
+## Reverse Proxy Configuration
 
 :::warning
 
-You need create a subdomain or use another domain name for the subscription page.
+You need to create a subdomain or use a separate domain name for the subscription page.
 
 :::
 
 ### Nginx
 
-If you have already configured Nginx, you need to add a new location block to your configuration file.
+If you have already configured Nginx, all you need to do is add a new location block to your configuration file.
 
 Issue a certificate for the subscription page domain name:
 
@@ -115,17 +115,17 @@ cd /opt/remnawave/nginx && nano nginx.conf
 
 :::warning
 
-Please, replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
+Please replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
 
 :::
 
 :::danger
 
-Do not fully replace the existing configuration, only add a new location block to your configuration file.
+Do not fully replace the existing configuration, only add a new location block to your existing configuration file.
 
 :::
 
-Firstly, add a new upstream block to the top of configuration file.
+Add a new upstream block to the top of the configuration file.
 
 Pay attention to the green lines, they are the ones you need to add.
 
@@ -142,7 +142,7 @@ upstream remnawave-subscription-page {
 }
 ```
 
-And now add new server block to the bottom of configuration file.
+Now add a new server block to the bottom of the configuration file.
 
 ```nginx title="nginx.conf"
 server {
@@ -222,7 +222,7 @@ server {
 }
 ```
 
-Now lets modify docker-compose.yml file to add new certificate path.
+Now lets modify the docker-compose.yml for Nginx to mount the new certificate files.
 
 ```bash
 cd /opt/remnawave/nginx && nano docker-compose.yml
@@ -256,7 +256,7 @@ networks:
         external: true
 ```
 
-Now, you need to restart Nginx container.
+Now you need to restart Nginx container.
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f
@@ -264,9 +264,9 @@ docker compose down && docker compose up -d && docker compose logs -f
 
 ### Caddy
 
-If you have already configured Caddy, you need to add a new site block to Caddyfile.
+If you have already configured Caddy all you need to do is add a new site block to the Caddyfile.
 
-Open Caddyfile:
+Edit the Caddyfile:
 
 ```bash
 cd /opt/remnawave/caddy && nano Caddyfile
@@ -274,19 +274,19 @@ cd /opt/remnawave/caddy && nano Caddyfile
 
 :::warning
 
-Please, replace `SUBSCRIPTION_PAGE_DOMAIN` with your domain name.
+Please replace `SUBSCRIPTION_PAGE_DOMAIN` with your domain name.
 
-Review configuration below, look for green highlighted lines.
+Review the configuration below, look for green highlighted lines.
 
 :::
 
 :::danger
 
-Do not fully replace the existing configuration, only add a new site block to Caddyfile.
+Do not fully replace the existing configuration, only add a new site block to the existing Caddyfile.
 
 :::
 
-Firstly, add a new site block to the end of configuration file.
+Add a new site block to the end of configuration file.
 
 Pay attention to the green lines, they are the ones you need to add.
 
@@ -307,7 +307,7 @@ https://SUBSCRIPTION_PAGE_DOMAIN {
 }
 ```
 
-Now, you need to restart Caddy container.
+Now you need to restart Caddy container.
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f
@@ -329,10 +329,10 @@ cd /opt/remnawave/subscription && nano docker-compose.yml
 
 :::warning
 
-Please use the docker container name and port `remnawave:3000` instead of the URL `panel.com` which Remnawave Dashboard is available at.
-And also add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription page can send requests to the panel API inside the docker network via the `http` protocol.
+Please use the docker container name and port (`remnawave:3000`) instead of the panel URL (`panel.com`).
+You also need to add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription page can send requests to the panel API inside the docker network via the `http` protocol.
 
-Review configuration below, look for yelow highlighted line and make the changes into it. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
+Review the configuration below, look for yellow highlighted line and make the necessary changes. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
 :::
 
 ```yaml title="docker-compose.yml"
@@ -342,7 +342,7 @@ environment: // highlight-next-line-yellow
     - REQUEST_REMNAWAVE_SCHEME=http
 ```
 
-Now, you need to restart Subscription Page container.
+Now, you need to restart the Subscription Page container.
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f
@@ -350,7 +350,7 @@ docker compose down && docker compose up -d && docker compose logs -f
 
 ### Traefik
 
-If you have already configured Traefik, you need create a new dynamic configuration file `remnawave-sub-page.yml` in the `/opt/remnawave/traefik/config` folder.
+If you have already configured Traefik, you need to create a new dynamic configuration file called `remnawave-sub-page.yml` in the `/opt/remnawave/traefik/config` directory.
 
 ```bash
 cd /opt/remnawave/traefik/config && nano remnawave-sub-page.yml
@@ -360,9 +360,9 @@ Paste the following configuration.
 
 :::warning
 
-Please, replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
+Please replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
 
-Review configuration below, look for yellow highlighted lines.
+Review the configuration below, look for yellow highlighted lines.
 
 :::
 
@@ -402,6 +402,6 @@ http:
 
 ## Usage
 
-Now, you can use subscription templates.
+Now you can use subscription templates.
 
-Subscription page will be available at `https://subdomain.panel.com/<shortUuid>`.
+The subscription page will be available at `https://subdomain.panel.com/<shortUuid>`.
