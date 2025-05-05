@@ -105,6 +105,13 @@ TELEGRAM_ADMIN_ID=change_me
 NODES_NOTIFY_CHAT_ID=change_me
 ```
 
+You can use group chat with topics for notifications. For this use `NODES_NOTIFY_THREAD_ID` and `TELEGRAM_ADMIN_THREAD_ID`. Also set the `chat id` of the group chat for variables `TELEGRAM_ADMIN_ID` and `NODES_NOTIFY_CHAT_ID`.
+
+```bash
+NODES_NOTIFY_THREAD_ID=change_me
+TELEGRAM_ADMIN_THREAD_ID=change_me
+```
+
 ### FRONT_END_DOMAIN
 
 Frontend domain, used by Helmet middleware.
