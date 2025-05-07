@@ -23,34 +23,59 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
-### Remnawave Node installation script
+### Remnawave Installation Scripts
 
-Bash script to quickly install Remnawave node
+Bash scripts to install and manage **Remnawave Panel** and **Remnawave Node** via CLI.
+Includes Docker support, reverse proxy tips, Telegram integration, and `.env` generation.
 
-Author: [DigneZzZ](https://github.com/dignezzz)
+📦 Full info, updates, and examples: [**/remnawave-scripts**](https://github.com/DigneZzZ/remnawave-scripts)
 
-#### DEV branch Install
+---
+
+#### Quick install (latest by default)
+
+**Panel:**
 
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install --dev
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install
 ```
 
-If you want to use the latest branch, delete `--dev`.
+**Node:**
 
-Working directory: `/opt/remnanode`
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
+```
 
-App directory for custom `xray`: `/var/lib/remnanode`
+> Add `--dev` to install the development version
+> Add `--name customname` to use a custom directory (default: `/opt/remnawave` or `/opt/remnanode`)
 
-After installation, use `remnanode help` for more information.
+---
 
-<br />
+#### Already installed?
+
+Use `install-script` to install only the CLI wrapper for an existing setup:
+
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install-script
+```
+
+Make sure the directory matches your existing one. (`/opt/remnawave`)
+
+---
+
+#### CLI Features
+
+* `install`, `update`, `uninstall`, `install-script`,`uninstall-script`
+* `up`, `down`, `restart`, `status`, `logs`
+* `edit`, `edit-env`, `console` (just for panel)
+
+Run `remnawave help` or `remnanode help` to see available commands.
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
 </div>
 <br />
-
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/remnanode-script.webp" alt="RemnaNode script" width="600" />
+  <img src="/awesome/Remnawave-script.webp" alt="Remnawave scripts" width="600" />
 </div>
 
 ---
