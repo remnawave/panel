@@ -18,9 +18,11 @@ WEBHOOK_URL=https://your-server.com/webhook
 WEBHOOK_SECRET_HEADER=your-secret-header
 ```
 
-`WEBHOOK_ENABLED` - Enable webhooks.  
-`WEBHOOK_URL` - The URL to send the webhook to. (must start with https:// or http://)  
-`WEBHOOK_SECRET_HEADER` - This header will be used to sign the webhook payload. (only aA-zZ, 0-9 are allowed)
+| Variable                | Description                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------- |
+| `WEBHOOK_ENABLED`       | Enable webhooks.                                                                    |
+| `WEBHOOK_URL`           | The URL to send the webhook to. (must start with https:// or http://)               |
+| `WEBHOOK_SECRET_HEADER` | This header will be used to sign the webhook payload. (only aA-zZ, 0-9 are allowed) |
 
 ### Headers
 
@@ -56,6 +58,9 @@ The payload will be a JSON object with the following fields:
 - `user.expired_24_hours_ago` - The user's subscription expired 24 hours ago.
 
 User payload will contain full User object.
+
+<details>
+<summary>User object</summary>
 
 ```typescript
 uuid: string
@@ -98,6 +103,8 @@ activeUserInbounds: Array<{
 }>
 ```
 
+</details>
+
 #### Node
 
 - `node.created` - Node was created.
@@ -110,6 +117,9 @@ activeUserInbounds: Array<{
 - `node.traffic_notify` - Node reached the traffic notify limit.
 
 Node payload will contain full Node object.
+
+<details>
+<summary>Node object</summary>
 
 ```typescript
 uuid: string
@@ -155,16 +165,15 @@ excludedInbounds: Array<{
 }>
 ```
 
+</details>
+
 ## Verify webhook
 
-Remnawave will sign the webhook payload with the WEBHOOK_SECRET_HEADER and send it to the WEBHOOK_URL.
+Remnawave will sign the webhook payload with the `WEBHOOK_SECRET_HEADER` and send it to the `WEBHOOK_URL`.
 
 You can verify the webhook payload by checking the signature.
 
-```typescript
-/**
- * Webhook Headers
- */
+```typescript title="Webhook verification"
 export interface WebhookHeaders {
 	'x-remnawave-signature': string
 	'x-remnawave-timestamp': string
@@ -186,73 +195,43 @@ validateWebhook(data: {
 
 ## Examples for different languages
 
-### Python (Flask)
+### Python
+
+<details>
+<summary>Python sample code</summary>
 
 ```python
-from flask import Flask, request, jsonify
-import hmac
-import hashlib
-import json
-
-app = Flask(__name__)
-
-# Your webhook secret
-WEBHOOK_SECRET = "your-secret-header"
-
 def validate_webhook(body, signature):
+    webhook_secret_panel = "your_secret_token"
     """Validate webhook signature"""
+    if isinstance(body, str):
+        original_body = body
+        logging.warning("Body is string, parsing for logging...")
+        try:
+            parsed_body = json.loads(body)
+        except json.JSONDecodeError as e:
+            logging.warning("Failed to parse body: %s", e)
+            return False
+    else:
+        original_body = json.dumps(body, separators=(',', ':'))
+        parsed_body = body
+
     computed_signature = hmac.new(
-        WEBHOOK_SECRET.encode('utf-8'),
-        json.dumps(body).encode('utf-8'),
+        webhook_secret_panel.encode('utf-8'),
+        original_body.encode('utf-8'),
         hashlib.sha256
     ).hexdigest()
 
     return hmac.compare_digest(computed_signature, signature)
 
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    # Get webhook data
-    body = request.json
-
-    # Get headers
-    signature = request.headers.get('x-remnawave-signature')
-    timestamp = request.headers.get('x-remnawave-timestamp')
-
-    if not validate_webhook(body, signature):
-        return jsonify({"error": "Invalid signature"}), 401
-
-    # Process the webhook based on event
-    event = body.get('event')
-    data = body.get('data')
-
-    if event.startswith('user.'):
-        # Handle user events
-        username = data.get('username')
-        print(f"User event {event} for {username}")
-
-        if event == 'user.created':
-            # Handle user created
-            pass
-        elif event == 'user.expired':
-            # Handle user expired
-            pass
-
-    elif event.startswith('node.'):
-        # Handle node events
-        node_name = data.get('name')
-        print(f"Node event {event} for {node_name}")
-
-        if event == 'node.connection_lost':
-            # Handle node connection lost
-            pass
-
-    return jsonify({"status": "success"}), 200
-
-if __name__ == '__main__':
-    app.run(port=3000, debug=True)
 ```
 
+</details>
+
 ### Go
+
+<details>
+<summary>Go sample code</summary>
 
 ```go
 package main
@@ -370,3 +349,5 @@ func main() {
     http.ListenAndServe(":3000", nil)
 }
 ```
+
+</details>

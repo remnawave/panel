@@ -156,3 +156,6 @@ fsd-high-level-dependencies.html
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+.wip/

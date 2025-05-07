@@ -1,22 +1,18 @@
 ---
 sidebar_position: 4
 slug: /donate
-title: 💎 Donate
+title: 💎 Support the project
 ---
 
 If you want to support the Remnawave project, you can donate to the following addresses.
 
-### Bitcoin
+### RUB (Tribute)
 
-```
-bc1qraz2g0e4d5suk060tqc0rwvzn8wcv06gek0szr
-```
+<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnav" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
 
-### Ethereum
+### EUR (Tribute)
 
-```
-0x4b1A2EAdEEb43B6d09E4c476B39327e7f766E679
-```
+<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnm7" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
 
 ### TRX (Tron)
 
@@ -36,10 +32,14 @@ UQB9lc8hoUHH1I_cTfcay9pw7s9G2SkNuf_Ca8ZiBkSF6CUh
 Fhr9ZwN8vyh2T6UsNtcNCcau8qHCy92NZKTvAxdrFXKz
 ```
 
-### RUB (Tribute)
+### Bitcoin
 
-<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnav" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+```
+bc1qraz2g0e4d5suk060tqc0rwvzn8wcv06gek0szr
+```
 
-### EUR (Tribute)
+### Ethereum
 
-<Button label="Donate with Tribute" link="https://t.me/tribute/app?startapp=dnm7" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+```
+0x4b1A2EAdEEb43B6d09E4c476B39327e7f766E679
+```

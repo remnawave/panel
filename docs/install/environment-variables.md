@@ -1,0 +1,210 @@
+---
+sidebar_position: 10
+---
+
+# Environment Variables
+
+:::warning
+
+To change environment variables, you must recreate the Remnawave containers.  
+Just restarting the containers does not replace the environment within the container!
+
+In order to recreate the container using docker compose, run `docker compose down && docker compose up -d`.
+
+:::
+
+## Ports
+
+| Variable       | Description                            | Default |
+| -------------- | -------------------------------------- | ------- |
+| `APP_PORT`     | The port to run the Remnawave Panel on | `3000`  |
+| `METRICS_PORT` | The port to run Metrics endpoints      | `3001`  |
+
+## Scaling API
+
+Number of API instances to run.
+
+Possible values:
+
+- `max` (start instances on all cores)
+- `<number>` (start instances on a specific number of cores)
+- `-1` (start instances on all cores - 1)
+
+Leave it on the default value to start only 1 instance.
+
+Most users will not need to change this value but it can help achieve better performance with 40k+ users.
+
+:::warning
+Do not set this value to a number greater than the number of CPU cores in your machine.
+:::
+
+| Variable        | Description                        | Default |
+| --------------- | ---------------------------------- | ------- |
+| `API_INSTANCES` | The number of API instances to run | `1`     |
+
+## Redis
+
+| Variable         | Description                      | Default           | Required |
+| ---------------- | -------------------------------- | ----------------- | -------- |
+| `REDIS_HOST`     | The host of the Redis server     | `remnawave-redis` | Yes      |
+| `REDIS_PORT`     | The port of the Redis server     | `6379`            | Yes      |
+| `REDIS_DB`       | The database of the Redis server | `0`               | No       |
+| `REDIS_PASSWORD` | The password of the Redis server |                   | No       |
+
+## Database
+
+Variables below are not used by Remnawave, but by the database container.
+
+| Variable            | Description                     | Default    | Required |
+| ------------------- | ------------------------------- | ---------- | -------- |
+| `POSTGRES_USER`     | The host of the Database server | `postgres` | No       |
+| `POSTGRES_PASSWORD` | The port of the Database server | `postgres` | No       |
+| `POSTGRES_DB`       | The user of the Database server | `postgres` | No       |
+
+Remnawave uses PostgreSQL URL to connect to the database.
+
+```
+postgresql://{user}:{password}@{host}:{port}/{database}
+```
+
+```bash title="DATABASE_URL example"
+DATABASE_URL="postgresql://postgres:postgres@remnawave-db:5432/postgres"
+```
+
+## Secret keys
+
+It is recommended to use a random string generator to create secrets with a minimum length of 64 characters.
+
+:::danger
+
+Do not use the default credentials in production.
+Make sure to generate strong secrets!
+
+:::
+
+```bash title="Generating secrets"
+openssl rand -hex 64
+```
+
+| Variable                | Description                           | Default     | Required |
+| ----------------------- | ------------------------------------- | ----------- | -------- |
+| `JWT_AUTH_SECRET`       | The secret key for the auth JWT       | `change_me` | Yes      |
+| `JWT_API_TOKENS_SECRET` | The secret key for the API tokens JWT | `change_me` | Yes      |
+
+## Telegram Notifications
+
+`TELEGRAM_ADMIN_ID`, `TELEGRAM_ADMIN_THREAD_ID` is used to send notifications about user events.
+
+`NODES_NOTIFY_CHAT_ID`, `NODES_NOTIFY_THREAD_ID` is used to send notifications about node events.
+
+| Variable                   | Description                           | Default | Possible values |
+| -------------------------- | ------------------------------------- | ------- | --------------- |
+| `IS_TELEGRAM_ENABLED`      | Disable/Enable Telegram notifications | `false` | `true`, `false` |
+| `TELEGRAM_BOT_TOKEN`       | The token for the Telegram bot        |         |                 |
+| `TELEGRAM_ADMIN_ID`        | The admin id for the Telegram bot     |         |                 |
+| `NODES_NOTIFY_CHAT_ID`     | The chat id for the Telegram bot      |         |                 |
+| `NODES_NOTIFY_THREAD_ID`   | The thread id for the Telegram bot    |         |                 |
+| `TELEGRAM_ADMIN_THREAD_ID` | The thread id for the Telegram bot    |         |                 |
+
+## Domains
+
+| Variable           | Description                                                  | Default | Required |
+| ------------------ | ------------------------------------------------------------ | ------- | -------- |
+| `FRONT_END_DOMAIN` | The domain of the Remnawave Panel. Used to set CORS headers. | `*`     | Yes      |
+
+| Variable            | Description                                    | Default               | Required |
+| ------------------- | ---------------------------------------------- | --------------------- | -------- |
+| `SUB_PUBLIC_DOMAIN` | The domain and path of public subscription URL | `example.com/api/sub` | Yes      |
+
+`SUB_PUBLIC_DOMAIN` is used to set the public subscription URL in RestAPI responses/UI in dashboard.
+
+:::tip
+
+If you are using with panel, just set to `yourpanel.com/api/sub`
+:::
+
+## Documentation
+
+| Variable          | Description                  | Default | Possible values |
+| ----------------- | ---------------------------- | ------- | --------------- |
+| `IS_DOCS_ENABLED` | Disable/Enable documentation | `false` | `true`, `false` |
+
+`IS_DOCS_ENABLED` is used to disable/enable the documentation.
+
+:::tip
+You can use the `API Keys` page in the admin dashboard (when `IS_DOCS_ENABLED` is set to `true`) for a quick link to the documentation.
+:::
+
+| Variable       | Description                | Default   |
+| -------------- | -------------------------- | --------- |
+| `SWAGGER_PATH` | The path to the Swagger UI | `/docs`   |
+| `SCALAR_PATH`  | The path to the Scalar UI  | `/scalar` |
+
+## Prometheus Metrics
+
+:::tip
+
+You can generate a random password for the metrics using the following command:
+
+```bash
+openssl rand -hex 64
+```
+
+:::
+
+| Variable       | Description                  | Default     |
+| -------------- | ---------------------------- | ----------- |
+| `METRICS_USER` | The user for the metrics     | `admin`     |
+| `METRICS_PASS` | The password for the metrics | `change_me` |
+
+Sample Prometheus config:
+
+```yaml title="prometheus.yml"
+global:
+    # scrape_interval: 15s
+    scrape_timeout: 10s
+    evaluation_interval: 15s
+scrape_configs:
+    - job_name: 'remnawave'
+      scheme: http
+      metrics_path: /metrics
+      static_configs:
+          - targets: ['remnawave:3001']
+      scrape_interval: 30s
+      basic_auth:
+          username: admin
+          password: change_me
+```
+
+## Webhook
+
+| Variable                | Description                                                                     | Default | Possible values |
+| ----------------------- | ------------------------------------------------------------------------------- | ------- | --------------- |
+| `WEBHOOK_ENABLED`       | Enable/Disable webhook notifications                                            | `false` | `true`, `false` |
+| `WEBHOOK_URL`           | The URL of the webhook, can be http:// or https://                              |         |                 |
+| `WEBHOOK_SECRET_HEADER` | Key for signature, at least 32 characters long. Only a-z, 0-9, A-Z are allowed. |         |                 |
+
+:::tip
+
+You can generate a random password for the webhook secret using the following command:
+
+```bash
+openssl rand -hex 64
+```
+
+:::
+
+## HWID
+
+| Variable                     | Description                                                                              | Default |
+| ---------------------------- | ---------------------------------------------------------------------------------------- | ------- |
+| `HWID_DEVICE_LIMIT_ENABLED`  | Enable/Disable Gloval HWID device limit                                                  | `false` |
+| `HWID_FALLBACK_DEVICE_LIMIT` | The fallback number of devices allowed per user                                          |         |
+| `HWID_MAX_DEVICES_ANNOUNCE`  | Annonunce message when max devices are reached or HWID is not sent by client application |         |
+
+## Miscellaneous
+
+| Variable                  | Description                                                                              | Default |
+| ------------------------- | ---------------------------------------------------------------------------------------- | ------- |
+| `SHORT_UUID_LENGTH`       | The length of the generated short UUID (subscription). Min. lenght 16 and max. lenght 64 | `16`    |
+| `IS_HTTP_LOGGING_ENABLED` | Enable/Disable HTTP logging                                                              | `false` |

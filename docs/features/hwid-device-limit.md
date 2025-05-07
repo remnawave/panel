@@ -31,7 +31,7 @@ Remnawave will return a `404` error if no HWID header is sent.
 
 ### .env configuration
 
-```bash
+```bash title=".env configuration"
 ### HWID DEVICE DETECTION AND LIMITATION ###
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=5
@@ -70,7 +70,7 @@ In the user card, you can see the list of devices that user has added the subscr
 
 ### Example configuration
 
-```bash
+```bash title="Example configuration"
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=1
 HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."

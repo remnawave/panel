@@ -25,7 +25,8 @@ const config: Config = {
             {
                 docs: {
                     sidebarPath: './sidebars.ts',
-                    routeBasePath: '/',
+                    routeBasePath: '/docs',
+                    path: 'docs',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
                 // blog: {
@@ -60,13 +61,26 @@ const config: Config = {
     ],
 
     plugins: [
+        async function myPlugin() {
+            return {
+                name: 'docusaurus-mantineui',
+                configurePostCss(postcssOptions) {
+                    // Appends TailwindCSS and AutoPrefixer.
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+                    postcssOptions.plugins.push(require('postcss-preset-mantine'))
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+                    postcssOptions.plugins.push(require('postcss-simple-vars'))
+                    return postcssOptions
+                }
+            }
+        },
         [
             '@docusaurus/plugin-client-redirects',
             {
                 redirects: [
                     // /docs/oldDoc -> /docs/newDoc
                     {
-                        to: '/reverse-proxies',
+                        to: '/docs/install/reverse-proxies/',
                         from: '/category/reverse-proxies'
                     }
                 ]
@@ -140,7 +154,7 @@ const config: Config = {
                     type: 'docSidebar',
                     sidebarId: 'tutorialSidebar',
                     position: 'left',
-                    label: 'Tutorial'
+                    label: '📓 Docs'
                 },
                 {
                     href: 'https://hub.remna.st/changelog',
@@ -164,7 +178,7 @@ const config: Config = {
                     items: [
                         {
                             label: 'Introduction',
-                            to: '/'
+                            to: '/docs/overview/introduction'
                         }
                     ]
                 },
@@ -200,7 +214,7 @@ const config: Config = {
         },
 
         prism: {
-            darkTheme: prismThemes.oneDark,
+            darkTheme: prismThemes.dracula,
             additionalLanguages: ['bash', 'nginx'],
             magicComments: [
                 {
