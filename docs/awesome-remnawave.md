@@ -47,7 +47,8 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 ```
 
 > Add `--dev` to install the development version
-> Add `--name customname` to use a custom directory (default: `/opt/remnawave` or `/opt/remnanode`)
+
+> Add `--name customname` to use a custom directory, exapmle `remna` or `r-node` and etc. (default: `/opt/remnawave` or `/opt/remnanode`)
 
 ---
 
@@ -59,7 +60,7 @@ Use `install-script` to install only the CLI wrapper for an existing setup:
 sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install-script
 ```
 
-Make sure the directory matches your existing one. (`/opt/remnawave`)
+Make sure the directory matches your existing one. (`/opt/remnawave` or `/opt/remnanode`)
 
 ---
 
