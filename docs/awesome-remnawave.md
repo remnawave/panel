@@ -60,6 +60,10 @@ Use `install-script` to install only the CLI wrapper for an existing setup:
 sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install-script
 ```
 
+```bash
+sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install-script
+```
+
 Make sure the directory matches your existing one. (`/opt/remnawave` or `/opt/remnanode`)
 
 ---
