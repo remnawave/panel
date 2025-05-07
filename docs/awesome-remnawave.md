@@ -30,6 +30,8 @@ Includes Docker support, reverse proxy tips, Telegram integration, and `.env` ge
 
 📦 Full info, updates, and examples: [**/remnawave-scripts**](https://github.com/DigneZzZ/remnawave-scripts)
 
+Author: [DigneZzZ](https://github.com/DigneZzZ)
+
 ---
 
 #### Quick install (latest by default)
