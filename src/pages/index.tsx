@@ -140,7 +140,7 @@ export function HomePage() {
                         </Text>{' '}
                         Remnawave provides a rich functionality for user and proxy management.
                         <br />
-                        Easily add users, nodes, configure Xray configuration, and much more.
+                        Easily add users, nodes, configure Xray and much more.
                         <br />
                         Enjoy feature rich and well typed Rest API powered by{' '}
                         <Text
