@@ -1,8 +1,0 @@
-position: 2.5 # float position is supported
-label: 'Reverse Proxies'
-collapsible: true # make the category collapsible
-collapsed: true # keep the category open by default
-className: red
-link:
-    type: generated-index
-    title: Reverse Proxy configuration

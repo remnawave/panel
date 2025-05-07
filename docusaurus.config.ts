@@ -60,18 +60,18 @@ const config: Config = {
     ],
 
     plugins: [
-        // [
-        //     '@docusaurus/plugin-client-redirects',
-        //     {
-        //         redirects: [
-        //             // /docs/oldDoc -> /docs/newDoc
-        //             {
-        //                 to: '/',
-        //                 from: '/'
-        //             }
-        //         ]
-        //     }
-        // ]
+        [
+            '@docusaurus/plugin-client-redirects',
+            {
+                redirects: [
+                    // /docs/oldDoc -> /docs/newDoc
+                    {
+                        to: '/reverse-proxies',
+                        from: '/category/reverse-proxies'
+                    }
+                ]
+            }
+        ],
         [
             '@scalar/docusaurus',
             {

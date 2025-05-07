@@ -72,6 +72,10 @@ nano .env
 
 5. Create a `docker-compose.yml` file for the panel, you can use the example below.
 
+```bash
+nano docker-compose.yml
+```
+
 :::danger
 
 Do not expose the services to the public internet; use only `127.0.0.1` for Remnawave services.
@@ -157,7 +161,7 @@ volumes:
         name: remnawave-redis-data
 ```
 
-6. Run the containers.
+1. Run the containers.
 
 ```bash
 docker compose up -d
