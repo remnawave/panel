@@ -2,7 +2,6 @@ import {
     Box,
     BoxProps,
     Button,
-    Center,
     ElementProps,
     Group,
     Image,
@@ -159,7 +158,7 @@ export function HomePage() {
                     <Group justify="center" mt={40}>
                         <Button
                             component={Link}
-                            href="/docs"
+                            href="/docs/overview/introduction"
                             leftSection={<TbArrowRightDashed size={20} />}
                             radius="md"
                             size="md"

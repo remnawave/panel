@@ -24,9 +24,9 @@ const config: Config = {
             'classic',
             {
                 docs: {
+                    showLastUpdateAuthor: true,
+                    showLastUpdateTime: true,
                     sidebarPath: './sidebars.ts',
-                    routeBasePath: '/docs',
-                    path: 'docs',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
                 // blog: {
@@ -82,6 +82,10 @@ const config: Config = {
                     {
                         to: '/docs/install/reverse-proxies/',
                         from: '/category/reverse-proxies'
+                    },
+                    {
+                        from: '/docs/',
+                        to: '/docs/overview/introduction'
                     }
                 ]
             }
