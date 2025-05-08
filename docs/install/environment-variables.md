@@ -13,12 +13,30 @@ In order to recreate the container using docker compose, run `docker compose dow
 
 :::
 
+## Change environment variables
+
+You can change environment variables by editing the `.env` file. Most likely it is located in `~/opt/remnawave`.
+
+```bash title="Edit .env file"
+cd ~/opt/remnawave && nano .env
+```
+
 ## Ports
 
 | Variable       | Description                            | Default |
 | -------------- | -------------------------------------- | ------- |
 | `APP_PORT`     | The port to run the Remnawave Panel on | `3000`  |
 | `METRICS_PORT` | The port to run Metrics endpoints      | `3001`  |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+APP_PORT=3000
+METRICS_PORT=3001
+```
+
+</details>
 
 ## Scaling API
 
@@ -42,6 +60,15 @@ Do not set this value to a number greater than the number of CPU cores in your m
 | --------------- | ---------------------------------- | ------- |
 | `API_INSTANCES` | The number of API instances to run | `1`     |
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+API_INSTANCES=1
+```
+
+</details>
+
 ## Redis
 
 | Variable         | Description                      | Default           | Required |
@@ -50,6 +77,16 @@ Do not set this value to a number greater than the number of CPU cores in your m
 | `REDIS_PORT`     | The port of the Redis server     | `6379`            | Yes      |
 | `REDIS_DB`       | The database of the Redis server | `0`               | No       |
 | `REDIS_PASSWORD` | The password of the Redis server |                   | No       |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+REDIS_HOST=remnawave-redis
+REDIS_PORT=6379
+```
+
+</details>
 
 ## Database
 
@@ -64,12 +101,27 @@ Variables below are not used by Remnawave, but by the database container.
 Remnawave uses PostgreSQL URL to connect to the database.
 
 ```
+
 postgresql://{user}:{password}@{host}:{port}/{database}
+
 ```
 
 ```bash title="DATABASE_URL example"
 DATABASE_URL="postgresql://postgres:postgres@remnawave-db:5432/postgres"
 ```
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=postgres
+
+DATABASE_URL="postgresql://postgres:postgres@remnawave-db:5432/postgres"
+```
+
+</details>
 
 ## Secret keys
 
@@ -91,6 +143,16 @@ openssl rand -hex 64
 | `JWT_AUTH_SECRET`       | The secret key for the auth JWT       | `change_me` | Yes      |
 | `JWT_API_TOKENS_SECRET` | The secret key for the API tokens JWT | `change_me` | Yes      |
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+JWT_AUTH_SECRET=strong_secret_key
+JWT_API_TOKENS_SECRET=strong_secret_key
+```
+
+</details>
+
 ## Telegram Notifications
 
 `TELEGRAM_ADMIN_ID`, `TELEGRAM_ADMIN_THREAD_ID` is used to send notifications about user events.
@@ -105,6 +167,22 @@ openssl rand -hex 64
 | `NODES_NOTIFY_CHAT_ID`     | The chat id for the Telegram bot      |         |                 |
 | `NODES_NOTIFY_THREAD_ID`   | The thread id for the Telegram bot    |         |                 |
 | `TELEGRAM_ADMIN_THREAD_ID` | The thread id for the Telegram bot    |         |                 |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+IS_TELEGRAM_ENABLED=true
+TELEGRAM_BOT_TOKEN=1234567890
+
+TELEGRAM_ADMIN_ID=1234567890
+TELEGRAM_ADMIN_THREAD_ID=1234567890
+
+NODES_NOTIFY_CHAT_ID=1
+NODES_NOTIFY_THREAD_ID=1
+```
+
+</details>
 
 ## Domains
 
@@ -123,6 +201,16 @@ openssl rand -hex 64
 If you are using with panel, just set to `yourpanel.com/api/sub`
 :::
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+FRONT_END_DOMAIN=yourpanel.com
+SUB_PUBLIC_DOMAIN=yourpanel.com/api/sub
+```
+
+</details>
+
 ## Documentation
 
 | Variable          | Description                  | Default | Possible values |
@@ -140,6 +228,17 @@ You can use the `API Keys` page in the admin dashboard (when `IS_DOCS_ENABLED` i
 | `SWAGGER_PATH` | The path to the Swagger UI | `/docs`   |
 | `SCALAR_PATH`  | The path to the Scalar UI  | `/scalar` |
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+IS_DOCS_ENABLED=true
+SWAGGER_PATH=/docs
+SCALAR_PATH=/scalar
+```
+
+</details>
+
 ## Prometheus Metrics
 
 :::tip
@@ -156,6 +255,17 @@ openssl rand -hex 64
 | -------------- | ---------------------------- | ----------- |
 | `METRICS_USER` | The user for the metrics     | `admin`     |
 | `METRICS_PASS` | The password for the metrics | `change_me` |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+IS_DOCS_ENABLED=true
+METRICS_USER=admin
+METRICS_PASS=change_me
+```
+
+</details>
 
 Sample Prometheus config:
 
@@ -194,6 +304,17 @@ openssl rand -hex 64
 
 :::
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+IS_WEBHOOK_ENABLED=true
+WEBHOOK_URL=https://yourpanel.com/api/webhook
+WEBHOOK_SECRET_HEADER=strong_secret_key
+```
+
+</details>
+
 ## HWID
 
 | Variable                     | Description                                                                              | Default |
@@ -202,9 +323,30 @@ openssl rand -hex 64
 | `HWID_FALLBACK_DEVICE_LIMIT` | The fallback number of devices allowed per user                                          |         |
 | `HWID_MAX_DEVICES_ANNOUNCE`  | Annonunce message when max devices are reached or HWID is not sent by client application |         |
 
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+HWID_DEVICE_LIMIT_ENABLED=true
+HWID_FALLBACK_DEVICE_LIMIT=10
+HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
+```
+
+</details>
+
 ## Miscellaneous
 
 | Variable                  | Description                                                                              | Default |
 | ------------------------- | ---------------------------------------------------------------------------------------- | ------- |
 | `SHORT_UUID_LENGTH`       | The length of the generated short UUID (subscription). Min. lenght 16 and max. lenght 64 | `16`    |
 | `IS_HTTP_LOGGING_ENABLED` | Enable/Disable HTTP logging                                                              | `false` |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+SHORT_UUID_LENGTH=16
+IS_HTTP_LOGGING_ENABLED=true
+```
+
+</details>
