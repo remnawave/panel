@@ -14,6 +14,8 @@ date: 2025-03-14
     link="https://hub.remna.st/changelog/remnawave-v1-4-0"
 />
 
+<!-- truncate -->
+
 ## Remnawave Panel
 
 ### Updating backend

@@ -14,6 +14,8 @@ date: 2025-04-06
     link="https://hub.remna.st/changelog/remnawave-v1-5-0"
 />
 
+<!-- truncate -->
+
 ### Warning
 
 :::danger
