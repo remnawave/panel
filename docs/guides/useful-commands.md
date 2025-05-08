@@ -19,6 +19,12 @@ docker exec -it remnawave remnawave
 cd ~/opt/remnawave && docker compose down && docker compose up -d && docker compose logs -f -t
 ```
 
+### Access PM2 monitor
+
+```bash
+docker exec -it remnawave pm2 monit
+```
+
 ## Remnawave Node
 
 ### Access Xray Core logs {#logs}
