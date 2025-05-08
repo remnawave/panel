@@ -34,7 +34,8 @@ Author: [DigneZzZ](https://github.com/DigneZzZ)
 
 ---
 
-#### Quick install (latest by default)
+<details>
+<summary>Quick install (latest by default)</summary>
 
 **Panel:**
 
@@ -52,9 +53,10 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 
 > Add `--name customname` to use a custom directory, exapmle `remna` or `r-node` and etc. (default: `/opt/remnawave` or `/opt/remnanode`)
 
----
+</details>
 
-#### Already installed?
+<details>
+<summary>Already installed?</summary>
 
 Use `install-script` to install only the CLI wrapper for an existing setup:
 
@@ -68,21 +70,24 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 
 Make sure the directory matches your existing one. (`/opt/remnawave` or `/opt/remnanode`)
 
+</details>
+
 ---
 
 #### CLI Features
 
-* `install`, `update`, `uninstall`, `install-script`,`uninstall-script`
-* `up`, `down`, `restart`, `status`, `logs`
-* `edit`, `edit-env`, `console` (just for panel)
+- `install`, `update`, `uninstall`, `install-script`,`uninstall-script`
+- `up`, `down`, `restart`, `status`, `logs`
+- `edit`, `edit-env`, `console` (just for panel)
 
 Run `remnawave help` or `remnanode help` to see available commands.
+
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
 </div>
 <br />
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/Remnawave-script.webp" alt="Remnawave scripts" width="600" />
+  <img src="/awesome/remnawave-script.webp" alt="Remnawave scripts" width="600" />
 </div>
 
 ---
@@ -288,8 +293,9 @@ docker compose up -d && docker compose logs -f
 ```
 
 2. Mini app is now running on http://127.0.0.1:3020  
-Now we are ready to move on to Reverse Proxy installation.
-  </details>
+   Now we are ready to move on to Reverse Proxy installation.
+
+</details>
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://github.com/maposia/remnawave-telegram-sub-mini-app" variant="secondary" size="md" outline />
