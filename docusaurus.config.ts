@@ -86,6 +86,10 @@ const config: Config = {
                     {
                         from: '/docs/',
                         to: '/docs/overview/introduction'
+                    },
+                    {
+                        from: '/donate',
+                        to: '/docs/donate'
                     }
                 ]
             }
