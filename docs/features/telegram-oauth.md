@@ -19,7 +19,7 @@ cd ~/opt/remnawave && nano .env
 
 ```bash title=".env configuration"
 # Your Telegram bot token, you can get it from @BotFather
-# If it already defined in .env, you can skip this step
+# If it already defined in .env, you can skip this variable
 TELEGRAM_BOT_TOKEN="1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 # Enable Telegram OAuth
