@@ -6,7 +6,7 @@ title: Telegram OAuth
 Telegram OAuth is a feature that allows you to authenticate to Remnawave dashboard using your Telegram account.
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/features/tg-login/tg-login-preview.webp" alt="Telegram OAuth" width="800" style={{ borderRadius: '8px' }} />
+  <img src="/features/tg-login/tg-login-preview.png" alt="Telegram OAuth" width="800" style={{ borderRadius: '8px' }} />
 </div>
 
 ---
