@@ -105,3 +105,7 @@ export class AxiosService {
 ```
 
 </details>
+
+## Full examples
+
+You can find full examples in the [Remnawave Frontend](https://github.com/remnawave/remnawave-frontend) repository and in the [Remnawave Subscription page](https://github.com/remnawave/subscription-page) repository.
