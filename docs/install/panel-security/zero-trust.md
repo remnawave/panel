@@ -4,9 +4,10 @@ slug: /security/cloudflare-zero-trust
 title: Cloudflare ZeroTrust
 ---
 
-ZeroTrust is a powerful, free, and flexible tool that can be used to protect your Remnawave panel.
+Cloudflare ZeroTrust is a powerful, free, and flexible tool that can be used to protect your Remnawave panel.
 
 ## Requirements
+
 - Register an account with Cloudflare
 - Purchase your own domain and link it to Cloudflare
 - Have a payment card to attach to Cloudflare (any card will do, even with a zero balance, as long as it can be added). Once added, you’ll have access to the free Zero Trust plan.
@@ -35,4 +36,4 @@ Go to https://one.dash.cloudflare.com and select your account. Then follow the s
 After adding the security settings in step 7, go to **Access → Applications**, click the three dots next to your application (Edit) → **Policies → Select existing policies** on left side center, and choose your policy.
 :::
 
-Congratulations! You’ve successfully locked down your panel from the outside world!```
+Congratulations! You’ve successfully locked down your panel from the outside world!
