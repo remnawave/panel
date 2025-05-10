@@ -38,8 +38,8 @@ services:
         restart: always
         environment:
         // highlight-next-line-yellow
-            - REMNAWAVE_PLAIN_DOMAIN=panel.com
-            - SUBSCRIPTION_PAGE_PORT=3010
+            - REMNAWAVE_PANEL_URL=https://panel.com
+            - APP_PORT=3010
             - META_TITLE="Subscription Page Title"
             - META_DESCRIPTION="Subscription Page Description"
         ports:
@@ -57,6 +57,8 @@ networks:
 
 Please replace `panel.com` with the URL at which the **Remnawave Dashboard** is available.
 
+`REMNAWAVE_PANEL_URL` can be http (bridged Remnawave, example: `http://remnawave:3000`) or https (example: `https://panel.com`).
+
 :::
 
 :::tip
@@ -71,6 +73,38 @@ But in that case, in the `.env` file for the `remnawave` container, you will nee
 And you will need to specify similar changes to the valid path in your configurations for Nginx/Caddy.
 
 :::
+
+<details>
+<summary>Full .env file reference</summary>
+
+```bash title=".env file"
+APP_PORT=3010
+
+### Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com
+REMNAWAVE_PANEL_URL=https://panel.example.com
+
+
+META_TITLE="Subscription page"
+META_DESCRIPTION="Subscription page description"
+
+
+# Serve at custom root path, for example, this value can be: CUSTOM_SUB_PREFIX=sub
+# Do not place / at the start/end
+CUSTOM_SUB_PREFIX=
+
+
+
+# Support Marzban links
+MARZBAN_LEGACY_LINK_ENABLED=false
+MARZBAN_LEGACY_SECRET_KEY=
+REMNAWAVE_API_TOKEN=
+
+
+# If you use "Caddy with security" addon, you can place here X-Api-Key, which will be applied to requests to Remnawave Panel.
+CADDY_AUTH_API_TOKEN=
+```
+
+</details>
 
 ## Step 3 - Start the container
 
@@ -148,17 +182,15 @@ cd /opt/remnawave/subscription && nano docker-compose.yml
 
 :::warning
 
-Please use the docker container name and port (`remnawave:3000`) instead of the panel URL (`panel.com`).
-You also need to add the `REQUEST_REMNAWAVE_SCHEME` variable so that the subscription page can send requests to the panel API inside the docker network via the `http` protocol.
+Please use the docker container name and port (`http://remnawave:3000`) instead of the panel URL (`https://panel.com`).
 
 Review the configuration below, look for yellow highlighted line and make the necessary changes. Then copy the entire line highlighted in green and add it to the `docker-compose` file.
 :::
 
 ```yaml title="docker-compose.yml"
 environment:
-    - REMNAWAVE_PLAIN_DOMAIN=remnawave:3000
-    // highlight-next-line-green
-    - REQUEST_REMNAWAVE_SCHEME=http
+// highlight-next-line-green
+    - REMNAWAVE_PANEL_URL=http://remnawave:3000
 ```
 
 Now, you need to restart the Subscription Page container.
@@ -657,7 +689,7 @@ Modify your docker-compose.yml file to mount the app-config.json file to the sub
 
 ```yaml
 volumes:
-    - ./app-config.json:/app/dist/assets/app-config.json
+    - ./app-config.json:/opt/app/frontend/assets/app-config.json
 ```
 
 Restart the subscription-page container to apply the changes.
@@ -668,4 +700,4 @@ docker compose down && docker compose up -d && docker compose logs -f
 
 ### Full Example
 
-See the [complete example](https://raw.githubusercontent.com/remnawave/subscription-page/refs/heads/main/public/assets/app-config.json) to understand how to configure multiple applications across different platforms.
+See the [complete example](https://raw.githubusercontent.com/remnawave/subscription-page/refs/heads/main/frontend/public/assets/app-config.json) to understand how to configure multiple applications across different platforms.

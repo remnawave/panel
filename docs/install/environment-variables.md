@@ -155,31 +155,59 @@ JWT_API_TOKENS_SECRET=strong_secret_key
 
 ## Telegram Notifications
 
-`TELEGRAM_ADMIN_ID`, `TELEGRAM_ADMIN_THREAD_ID` is used to send notifications about user events.
+`TELEGRAM_NOTIFY_USERS_CHAT_ID`, `TELEGRAM_NOTIFY_USERS_THREAD_ID` is used to send notifications about user events.
 
-`NODES_NOTIFY_CHAT_ID`, `NODES_NOTIFY_THREAD_ID` is used to send notifications about node events.
+`TELEGRAM_NOTIFY_NODES_CHAT_ID`, `TELEGRAM_NOTIFY_NODES_THREAD_ID` is used to send notifications about node events.
 
-| Variable                   | Description                           | Default | Possible values |
-| -------------------------- | ------------------------------------- | ------- | --------------- |
-| `IS_TELEGRAM_ENABLED`      | Disable/Enable Telegram notifications | `false` | `true`, `false` |
-| `TELEGRAM_BOT_TOKEN`       | The token for the Telegram bot        |         |                 |
-| `TELEGRAM_ADMIN_ID`        | The admin id for the Telegram bot     |         |                 |
-| `NODES_NOTIFY_CHAT_ID`     | The chat id for the Telegram bot      |         |                 |
-| `NODES_NOTIFY_THREAD_ID`   | The thread id for the Telegram bot    |         |                 |
-| `TELEGRAM_ADMIN_THREAD_ID` | The thread id for the Telegram bot    |         |                 |
+| Variable                            | Description                           | Default | Possible values |
+| ----------------------------------- | ------------------------------------- | ------- | --------------- |
+| `IS_TELEGRAM_NOTIFICATIONS_ENABLED` | Disable/Enable Telegram notifications | `false` | `true`, `false` |
+| `TELEGRAM_BOT_TOKEN`                | The token for the Telegram bot        |         |                 |
+| `TELEGRAM_NOTIFY_USERS_CHAT_ID`     | The user/group chat id                |         |                 |
+| `TELEGRAM_NOTIFY_NODES_CHAT_ID`     | The user/group chat id                |         |                 |
+| `TELEGRAM_NOTIFY_USERS_THREAD_ID`   | The topic id of Telegram group        |         |                 |
+| `TELEGRAM_NOTIFY_NODES_THREAD_ID`   | The topic id of Telegram group        |         |                 |
 
 <details>
 <summary>Example</summary>
 
 ```bash title=".env file"
-IS_TELEGRAM_ENABLED=true
-TELEGRAM_BOT_TOKEN=1234567890
 
-TELEGRAM_ADMIN_ID=1234567890
-TELEGRAM_ADMIN_THREAD_ID=1234567890
+# Disable/Enable Telegram notifications
+IS_TELEGRAM_NOTIFICATIONS_ENABLED=false
 
-NODES_NOTIFY_CHAT_ID=1
-NODES_NOTIFY_THREAD_ID=1
+# Telegram bot token
+TELEGRAM_BOT_TOKEN=change_me
+
+# Notifications about users
+TELEGRAM_NOTIFY_USERS_CHAT_ID=change_me
+
+# Notifications about nodes
+TELEGRAM_NOTIFY_NODES_CHAT_ID=change_me
+
+# Optional, if you want to send notifications to specific topics in Telegram group
+TELEGRAM_NOTIFY_USERS_THREAD_ID=1
+TELEGRAM_NOTIFY_NODES_THREAD_ID=2
+```
+
+</details>
+
+## Telegram OAuth
+
+| Variable                   | Description                                                  | Default | Possible values |
+| -------------------------- | ------------------------------------------------------------ | ------- | --------------- |
+| `TELEGRAM_OAUTH_ENABLED`   | Disable/Enable Telegram OAuth                                | `false` | `true`, `false` |
+| `TELEGRAM_OAUTH_ADMIN_IDS` | Array of Admin Chat Ids. These ids will be allowed to login. |         |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+### Telegram Oauth (Login with Telegram)
+### true/false
+TELEGRAM_OAUTH_ENABLED=false
+### Array of Admin Chat Ids. These ids will be allowed to login.
+TELEGRAM_OAUTH_ADMIN_IDS=[123, 321]
 ```
 
 </details>
@@ -350,3 +378,4 @@ IS_HTTP_LOGGING_ENABLED=true
 ```
 
 </details>
+````
