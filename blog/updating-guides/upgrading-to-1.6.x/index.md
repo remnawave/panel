@@ -132,6 +132,15 @@ networks:
         external: true
 ```
 
+Also, pay attention if you are using custom app-config.json.
+
+New correct path is `/opt/app/frontend/assets/app-config.json`.
+
+```yaml title="docker-compose.yml"
+volumes:
+    - ./app-config.json:/opt/app/frontend/assets/app-config.json
+```
+
 ### Update Remnawave Subscription Page
 
 ```bash
