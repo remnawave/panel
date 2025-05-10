@@ -3,6 +3,10 @@ sidebar_position: 1
 title: TypeScript SDK
 ---
 
+<Admonition type="tip" icon={<FaCheckCircle />} title="Official SDK">
+This SDK is official and maintained by the Remnawave team.
+</Admonition>
+
 Remnawave TypeScript SDK is a library for convenient interaction with the RestAPI types.
 
 It does not contain http-client, so you need to implement it yourself.
@@ -11,10 +15,6 @@ This SDK can be used in backend and frontend.
 
 import Admonition from '@theme/Admonition';
 import { FaCheckCircle } from "react-icons/fa";
-
-<Admonition type="tip" icon={<FaCheckCircle />} title="Official SDK">
-This SDK is official and maintained by the Remnawave team.
-</Admonition>
 
 ## Installation
 
