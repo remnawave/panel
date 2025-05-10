@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 slug: /security/cloudflare-zero-trust
 title: Cloudflare ZeroTrust
 ---
@@ -32,7 +32,7 @@ Go to https://one.dash.cloudflare.com and select your account. Then follow the s
 ![Seventh Step](/security/zero-trust/seventh_step.webp)
 
 :::danger
-After adding the security settings in step 7, go to **Access → Applications**, click the three dots next to your application (Edit) → **Policies → Select existing policies**, and choose your policy.
+After adding the security settings in step 7, go to **Access → Applications**, click the three dots next to your application (Edit) → **Policies → Select existing policies** on left side center, and choose your policy.
 :::
 
 Congratulations! You’ve successfully locked down your panel from the outside world!```
