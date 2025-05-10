@@ -114,6 +114,16 @@ docker compose up -d && docker compose logs -f
 
 ## Step 4 - Configure reverse proxy
 
+:::warning
+
+Remnawave and its components does not support being server on a sub-path. (e.g. `location /subscription {`)
+
+It has to be served on the root path of a domain or subdomain.
+
+For custom path, you can use the `CUSTOM_SUB_PREFIX` parameter.
+
+:::
+
 ### Caddy
 
 <details>
