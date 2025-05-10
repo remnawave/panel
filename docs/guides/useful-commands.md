@@ -16,7 +16,7 @@ docker exec -it remnawave remnawave
 ### Restart Remnawave Panel
 
 ```bash
-cd ~/opt/remnawave && docker compose down && docker compose up -d && docker compose logs -f -t
+cd /opt/remnawave && docker compose down && docker compose up -d && docker compose logs -f -t
 ```
 
 ### Access PM2 monitor
@@ -42,5 +42,5 @@ docker exec -it remnanode tail -n +1 -f /var/log/supervisor/xray.err.log
 ### Restart Remnawave Node
 
 ```bash
-cd ~/opt/remnanode && docker compose down && docker compose up -d && docker compose logs -f -t
+cd /opt/remnanode && docker compose down && docker compose up -d && docker compose logs -f -t
 ```

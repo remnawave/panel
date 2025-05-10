@@ -11,10 +11,10 @@ Remnawave Subscription Page is lightweight and secure way to hide your Remnawave
 
 ## Step 1 - Prepare .env file
 
-Edit the `~/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
+Edit the `/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
 
 ```bash title="Editing .env file"
-cd ~/opt/remnawave && nano .env
+cd /opt/remnawave && nano .env
 ```
 
 Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.

@@ -11,7 +11,7 @@ Caddy is a powerful and flexible web server that can be used to secure your Remn
 First of all, create a directory for Caddy.
 
 ```bash
-mkdir -p ~/opt/remnawave/caddy && cd ~/opt/remnawave/caddy
+mkdir -p /opt/remnawave/caddy && cd /opt/remnawave/caddy
 ```
 
 Then create a `docker-compose.yml` file.
@@ -191,7 +191,7 @@ If you want to completely disable MFA, you can do this by editing the `Caddyfile
 Open the `Caddyfile` and change the following line:
 
 ```bash
-cd ~/opt/remnawave/caddy && nano Caddyfile
+cd /opt/remnawave/caddy && nano Caddyfile
 ```
 
 Find the following lines, and remove the `require mfa` line.

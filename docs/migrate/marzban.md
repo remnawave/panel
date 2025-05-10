@@ -33,7 +33,7 @@ Download the precompiled Remnawave migration tool from the GitHub releases page.
 
 ```bash
 # Create and navigate to a working directory
-mkdir -p ~/opt/remnawave && cd ~/opt/remnawave
+mkdir -p /opt/remnawave && cd /opt/remnawave
 
 # Download the latest version (v1.3.0 as of this guide)
 wget https://github.com/remnawave/migrate/releases/download/v1.3.0/remnawave-migrate-v1.3.0-linux-amd64.tar.gz

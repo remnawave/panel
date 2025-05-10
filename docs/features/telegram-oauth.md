@@ -14,7 +14,7 @@ Telegram OAuth is a feature that allows you to authenticate to Remnawave dashboa
 ### .env configuration
 
 ```bash title="Editing .env file"
-cd ~/opt/remnawave && nano .env
+cd /opt/remnawave && nano .env
 ```
 
 ```bash title=".env configuration"

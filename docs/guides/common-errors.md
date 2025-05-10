@@ -11,7 +11,7 @@ title: Common errors
 
 If you see the following error:
 
-```title="cd ~/opt/remnanode && docker compose logs -f -t"
+```title="cd /opt/remnanode && docker compose logs -f -t"
 remnanode  | ERROR [HttpExceptionFilter]      Failed to get system stats - { stack: [ null ], code: 'A010', path: '/node/stats/get-system-stats' }
 remnanode  | LOG [XrayService]      Getting config checksum...
 remnanode  | LOG [XrayService]      XTLS config generated in: 1ms

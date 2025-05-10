@@ -15,10 +15,10 @@ In order to recreate the container using docker compose, run `docker compose dow
 
 ## Change environment variables
 
-You can change environment variables by editing the `.env` file. Most likely it is located in `~/opt/remnawave`.
+You can change environment variables by editing the `.env` file. Most likely it is located in `/opt/remnawave`.
 
 ```bash title="Edit .env file"
-cd ~/opt/remnawave && nano .env
+cd /opt/remnawave && nano .env
 ```
 
 ## Ports
