@@ -11,14 +11,16 @@ This SDK is fully community-maintained.
 </Admonition>
 
 Remnawave Python SDK is a library for convenient interaction with the RestAPI types.
+
 ✨ Key Features
-	•	Controller-based design: Split functionality into separate controllers for flexibility. Use only what you need!
-	•	Pydantic models: Strongly-typed requests and responses for better reliability.
-	•	Fast serialization: Powered by orjson for efficient JSON handling.
-	•	Modular usage: Import individual controllers or the full SDK as needed.
-	•	Custom HTTP Client Support: You can pass your own httpx.AsyncClient with custom headers to bypass various checks.
-	•	Caddy Token Integration: Direct support for passing the caddy_token during SDK initialization.
- 
+
+- Controller-based design: Split functionality into separate controllers for flexibility. Use only what you need!
+- Pydantic models: Strongly-typed requests and responses for better reliability.
+- Fast serialization: Powered by orjson for efficient JSON handling.
+- Modular usage: Import individual controllers or the full SDK as needed.
+- Custom HTTP Client Support: You can pass your own httpx.AsyncClient with custom headers to bypass various checks.
+- Caddy Token Integration: Direct support for passing the caddy_token during SDK initialization.
+
 ## Installation
 
 ```bash
@@ -40,7 +42,7 @@ from remnawave_api.models import UsersResponseDto, UserResponseDto
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens) 
+    # Bearer Token from panel (section: API Tokens)
     token: str = os.getenv("REMNAWAVE_TOKEN")
 
     # Initialize the SDK
@@ -77,7 +79,7 @@ from remnawave_api.models import UsersResponseDto, UserResponseDto
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens) 
+    # Bearer Token from panel (section: API Tokens)
     token: str = os.getenv("REMNAWAVE_TOKEN")
     # Bearer Token for Caddy Auth
     caddy_token = os.getenv("CADDY_TOKEN_AUTH")
@@ -130,9 +132,7 @@ asyncio.run(main())
 
 </details>
 
-
 ## 🛠️ Project Links
 
 - **GitHub Repository:** [Remnawave API on GitHub](https://github.com/sm1ky/remnawave-api)
-- **Author:** [Artem (sm1ky)](https://github.com/sm1ky)
-
+- **Authors:** [Artem (sm1ky)](https://github.com/sm1ky), [Kesevone](https://github.com/kesevone)
