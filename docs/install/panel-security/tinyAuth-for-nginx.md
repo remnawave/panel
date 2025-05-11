@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-slug: /security/tinyauth-forn-nginx
+slug: /security/tinyauth-for-nginx
 title: TinyAuth for Nginx
 ---
 
