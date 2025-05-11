@@ -87,7 +87,7 @@ server {
     ssl_trusted_certificate "/etc/nginx/ssl/tinyauth.example.com/fullchain.pem";
 
     location / {
-			  proxy_pass http://tinyauth;
+	    proxy_pass http://tinyauth;
         proxy_set_header Host $host;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
