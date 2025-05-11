@@ -35,7 +35,7 @@ tinyauth:
 To generate your first hash for user, use the following command
 
 ```bash
-docker run -i -t --rm ghcr.io/maposia/remnawave-tinyauth:latest user create --interactive
+docker run -it --rm ghcr.io/maposia/remnawave-tinyauth:latest user create --interactive
 ```
 
 After running, you will be prompted to enter a username and password. You will also need to select <code>
@@ -87,7 +87,7 @@ server {
     ssl_trusted_certificate "/etc/nginx/ssl/tinyauth.example.com/fullchain.pem";
 
     location / {
-	    proxy_pass http://tinyauth;
+        proxy_pass http://tinyauth;
         proxy_set_header Host $host;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
