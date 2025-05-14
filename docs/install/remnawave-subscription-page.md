@@ -719,15 +719,15 @@ Your HTML template must include three variables:
 
 | Variable                    | Description                                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `<%= metaTitle %>`          | The <title> tag content for the subscription page.                                                       |
-| `<%= metaDescription %>`    | The <meta name="description"> tag content for the subscription page.                                     |
-| `<%- panelData %>`          | Base64‑encoded data (string), exactly matching the response from the /api/sub/<shortUuid>/info endpoint.  |
+| `<%= metaTitle %>`          | The &lt;title&gt; tag content for the subscription page.                                                 |
+| `<%= metaDescription %>`    | The &lt;meta name="description"&gt; tag content for the subscription page.                               |
+| `<%- panelData %>`          | Base64‑encoded data (string), exactly matching the response from the /api/sub/`<shortUuid>`/info endpoint.  |
 
 :::danger
 After mounting your template, ensure all three variables are present and used correctly in your code. If so, your subscription page will work out of the box without any further modifications.
 :::
 
-### Mounting to the subscrion-page
+### Mounting to the subscription-page
 
 Modify your docker-compose.yml file to mount the app-config.json file to the subscription-page container:
 
