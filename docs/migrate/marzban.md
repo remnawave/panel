@@ -84,18 +84,18 @@ The tool supports the following flags and their corresponding environment variab
 | `--batch-size`         | `BATCH_SIZE`         | Number of users to process per batch                          | `100`     |
 | `--last-users`         | `LAST_USERS`         | Migrate only the last N users (0 = all users)                 | `0`       |
 | `--preferred-strategy` | `PREFERRED_STRATEGY` | Traffic reset strategy for all users                          | -         |
-| `--source-headers`    | `SOURCE_HEADERS`    | Additional headers for source panel                        | -   |
-| `--dest-headers`    | `DEST_HEADERS`    | Additional headers for Remnawave (e.g., X-Api-Key)                        | -   |
-| `--preserve-status`    | `PRESERVE_STATUS`    | Preserve user status from source panel                        | `false`   |
+| `--source-headers`    | `SOURCE_HEADERS`      | Additional headers for source panel                           | -         |
+| `--dest-headers`      | `DEST_HEADERS`        | Additional headers for Remnawave (e.g., X-Api-Key)            | -         |
+| `--preserve-status`   | `PRESERVE_STATUS`     | Preserve user status from source panel                        | `false`   |
 
 :::tip
 If you’re using Remnawave with additional security provided by Caddy, you need to follow these steps:
 1. Log in to the Auth Portal and navigate to API Keys
 2. Issue a new API key
 3. Pass this key using the --dest-headers flag in the following format:
-```bash
---dest-headers="X-Api-Key:api-key-from-auth-portal"
-```
+    ```bash
+    --dest-headers="X-Api-Key:api-key-from-auth-portal"
+    ```
   :::
 
 :::tip
