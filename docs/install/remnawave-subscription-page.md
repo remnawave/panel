@@ -68,8 +68,8 @@ You can replace it parameter with, for example,
 - CUSTOM_SUB_PREFIX=sub
 ```
 
-to get an additional nested path for the subscription page.  
-But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
+to get an additional nested path for the subscription page.
+But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.
 And you will need to specify similar changes to the valid path in your configurations for Nginx/Caddy.
 
 :::
@@ -693,7 +693,67 @@ Some applications require the subscription URL to be Base64 encoded:
 "isNeedBase64Encoding": true
 ```
 
-### Mounting to the subscrion-page
+---
+
+### Mounting custom template
+
+This can be helpful if you want fully change UI of the subscription page.
+
+- **`index.html`**
+  Must be mounted at:
+    ```yaml
+    volumes:
+        - ./index.html:/opt/app/frontend/index.html
+    ```
+- **Static assets (all files in the `assets` directory)**
+  Must be mounted at:
+
+    ```yaml
+    volumes:
+        - ./assets:/opt/app/frontend/assets
+    ```
+
+    :::tip
+    You can find the source index.html here:
+    [subscription-page/frontend/index.html](https://github.com/remnawave/subscription-page/blob/main/frontend/index.html)
+    :::
+
+#### Template Variables
+
+Your HTML template must include three variables:
+
+| Variable                 | Description                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `<%= metaTitle %>`       | Will by resolved as META_TITLE                                                                             |
+| `<%= metaDescription %>` | Will by resolved as META_DESCRIPTION                                                                       |
+| `<%- panelData %>`       | Base64‑encoded data (string), exactly matching the response from the /api/sub/`<shortUuid>`/info endpoint. |
+
+<details>
+<summary>Example of using panelData</summary>
+
+```js
+let panelData
+panelData = '<%- panelData %>'
+try {
+    panelData = JSON.parse(atob(panelData))
+} catch (error) {
+    console.error('Error parsing panel data:', error)
+}
+```
+
+</details>
+
+:::danger
+After mounting your template, ensure all three variables are present and used correctly in your code. If so, your subscription page will work out of the box without any further modifications.
+:::
+
+Restart the subscription-page container to apply the changes.
+
+```bash
+docker compose down && docker compose up -d && docker compose logs -f
+```
+
+### Custom app-config.json (custom apps)
 
 Modify your docker-compose.yml file to mount the app-config.json file to the subscription-page container:
 
