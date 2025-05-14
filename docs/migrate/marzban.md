@@ -35,8 +35,8 @@ Download the precompiled Remnawave migration tool from the GitHub releases page.
 # Create and navigate to a working directory
 mkdir -p /opt/remnawave && cd /opt/remnawave
 
-# Download the latest version (v1.3.0 as of this guide)
-wget https://github.com/remnawave/migrate/releases/download/v1.3.0/remnawave-migrate-v1.3.0-linux-amd64.tar.gz
+# Download the latest version (v1.4.0 as of this guide)
+wget https://github.com/remnawave/migrate/releases/download/v1.4.0/remnawave-migrate-v1.4.0-linux-amd64.tar.gz
 ```
 
 ### 2.2. Extracting the Tool
@@ -45,7 +45,7 @@ Unpack the downloaded archive to access the binary.
 
 ```bash
 # Extract the tarball
-tar -xf remnawave-migrate-v1.3.0-linux-amd64.tar.gz
+tar -xf remnawave-migrate-v1.4.0-linux-amd64.tar.gz
 ```
 
 :::tip
@@ -84,10 +84,21 @@ The tool supports the following flags and their corresponding environment variab
 | `--batch-size`         | `BATCH_SIZE`         | Number of users to process per batch                          | `100`     |
 | `--last-users`         | `LAST_USERS`         | Migrate only the last N users (0 = all users)                 | `0`       |
 | `--preferred-strategy` | `PREFERRED_STRATEGY` | Traffic reset strategy for all users                          | -         |
-| `--preserve-status`    | `PRESERVE_STATUS`    | Preserve user status from source panel                        | `false`   |
+| `--source-headers`    | `SOURCE_HEADERS`      | Additional headers for source panel                           | -         |
+| `--dest-headers`      | `DEST_HEADERS`        | Additional headers for Remnawave (e.g., X-Api-Key)            | -         |
+| `--preserve-status`   | `PRESERVE_STATUS`     | Preserve user status from source panel                        | `false`   |
 
 :::tip
+If you’re using Remnawave with additional security provided by Caddy, you need to follow these steps:
+1. Log in to the Auth Portal and navigate to API Keys
+2. Issue a new API key
+3. Pass this key using the --dest-headers flag in the following format:
+    ```bash
+    --dest-headers="X-Api-Key:api-key-from-auth-portal"
+    ```
+  :::
 
+:::tip
 - Use `--last-users=5` for a test migration with a small subset of users.
 - Obtain your Remnawave API token from the Remnawave panel settings (e.g., under API or Integrations).
   :::
@@ -126,13 +137,14 @@ services:
         hostname: remnawave-subscription-page
         restart: always
         environment:
-            - REMNAWAVE_PLAIN_DOMAIN=domain.com
-            - SUBSCRIPTION_PAGE_PORT=3010
+            - APP_PORT=3010
+            - REMNAWAVE_PANEL_URL=http://remnawave:3000
         ports:
             - '127.0.0.1:3010:3010'
         networks:
             - remnawave-network
-
+        volumes:
+            - ./app-config.json:/opt/app/frontend/assets/app-config.json
 networks:
     remnawave-network:
         driver: bridge
@@ -151,17 +163,18 @@ services:
         hostname: remnawave-subscription-page
         restart: always
         environment:
-            - REMNAWAVE_PLAIN_DOMAIN=domain.com
-            - SUBSCRIPTION_PAGE_PORT=3010
+            - APP_PORT=3010
+            - REMNAWAVE_PANEL_URL=http://remnawave:3000
             - MARZBAN_LEGACY_LINK_ENABLED=true
             - MARZBAN_LEGACY_SECRET_KEY=secret
             - REMNAWAVE_API_TOKEN=token
-            - CUSTOM_SUB_PREFIX=custom
+            - CUSTOM_SUB_PREFIX=sub
         ports:
             - '127.0.0.1:3010:3010'
         networks:
             - remnawave-network
-
+        volumes:
+            - ./app-config.json:/opt/app/frontend/assets/app-config.json
 networks:
     remnawave-network:
         driver: bridge
@@ -172,8 +185,8 @@ networks:
 
 | Variable                      | Description                                                                                     | Example Value      |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- | ------------------ |
-| `REMNAWAVE_PLAIN_DOMAIN`      | The address of your Remnawave panel (without `https://`).                                       | `panel.domain.com` |
-| `SUBSCRIPTION_PAGE_PORT`      | The port on which the subscription page service runs.                                           | `3010`             |
+| `REMNAWAVE_PANEL_URL`      | Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com                                      | `http://remnawave:3000` |
+| `APP_PORT`      | The port on which the subscription page service runs.                                           | `3010`             |
 | `MARZBAN_LEGACY_LINK_ENABLED` | Enables support for legacy Marzban subscription links. Must be `true` to use the options below. | `true`             |
 | `MARZBAN_LEGACY_SECRET_KEY`   | The secret key from your Marzban database, required for decrypting legacy links.                | `secret`           |
 | `REMNAWAVE_API_TOKEN`         | The API token generated from your Remnawave panel dashboard (under "API Tokens").               | `token`            |
