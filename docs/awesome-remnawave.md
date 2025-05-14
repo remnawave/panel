@@ -381,14 +381,18 @@ ansible-playbook playbook.yml -K
 
 ### Remnawave Telegram Shop Bot
 
-A Telegram bot for selling subscriptions with integration to Remnawave. This service allows users to purchase and manage subscriptions through Telegram with multiple payment system options. Юкасса | Telegram Stars | CryptoBot
+A Telegram bot for selling subscriptions with integration to Remnawave. This service allows users to purchase and manage subscriptions through Telegram with multiple payment system options. YooKass | Telegram Stars | CryptoBot
 
-Author: [jolymmiels](https://github.com/Jolymmiles)
+Author: [jolymmiles](https://github.com/Jolymmiles)
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://github.com/Jolymmiels/remnawave-telegram-shop" variant="secondary" size="md" outline />
 </div>
 <br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-telegram-shop-bot.webp" alt="Remnawave Telegram Shop Bot" width="600" />
+</div>
 
 ---
 
