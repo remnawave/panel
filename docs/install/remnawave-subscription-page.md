@@ -68,8 +68,8 @@ You can replace it parameter with, for example,
 - CUSTOM_SUB_PREFIX=sub
 ```
 
-to get an additional nested path for the subscription page.  
-But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
+to get an additional nested path for the subscription page.
+But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.
 And you will need to specify similar changes to the valid path in your configurations for Nginx/Caddy.
 
 :::
@@ -692,6 +692,40 @@ Some applications require the subscription URL to be Base64 encoded:
 ```json
 "isNeedBase64Encoding": true
 ```
+
+### Mounting custom template
+
+- **`index.html`**
+  Must be mounted at:
+  ```yaml
+  volumes:
+    - ./index.html:/opt/app/frontend/index.html
+  ```
+* **Static assets (all files in the `assets` directory)**
+  Must be mounted at:
+
+  ```yaml
+  volumes:
+    - ./assets:/opt/app/frontend/assets
+  ```
+:::tip
+You can find the source index.html here:
+[subscription-page/frontend/index.html](https://github.com/remnawave/subscription-page/blob/main/frontend/index.html)
+:::
+
+#### Template Variables
+
+Your HTML template must include three variables:
+
+| Variable                    | Description                                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `<%= metaTitle %>`          | The <title> tag content for the subscription page.                                                       |
+| `<%= metaDescription %>`    | The <meta name="description"> tag content for the subscription page.                                     |
+| `<%- panelData %>`          | Base64‑encoded data (string), exactly matching the response from the /api/sub/<shortUuid>/info endpoint.  |
+
+:::danger
+After mounting your template, ensure all three variables are present and used correctly in your code. If so, your subscription page will work out of the box without any further modifications.
+:::
 
 ### Mounting to the subscrion-page
 
