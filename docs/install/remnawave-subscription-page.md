@@ -701,7 +701,7 @@ Some applications require the subscription URL to be Base64 encoded:
   volumes:
     - ./index.html:/opt/app/frontend/index.html
   ```
-* **Static assets (all files in the `assets` directory)**
+- **Static assets (all files in the `assets` directory)**
   Must be mounted at:
 
   ```yaml
