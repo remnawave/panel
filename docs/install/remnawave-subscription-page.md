@@ -724,8 +724,8 @@ Your HTML template must include three variables:
 
 | Variable                 | Description                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `<%= metaTitle %>`       | Will by resolved as META_TITLE                                                                             |
-| `<%= metaDescription %>` | Will by resolved as META_DESCRIPTION                                                                       |
+| `<%= metaTitle %>`       | Will be resolved as META_TITLE (from .env)                                                                 |
+| `<%= metaDescription %>` | Will be resolved as META_DESCRIPTION (from .env)                                                           |
 | `<%- panelData %>`       | Base64‑encoded data (string), exactly matching the response from the /api/sub/`<shortUuid>`/info endpoint. |
 
 <details>
