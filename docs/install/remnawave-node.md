@@ -158,3 +158,58 @@ Log rotation using logrotate:
       copytruncate
   }
 ```
+
+### XRay SSL cert for Node
+
+If you’re using certificates for your XRay configuration, you need to mount them into the panel.
+
+:::info
+Mount the folder via Docker volumes, and in the config refer to the internal path.
+Inside the container there’s a dedicated (empty) folder for certs:
+/var/lib/remnawave/configs/xray/ssl/
+:::
+
+Add the following to the `docker-compose.yml` file:
+
+```yaml
+remnawave:
+  image: remnawave/backend:latest
+  container_name: 'remnawave'
+  hostname: remnawave
+  restart: always
+  ports:
+    - '127.0.0.1:3000:3000'
+  env_file:
+    - .env
+  networks:
+    - remnawave-network
+  // highlight-next-line-green
+  volumes:
+      // highlight-next-line-green
+      - '/opt/remnawave/nginx:/var/lib/remnawave/configs/xray/ssl'
+  depends_on:
+    remnawave-db:
+      condition: service_healthy
+    remnawave-redis:
+      condition: service_healthy
+```
+
+:::info
+When the panel pushes the config to the node, it will automatically read the mounted files and send the certs to the node.
+:::
+
+Usage in XRay config:
+
+```json
+  "certificates": [
+    {
+    "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+    "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+    // Other fields
+    }
+  ]
+```
+
+:::caution
+Pay attention to the **.key** and **.pem** extensions.
+:::
