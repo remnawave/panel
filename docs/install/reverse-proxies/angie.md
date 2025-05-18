@@ -75,8 +75,6 @@ server {
     ssl_certificate $acme_cert_acme_le;
     ssl_certificate_key $acme_cert_key_acme_le;
 
-    add_header Strict-Transport-Security "max-age=15552000" always;
-
     location / {
         proxy_http_version 1.1;
         proxy_pass http://remnawave;
