@@ -125,7 +125,7 @@ services:
         networks:
             - remnawave-network
         volumes:
-            - angie-ssl-data:/data
+            - angie-ssl-data:/var/lib/angie/acme/
             - ./angie.conf:/etc/angie/http.d/default.conf:ro
 
 networks:
