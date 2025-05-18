@@ -73,12 +73,6 @@ This shows that the certificate is issued. `Acme.sh` will take care of automatic
 
 ### Simple configuration
 
-We are going to need a `dhparam.pem` file.
-
-```bash
-curl https://ssl-config.mozilla.org/ffdhe2048.txt > /opt/remnawave/nginx/dhparam.pem
-```
-
 Create a file called `nginx.conf` in the `/opt/remnawave/nginx` directory.
 
 ```bash
@@ -114,6 +108,18 @@ server {
     listen [::]:443 ssl reuseport;
     http2 on;
 
+    # SSL Configuration (Mozilla Modern)
+    ssl_protocols TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_tickets off;
+    ssl_certificate "/etc/nginx/ssl/fullchain.pem";
+    ssl_certificate_key "/etc/nginx/ssl/privkey.key";
+
+    add_header Strict-Transport-Security "max-age=15552000" always;
+
     location / {
         proxy_http_version 1.1;
         proxy_pass http://remnawave;
@@ -123,63 +129,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Port $server_port;
-
-        proxy_send_timeout 60s;
-        proxy_read_timeout 60s;
     }
-
-    # SSL Configuration (Mozilla Intermediate Guidelines)
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ecdh_curve X25519:prime256v1:secp384r1;
-    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
-    ssl_prefer_server_ciphers off;
-
-    ssl_session_timeout 1d;
-    ssl_session_cache shared:MozSSL:10m; # ~40,000 sessions
-    ssl_dhparam "/etc/nginx/ssl/dhparam.pem";
-    ssl_certificate "/etc/nginx/ssl/fullchain.pem";
-    ssl_certificate_key "/etc/nginx/ssl/privkey.key";
-
-    # OCSP Stapling
-    ssl_stapling on;
-    ssl_stapling_verify on;
-    ssl_trusted_certificate "/etc/nginx/ssl/fullchain.pem";
-    resolver 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220;
-
-    # HTTP Strict Transport Security (HSTS)
-    proxy_hide_header Strict-Transport-Security;
-    add_header Strict-Transport-Security "max-age=15552000" always;
-
-    # Gzip Compression
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_comp_level 6;
-    gzip_buffers 16 8k;
-    gzip_http_version 1.1;
-    gzip_min_length 256;
-    gzip_types
-    application/atom+xml
-    application/geo+json
-    application/javascript
-    application/x-javascript
-    application/json
-    application/ld+json
-    application/manifest+json
-    application/rdf+xml
-    application/rss+xml
-    application/xhtml+xml
-    application/xml
-    font/eot
-    font/otf
-    font/ttf
-    image/svg+xml
-    text/css
-    text/javascript
-    text/plain
-    text/xml;
 }
 
 server {
@@ -210,7 +160,6 @@ services:
         hostname: remnawave-nginx
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-            - ./dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
             - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
             - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
         restart: always
