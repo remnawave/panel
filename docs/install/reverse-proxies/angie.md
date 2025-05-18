@@ -51,6 +51,8 @@ map $http_upgrade $connection_upgrade {
     "" close;
 }
 
+resolver 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220;
+
 acme_client acme_le https://acme-v02.api.letsencrypt.org/directory;
 
 server {
