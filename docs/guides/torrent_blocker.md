@@ -39,7 +39,8 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
       "dnsLog": false
     }
 ```
-- Configure bittorrent traffic tagging. Section `routing`. Add the rule:
+
+- Configure BitTorrent traffic tagging. Section `routing`. Add the rule:
 
 ```json
         {
@@ -51,16 +52,18 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
         },
 ```
 
-  Here, `TORRENT` is the tag that the application will use to filter logs.
+Here, `TORRENT` is the tag that the application will use to filter logs.
 
-- Configure bittorrent traffic blocking. Section `outbounds`. Send all traffic to blackhole:
+- Configure BitTorrent traffic blocking. Section `outbounds`. Send all traffic to blackhole:
+
 ```json
       {
         "protocol": "blackhole",
         "tag": "TORRENT"
       },
 ```
-  Unfortunately, this blocking only effectively handles about 20% of bittorrent traffic.
+
+Unfortunately, this blocking only effectively handles about 20% of bittorrent traffic.
 
 ### Node Configuration
 
@@ -72,30 +75,33 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
 
 - Add a new volume to the `/opt/remnanode/docker-compose.yml` file:
 
-  ```yaml
-  volumes:
+```yaml
+volumes:
     - /var/lib/remnanode:/var/lib/remnanode #new volume
-  ```
+```
 
 - Restart RemnaNode with the following command:
 
-  ```bash
-  docker compose down --remove-orphans && docker compose up -d
-  ```
+```bash
+docker compose down --remove-orphans && docker compose up -d
+```
 
 ## Installation
 
 To automatically install the application, follow these steps:
 
 - Run the installation script:
-  ```bash
-  bash <(curl -fsSL git.new/install)
-  ```
+
+```bash
+bash <(curl -fsSL git.new/install)
+```
+
 - The script will automatically install all dependencies, download the latest release, ask for the admin `Token` and `Chat ID`, and start the service.
 - After installation, you can control the application via systemd:
-  ```bash
-  systemctl start/status/stop tblocker
-  ```
+
+```bash
+systemctl start/status/stop tblocker
+```
 
 ### Logrotate Configuration for RemnaNode
 
@@ -134,7 +140,7 @@ After installation, you can configure the application's behavior via the configu
 Key configuration parameters:
 
 - **LogFile** — the path to the log file to be monitored. Default: `/var/lib/remnanode/access.log`
-  - You need to set up the LogFile parameter, as by default it uses a different directory (`marzban-node`).
+    - You need to set up the LogFile parameter, as by default it uses a different directory (`marzban-node`).
 - **BlockDuration** — the duration of the user's block in minutes. Default: `10`
 - **TorrentTag** — the tag used to identify log entries related to torrents. Default: `TORRENT`
 - **SendAdminMessage** — whether to send notifications to the administrator. Optional. Default: `true`
@@ -173,7 +179,3 @@ The application stores block information in a JSON file in the directory specifi
 - Automatic cleanup of expired blocks
 
 The block data file is located at: `/opt/tblocker/blocked_ips.json`
-
-## Contributing
-
-We welcome contributions from the community! If you have ideas for improvements or have found a bug, please create an issue or submit a pull request on GitHub.
