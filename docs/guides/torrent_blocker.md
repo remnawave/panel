@@ -156,8 +156,8 @@ If the user's `CHAT_ID` is included in their login on the Marzban panel, you can
 
 For example, if the user's login in Marzban looks like this: `kutovoys_tgid-1234111`, you can set up the following in `config.yaml`:
 
-- **TidRegex**: `tgid-(\\d+)`
-- **UsernameRegex**: `email: \\d+\\.(\\w+)_tgid-`
+- **TidRegex**: `telegramID(\\d+)`
+- **UsernameRegex**: "email: (\\S+)"
 
 In this case, the administrator will receive notifications with the username `kutovoys`, and the user will also be notified directly via Telegram when they are blocked.
 
