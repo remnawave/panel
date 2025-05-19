@@ -36,8 +36,7 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
       "error": "/var/lib/remnanode/error.log",
       "loglevel": "error",
       "dnsLog": false
-    },
-  ```
+    }
 - Configure bittorrent traffic tagging. Section `routing`. Add the rule:
 
   ```json
