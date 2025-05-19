@@ -121,13 +121,19 @@ server {
 
     # SSL Configuration (Mozilla Intermediate Guidelines)
     ssl_protocols          TLSv1.2 TLSv1.3;
-    ssl_ciphers            ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
 
     ssl_session_timeout 1d;
     ssl_session_cache shared:MozSSL:1m;
     ssl_session_tickets    off;
     ssl_certificate "/etc/nginx/ssl/fullchain.pem";
     ssl_certificate_key "/etc/nginx/ssl/privkey.key";
+    ssl_trusted_certificate "/etc/nginx/ssl/fullchain.pem";
+
+    ssl_stapling           on;
+    ssl_stapling_verify    on;
+    resolver               1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220 valid=60s;
+    resolver_timeout       2s;
 
     # Gzip Compression
     gzip on;
