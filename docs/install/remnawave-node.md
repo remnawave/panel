@@ -146,6 +146,12 @@ Usage in xray config:
   }
 ```
 
+On the server where the panel is hosted, create the folder `/var/lib/remnanode`:
+
+```bash
+mkdir -p /var/lib/remnanode
+```
+
 Install logrotate (if not already installed):
 
 ```bash
