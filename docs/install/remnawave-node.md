@@ -110,6 +110,7 @@ Usage in xray config:
     ]
   }
 ```
+
 ### Log from Node
 
 You can access logs from the node by mounting them to your host's file system.
@@ -133,23 +134,41 @@ services:
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
-            - '/var/lib/remna:/var/lib/remna'
+            - '/var/lib/remnanode:/var/lib/remnanode'
 ```
 
 Usage in xray config:
 
 ```json
   "log": {
-      "error": "/var/lib/remna/error.log",
-      "access": "/var/lib/remna/access.log",
+      "error": "/var/lib/remnanode/error.log",
+      "access": "/var/lib/remnanode/access.log",
       "loglevel": "warning"
   }
 ```
 
-Log rotation using logrotate:
+On the server where the panel is hosted, create the folder `/var/lib/remnanode`:
 
 ```bash
-  /var/lib/remna/*.log {
+mkdir -p /var/lib/remnanode
+```
+
+Install logrotate (if not already installed):
+
+```bash
+sudo apt update && sudo apt install logrotate
+```
+
+Create a logrotate configuration file:
+
+```bash
+nano /etc/logrotate.d/remnanode
+```
+
+Paste the following logrotate configuration for RemnaNode:
+
+```bash
+/var/lib/remnanode/*.log {
       size 50M
       rotate 5
       compress
@@ -157,6 +176,12 @@ Log rotation using logrotate:
       notifempty
       copytruncate
   }
+```
+
+Run logrotate manually to test:
+
+```bash
+logrotate -vf /etc/logrotate.d/remnanode
 ```
 
 ### XRay SSL cert for Node
@@ -213,3 +238,5 @@ Usage in XRay config:
 :::caution
 Pay attention to the **.key** and **.pem** extensions.
 :::
+
+> > > > > > > origin/main
