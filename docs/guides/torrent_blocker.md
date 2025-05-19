@@ -30,16 +30,18 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
 ### Xray Configuration
 
 - Enable logging. Section `log`
-  ```json
+
+```json
     "log": {
       "access": "/var/lib/remnanode/access.log",
       "error": "/var/lib/remnanode/error.log",
       "loglevel": "error",
       "dnsLog": false
     }
+```
 - Configure bittorrent traffic tagging. Section `routing`. Add the rule:
 
-  ```json
+```json
         {
           "protocol": [
             "bittorrent"
@@ -47,26 +49,26 @@ Xray Torrent Blocker is an application designed to block torrent usage by users 
           "outboundTag": "TORRENT",
           "type": "field"
         },
-  ```
+```
 
   Here, `TORRENT` is the tag that the application will use to filter logs.
 
 - Configure bittorrent traffic blocking. Section `outbounds`. Send all traffic to blackhole:
-  ```json
+```json
       {
         "protocol": "blackhole",
         "tag": "TORRENT"
       },
-  ```
+```
   Unfortunately, this blocking only effectively handles about 20% of bittorrent traffic.
 
 ### Node Configuration
 
 - On the server where the panel is hosted, create the folder `/var/lib/remnanode`:
 
-  ```bash
+```bash
   mkdir -p /var/lib/remnanode
-  ```
+```
 
 - Add a new volume to the `/opt/remnanode/docker-compose.yml` file:
 
