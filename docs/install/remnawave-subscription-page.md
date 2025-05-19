@@ -17,10 +17,10 @@ Edit the `/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subsc
 cd /opt/remnawave && nano .env
 ```
 
-Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
+Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name. Domain name must be without http or https.
 
 ```bash title=".env file content"
-SUB_PUBLIC_DOMAIN=https://subscription.domain.com
+SUB_PUBLIC_DOMAIN=subscription.domain.com
 ```
 
 ## Step 2 - Create docker-compose.yml file
