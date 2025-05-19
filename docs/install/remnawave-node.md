@@ -68,7 +68,7 @@ docker compose up -d && docker compose logs -f -t
 
 You can mount additional geosite files into the `/usr/local/share/xray/` directory in the container.
 
-:::caution  
+:::caution
 Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite files. Mount each file individually.
 :::
 
@@ -108,5 +108,53 @@ Usage in xray config:
       }
       // Other rules
     ]
+  }
+```
+### Log from Node
+
+You can access logs from the node by mounting them to your host's file system.
+
+:::caution
+You **must** set up log rotation, otherwise the logs will fill up your disk!
+:::
+
+Add the following to the `docker-compose.yml` file:
+
+```yaml
+services:
+    remnanode:
+        container_name: remnanode
+        hostname: remnanode
+        image: remnawave/node:latest
+        restart: always
+        network_mode: host
+        env_file:
+            - .env
+        // highlight-next-line-green
+        volumes:
+            // highlight-next-line-green
+            - '/var/lib/remna:/var/lib/remna'
+```
+
+Usage in xray config:
+
+```json
+  "log": {
+      "error": "/var/lib/remna/error.log",
+      "access": "/var/lib/remna/access.log",
+      "loglevel": "warning"
+  }
+```
+
+Log rotation using logrotate:
+
+```bash
+  /var/lib/remna/*.log {
+      size 50M
+      rotate 5
+      compress
+      missingok
+      notifempty
+      copytruncate
   }
 ```
