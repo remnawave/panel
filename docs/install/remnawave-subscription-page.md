@@ -707,8 +707,11 @@ This can be helpful if you want fully change UI of the subscription page.
     ```
 
     :::tip
-    You can find the source index.html here:
+    You can find the source `index.html` here:
     [subscription-page/frontend/index.html](https://github.com/remnawave/subscription-page/blob/main/frontend/index.html)
+
+    The `assets` directory is available here:
+    [subscription-page/frontend/public/assets](https://github.com/remnawave/subscription-page/tree/main/frontend/public/assets)
     :::
 
 #### Template Variables
