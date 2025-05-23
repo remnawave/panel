@@ -348,6 +348,23 @@ WEBHOOK_SECRET_HEADER=strong_secret_key
 
 </details>
 
+## Bandwidth usage notifications
+
+| Variable                                  | Description                                                                                                                                                              | Default | Possible values |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------- |
+| `BANDWIDTH_USAGE_NOTIFICATIONS_ENABLED`   | Enable/Disable bandwidth usage notifications                                                                                                                             | `false` | `true`, `false` |
+| `BANDWIDTH_USAGE_NOTIFICATIONS_THRESHOLD` | The threshold for bandwidth usage notifications. Only in ASC order (example: [60, 80]), must be valid array of integer(min: 25, max: 95) numbers. No more than 5 values. |         |                 |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+BANDWIDTH_USAGE_NOTIFICATIONS_ENABLED=true
+BANDWIDTH_USAGE_NOTIFICATIONS_THRESHOLD=[60, 80]
+```
+
+</details>
+
 ## HWID
 
 | Variable                     | Description                                                                              | Default |

@@ -56,6 +56,8 @@ The payload will be a JSON object with the following fields:
 - `user.expires_in_48_hours` - The user's subscription will expire in 48 hours.
 - `user.expires_in_24_hours` - The user's subscription will expire in 24 hours.
 - `user.expired_24_hours_ago` - The user's subscription expired 24 hours ago.
+- `user.first_connected` - The user connected to the node for the first time.
+- `user.bandwidth_usage_threshold_reached` - The user's bandwidth usage threshold was reached.
 
 User payload will contain full User object.
 
@@ -93,6 +95,9 @@ email: string | null
 hwidDeviceLimit: number | null
 createdAt: string
 updatedAt: string
+
+firstConnectedAt: string | null
+lastTriggeredThreshold: number
 
 activeUserInbounds: Array<{
     uuid: string
