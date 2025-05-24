@@ -699,23 +699,19 @@ Some applications require the subscription URL to be Base64 encoded:
 
 This can be helpful if you want fully change UI of the subscription page.
 
-- **`index.html`**
-  Must be mounted at:
+- **The `index.html` file and all files in the `assets` directory must be mounted into the container at the following paths:**
     ```yaml
     volumes:
         - ./index.html:/opt/app/frontend/index.html
-    ```
-- **Static assets (all files in the `assets` directory)**
-  Must be mounted at:
-
-    ```yaml
-    volumes:
         - ./assets:/opt/app/frontend/assets
     ```
 
     :::tip
-    You can find the source index.html here:
+    You can find the source `index.html` here:
     [subscription-page/frontend/index.html](https://github.com/remnawave/subscription-page/blob/main/frontend/index.html)
+
+    The `assets` directory is available here:
+    [subscription-page/frontend/public/assets](https://github.com/remnawave/subscription-page/tree/main/frontend/public/assets)
     :::
 
 #### Template Variables
