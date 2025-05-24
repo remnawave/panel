@@ -397,6 +397,44 @@ Author: [jolymmiles](https://github.com/Jolymmiles)
 
 ---
 
+### RemnaSetup 🛠️
+
+Universal script for automatic installation, configuration, and updating of Remnawave and Remnanode infrastructure. Includes installation of the control panel, node, subscription page, Caddy setup, Tblocker, BBR, WARP, and an automatic backup system with Telegram integration.
+
+Author: [Capybara-z](https://github.com/Capybara-z)
+
+<details>
+<summary>Quick Start</summary>
+
+**Option 1:**
+```bash
+bash <(curl -fsSL raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh)
+```
+
+**Option 2:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && sudo bash ./install.sh
+```
+</details>
+
+**🔥 Main Features:**
+- 📦 Complete Remnawave installation + Subscription page + Caddy
+- 🌐 Remnanode installation with Caddy, Tblocker, BBR, and WARP
+- 💾 Backup system with Telegram integration
+- ♻️ Recovery from local backups and Telegram
+- 🔄 Automatic component updates
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/Capybara-z/RemnaSetup" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnasetup.webp" alt="RemnaSetup" width="600" />
+</div>
+
+---
+
 ## Add project to the list
 
 If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave.md).
