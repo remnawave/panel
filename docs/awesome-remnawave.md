@@ -156,13 +156,13 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 
 ---
 
-### Remnawave Restore Script (Beta)
+### Remnawave Restore Script
 
-A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. **Warning: This is a beta version. Use with extreme caution, especially on a live Remnawave panel, as it may overwrite critical data or cause instability.**
+A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. 
 
 The script performs the following:
 
-- Clears all existing data in the specified database and restores it from `db_backup.sql`
+- **Clears all existing data in the specified database** and restores it from `db_backup.sql`
 - Restores files to the chosen directory (e.g., `/opt/remnawave` or user-defined), including:
     - `docker-compose.yml`
     - `.env`
