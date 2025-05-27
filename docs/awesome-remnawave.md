@@ -23,6 +23,16 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
+### Geo File Viewer
+
+A tool for viewing the contents of v2fly geo files 
+
+[Github Repository](https://github.com/jomertix/geofileviewer)
+
+[Project Site](https://jomertix.github.io/geofileviewer)
+
+---
+
 ### Remnawave Installation Scripts
 
 Bash scripts to install and manage **Remnawave Panel** and **Remnawave Node** via CLI.
