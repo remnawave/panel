@@ -1,2 +1,2 @@
-Backend: v1.6.5
-Frontend: v1.6.5
+Backend: v1.6.6
+Frontend: v1.6.6
