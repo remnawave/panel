@@ -36,7 +36,7 @@ Remnawave will send the following headers with the webhook payload:
 The payload will be a JSON object with the following fields:
 
 - `event` - The event that occurred.
-- `data` - The data associated with the event. Will contain full User or Node object.
+- `data` - The data associated with the event. Will contain full User, Node or Service object.
 - `timestamp` - The timestamp of the webhook payload.
 
 ### Events
@@ -168,6 +168,29 @@ excludedInbounds: Array<{
     network: string | null
     security: string | null
 }>
+```
+
+</details>
+
+#### Service
+
+- `service.panel_started` - The service started.
+- `service.login_attempt_failed` - The login attempt failed.
+- `service.login_attempt_success` - The login attempt was successful.
+
+Service payload will contain Service object.
+
+<details>
+<summary>Service object</summary>
+
+```typescript
+loginAttempt?: {
+    username: string
+    ip: string
+    userAgent: string
+    description?: string
+    password?: string
+}
 ```
 
 </details>
