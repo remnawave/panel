@@ -23,6 +23,20 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
+### Geo File Viewer
+
+A utility for viewing the contents of geoip and geofile (.dat) files in the v2fly format.
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://jomertix.github.io/geofileviewer" variant="secondary" size="md" outline />
+</div>
+<br>
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/geofileviewer.webp" alt="GeoFileViewer" width="600" />
+</div>
+
+---
+
 ### Remnawave Installation Scripts
 
 Bash scripts to install and manage **Remnawave Panel** and **Remnawave Node** via CLI.
