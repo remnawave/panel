@@ -25,11 +25,15 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ### Geo File Viewer
 
-A tool for viewing the contents of v2fly geo files 
+A utility for viewing the contents of geoip and geofile (.dat) files in the v2fly format.
 
-[Github Repository](https://github.com/jomertix/geofileviewer)
-
-[Project Site](https://jomertix.github.io/geofileviewer)
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://jomertix.github.io/geofileviewer" variant="secondary" size="md" outline />
+</div>
+<br>
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/geofileviewer.webp" alt="GeoFileViewer" width="600" />
+</div>
 
 ---
 
