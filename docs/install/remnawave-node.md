@@ -238,5 +238,3 @@ Usage in XRay config:
 :::caution
 Pay attention to the **.key** and **.pem** extensions.
 :::
-
-> > > > > > > origin/main
