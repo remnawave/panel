@@ -30,7 +30,8 @@ A utility for viewing the contents of geoip and geofile (.dat) files in the v2fl
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Github repository" link="https://jomertix.github.io/geofileviewer" variant="secondary" size="md" outline />
 </div>
-<br>
+<br />
+
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/geofileviewer.webp" alt="GeoFileViewer" width="600" />
 </div>
@@ -172,7 +173,7 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 
 ### Remnawave Restore Script
 
-A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. 
+A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory.
 
 The script performs the following:
 
@@ -421,17 +422,21 @@ Author: [Capybara-z](https://github.com/Capybara-z)
 <summary>Quick Start</summary>
 
 **Option 1:**
+
 ```bash
 bash <(curl -fsSL raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh)
 ```
 
 **Option 2:**
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && sudo bash ./install.sh
 ```
+
 </details>
 
 **🔥 Main Features:**
+
 - 📦 Complete Remnawave installation + Subscription page + Caddy
 - 🌐 Remnanode installation with Caddy, Tblocker, BBR, and WARP
 - 💾 Backup system with Telegram integration
