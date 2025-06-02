@@ -134,23 +134,23 @@ services:
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
-            - '/var/lib/remnanode:/var/lib/remnanode'
+            - '/var/log/remnanode:/var/log/remnanode'
 ```
 
 Usage in xray config:
 
 ```json
   "log": {
-      "error": "/var/lib/remnanode/error.log",
-      "access": "/var/lib/remnanode/access.log",
+      "error": "/var/log/remnanode/error.log",
+      "access": "/var/log/remnanode/access.log",
       "loglevel": "warning"
   }
 ```
 
-On the server where the panel is hosted, create the folder `/var/lib/remnanode`:
+On the server where the node is hosted, create the folder `/var/log/remnanode`:
 
 ```bash
-mkdir -p /var/lib/remnanode
+mkdir -p /var/log/remnanode
 ```
 
 Install logrotate (if not already installed):
@@ -168,7 +168,7 @@ nano /etc/logrotate.d/remnanode
 Paste the following logrotate configuration for RemnaNode:
 
 ```bash
-/var/lib/remnanode/*.log {
+/var/log/remnanode/*.log {
       size 50M
       rotate 5
       compress
