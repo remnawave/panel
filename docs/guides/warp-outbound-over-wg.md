@@ -148,13 +148,6 @@ Add the following to your XRAY config under `outbounds`:
   {
     "tag": "BLOCK",
     "protocol": "blackhole"
-  },
-  {
-    "tag": "IPv4",
-    "protocol": "freedom",
-    "settings": {
-      "domainStrategy": "ForceIPv4"
-    }
   }
 ]
 ```
