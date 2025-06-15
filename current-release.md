@@ -1,2 +1,2 @@
-Backend: v1.6.14
-Frontend: v1.6.14
+Backend: v1.6.15
+Frontend: v1.6.15
