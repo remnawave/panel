@@ -36,12 +36,6 @@ Remnawave will return a `404` error if no HWID header is sent.
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=5
 HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
-
-
-### HWID DEVICE DETECTION PROVIDER ID ###
-# Apps, which currently support this feature:
-# - Happ
-PROVIDER_ID="123456"
 ```
 
 `HWID_DEVICE_LIMIT_ENABLED` - enables device limit restriction.
