@@ -50,7 +50,7 @@ networks:
     remnawave-network:
         name: remnawave-network
         driver: bridge
-        external: false
+        external: true
 ```
 
 ### Create static configuration file

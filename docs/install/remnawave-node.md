@@ -34,7 +34,7 @@ APP_PORT=2222
 SSL_CERT=CERT_FROM_MAIN_PANEL
 ```
 
-## Step 4 - Create docker-compose.yml file
+## Step 3 - Create docker-compose.yml file
 
 ```bash title="Creating docker-compose.yml file"
 nano docker-compose.yml
@@ -54,7 +54,7 @@ services:
             - .env
 ```
 
-## Step 5 - Start the containers
+## Step 4 - Start the containers
 
 Start the containers by running the following command:
 
