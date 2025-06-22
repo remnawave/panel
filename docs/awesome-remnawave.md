@@ -454,6 +454,55 @@ curl -fsSL https://raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/ma
 
 ---
 
+### Remnawave Backup & Restore by distillium
+
+The script automates backups and performs a restore of the Remnawave database.
+
+**Author:** [distillium](https://github.com/distillium)
+
+<details>
+<summary>Instruction</summary>
+
+#### Installation
+
+```bash
+curl -o ~/backup-restore.sh https://raw.githubusercontent.com/distillium/remnawave-backup-restore/main/backup-restore.sh && chmod +x ~/backup-restore.sh && ~/backup-restore.sh
+```
+
+:::danger
+As a precaution, use the restore function on the same panel version from which the backup was made (or create the backup from the latest panel version).
+:::
+
+:::warning
+This script is designed to perform meaningful maintenance operations on the Remnawave database. Although it has been thoroughly tested, its functions affect the entire database and its components. It is recommended that you carefully follow the script’s instructions before executing any commands.
+:::
+
+:::tip
+The script backups and restores only the entire database, as well as the .env and .env-node files (if they exist in the /opt/remnawave/ or /root/remnawave/ directory). The backup and recovery of all other files and configurations are entirely the responsibility of the user.
+:::
+
+</details>
+
+**Features:**
+
+- creating a manual backup and configuring automatic scheduled backups
+- notifications in Telegram with backup file attached
+- supports sending backup to Google Drive
+- restore from backup
+- backups retention policy (7 days) implemented
+- quick access from anywhere on the system with the `rw-backup` command
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/distillium/remnawave-backup-restore" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-backup-restore.webp" alt="REMNAWAVE-BACKUP-RESTORE" width="600" />
+</div>
+
+---
+
 ## Add project to the list
 
 If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave.md).
