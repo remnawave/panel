@@ -560,7 +560,7 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 ```
 </details>
 
-## Deleting:
+### Deleting:
 ```bash
 curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
 ```
