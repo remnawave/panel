@@ -503,6 +503,79 @@ The script backups and restores only the entire database, as well as the .env an
 
 ---
 
+### WARP Native Installer by distillium
+
+This script installs Cloudflare WARP in “native” mode via `WireGuard`, without using `warp-cli`.
+
+**Author:** [distillium](https://github.com/distillium)
+
+It automates:
+- Installing the necessary packages (`wireguard`, `resolvconf`)
+- Downloading and configuring `wgcf`
+- Generating and modifying the WireGuard configuration
+- Connecting and checking status
+- Enabling autorun of the `warp` interface
+
+## Installing (performed on each desired node):
+
+```bash
+curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
+```
+
+## Templates for Xray configuration
+<details>
+ <summary>📝 Show example outbound</summary>
+
+ ```json
+{
+  "tag": "warp-out",
+  "protocol": "freedom",
+  "settings": {},
+  "streamSettings": {
+    "sockopt": {
+      "interface": "warp"
+    }
+  }
+}
+```
+</details>
+
+<details>
+  <summary>📝 Show example routing rule</summary>
+
+```json
+{
+  "type": "field",
+  "domain": [
+    "netflix.com",
+    "youtube.com",
+    "twitter.com"
+  ],
+  "inboundTag": [
+    "Node-1",
+    "Node-2"
+  ],
+  "outboundTag": "warp-out"
+}
+```
+</details>
+
+## Deleting:
+```bash
+curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
+```
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
+</div>
+
+---
+
 ## Add project to the list
 
 If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave.md).
