@@ -522,7 +522,7 @@ It automates:
 curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
 ```
 
-## Templates for Xray configuration
+### Templates for Xray configuration
 <details>
  <summary>📝 Show example outbound</summary>
 
