@@ -516,13 +516,13 @@ It automates:
 - Connecting and checking status
 - Enabling autorun of the `warp` interface
 
-## Installing (performed on each desired node):
+**Installing (performed on each desired node):**
 
 ```bash
 curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
 ```
 
-### Templates for Xray configuration
+**Templates for Xray configuration**
 <details>
  <summary>📝 Show example outbound</summary>
 
@@ -560,7 +560,7 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 ```
 </details>
 
-### Deleting:
+**Deleting:**
 ```bash
 curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
 ```
