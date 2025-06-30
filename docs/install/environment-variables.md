@@ -293,7 +293,6 @@ openssl rand -hex 64
 <summary>Example</summary>
 
 ```bash title=".env file"
-IS_DOCS_ENABLED=true
 METRICS_USER=admin
 METRICS_PASS=change_me
 ```
@@ -341,8 +340,8 @@ openssl rand -hex 64
 <summary>Example</summary>
 
 ```bash title=".env file"
-IS_WEBHOOK_ENABLED=true
-WEBHOOK_URL=https://yourpanel.com/api/webhook
+WEBHOOK_ENABLED=true
+WEBHOOK_URL=https://your-server.com/webhook-path
 WEBHOOK_SECRET_HEADER=strong_secret_key
 ```
 
