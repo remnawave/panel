@@ -168,7 +168,7 @@ remnawave restore         # Intelligent restore with version checks
 
 **Legacy Standalone Scripts:**
 
-Still available for users who prefer separate backup/restore tools:
+Available for users who need legacy standalone backup/restore tools:
 
 - [remnawave-backup.sh](https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave-backup.sh) - Standalone backup script
 - [restore.sh](https://github.com/DigneZzZ/remnawave-scripts/raw/main/restore.sh) - Standalone restore script
