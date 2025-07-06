@@ -60,17 +60,17 @@ Author: [DigneZzZ](https://github.com/DigneZzZ)
 
 **Remnawave Panel (v3.3.2+):**
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh) @ install
 ```
 
 **Remnawave Node (v3.1.2+):**
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh) @ install
 ```
 
 **Reality Selfsteal (v2.1.3+):**
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/selfsteal.sh)" @ install
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/selfsteal.sh) @ install
 ```
 
 **Options:**
@@ -80,10 +80,10 @@ sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/
 **For existing installations:**
 Use `install-script` to add CLI wrapper only:
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install-script
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh) @ install-script
 ```
 ```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install-script
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh) @ install-script
 ```
 </details>
 
