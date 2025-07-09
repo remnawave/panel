@@ -33,6 +33,9 @@ APP_PORT=2222
 
 SSL_CERT=CERT_FROM_MAIN_PANEL
 ```
+:::caution
+The line copied from the panel already contains `SSL_CERT=` — just paste it directly from the clipboard.
+:::
 
 ## Step 3 - Create docker-compose.yml file
 
