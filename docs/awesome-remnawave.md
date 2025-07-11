@@ -547,7 +547,8 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
   "settings": {},
   "streamSettings": {
     "sockopt": {
-      "interface": "warp"
+      "interface": "warp",
+      "tcpFastOpen": true
     }
   }
 }
@@ -572,6 +573,21 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
   "outboundTag": "warp-out"
 }
 ```
+</details>
+
+**Interface management**
+<details>
+  <summary>⚙️ Commands</summary>
+
+| Operation              | Command                               |
+|------------------------|----------------------------------------|
+| Check service status   | `systemctl status wg-quick@warp`       |
+| View interface status  | `wg show warp`                         |
+| Stop the interface     | `systemctl stop wg-quick@warp`         |
+| Start the interface    | `systemctl start wg-quick@warp`        |
+| Restart the interface  | `systemctl restart wg-quick@warp`      |
+| Disable autorun        | `systemctl disable wg-quick@warp`      |
+| Enable autorun         | `systemctl enable wg-quick@warp`       |
 </details>
 
 **Deleting:**
