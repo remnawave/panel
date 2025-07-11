@@ -236,14 +236,13 @@ Author: [maposia](https://github.com/maposia)
 The application requires the following environment variables to be set:
 
 | Variable          | Description                                                                                                                                                                                                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `REMNAWAVE_URL`   | Remnawave API PLAIN DOMAIN(panel.domain.com)                                                                                                                                                                                                                           |
-| `REMNAWAVE_MODE`  | Remnawave mode (remote/local), default is remote. If local set – you can pass remnawave:3000 to REMNAWAVE_URL                                                                                                                                                          |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `REMNAWAVE_PANEL_URL`   | Remnawave Panel URL, can be `http://remnawave:3000` or `https://panel.example.com`                                                                                                                                                                                        |
 | `REMNAWAVE_TOKEN` | Authentication token for Remnawave API                                                                                                                                                                                                                                 |
 | `BUY_LINK`        | The URL for purchase actions                                                                                                                                                                                                                                           |
 | `CRYPTO_LINK`     | Allows using encrypted links (currently supported Happ application)                                                                                                                                                                                                    |
-| `REDIRECT_LINK`   | Allows you to specify a **custom redirect page URL** for deep links. Useful for handling protocols like `v2box://` in Telegram Desktop (Windows). For more details and examples, see [Telegram Deep Link Redirect](https://github.com/maposia/redirect-page/tree/main) |
-
+| `REDIRECT_LINK`     | Allows you to specify a **custom redirect page URL** for deep links. Useful for handling protocols like `v2box://` in Telegram Desktop (Windows). For more details and examples, see [Telegram Deep Link Redirect](https://github.com/maposia/redirect-page/tree/main) |
+| `AUTH_API_KEY`        | If you use "Caddy with security" or TinyAuth for Nginx addon, you can place here X-Api-Key, which will be applied to requests to Remnawave Panel.                                                                                                                      |
 #### Install and Run
 
 1. Create a new directory for the mini app
