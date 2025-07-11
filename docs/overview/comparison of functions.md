@@ -17,6 +17,7 @@ The table is based on the personal experience of former Marzban users who later 
 | Operation mode                     | Multi-threaded                                             | Single-threaded. Performance decreases with more users      |
 | Multi-admin support                | No                                                         | Yes                                                         |
 | API keys and headers management    | WEB UI                                                     | CLI                                                         |
+| Webhook event support              | More                                                       | Less
 | Selecting active inbounds on nodes | Via panel WEB UI                                           | Via environment variables on the node                       |
 | XRAY logs viewing                  | Through the server                                         | WEB UI                                                      |
 | Post-install setup                 | In WEB UI                                                  | In .env file                                                |
