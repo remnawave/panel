@@ -12,7 +12,7 @@ The table is based on the personal experience of former Marzban users who later 
 | CLI                                | No                                                         | Yes                                                         |
 | Core update method                 | Through volume passthrough in Docker or waiting for official updates | Via CLI                                           |
 | Database                           | Single Postgres SQL database                               | Option to choose from available databases                   |
-| Node autonomy without panel        | Working                                                    | Stops working(in development)                               |
+| Node autonomy without panel        | Working                                                    | Stops working (in development)                               |
 | Protocol support                   | No WG or VMESS hosts (possible via core-level setup)       | Limited XHTTP (Extra) transport support(in development)     |
 | Operation mode                     | Multi-threaded                                             | Single-threaded. Performance decreases with more users      |
 | Multi-admin support                | No                                                         | Yes                                                         |
