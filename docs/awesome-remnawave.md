@@ -23,72 +23,163 @@ Author: [kutovoys](https://github.com/kutovoys)
 
 ---
 
-### Remnawave Installation Scripts
+### Geo File Viewer
 
-Bash scripts to install and manage **Remnawave Panel** and **Remnawave Node** via CLI.
-Includes Docker support, reverse proxy tips, Telegram integration, and `.env` generation.
+A utility for viewing the contents of geoip and geofile (.dat) files in the v2fly format.
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://jomertix.github.io/geofileviewer" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/geofileviewer.webp" alt="GeoFileViewer" width="600" />
+</div>
+
+---
+
+### Remnawave Management Scripts by DigneZzZ
+
+Comprehensive bash scripts for **Remnawave Panel**, **Remnawave Node**, and **Reality Selfsteal** with full automation support. Features Docker integration, intelligent backup/restore system with version checking, advanced monitoring, and complete lifecycle management.
+
+📦 **Key Features:**
+- 🚀 **One-line installation** for Panel, Node, and Selfsteal configurations
+- 🎛️ **Interactive menus** with real-time status monitoring and guided operations
+- 💾 **Smart backup system** with version compatibility checking and safety rollbacks
+- 🔄 **Complete lifecycle management** - install, update, backup, restore, uninstall
+- 🎯 **Reality masking** with 11 AI-generated website templates
 
 📦 Full info, updates, and examples: [**/remnawave-scripts**](https://github.com/DigneZzZ/remnawave-scripts)
 
 Author: [DigneZzZ](https://github.com/DigneZzZ)
 
----
-
-<details>
-<summary>Quick install (latest by default)</summary>
-
-**Panel:**
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install
-```
-
-**Node:**
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install
-```
-
-> Add `--dev` to install the development version
-
-> Add `--name customname` to use a custom directory, exapmle `remna` or `r-node` and etc. (default: `/opt/remnawave` or `/opt/remnanode`)
-
-</details>
-
-<details>
-<summary>Already installed?</summary>
-
-Use `install-script` to install only the CLI wrapper for an existing setup:
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh)" @ install-script
-```
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh)" @ install-script
-```
-
-Make sure the directory matches your existing one. (`/opt/remnawave` or `/opt/remnanode`)
-
-</details>
+Project: [GIG.ovh](https://gig.ovh)
 
 ---
 
-#### CLI Features
+<details>
+<summary>🚀 Quick Install Commands</summary>
 
-- `install`, `update`, `uninstall`, `install-script`,`uninstall-script`
+**Remnawave Panel (v3.5.5+):**
+```bash
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh) @ install
+```
+
+**Remnawave Node (v3.1.2+):**
+```bash
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh) @ install
+```
+
+**Reality Selfsteal (v2.1.3+):**
+```bash
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/selfsteal.sh) @ install
+```
+
+**Options:**
+- Add `--dev` for development version
+- Add `--name customname` for custom directory (default: `/opt/remnawave`, `/opt/remnanode`)
+
+**For existing installations:**
+Use `install-script` to add CLI wrapper only:
+```bash
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave.sh) @ install-script
+```
+```bash
+bash <(curl -Ls https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnanode.sh) @ install-script
+```
+</details>
+
+<details>
+<summary>⚙️ Available CLI Commands</summary>
+
+**Installation & Management:**
+- `install`, `update`, `uninstall`
+- `install-script`, `uninstall-script`
+
+**Service Control:**
 - `up`, `down`, `restart`, `status`, `logs`
-- `edit`, `edit-env`, `console` (just for panel)
 
-Run `remnawave help` or `remnanode help` to see available commands.
+**Node-specific Commands:**
+- `core-update` - Manual Update/Install Xray-core to latest version
+- `xray-log-out`, `xray-log-err` - View Xray logs
+- `setup-logs` - Configure log rotation
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
-</div>
+**Configuration:**
+- `edit`, `edit-env`, `console` (Panel only)
+
+**Interactive Menus:**
+- Run `remnawave`, `remnanode`, or `selfsteal` without arguments for interactive menu
+- Real-time status monitoring and resource usage
+- Step-by-step guided operations
+
+**Backup & Restore (Panel):**
+- `backup` - Create manual backup
+- `schedule` - Configure automated backups
+- `restore` - Restore from backup archive
+
+**Reality Selfsteal:**
+- Choose from 11 AI-generated website templates
+- Automatic SSL certificate management by Caddy
+- DNS validation before start
+
+Run `remnawave help`, `remnanode help`, or `selfsteal help` for detailed usage.
+
+</details>
+
+<details>
+<summary>💾 Intelligent Backup & Restore System</summary>
+
+**🔄 Smart Backup Features:**
+
+- **Version-aware backups** with compatibility checking
+- **Safety restore** with automatic rollback protection  
+- **Scheduled automation** with cron integration
+- **Telegram notifications** with file delivery and alerts
+- **Cross-server migration** support with detailed instructions
+- **Compressed archives** with unified structure
+
+**📦 What's Backed Up:**
+
+- PostgreSQL database as `db_backup.sql`
+- Configuration files: `docker-compose.yml`, `.env`, `app-config.json`
+- Optional: full directory backup with selective restore
+
+**🎯 Quick Commands:**
+
+```bash
+remnawave backup          # Create instant backup
+remnawave schedule        # Setup automated backups  
+remnawave restore         # Intelligent restore with version checks
+```
+
+**🛡️ Safety Features:**
+
+- Automatic version compatibility verification
+- Safety backup before restore operations
+- Rollback capability if restore fails
+- Real-time status monitoring during operations
+
+**📋 Restore Options:**
+
+- Full restore (replace all files and database)
+- Database-only restore (keep existing files)
+- Custom directory restoration
+- Manual restore commands included in each backup archive
+
+**Legacy Standalone Scripts:**
+
+Available for users who need legacy standalone backup/restore tools:
+
+- [remnawave-backup.sh](https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave-backup.sh) - Standalone backup script
+- [restore.sh](https://github.com/DigneZzZ/remnawave-scripts/raw/main/restore.sh) - Standalone restore script
+
+</details>
+
 <br />
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/remnawave-script.webp" alt="Remnawave scripts" width="600" />
+  <img src="/awesome/remnawave-script.webp" alt="Remnawave Management Scripts" width="600" />
 </div>
+
 
 ---
 
@@ -123,67 +214,6 @@ Features:
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/remnawave-reverse-proxy.webp" alt="REMNAWAVE-REVERSE-PROXY" width="600" />
-</div>
-
----
-
-### Remnawave Backup Script
-
-A bash script to create backups of the Remnawave database and configurations. Backups are sent to a Telegram chat for easy access. The script backs up the following:
-
-- The Remnawave database as `db_backup.sql`
-- Either the entire specified folder (e.g., `/opt/remnawave` or user-defined) or specific files:
-    - `docker-compose.yml`
-    - `.env`
-    - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
-
-Author: [DigneZzZ](https://github.com/DigneZzZ)
-
-#### Install and Run
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/remnawave-backup.sh)"
-```
-
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
-</div>
-<br />
-
-<div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/remnawave-backup.webp" alt="Remnawave Backup Script" width="600" />
-</div>
-
----
-
-### Remnawave Restore Script (Beta)
-
-A bash script to restore Remnawave backups, either fully (files and database) or database-only, from a `.tar.gz` archive to a specified directory. **Warning: This is a beta version. Use with extreme caution, especially on a live Remnawave panel, as it may overwrite critical data or cause instability.**
-
-The script performs the following:
-
-- Clears all existing data in the specified database and restores it from `db_backup.sql`
-- Restores files to the chosen directory (e.g., `/opt/remnawave` or user-defined), including:
-    - `docker-compose.yml`
-    - `.env`
-    - `app-config.json` (custom file for the subscription page, see [instructions](https://remna.st/subscription-templating/client-configuration))
-- Starts containers to ensure the restored setup is operational
-
-Author: [DigneZzZ](https://github.com/DigneZzZ)
-
-#### Install and Run
-
-```bash
-sudo bash -c "$(curl -sL https://github.com/DigneZzZ/remnawave-scripts/raw/main/restore.sh)"
-```
-
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Github repository" link="https://github.com/DigneZzZ/remnawave-scripts" variant="secondary" size="md" outline />
-</div>
-<br />
-
-<div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/remnawave-restore.webp" alt="Remnawave Restore Script" width="600" />
 </div>
 
 ---
@@ -378,9 +408,191 @@ ansible-playbook playbook.yml -K
 
 ---
 
+### Remnawave Telegram Shop Bot
+
+A Telegram bot for selling subscriptions with integration to Remnawave. This service allows users to purchase and manage subscriptions through Telegram with multiple payment system options. YooKass | Telegram Stars | CryptoBot
+
+Author: [jolymmiles](https://github.com/Jolymmiles)
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/Jolymmiels/remnawave-telegram-shop" variant="secondary" size="md" outline />
+  <Button label="Documentation" link="https://github.com/Jolymmiels/remnawave-telegram-shop/wiki" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-telegram-shop-bot.webp" alt="Remnawave Telegram Shop Bot" width="600" />
+</div>
+
+---
+
+### RemnaSetup 🛠️
+
+Universal script for automatic installation, configuration, and updating of Remnawave and Remnanode infrastructure. Includes installation of the control panel, node, subscription page, Caddy setup, Tblocker, BBR, WARP, and an automatic backup system with Telegram integration.
+
+Author: [Capybara-z](https://github.com/Capybara-z)
+
+<details>
+<summary>Quick Start</summary>
+
+**Option 1:**
+
+```bash
+bash <(curl -fsSL raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh)
+```
+
+**Option 2:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Capybara-z/RemnaSetup/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && sudo bash ./install.sh
+```
+
+</details>
+
+**🔥 Main Features:**
+
+- 📦 Complete Remnawave installation + Subscription page + Caddy
+- 🌐 Remnanode installation with Caddy, Tblocker, BBR, and WARP
+- 💾 Backup system with Telegram integration
+- ♻️ Recovery from local backups and Telegram
+- 🔄 Automatic component updates
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/Capybara-z/RemnaSetup" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnasetup.webp" alt="RemnaSetup" width="600" />
+</div>
+
+---
+
+### Remnawave Backup & Restore by distillium
+
+The script automates backups and performs a restore of the Remnawave database.
+
+**Author:** [distillium](https://github.com/distillium)
+
+<details>
+<summary>Instruction</summary>
+
+#### Installation
+
+```bash
+curl -o ~/backup-restore.sh https://raw.githubusercontent.com/distillium/remnawave-backup-restore/main/backup-restore.sh && chmod +x ~/backup-restore.sh && ~/backup-restore.sh
+```
+
+:::danger
+As a precaution, use the restore function on the same panel version from which the backup was made (or create the backup from the latest panel version).
+:::
+
+:::warning
+This script is designed to perform meaningful maintenance operations on the Remnawave database. Although it has been thoroughly tested, its functions affect the entire database and its components. It is recommended that you carefully follow the script’s instructions before executing any commands.
+:::
+
+:::tip
+The script backups and restores only the entire database, as well as the .env and .env-node files (if they exist in the /opt/remnawave/ or /root/remnawave/ directory). The backup and recovery of all other files and configurations are entirely the responsibility of the user.
+:::
+
+</details>
+
+**Features:**
+
+- creating a manual backup and configuring automatic scheduled backups
+- notifications in Telegram with backup file attached
+- supports sending backup to Google Drive
+- restore from backup
+- backups retention policy (7 days) implemented
+- quick access from anywhere on the system with the `rw-backup` command
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/distillium/remnawave-backup-restore" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/remnawave-backup-restore.webp" alt="REMNAWAVE-BACKUP-RESTORE" width="600" />
+</div>
+
+---
+
+### WARP Native Installer by distillium
+
+This script installs Cloudflare WARP in “native” mode via `WireGuard`, without using `warp-cli`.
+
+**Author:** [distillium](https://github.com/distillium)
+
+It automates:
+- Installing the necessary packages (`wireguard`, `resolvconf`)
+- Downloading and configuring `wgcf`
+- Generating and modifying the WireGuard configuration
+- Connecting and checking status
+- Enabling autorun of the `warp` interface
+
+**Installing (performed on each desired node):**
+
+```bash
+curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
+```
+
+**Templates for Xray configuration**
+<details>
+ <summary>📝 Show example outbound</summary>
+
+ ```json
+{
+  "tag": "warp-out",
+  "protocol": "freedom",
+  "settings": {},
+  "streamSettings": {
+    "sockopt": {
+      "interface": "warp"
+    }
+  }
+}
+```
+</details>
+
+<details>
+  <summary>📝 Show example routing rule</summary>
+
+```json
+{
+  "type": "field",
+  "domain": [
+    "netflix.com",
+    "youtube.com",
+    "twitter.com"
+  ],
+  "inboundTag": [
+    "Node-1",
+    "Node-2"
+  ],
+  "outboundTag": "warp-out"
+}
+```
+</details>
+
+**Deleting:**
+```bash
+curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
+```
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Github repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
+</div>
+<br />
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
+</div>
+
+---
+
 ## Add project to the list
 
-If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave/index.md).
+If you want to add your project to the list, please open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave.md).
 
 Make sure that the target branch is `main`.
 

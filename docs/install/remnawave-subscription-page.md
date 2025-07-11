@@ -17,10 +17,10 @@ Edit the `/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subsc
 cd /opt/remnawave && nano .env
 ```
 
-Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
+Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name. Domain name must be without http or https.
 
 ```bash title=".env file content"
-SUB_PUBLIC_DOMAIN=https://subscription.domain.com
+SUB_PUBLIC_DOMAIN=subscription.domain.com
 ```
 
 ## Step 2 - Create docker-compose.yml file
@@ -68,8 +68,8 @@ You can replace it parameter with, for example,
 - CUSTOM_SUB_PREFIX=sub
 ```
 
-to get an additional nested path for the subscription page.  
-But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.  
+to get an additional nested path for the subscription page.
+But in that case, in the `.env` file for the `remnawave` container, you will need to set the corresponding parameter correctly: `SUB_PUBLIC_DOMAIN=link.domain.com/sub`.
 And you will need to specify similar changes to the valid path in your configurations for Nginx/Caddy.
 
 :::
@@ -287,24 +287,21 @@ server {
     }
 
     # SSL Configuration (Mozilla Intermediate Guidelines)
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ecdh_curve X25519:prime256v1:secp384r1;
+    ssl_protocols          TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
-    ssl_prefer_server_ciphers off;
 
     ssl_session_timeout 1d;
-    ssl_session_cache shared:MozSSL:10m; # ~40,000 sessions
-    ssl_dhparam "/etc/nginx/ssl/dhparam.pem";
+    ssl_session_cache shared:MozSSL:10m;
+    ssl_session_tickets    off;
     ssl_certificate "/etc/nginx/ssl/subdomain_fullchain.pem";
     ssl_certificate_key "/etc/nginx/ssl/subdomain_privkey.key";
-
-    # OCSP Stapling
-    ssl_stapling on;
-    ssl_stapling_verify on;
     ssl_trusted_certificate "/etc/nginx/ssl/subdomain_fullchain.pem";
-    resolver 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220;
 
-    # HTTP Strict Transport Security (HSTS)
+    ssl_stapling           on;
+    ssl_stapling_verify    on;
+    resolver               1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220 valid=60s;
+    resolver_timeout       2s;
+
     proxy_hide_header Strict-Transport-Security;
     add_header Strict-Transport-Security "max-age=15552000" always;
 
@@ -353,7 +350,6 @@ services:
         hostname: remnawave-nginx
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-            - ./dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
             - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
             - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
             // highlight-next-line-green
@@ -693,7 +689,63 @@ Some applications require the subscription URL to be Base64 encoded:
 "isNeedBase64Encoding": true
 ```
 
-### Mounting to the subscrion-page
+---
+
+### Mounting custom template
+
+This can be helpful if you want fully change UI of the subscription page.
+
+- **The `index.html` file and all files in the `assets` directory must be mounted into the container at the following paths:**
+    ```yaml
+    volumes:
+        - ./index.html:/opt/app/frontend/index.html
+        - ./assets:/opt/app/frontend/assets
+    ```
+
+    :::tip
+    You can find the source `index.html` here:
+    [subscription-page/frontend/index.html](https://github.com/remnawave/subscription-page/blob/main/frontend/index.html)
+
+    The `assets` directory is available here:
+    [subscription-page/frontend/public/assets](https://github.com/remnawave/subscription-page/tree/main/frontend/public/assets)
+    :::
+
+#### Template Variables
+
+Your HTML template must include three variables:
+
+| Variable                 | Description                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `<%= metaTitle %>`       | Will be resolved as META_TITLE (from .env)                                                                 |
+| `<%= metaDescription %>` | Will be resolved as META_DESCRIPTION (from .env)                                                           |
+| `<%- panelData %>`       | Base64‑encoded data (string), exactly matching the response from the /api/sub/`<shortUuid>`/info endpoint. |
+
+<details>
+<summary>Example of using panelData</summary>
+
+```js
+let panelData
+panelData = '<%- panelData %>'
+try {
+    panelData = JSON.parse(atob(panelData))
+} catch (error) {
+    console.error('Error parsing panel data:', error)
+}
+```
+
+</details>
+
+:::danger
+After mounting your template, ensure all three variables are present and used correctly in your code. If so, your subscription page will work out of the box without any further modifications.
+:::
+
+Restart the subscription-page container to apply the changes.
+
+```bash
+docker compose down && docker compose up -d && docker compose logs -f
+```
+
+### Custom app-config.json (custom apps)
 
 Modify your docker-compose.yml file to mount the app-config.json file to the subscription-page container:
 

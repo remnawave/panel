@@ -168,6 +168,11 @@ JWT_API_TOKENS_SECRET=strong_secret_key
 | `TELEGRAM_NOTIFY_USERS_THREAD_ID`   | The topic id of Telegram group        |         |                 |
 | `TELEGRAM_NOTIFY_NODES_THREAD_ID`   | The topic id of Telegram group        |         |                 |
 
+:::note
+
+Telegram Group Chat ID is always starts with `-100`.
+:::
+
 <details>
 <summary>Example</summary>
 
@@ -186,8 +191,8 @@ TELEGRAM_NOTIFY_USERS_CHAT_ID=change_me
 TELEGRAM_NOTIFY_NODES_CHAT_ID=change_me
 
 # Optional, if you want to send notifications to specific topics in Telegram group
-TELEGRAM_NOTIFY_USERS_THREAD_ID=1
-TELEGRAM_NOTIFY_NODES_THREAD_ID=2
+TELEGRAM_NOTIFY_USERS_THREAD_ID=
+TELEGRAM_NOTIFY_NODES_THREAD_ID=
 ```
 
 </details>
@@ -288,7 +293,6 @@ openssl rand -hex 64
 <summary>Example</summary>
 
 ```bash title=".env file"
-IS_DOCS_ENABLED=true
 METRICS_USER=admin
 METRICS_PASS=change_me
 ```
@@ -336,9 +340,26 @@ openssl rand -hex 64
 <summary>Example</summary>
 
 ```bash title=".env file"
-IS_WEBHOOK_ENABLED=true
-WEBHOOK_URL=https://yourpanel.com/api/webhook
+WEBHOOK_ENABLED=true
+WEBHOOK_URL=https://your-server.com/webhook-path
 WEBHOOK_SECRET_HEADER=strong_secret_key
+```
+
+</details>
+
+## Bandwidth usage notifications
+
+| Variable                                  | Description                                                                                                                                                              | Default | Possible values |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | --------------- |
+| `BANDWIDTH_USAGE_NOTIFICATIONS_ENABLED`   | Enable/Disable bandwidth usage notifications                                                                                                                             | `false` | `true`, `false` |
+| `BANDWIDTH_USAGE_NOTIFICATIONS_THRESHOLD` | The threshold for bandwidth usage notifications. Only in ASC order (example: [60, 80]), must be valid array of integer(min: 25, max: 95) numbers. No more than 5 values. |         |                 |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+BANDWIDTH_USAGE_NOTIFICATIONS_ENABLED=true
+BANDWIDTH_USAGE_NOTIFICATIONS_THRESHOLD=[60, 80]
 ```
 
 </details>

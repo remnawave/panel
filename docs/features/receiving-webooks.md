@@ -36,7 +36,7 @@ Remnawave will send the following headers with the webhook payload:
 The payload will be a JSON object with the following fields:
 
 - `event` - The event that occurred.
-- `data` - The data associated with the event. Will contain full User or Node object.
+- `data` - The data associated with the event. Will contain full User, Node or Service object.
 - `timestamp` - The timestamp of the webhook payload.
 
 ### Events
@@ -56,6 +56,8 @@ The payload will be a JSON object with the following fields:
 - `user.expires_in_48_hours` - The user's subscription will expire in 48 hours.
 - `user.expires_in_24_hours` - The user's subscription will expire in 24 hours.
 - `user.expired_24_hours_ago` - The user's subscription expired 24 hours ago.
+- `user.first_connected` - The user connected to the node for the first time.
+- `user.bandwidth_usage_threshold_reached` - The user's bandwidth usage threshold was reached.
 
 User payload will contain full User object.
 
@@ -93,6 +95,9 @@ email: string | null
 hwidDeviceLimit: number | null
 createdAt: string
 updatedAt: string
+
+firstConnectedAt: string | null
+lastTriggeredThreshold: number
 
 activeUserInbounds: Array<{
     uuid: string
@@ -163,6 +168,29 @@ excludedInbounds: Array<{
     network: string | null
     security: string | null
 }>
+```
+
+</details>
+
+#### Service
+
+- `service.panel_started` - The service started.
+- `service.login_attempt_failed` - The login attempt failed.
+- `service.login_attempt_success` - The login attempt was successful.
+
+Service payload will contain Service object.
+
+<details>
+<summary>Service object</summary>
+
+```typescript
+loginAttempt?: {
+    username: string
+    ip: string
+    userAgent: string
+    description?: string
+    password?: string
+}
 ```
 
 </details>

@@ -64,8 +64,8 @@ TELEGRAM_NOTIFY_USERS_CHAT_ID=change_me
 TELEGRAM_NOTIFY_NODES_CHAT_ID=change_me
 
 # Optional, if you want to send notifications to specific topics in Telegram group
-TELEGRAM_NOTIFY_USERS_THREAD_ID=1
-TELEGRAM_NOTIFY_NODES_THREAD_ID=2
+TELEGRAM_NOTIFY_USERS_THREAD_ID=
+TELEGRAM_NOTIFY_NODES_THREAD_ID=
 ```
 
 ### Update Remnawave Panel

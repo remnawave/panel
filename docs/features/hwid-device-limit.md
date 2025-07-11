@@ -36,12 +36,6 @@ Remnawave will return a `404` error if no HWID header is sent.
 HWID_DEVICE_LIMIT_ENABLED=true
 HWID_FALLBACK_DEVICE_LIMIT=5
 HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
-
-
-### HWID DEVICE DETECTION PROVIDER ID ###
-# Apps, which currently support this feature:
-# - Happ
-PROVIDER_ID="123456"
 ```
 
 `HWID_DEVICE_LIMIT_ENABLED` - enables device limit restriction.
@@ -108,11 +102,3 @@ user-agent: <user_agent>
 The only required item is `x-hwid`. Other headers are optional and can be used to identify the device more accurately.
 
 If your application has the ability to enable additional features based on where the subscription is coming from, Remnawave can send a provider id in the response headers, which you can use to figure out where the subscription is coming from.
-
-```bash
-providerid: 12345
-```
-
-:::info
-Provider ID will be sent only if `PROVIDER_ID` is set in the .env file.
-:::
