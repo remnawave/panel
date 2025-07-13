@@ -64,6 +64,7 @@ services:
         restart: always
         ports:
             - '0.0.0.0:443:443'
+            - '0.0.0.0:80:80'
         networks:
             - remnawave-network
         volumes:
