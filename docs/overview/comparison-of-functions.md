@@ -17,7 +17,7 @@ The table is based on the personal experience of former Marzban users who later 
 | Automatic installation scripts     | Community tools                                            | Community tools                                             |
 | Modularity                         | Database, panel, and Sub Page can be separated             | Not modular                                                 |
 | Security measures in documentation | CF zero trust, custom path, 2FA                           | No                                                          |
-| CLI                                | yes (inside a docker container)                            | Yes                                                         |
+| CLI                                | Yes (inside a docker container)                            | Yes                                                         |
 | Admin Password Change              | Docker container or community script                       | .env file                                                   |
 | Core update method                 | Through volume passthrough in Docker or rebuild image      | Via CLI                                                     |
 | Host Sorting                       | Managed via Web UI                                         | Managed via XRAY configuration                              |
