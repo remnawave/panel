@@ -16,7 +16,7 @@ The table is based on the personal experience of former Marzban users who later 
 | Documentation                      | Contains scripts and community solutions approved by the developer, English only| Official documentation in 3 languages, unofficial includes Linux server setup|
 | Automatic installation scripts     | Community tools                                            | Community tools                                             |
 | Modularity                         | Database, panel, and Sub Page can be separated             | Not modular                                                 |
-| Security measures in documentation | CF zero thrust, custom path, 2FA                           | No                                                          |
+| Security measures in documentation | CF zero trust, custom path, 2FA                           | No                                                          |
 | CLI                                | yes (inside a docker container)                            | Yes                                                         |
 | Admin Password Change              | Docker container or community script                       | .env file                                                   |
 | Core update method                 | Through volume passthrough in Docker or rebuild image      | Via CLI                                                     |
