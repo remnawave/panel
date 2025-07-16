@@ -45,5 +45,5 @@ The table is based on the personal experience of former Marzban users who later 
 | Built-in metrics in panel          | Nodes, users, inbounds, outbounds, traffic                 | No                                                          |
 | Integrations                       | Integration with HAPP, link encoding, and routing setup via WEB UI | No                                                  |
 | Separate node configurations       | Supported                                                  | In development or using Marzenshin fork                     |
-| Billing for notifications by nodes | Yes                                                        | No                                                          |
+| Аutomated billing alerts per node  | Yes                                                        | No                                                          |
 | Mux in Host Settings               | No                                                         | Yes                                                         |
