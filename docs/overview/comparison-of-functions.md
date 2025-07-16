@@ -16,7 +16,7 @@ The table is based on the personal experience of former Marzban users who later 
 | Documentation                      | Contains scripts and community solutions approved by the developer, English only| Official documentation in 3 languages, unofficial includes Linux server setup|
 | Automatic installation scripts     | Community tools                                            | Community tools                                             |
 | Modularity                         | Database, panel, and Sub Page can be separated             | Not modular                                                 |
-| Security measures in documentation | CF zero trust, custom path, 2FA                           | No                                                          |
+| Security measures in documentation | CF zero trust, custom path, 2FA                            | No                                                          |
 | CLI                                | Yes (inside a docker container)                            | Yes                                                         |
 | Admin Password Change              | Docker container or community script                       | .env file                                                   |
 | Core update method                 | Through volume passthrough in Docker or rebuild image      | Via CLI                                                     |
@@ -32,7 +32,7 @@ The table is based on the personal experience of former Marzban users who later 
 | Multi-admin support                | No                                                         | Yes                                                         |
 | User Management Filters            | Extended selection                                         | Minimal options                                             |
 | API keys and headers management    | WEB UI                                                     | CLI                                                         |
-| Webhook event support              | more forgotten and more possibilities                      | The number of events is limited                             |
+| Webhook event support              | Users + nodes                                              | Users                                                       |
 | Selecting active inbounds on nodes | Via panel WEB UI                                           | Via environment variables on the node (in development)      |
 | XRAY logs viewing                  | Through the server                                         | WEB UI                                                      |
 | Post-install setup                 | In WEB UI                                                  | In .env file                                                |
