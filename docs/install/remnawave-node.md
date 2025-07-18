@@ -189,6 +189,10 @@ logrotate -vf /etc/logrotate.d/remnanode
 
 ### XRay SSL cert for Node
 
+:::info
+ATTENTION! This item is necessary for you in case of implementation of TLS transport, for example "VLESS-Vision-TLS". In case of Reality, you do not need it.
+:::
+
 If you’re using certificates for your XRay configuration, you need to mount them into the panel.
 
 :::info
