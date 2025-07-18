@@ -24,8 +24,8 @@ const config: Config = {
             'classic',
             {
                 docs: {
-                    showLastUpdateAuthor: true,
-                    showLastUpdateTime: true,
+                    showLastUpdateAuthor: false,
+                    showLastUpdateTime: false,
                     sidebarPath: './sidebars.ts',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
