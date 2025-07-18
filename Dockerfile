@@ -11,6 +11,7 @@ FROM node:${NODE_VERSION}-alpine as builder
 
 WORKDIR /usr/src/app
 
+COPY .npmrc ./
 COPY package*.json ./
 
 RUN npm install
