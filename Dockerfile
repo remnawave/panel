@@ -2,7 +2,7 @@
 # docker build -t docusaurus-starter .
 # docker run -d -p 80:80 --name docusaurus-starter-app docusaurus-starter
 
-ARG NODE_VERSION=22.12.0
+ARG NODE_VERSION=22.17.0
 ARG NGINX_VERSION=1.27.3
 ARG APP_PORT=80
 ARG IMAGE_NAME=remnawave-docs
@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
