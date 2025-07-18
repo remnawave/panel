@@ -18,7 +18,7 @@ import { BiLogoTelegram } from 'react-icons/bi'
 import { SiNestjs } from 'react-icons/si'
 import Link from '@docusaurus/Link'
 import Layout from '@theme/Layout'
-import React from 'react'
+import React, { JSX } from 'react'
 
 import { theme } from '../theme/mantine-theme/theme'
 
