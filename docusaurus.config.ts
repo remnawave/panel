@@ -24,8 +24,8 @@ const config: Config = {
             'classic',
             {
                 docs: {
-                    showLastUpdateAuthor: true,
-                    showLastUpdateTime: true,
+                    showLastUpdateAuthor: false,
+                    showLastUpdateTime: false,
                     sidebarPath: './sidebars.ts',
                     editUrl: 'https://github.com/remnawave/panel/tree/main'
                 },
@@ -66,9 +66,9 @@ const config: Config = {
                 name: 'docusaurus-mantineui',
                 configurePostCss(postcssOptions) {
                     // Appends TailwindCSS and AutoPrefixer.
-                    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+                    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
                     postcssOptions.plugins.push(require('postcss-preset-mantine'))
-                    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+                    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
                     postcssOptions.plugins.push(require('postcss-simple-vars'))
                     return postcssOptions
                 }
