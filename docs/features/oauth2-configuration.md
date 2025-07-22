@@ -130,7 +130,7 @@ https://YOUR_PANEL_DOMAIN/oauth2/callback/yandex
 Don't forget to set the correct callback URL. Change `YOUR_PANEL_DOMAIN` to your panel domain.
 :::
 
-In third step of creation allow "Access to email address", no other permissions are needed.
+In the third step of creation allow "Access to email address", no other permissions are needed.
 
 ### Configuring OAuth2 in Remnawave
 
