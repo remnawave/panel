@@ -67,12 +67,18 @@ docker compose up -d && docker compose logs -f -t
 
 ## Advanced usage
 
-### GeoSite files
+### Loading modified geosite and geoip files
 
-You can mount additional geosite files into the `/usr/local/share/xray/` directory in the container.
+:::info
+ATTENTION!
+1. This guide contains only an example and does not reflect the real names of the `*-zapret.dat` files and the `:zapret` categories used in them. In reality, these things will be different.
+2. Setting up routing on the server (node) will not allow you to send connections to DIRECT on clients. This is server routing, necessary for blocking or setting routes between servers. To manage client traffic, client routing is used.
+:::
+
+You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
 
 :::caution
-Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite files. Mount each file individually.
+Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite and geoip files. Mount each file individually.
 :::
 
 Add the following to the `docker-compose.yml` file:
@@ -90,7 +96,9 @@ services:
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
-            - './zapret.dat:/usr/local/share/xray/zapret.dat'
+            - './geo-zapret.dat:/usr/local/share/xray/geo-zapret.dat'
+            // highlight-next-line-green
+            - './ip-zapret.dat:/usr/local/share/xray/ip-zapret.dat'
 ```
 
 Usage in xray config:
@@ -101,8 +109,11 @@ Usage in xray config:
        // Other rules
       {
         "type": "field",
-        "domain": [
-          "ext:zapret.dat:zapret"
+        "domain": [ // Calling the geosite file
+          "ext:geo-zapret.dat:zapret"
+        ],
+        "ip": [ // Calling the geoip file
+          "ext:ip-zapret.dat:zapret"
         ],
         "inboundTag": [ // Optional
           "VLESS_TCP_REALITY"
