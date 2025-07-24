@@ -70,13 +70,9 @@ docker compose up -d && docker compose logs -f -t
 ### Loading modified geosite and geoip files
 
 :::info
-WARNING!
-1. This manual does not contain mandatory instructions, it is only an example of implementation without reference to the file `*-zapret.dat` used in it. In your implementation, it will not be appropriate to blindly repeat the call ext:*-zapret.dat:zapret, since in reality the categories `:zapret` will be different. If you blindly, without understanding what is happening, repeat what is described, you will break your Xray configuration and get an error connecting to the node.
-2. If you imagine that you will configure this routing on your server, and this will mean that client connections will be guided by this routing - you are mistaken.
-For example: If you configure so that the sites of your country go directly from your Internet (Direct). This will not mean that the client application will work this way, the client routing is responsible for this.
-
-P.S.
-Client routing is configured on the client itself, but in some cases can be transmitted via a subscription.
+ATTENTION!
+1. This guide contains only an example and does not reflect the real names of the `*-zapret.dat` files and the `:zapret` categories used in them. In reality, these things will be different.
+2. Setting up routing on the server (node) will not allow you to send connections to DIRECT on clients. This is server routing, necessary for blocking or setting routes between servers. To manage client traffic, client routing is used.
 :::
 
 You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
