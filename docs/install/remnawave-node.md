@@ -100,9 +100,9 @@ services:
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
-            - './zapret.dat:/usr/local/share/xray/geo-zapret.dat'
+            - './geo-zapret.dat:/usr/local/share/xray/geo-zapret.dat'
             // highlight-next-line-green
-            - './zapret.dat:/usr/local/share/xray/ip-zapret.dat'
+            - './ip-zapret.dat:/usr/local/share/xray/ip-zapret.dat'
 ```
 
 Usage in xray config:
