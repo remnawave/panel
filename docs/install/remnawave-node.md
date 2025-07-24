@@ -67,12 +67,22 @@ docker compose up -d && docker compose logs -f -t
 
 ## Advanced usage
 
-### GeoSite files
+### Loading modified geosite and geoip files
 
-You can mount additional geosite files into the `/usr/local/share/xray/` directory in the container.
+:::info
+WARNING!
+1. This manual does not contain mandatory instructions, it is only an example of implementation without reference to the file `zapret.dat` used in it. In your implementation, it will not be appropriate to blindly repeat the call ext:zapret.dat:zapret, since in reality the categories `:zapret` will be different. If you blindly, without understanding what is happening, repeat what is described, you will break your Xray configuration and get an error connecting to the node.
+2. If you imagine that you will configure this routing on your server, and this will mean that client connections will be guided by this routing - you are mistaken.
+For example: If you configure so that the sites of your country go directly from your Internet (Direct). This will not mean that the client application will work this way, the client routing is responsible for this.
+
+P.S.
+Client routing is configured on the client itself, but in some cases can be transmitted via a subscription.
+:::
+
+You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
 
 :::caution
-Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite files. Mount each file individually.
+Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite and geoip files. Mount each file individually.
 :::
 
 Add the following to the `docker-compose.yml` file:
@@ -90,7 +100,9 @@ services:
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
-            - './zapret.dat:/usr/local/share/xray/zapret.dat'
+            - './zapret.dat:/usr/local/share/xray/geo-zapret.dat'
+            // highlight-next-line-green
+            - './zapret.dat:/usr/local/share/xray/ip-zapret.dat'
 ```
 
 Usage in xray config:
@@ -101,8 +113,11 @@ Usage in xray config:
        // Other rules
       {
         "type": "field",
-        "domain": [
-          "ext:zapret.dat:zapret"
+        "domain": [ // Calling the geosite file
+          "ext:geo-zapret.dat:zapret"
+        ],
+        "ip": [ // Calling the geoip file
+          "ext:ip-zapret.dat:zapret"
         ],
         "inboundTag": [ // Optional
           "VLESS_TCP_REALITY"
