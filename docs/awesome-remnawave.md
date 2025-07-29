@@ -191,7 +191,7 @@ Author: [eGamesAPI](https://github.com/eGamesAPI)
 
 #### Installation Guidelines
 
-Please read the [Installation Guidelines](https://github.com/eGamesAPI/remnawave-reverse-proxy/blob/main/README.md) before proceeding with the installation.
+Please read the [Installation Guidelines](https://github.com/eGamesAPI/remnawave-reverse-proxy/blob/main/README.md) or the [wiki](https://wiki.egam.es) before proceeding with the installation.
 
 #### Installation
 
