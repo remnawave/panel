@@ -33,6 +33,7 @@ APP_PORT=2222
 
 SSL_CERT=CERT_FROM_MAIN_PANEL
 ```
+
 :::caution
 The line copied from the panel already contains `SSL_CERT=` — just paste it directly from the clipboard.
 :::
@@ -69,11 +70,11 @@ docker compose up -d && docker compose logs -f -t
 
 ### Loading modified geosite and geoip files
 
-:::info
-ATTENTION!
+:::danger Important note
+
 1. This guide contains only an example and does not reflect the real names of the `*-zapret.dat` files and the `:zapret` categories used in them. In reality, these things will be different.
 2. Setting up routing on the server (node) will not allow you to send connections to DIRECT on clients. This is server routing, necessary for blocking or setting routes between servers. To manage client traffic, client routing is used.
-:::
+   :::
 
 You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
 
