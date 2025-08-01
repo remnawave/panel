@@ -159,14 +159,18 @@ JWT_API_TOKENS_SECRET=strong_secret_key
 
 `TELEGRAM_NOTIFY_NODES_CHAT_ID`, `TELEGRAM_NOTIFY_NODES_THREAD_ID` is used to send notifications about node events.
 
+`TELEGRAM_NOTIFY_CRM_CHAT_ID`, `TELEGRAM_NOTIFY_CRM_THREAD_ID` is used to send notifications about CRM events.
+
 | Variable                            | Description                           | Default | Possible values |
 | ----------------------------------- | ------------------------------------- | ------- | --------------- |
 | `IS_TELEGRAM_NOTIFICATIONS_ENABLED` | Disable/Enable Telegram notifications | `false` | `true`, `false` |
 | `TELEGRAM_BOT_TOKEN`                | The token for the Telegram bot        |         |                 |
 | `TELEGRAM_NOTIFY_USERS_CHAT_ID`     | The user/group chat id                |         |                 |
 | `TELEGRAM_NOTIFY_NODES_CHAT_ID`     | The user/group chat id                |         |                 |
+| `TELEGRAM_NOTIFY_CRM_CHAT_ID`       | The user/group chat id                |         |                 |
 | `TELEGRAM_NOTIFY_USERS_THREAD_ID`   | The topic id of Telegram group        |         |                 |
 | `TELEGRAM_NOTIFY_NODES_THREAD_ID`   | The topic id of Telegram group        |         |                 |
+| `TELEGRAM_NOTIFY_CRM_THREAD_ID`     | The topic id of Telegram group        |         |                 |
 
 :::note
 
@@ -190,9 +194,13 @@ TELEGRAM_NOTIFY_USERS_CHAT_ID=change_me
 # Notifications about nodes
 TELEGRAM_NOTIFY_NODES_CHAT_ID=change_me
 
+# Notifications about CRM
+TELEGRAM_NOTIFY_CRM_CHAT_ID=change_me
+
 # Optional, if you want to send notifications to specific topics in Telegram group
 TELEGRAM_NOTIFY_USERS_THREAD_ID=
 TELEGRAM_NOTIFY_NODES_THREAD_ID=
+TELEGRAM_NOTIFY_CRM_THREAD_ID=
 ```
 
 </details>
