@@ -210,8 +210,7 @@ Features:
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
   <Button label="Github repository" link="https://github.com/eGamesAPI/remnawave-reverse-proxy" variant="secondary" size="md" outline />
   <Button label="Documentation" link="https://wiki.egam.es" variant="secondary" size="md" outline />
-  <Button label="Telegram Chat"
-link="https://t.me/remnawave_reverse" variant="secondary" size="md" outline />
+  <Button label="Telegram Chat" link="https://t.me/remnawave_reverse" variant="secondary" size="md" outline />
 </div>
 <br />
 
