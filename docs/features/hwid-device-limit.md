@@ -80,6 +80,9 @@ Not all client applications send a HWID header. Here is the list of applications
 
 - [Happ](https://happ.su)
 - [v2RayTun](https://docs.v2raytun.com/overview/supported-headers)
+- Forks by Remnawave community:
+  - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
+  - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
 
 ## For app developers
 
