@@ -19,6 +19,16 @@ const config: Config = {
         locales: ['en']
     },
 
+    headTags: [
+        {
+            tagName: 'meta',
+            attributes: {
+                name: 'theme-color',
+                content: '#242c38',
+            },
+        },
+    ],
+
     presets: [
         [
             'classic',
