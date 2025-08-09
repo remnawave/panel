@@ -118,6 +118,13 @@ Usage in xray config:
         "domain": [ // Calling the geosite file
           "ext:geo-zapret.dat:zapret"
         ],
+        "inboundTag": [ // Optional
+          "VLESS_TCP_REALITY"
+        ],
+        "outboundTag": "NOT_RU_OUTBOUND"
+      },
+      {
+        "type": "field",
         "ip": [ // Calling the geoip file
           "ext:ip-zapret.dat:zapret"
         ],
