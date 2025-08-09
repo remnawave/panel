@@ -3,6 +3,8 @@ sidebar_position: 4
 title: Remnawave Node
 ---
 
+import InstallDocker from '/docs/partials/\_install_docker.md';
+
 # Remnawave Node
 
 Remnawave Node is a lightweight container with included Xray-core.
@@ -11,6 +13,8 @@ Remnawave Node is a lightweight container with included Xray-core.
 
 Remnawave Panel is not contains Xray-core inside, so you need to install Remnawave Node on a separate server in order to fully use Remnawave.
 :::
+
+<InstallDocker />
 
 ## Step 1 - Creating project directory
 
@@ -74,7 +78,8 @@ docker compose up -d && docker compose logs -f -t
 
 1. This guide contains only an example and does not reflect the real names of the `*-zapret.dat` files and the `:zapret` categories used in them. In reality, these things will be different.
 2. Setting up routing on the server (node) will not allow you to send connections to DIRECT on clients. This is server routing, necessary for blocking or setting routes between servers. To manage client traffic, client routing is used.
-   :::
+
+:::
 
 You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
 
@@ -201,8 +206,8 @@ logrotate -vf /etc/logrotate.d/remnanode
 
 ### XRay SSL cert for Node
 
-:::info
-ATTENTION! This item is necessary for you in case of implementation of TLS transport, for example "VLESS-Vision-TLS". In case of Reality, you do not need it.
+:::danger
+This item is necessary for you in case of implementation of TLS transport, for example "VLESS-Vision-TLS". In case of Reality, you do not need it.
 :::
 
 If you’re using certificates for your XRay configuration, you need to mount them into the panel.

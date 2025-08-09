@@ -3,9 +3,13 @@ sidebar_position: 2
 title: Remnawave Panel
 ---
 
+import InstallDocker from '/docs/partials/\_install_docker.md';
+
 # Remnawave Panel
 
 Remnawave Panel is the main component of Remnawave. It will be used to manage your users, nodes, subscriptions and more.
+
+<InstallDocker />
 
 ## Step 1 - Download vital files
 
