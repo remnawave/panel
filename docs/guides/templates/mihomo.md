@@ -136,7 +136,13 @@ proxy-groups:
       proxies:
           - DIRECT # Direct connection only
 ```
-
+or
+```yaml
+proxies:
+  - name: "🔓 No proxy"
+    type: direct
+    udp: true
+```
 ---
 
 ### 3. `select-random-proxy: true`
