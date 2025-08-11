@@ -4,20 +4,22 @@ sidebar_position: 1
 
 # Requirements
 
-**Remnawave Panel** is the main component of Remnawave. It will be used to manage your users, nodes and all the other stuff.  
-**Remnawave Node** is a lightweight container with included Xray-core.
+This page lists the hardware and software requirements for running Remnawave.
+
+**Remnawave Panel** is the main component of Remnawave. It is used to manage users, nodes, and other elements.
+**Remnawave Node** is a lightweight container that includes Xray-core.
 
 ## Remnawave Panel
 
 ### Hardware
 
 - **OS**: Recommended **Ubuntu** or **Debian**.
-- **RAM**: Minimum 2GB, recommended 4GB.
+- **RAM**: Minimum 2 GB, recommended 4 GB.
 - **CPU**: Minimum 2 cores, recommended 4 cores.
-- **Storage**: Minimum and recommended 20GB.
+- **Storage**: 20 GB, minimum and recommended.
 
 :::tip
-Remnawave can run with lower specs, but it's not recommended. Some of background processes can be resource-intensive.
+Remnawave can run with lower specifications, but this is not recommended. Some background processes can be resource-intensive.
 :::
 
 ## Remnawave Node
@@ -25,19 +27,19 @@ Remnawave can run with lower specs, but it's not recommended. Some of background
 ### Hardware
 
 - **OS**: Recommended **Ubuntu** or **Debian**.
-- **RAM**: Minimum 1GB.
+- **RAM**: Minimum 1 GB.
 - **CPU**: Minimum 1 core.
 
 :::tip
-Remnawave Node by itself does not require much resources, but Xray-core can consume a lot of CPU and RAM under heavy load.
+Remnawave Node itself does not require many resources; however, Xray-core can consume significant CPU and RAM under heavy load.
 :::
 
 ## Software
 
-Remnawave Panel and Remnawave Node requires [**Docker**](https://docs.docker.com/get-started/get-docker/) with the **Docker Compose plugin**.
+Remnawave Panel and Remnawave Node require [**Docker**](https://docs.docker.com/get-started/get-docker/) with the **Docker Compose plugin**.
 
 <details>
-<summary>Quick install</summary>
+<summary>Install Docker using official script</summary>
 
 ```bash
 sudo curl -fsSL https://get.docker.com | sh

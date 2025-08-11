@@ -5,20 +5,20 @@ title: Components
 
 ### Panel
 
-Main entrypoint for Remnawave, containts this documentation and releases.
+Main entry point for Remnawave. Contains this documentation and releases.
 
 ### Backend
 
 [![GitHub Tag](https://img.shields.io/github/v/tag/remnawave/backend?sort=semver&style=for-the-badge&logo=github&label=Backend)](https://github.com/remnawave/backend)
 [![Docker Hub](https://img.shields.io/docker/v/remnawave/backend?sort=semver&style=for-the-badge&logo=github&label=Docker)](https://hub.docker.com/r/remnawave/backend)
 
-Backend for Remnawave, written in NestJS.
+Backend for Remnawave, built with NestJS.
 
 ### Frontend
 
 [![GitHub Tag](https://img.shields.io/github/v/tag/remnawave/frontend?sort=semver&style=for-the-badge&logo=github&label=Frontend)](https://github.com/remnawave/frontend)
 
-Frontend for Remnawave, written in React.
+Frontend for Remnawave, built with React.
 
 ### Node
 
@@ -32,13 +32,13 @@ Node for Remnawave, written in TypeScript.
 [![NPM](https://img.shields.io/npm/v/@remnawave/xtls-sdk?sort=semver&style=for-the-badge&logo=npm&label=NPM)](https://www.npmjs.com/package/@remnawave/xtls-sdk)
 [![GitHub Tag](https://img.shields.io/github/v/tag/remnawave/xtls-sdk?sort=semver&style=for-the-badge&logo=github&label=GitHub)](https://github.com/remnawave/xtls-sdk)
 
-A TypeScript/JavaScript SDK for interacting with XTLS/Xray-core - a powerful network proxy tool that supports protocols like VLESS, XTLS, REALITY and more. Built on top of the official Xray-core project.
+A TypeScript/JavaScript SDK for interacting with XTLS/Xray-core - a powerful network proxy tool that supports protocols such as VLESS, XTLS, REALITY, and more. Built on top of the official Xray-core project.
 
 Key features:
 
 - Full TypeScript support
 - Wrapper around Xray-core functionality
-- Supports core XTLS/Xray features and protocols
+- Supports core XTLS/Xray features and protocols.
 
 ### XTLS-SDK-NestJS
 
