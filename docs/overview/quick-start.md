@@ -8,7 +8,7 @@ import DocCard from '@theme/DocCard';
 # Quick start
 
 Here is a quick guide to installing Remnawave Panel and Remnawave Node.
- 
+
 ## Requirements
 
 Check the [requirements page](/docs/install/requirements) to get started.
@@ -29,8 +29,8 @@ First, install the Remnawave Panel.
 
 ### Step 2: Reverse Proxy
 
- Configure a reverse proxy so you can access the Remnawave Panel.
- 
+Configure a reverse proxy so you can access the Remnawave Panel.
+
 ```mdx-code-block
 
 
@@ -54,7 +54,7 @@ Install a subscription page to secure the panel domain and create a public subsc
 ### Step 4: Remnawave Node
 
 Install Remnawave Node on the same server (_not recommended_) or on a different server.
- 
+
 ```mdx-code-block
 
 
