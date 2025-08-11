@@ -32,7 +32,7 @@ nano .env
 `APP_PORT` can be customized. Make sure it's not being used by other services.
 :::
 
-```bash title="Example of .env file content"
+```bash title=".env file content"
 APP_PORT=2222
 
 SSL_CERT=CERT_FROM_MAIN_PANEL
@@ -137,9 +137,9 @@ Usage in Xray config:
   }
 ```
 
-### Logs from Node
+### Node Logs
 
-You can access Node logs by mounting the log directory to your host file system.
+You can access Node logs by mounting them to your host file system.
 
 :::caution
 You **must** set up log rotation, otherwise the logs will fill up your disk!
@@ -204,7 +204,7 @@ Paste the following logrotate configuration for RemnaNode:
   }
 ```
 
-Run the logrotate to test the configuration:
+Run logrotate to test the configuration:
 
 ```bash
 logrotate -vf /etc/logrotate.d/remnanode
@@ -250,7 +250,7 @@ remnawave:
 ```
 
 :::info
-When the Panel pushes the configuration to the Node, it will automatically read the mounted files and send them to the Node.
+When the Panel pushes the configuration to the Node, it will automatically read the mounted files and send the certificates to the Node.
 :::
 
 Usage in Xray config:
