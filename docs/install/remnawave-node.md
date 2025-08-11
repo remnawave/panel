@@ -7,48 +7,48 @@ import InstallDocker from '/docs/partials/\_install_docker.md';
 
 # Remnawave Node
 
-Remnawave Node is a lightweight container with included Xray-core.
+Remnawave Node is a lightweight container that includes Xray-core.
 
 :::note
-
-Remnawave Panel is not contains Xray-core inside, so you need to install Remnawave Node on a separate server in order to fully use Remnawave.
+Remnawave Panel does not include Xray-core, so you need to install Remnawave Node on a separate server to use all features of Remnawave.
 :::
 
 <InstallDocker />
 
-## Step 1 - Creating project directory
+## Step 1 — Create project directory
 
-```bash title="Creating project directory"
+```bash title="Create project directory"
 mkdir /opt/remnanode && cd /opt/remnanode
 ```
 
-## Step 2 - Configure the .env file
+## Step 2 — Configure the .env file
 
-```bash title="Creating .env file"
+```bash title="Create .env file"
 nano .env
 ```
 
 :::tip
-`SSL_CERT` can be found in the main panel under the Nodes tab, Management page, after clicking the **Create new node** button. `APP_PORT` can be customized, make sure it's not being used by other services.
+`SSL_CERT` value can be obtained from the Panel under Nodes → Management → Create new node (`+` button). Copy button in `Important note` will add `SSL_CERT=` to your clipboard. 
+`APP_PORT` can be customized. Make sure it's not being used by other services.
 :::
 
-```bash title=".env file content"
+```bash title="Example of .env file content"
 APP_PORT=2222
 
 SSL_CERT=CERT_FROM_MAIN_PANEL
 ```
 
 :::caution
-The line copied from the panel already contains `SSL_CERT=` — just paste it directly from the clipboard.
+The line copied from the Panel already contains `SSL_CERT=` — just paste it directly from the clipboard.
 :::
 
-## Step 3 - Create docker-compose.yml file
+## Step 3 — Create docker-compose.yml file
 
-```bash title="Creating docker-compose.yml file"
+```bash title="Create docker-compose.yml file"
 nano docker-compose.yml
 ```
 
-Paste the following content into the file:
+Paste this content and save:
 
 ```yaml title="docker-compose.yml file content"
 services:
@@ -62,7 +62,7 @@ services:
             - .env
 ```
 
-## Step 4 - Start the containers
+## Step 4 — Start the containers
 
 Start the containers by running the following command:
 
@@ -76,15 +76,14 @@ docker compose up -d && docker compose logs -f -t
 
 :::danger Important note
 
-1. This guide contains only an example and does not reflect the real names of the `*-zapret.dat` files and the `:zapret` categories used in them. In reality, these things will be different.
-2. Setting up routing on the server (node) will not allow you to send connections to DIRECT on clients. This is server routing, necessary for blocking or setting routes between servers. To manage client traffic, client routing is used.
-
+1. This example uses placeholder names for the `*-zapret.dat` files and the `:zapret` categories. Actual file names and categories will be different.
+2. Routing configured on the server (node) controls server-side traffic and will not affect client DIRECT connections. To manage client traffic routing, configure routing on the client side.
 :::
 
-You can mount additional geosite and geoip files into the `/usr/local/share/xray/` directory in the container.
+You can add additional geosite and geoip files by mounting them into the `/usr/local/share/xray/` directory inside the container.
 
 :::caution
-Do not mount the entire folder. Otherwise, you will overwrite the default Xray geosite and geoip files. Mount each file individually.
+Do not mount the entire folder, this will overwrite the default Xray geosite and geoip files. Instead, mount each file separately.
 :::
 
 Add the following to the `docker-compose.yml` file:
@@ -107,7 +106,7 @@ services:
             - './ip-zapret.dat:/usr/local/share/xray/ip-zapret.dat'
 ```
 
-Usage in xray config:
+Usage in Xray config:
 
 ```json
   "routing": {
@@ -138,9 +137,9 @@ Usage in xray config:
   }
 ```
 
-### Log from Node
+### Logs from Node
 
-You can access logs from the node by mounting them to your host's file system.
+You can access Node logs by mounting the log directory to your host file system.
 
 :::caution
 You **must** set up log rotation, otherwise the logs will fill up your disk!
@@ -164,7 +163,7 @@ services:
             - '/var/log/remnanode:/var/log/remnanode'
 ```
 
-Usage in xray config:
+Usage in Xray config:
 
 ```json
   "log": {
@@ -174,7 +173,7 @@ Usage in xray config:
   }
 ```
 
-On the server where the node is hosted, create the folder `/var/log/remnanode`:
+On the server hosting the node, create the folder `/var/log/remnanode` by running:
 
 ```bash
 mkdir -p /var/log/remnanode
@@ -205,7 +204,7 @@ Paste the following logrotate configuration for RemnaNode:
   }
 ```
 
-Run logrotate manually to test:
+Run the logrotate to test the configuration:
 
 ```bash
 logrotate -vf /etc/logrotate.d/remnanode
@@ -214,15 +213,15 @@ logrotate -vf /etc/logrotate.d/remnanode
 ### XRay SSL cert for Node
 
 :::danger
-This item is necessary for you in case of implementation of TLS transport, for example "VLESS-Vision-TLS". In case of Reality, you do not need it.
+This step is necessary if you implement TLS transport, for example, 'VLESS-Vision-TLS'. For Reality transport, this is not required.
 :::
 
-If you’re using certificates for your XRay configuration, you need to mount them into the panel.
+If you’re using certificates for your Xray configuration, you need to mount them into the panel.
 
 :::info
-Mount the folder via Docker volumes, and in the config refer to the internal path.
-Inside the container there’s a dedicated (empty) folder for certs:
-/var/lib/remnawave/configs/xray/ssl/
+Mount the folder using Docker volumes, and refer to the internal path in your configuration.
+Inside the container, there is a dedicated (empty) directory for certificates:
+`/var/lib/remnawave/configs/xray/ssl/`
 :::
 
 Add the following to the `docker-compose.yml` file:
@@ -251,10 +250,10 @@ remnawave:
 ```
 
 :::info
-When the panel pushes the config to the node, it will automatically read the mounted files and send the certs to the node.
+When the Panel pushes the configuration to the Node, it will automatically read the mounted files and send them to the Node.
 :::
 
-Usage in XRay config:
+Usage in Xray config:
 
 ```json
   "certificates": [
