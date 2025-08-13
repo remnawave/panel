@@ -520,11 +520,12 @@ The script backups and restores only the entire database, as well as the .env an
 
 ---
 
-### WARP Native Installer by distillium
+### WARP Native Installer
 
 This script installs Cloudflare WARP in “native” mode via `WireGuard`, without using `warp-cli`.
 
-**Author:** [distillium](https://github.com/distillium)
+**Script Author:** [distillium](https://github.com/distillium)
+**Ansible Role Author:** [TheMelbine](https://github.com/TheMelbine)
 
 It automates:
 - Installing the necessary packages (`wireguard`, `resolvconf`)
@@ -533,11 +534,38 @@ It automates:
 - Connecting and checking status
 - Enabling autorun of the `warp` interface
 
-**Installing (performed on each desired node):**
-
+**Installing:**
+**Option 1: Shell Script (performed on each desired node):**
 ```bash
-curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh)
 ```
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Shell Script Github Repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
+</div>
+<br />
+
+**Option 2: Ansible Role (Recommended for automation)**
+```bash
+ansible-galaxy install themelbine.warp_native
+```
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Ansible Role Github Repository" link="https://github.com/TheMelbine/ansible-role-warp-native" variant="secondary" size="md" outline />
+</div>
+<br />
+<details>
+  <summary>📝 Show example playbook</summary>
+```yaml
+- hosts: warp_servers
+  become: yes
+  roles:
+    - themelbine.warp_native
+  vars:
+    warp_native_state: present
+    warp_native_modify_resolv: true
+```
+</details>
+
 
 **Templates for Xray configuration**
 <details>
@@ -578,6 +606,7 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 ```
 </details>
 
+
 **Interface management**
 <details>
   <summary>⚙️ Commands</summary>
@@ -593,15 +622,24 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 | Enable autorun         | `systemctl enable wg-quick@warp`       |
 </details>
 
-**Deleting:**
-```bash
-curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
-```
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Github repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
-</div>
-<br />
+**Uninstall:**
+**Shell Script Method:**
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh)
+```
+**Ansible Role Method:**
+<details>
+  <summary>📝 Show</summary>
+```yaml
+- hosts: warp_servers
+  become: yes
+  roles:
+    - themelbine.warp_native
+  vars:
+    warp_native_state: absent
+```
+</details>
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
