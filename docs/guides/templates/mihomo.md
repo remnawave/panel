@@ -176,7 +176,7 @@ proxy-groups:
       url: https://cp.cloudflare.com/generate_204
       interval: 300
       remnawave: # Custom field used only in Remnawave
-          select-random-proxy: true # Enables random shuffling of user hosts for this group
+          shuffle-proxies-order: true # Enables random shuffling of user hosts for this group
       proxies:
           # LEAVE THIS LINE!
 ```
