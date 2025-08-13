@@ -549,12 +549,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/
 ```bash
 ansible-galaxy install themelbine.warp_native
 ```
-
 <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
   <Button label="Ansible Role Github Repository" link="https://github.com/TheMelbine/ansible-role-warp-native" variant="secondary" size="md" outline />
 </div>
 <br />
-
 <details>
   <summary>📝 Show example playbook</summary>
 ```yaml
@@ -567,6 +565,7 @@ ansible-galaxy install themelbine.warp_native
     warp_native_modify_resolv: true
 ```
 </details>
+
 
 **Templates for Xray configuration**
 <details>
@@ -607,6 +606,7 @@ ansible-galaxy install themelbine.warp_native
 ```
 </details>
 
+
 **Interface management**
 <details>
   <summary>⚙️ Commands</summary>
@@ -622,14 +622,15 @@ ansible-galaxy install themelbine.warp_native
 | Enable autorun         | `systemctl enable wg-quick@warp`       |
 </details>
 
+
 **Uninstall:**
 **Shell Script Method:**
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh)
 ```
-
+**Ansible Role Method:**
 <details>
-  <summary>📝 Show Ansible Role Method</summary>
+  <summary>📝 Show</summary>
 ```yaml
 - hosts: warp_servers
   become: yes
