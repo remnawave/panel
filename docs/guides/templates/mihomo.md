@@ -147,9 +147,9 @@ proxies:
 
 ### 3. `select-random-proxy: true`
 
-**Used in `proxy-groups`** for random addition of one proxy from the entire array of user connections.
+**Used only in `proxy-groups`** for random addition of one proxy from the entire array of user connections.
 
-#### Example from remnawave.yaml:
+#### Practical application:
 
 ```yaml
 proxy-groups:
@@ -158,6 +158,25 @@ proxy-groups:
       type: select
       remnawave: # Custom field used only in Remnawave
           select-random-proxy: true # Adds one random user host to this group
+      proxies:
+          # LEAVE THIS LINE!
+```
+
+### 4. `shuffle-proxies-order: true`
+
+**Used only in `proxy-groups`** to randomly shuffle and add all user hosts to the group. The host order does not depend on the sorting in the Hosts panel section and changes every time the subscription is updated. If the first server in the shuffled list becomes unavailable, it will automatically switch to the next one.
+
+#### Practical application:
+
+```yaml
+proxy-groups:
+    - name: 🎲 Random
+      icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Round_Robin.png
+      type: fallback
+      url: https://cp.cloudflare.com/generate_204
+      interval: 300
+      remnawave: # Custom field used only in Remnawave
+          shuffle-proxies-order: true # Enables random shuffling of user hosts for this group
       proxies:
           # LEAVE THIS LINE!
 ```
