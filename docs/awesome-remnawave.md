@@ -555,7 +555,8 @@ ansible-galaxy install themelbine.warp_native
 </div>
 <br />
 
-**Example playbook:**
+<details>
+  <summary>📝 Show example playbook</summary>
 ```yaml
 - hosts: warp_servers
   become: yes
@@ -565,6 +566,7 @@ ansible-galaxy install themelbine.warp_native
     warp_native_state: present
     warp_native_modify_resolv: true
 ```
+</details>
 
 **Templates for Xray configuration**
 <details>
@@ -626,7 +628,8 @@ ansible-galaxy install themelbine.warp_native
 bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh)
 ```
 
-**Ansible Role Method:**
+<details>
+  <summary>📝 Show Ansible Role Method</summary>
 ```yaml
 - hosts: warp_servers
   become: yes
@@ -635,6 +638,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/
   vars:
     warp_native_state: absent
 ```
+</details>
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
   <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
