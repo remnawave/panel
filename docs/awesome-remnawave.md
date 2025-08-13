@@ -524,7 +524,7 @@ The script backups and restores only the entire database, as well as the .env an
 
 This script installs Cloudflare WARP in “native” mode via `WireGuard`, without using `warp-cli`.
 
-**Script Author:** [distillium](https://github.com/distillium)
+**Script Author:** [distillium](https://github.com/distillium) <br />
 **Ansible Role Author:** [TheMelbine](https://github.com/TheMelbine)
 
 It automates:
@@ -534,7 +534,7 @@ It automates:
 - Connecting and checking status
 - Enabling autorun of the `warp` interface
 
-**Installing:**
+**Installing:** <br />
 **Option 1: Shell Script (performed on each desired node):**
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh)
@@ -549,12 +549,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/
 ```bash
 ansible-galaxy install themelbine.warp_native
 ```
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Ansible Role Github Repository" link="https://github.com/TheMelbine/ansible-role-warp-native" variant="secondary" size="md" outline />
-</div>
-<br />
+
 <details>
   <summary>📝 Show example playbook</summary>
+  
 ```yaml
 - hosts: warp_servers
   become: yes
@@ -566,6 +564,10 @@ ansible-galaxy install themelbine.warp_native
 ```
 </details>
 
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Ansible Role Github Repository" link="https://github.com/TheMelbine/ansible-role-warp-native" variant="secondary" size="md" outline />
+</div>
+<br /><br />
 
 **Templates for Xray configuration**
 <details>
@@ -605,7 +607,7 @@ ansible-galaxy install themelbine.warp_native
 }
 ```
 </details>
-
+<br />
 
 **Interface management**
 <details>
@@ -621,9 +623,9 @@ ansible-galaxy install themelbine.warp_native
 | Disable autorun        | `systemctl disable wg-quick@warp`      |
 | Enable autorun         | `systemctl enable wg-quick@warp`       |
 </details>
+<br />
 
-
-**Uninstall:**
+**Uninstall:** <br />
 **Shell Script Method:**
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh)
