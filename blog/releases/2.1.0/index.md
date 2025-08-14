@@ -52,5 +52,5 @@ cd /opt/remnanode && docker compose pull remnanode && docker compose down && doc
 ### Обновление
 
 ```bash
-cd /opt/remnawave-subscription-page && docker compose pull remnawave-subscription-page && docker compose down && docker compose up -d && docker compose logs -f -t
+cd /opt/remnawave/subscription && docker compose pull && docker compose down && docker compose up -d && docker compose logs -f -t
 ```
