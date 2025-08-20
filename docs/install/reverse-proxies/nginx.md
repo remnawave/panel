@@ -94,12 +94,6 @@ upstream remnawave {
     server remnawave:3000;
 }
 
-# Connection header for WebSocket reverse proxy
-map $http_upgrade $connection_upgrade {
-    default upgrade;
-    "" close;
-}
-
 server {
     // highlight-next-line-red
     server_name REPLACE_WITH_YOUR_DOMAIN;
@@ -112,8 +106,6 @@ server {
         proxy_http_version 1.1;
         proxy_pass http://remnawave;
         proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -144,25 +136,25 @@ server {
     gzip_http_version 1.1;
     gzip_min_length 256;
     gzip_types
-    application/atom+xml
-    application/geo+json
-    application/javascript
-    application/x-javascript
-    application/json
-    application/ld+json
-    application/manifest+json
-    application/rdf+xml
-    application/rss+xml
-    application/xhtml+xml
-    application/xml
-    font/eot
-    font/otf
-    font/ttf
-    image/svg+xml
-    text/css
-    text/javascript
-    text/plain
-    text/xml;
+        application/atom+xml
+        application/geo+json
+        application/javascript
+        application/x-javascript
+        application/json
+        application/ld+json
+        application/manifest+json
+        application/rdf+xml
+        application/rss+xml
+        application/xhtml+xml
+        application/xml
+        font/eot
+        font/otf
+        font/ttf
+        image/svg+xml
+        text/css
+        text/javascript
+        text/plain
+        text/xml;
 }
 
 server {
@@ -188,7 +180,7 @@ Paste the following configuration.
 ```yaml title="docker-compose.yml"
 services:
     remnawave-nginx:
-        image: nginx:1.26
+        image: nginx:1.28
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:
