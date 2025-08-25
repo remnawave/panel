@@ -45,12 +45,6 @@ upstream remnawave {
     server remnawave:3000;
 }
 
-# Connection header for WebSocket reverse proxy
-map $http_upgrade $connection_upgrade {
-    default upgrade;
-    "" close;
-}
-
 resolver 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220;
 
 acme_client acme_le https://acme-v02.api.letsencrypt.org/directory;
@@ -78,8 +72,6 @@ server {
         proxy_http_version 1.1;
         proxy_pass http://remnawave;
         proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;

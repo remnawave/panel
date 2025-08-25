@@ -274,8 +274,6 @@ server {
         proxy_http_version 1.1;
         proxy_pass http://remnawave-subscription-page;
         proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -302,9 +300,6 @@ server {
     resolver               1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220 valid=60s;
     resolver_timeout       2s;
 
-    proxy_hide_header Strict-Transport-Security;
-    add_header Strict-Transport-Security "max-age=15552000" always;
-
     # Gzip Compression
     gzip on;
     gzip_vary on;
@@ -314,25 +309,25 @@ server {
     gzip_http_version 1.1;
     gzip_min_length 256;
     gzip_types
-    application/atom+xml
-    application/geo+json
-    application/javascript
-    application/x-javascript
-    application/json
-    application/ld+json
-    application/manifest+json
-    application/rdf+xml
-    application/rss+xml
-    application/xhtml+xml
-    application/xml
-    font/eot
-    font/otf
-    font/ttf
-    image/svg+xml
-    text/css
-    text/javascript
-    text/plain
-    text/xml;
+        application/atom+xml
+        application/geo+json
+        application/javascript
+        application/x-javascript
+        application/json
+        application/ld+json
+        application/manifest+json
+        application/rdf+xml
+        application/rss+xml
+        application/xhtml+xml
+        application/xml
+        font/eot
+        font/otf
+        font/ttf
+        image/svg+xml
+        text/css
+        text/javascript
+        text/plain
+        text/xml;
 }
 ```
 
@@ -345,7 +340,7 @@ cd /opt/remnawave/nginx && nano docker-compose.yml
 ```yaml title="docker-compose.yml"
 services:
     remnawave-nginx:
-        image: nginx:1.26
+        image: nginx:1.28
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:
