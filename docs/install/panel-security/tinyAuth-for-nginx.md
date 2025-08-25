@@ -8,7 +8,7 @@ TinyAuth is the simplest way to protect your apps with a login screen
 
 ## Installation
 
-Now it's time to create our docker compose file which can be as simple as this:
+Now it's time to add TinyAuth to your existing docker-compose.yml file or create a new one. If creating a new file, don't forget to add the `services:` section. The configuration can be as simple as this:
 
 ```yaml title="docker-compose.yml"
 tinyauth:
