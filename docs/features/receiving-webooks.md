@@ -181,8 +181,8 @@ excludedInbounds: Array<{
 - `crm.infra_billing_node_payment_overdue_24hrs` - Overdue payment notification after 24 hours.
 - `crm.infra_billing_node_payment_overdue_48hrs` - Overdue payment notification after 48 hours.
 - `crm.infra_billing_node_payment_overdue_7_days` - Overdue payment notification after 7 days.
-<details>
-	
+
+<details>	
 <summary>Infra Billing Summary</summary>
 
 ```typescript
@@ -192,7 +192,7 @@ loginUrl: string
 nextBillingAt: date
 ```
 
-
+</details>
 
 #### Service
 
