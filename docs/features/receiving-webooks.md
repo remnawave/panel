@@ -172,6 +172,28 @@ excludedInbounds: Array<{
 
 </details>
 
+#### Node Infra Billing
+
+- `crm.infra_billing_node_payment_in_7_days` - Payment reminder 7 days in advance.
+- `crm.infra_billing_node_payment_in_48hrs` - Payment reminder 48 hours in advance.
+- `crm.infra_billing_node_payment_in_24hrs` - Payment reminder 24 hours in advance.
+- `crm.infra_billing_node_payment_due_today` - Payment reminder on the due date
+- `crm.infra_billing_node_payment_overdue_24hrs` - Overdue payment notification after 24 hours.
+- `crm.infra_billing_node_payment_overdue_48hrs` - Overdue payment notification after 48 hours.
+- `crm.infra_billing_node_payment_overdue_7_days` - Overdue payment notification after 7 days.
+<details>
+	
+<summary>Infra Billing Summary</summary>
+
+```typescript
+nodeName: string
+providerName: string
+loginUrl: string
+nextBillingAt: date
+```
+
+
+
 #### Service
 
 - `service.panel_started` - The service started.
