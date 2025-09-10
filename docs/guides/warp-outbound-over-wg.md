@@ -95,7 +95,8 @@ Add the following to your XRAY config under `outbounds`:
         "publicKey": "YOUR_PUBLIC_KEY_FROM_FILE",
         "endpoint": "engage.cloudflareclient.com:2408"
       }
-    ]
+    ],
+    "mtu": 1280
   }
 }
 ```
