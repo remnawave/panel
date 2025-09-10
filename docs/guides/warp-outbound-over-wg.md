@@ -95,7 +95,8 @@ Add the following to your XRAY config under `outbounds`:
         "publicKey": "YOUR_PUBLIC_KEY_FROM_FILE",
         "endpoint": "engage.cloudflareclient.com:2408"
       }
-    ]
+    ],
+    "mtu": 1280
   }
 }
 ```
@@ -140,7 +141,9 @@ Add the following to your XRAY config under `outbounds`:
 // highlight-next-line-green
         }
 // highlight-next-line-green
-      ]
+      ],
+// highlight-next-line-green
+      "mtu": 1280
 // highlight-next-line-green
     }
 // highlight-next-line-green
