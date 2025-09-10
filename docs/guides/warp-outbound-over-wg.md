@@ -141,7 +141,9 @@ Add the following to your XRAY config under `outbounds`:
 // highlight-next-line-green
         }
 // highlight-next-line-green
-      ]
+      ],
+// highlight-next-line-green
+      "mtu": 1280
 // highlight-next-line-green
     }
 // highlight-next-line-green
