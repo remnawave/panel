@@ -40,7 +40,6 @@ Always pick and pin the correct version of the SDK to match the version of the R
 | 0.7.21           | 1.6.13                                   |
 | 0.7.19           | 1.6.12                                   |
 | 0.7.16           | 1.6.11                                   |
-| 0.7.16           | 1.6.11                                   |
 | 0.7.16           | 1.6.10                                   |
 | 0.7.16           | 1.6.9                                    |
 | 0.7.16           | 1.6.8                                    |
