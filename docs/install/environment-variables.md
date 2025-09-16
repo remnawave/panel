@@ -397,6 +397,7 @@ HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 | ------------------------- | ---------------------------------------------------------------------------------------- | ------- |
 | `SHORT_UUID_LENGTH`       | The length of the generated short UUID (subscription). Min. lenght 16 and max. lenght 64 | `16`    |
 | `IS_HTTP_LOGGING_ENABLED` | Enable/Disable HTTP logging                                                              | `false` |
+| `JWT_AUTH_LIFETIME`       | The lifetime of the auth JWT in hours. Possible values from 12 to 168.                   | `12`    |
 
 <details>
 <summary>Example</summary>
@@ -404,7 +405,7 @@ HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 ```bash title=".env file"
 SHORT_UUID_LENGTH=16
 IS_HTTP_LOGGING_ENABLED=true
+JWT_AUTH_LIFETIME=12
 ```
 
 </details>
-````
