@@ -120,6 +120,8 @@ const config: Config = {
                     },
                     theme: 'purple',
                     hideDarkModeToggle: true,
+                    orderSchemaPropertiesBy: 'preserve',
+                    orderRequiredPropertiesFirst: true,
                     searchHotKey: 'k',
                     metaData: {
                         title: 'Remnawave API Specification',
