@@ -391,6 +391,13 @@ HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 
 </details>
 
+### Branding
+
+| Variable            | Description                        | Default |
+| ------------------- | ---------------------------------- | ------- |
+| `BRANDING_TITLE`    | The name of the brand              |         |
+| `BRANDING_LOGO_URL` | The https:// URL of the brand logo |         |
+
 ## Miscellaneous
 
 | Variable                  | Description                                                                              | Default |
