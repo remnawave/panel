@@ -391,7 +391,7 @@ HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 
 </details>
 
-### Branding
+## Branding
 
 | Variable            | Description                        | Default |
 | ------------------- | ---------------------------------- | ------- |
