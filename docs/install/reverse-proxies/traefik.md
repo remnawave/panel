@@ -132,17 +132,9 @@ http:
       // highlight-next-line-yellow
       rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
       entrypoints:
-        - http
-      middlewares:
-        - remnawave-https-redirect
-      service: remnawave
-
-    remnawave-secure:
-      // highlight-next-line-yellow
-      rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`)"
-      entrypoints:
         - https
       middlewares:
+        - remnawave-https-redirect
       tls:
         certResolver: letsencrypt
       service: remnawave
@@ -232,16 +224,9 @@ http:
         remnawave:
             rule: 'Host(`REPLACE_WITH_YOUR_DOMAIN`)'
             entrypoints:
-                - http
-            middlewares:
-                - remnawave-https-redirect
-            service: remnawave
-
-        remnawave-secure:
-            rule: 'Host(`REPLACE_WITH_YOUR_DOMAIN`)'
-            entrypoints:
                 - https
             middlewares:
+                - remnawave-https-redirect
             // highlight-next-line-green
                 - ip-allow-list
             tls:
@@ -281,6 +266,8 @@ http:
     remnawave-sub:
       // highlight-next-line-yellow
       rule: "Host(`REPLACE_WITH_YOUR_DOMAIN`) && PathPrefix(`/api/sub/`)"
+      middlewares:
+        - remnawave-https-redirect
       entrypoints:
         - https
       service: remnawave
@@ -294,6 +281,7 @@ http:
         - https
       middlewares:
         // highlight-next-line-green
+        - remnawave-https-redirect
         - ip-allow-list
       service: remnawave
       tls:
