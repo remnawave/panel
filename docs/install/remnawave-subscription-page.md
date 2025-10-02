@@ -400,19 +400,11 @@ http:
       // highlight-next-line-yellow
       rule: "Host(`SUBSCRIPTION_PAGE_DOMAIN`)"
       entrypoints:
-        - http
-      middlewares:
-        - remnawave-sub-page-https-redirect
-      service: remnawave-sub-page
-
-    remnawave-sub-page-secure:
-      // highlight-next-line-yellow
-      rule: "Host(`SUBSCRIPTION_PAGE_DOMAIN`)"
-      entrypoints:
         - https
-      middlewares:
       tls:
         certResolver: letsencrypt
+      middlewares:
+        - remnawave-sub-page-https-redirect
       service: remnawave-sub-page
 
   middlewares:
