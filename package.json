@@ -22,7 +22,7 @@
     "@mantine/core": "^8.2.8",
     "@mantine/hooks": "^8.2.8",
     "@mdx-js/react": "^3.1.1",
-    "@scalar/docusaurus": "^0.7.16",
+    "@scalar/docusaurus": "^0.7.18",
     "@tabler/icons-react": "^3.34.1",
     "clsx": "^2.1.1",
     "prism-react-renderer": "^2.4.1",
