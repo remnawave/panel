@@ -23,6 +23,12 @@ Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name. Domain name mu
 SUB_PUBLIC_DOMAIN=subscription.domain.com
 ```
 
+Don't forget to restart Remnawave Panel container:
+
+```bash
+cd /opt/remnawave && docker compose down remnawave && docker compose up -d && docker compose logs -f
+```
+
 ## Step 2 - Create docker-compose.yml file
 
 ```bash title="Creating docker-compose.yml file"
