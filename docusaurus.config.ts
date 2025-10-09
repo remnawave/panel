@@ -14,6 +14,7 @@ const config: Config = {
     projectName: 'panel',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
+
     i18n: {
         defaultLocale: 'en',
         locales: ['en']
@@ -93,6 +94,10 @@ const config: Config = {
             {
                 redirects: [
                     // /docs/oldDoc -> /docs/newDoc
+                    {
+                        from: '/blog/learn',
+                        to: '/docs/learn/quick-start'
+                    },
                     {
                         to: '/docs/install/reverse-proxies/',
                         from: '/category/reverse-proxies'
