@@ -242,9 +242,9 @@ You can customize the subscription page by creating an `app-config.json` file. T
 - Configure which apps appear as "featured"
 
 ```mdx-code-block
-import DocCardList from '@theme/DocCardList';
-import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+import DocCard from '@theme/DocCard';
 
-
-<DocCardList items={[useCurrentSidebarCategory().items[2]]} />
+<DocCard
+  item={{ type: 'link', label: 'Customization', description: 'Customization guide', href: '/docs/install/subscription-page/customization' }}
+/>
 ```

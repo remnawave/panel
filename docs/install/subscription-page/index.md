@@ -27,7 +27,9 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 After you install subscription page, you can customize it by following the guide below.
 
 ```mdx-code-block
+import DocCard from '@theme/DocCard';
 
-
-<DocCardList items={[useCurrentSidebarCategory().items[2]]} />
+<DocCard
+  item={{ type: 'link', label: 'Customization', description: 'Customization guide', href: '/docs/install/subscription-page/customization' }}
+/>
 ```
