@@ -97,10 +97,10 @@ export const CLIENTS: Client[] = [
         },
         githubRepo: 'pluralplay/flclashx',
         downloadLinks: {
-            android: 'https://github.com/pluralplay/FlClashX/releases',
-            windows: 'https://github.com/pluralplay/FlClashX/releases',
-            macos: 'https://github.com/pluralplay/FlClashX/releases',
-            linux: 'https://github.com/pluralplay/FlClashX/releases'
+            android: 'https://github.com/pluralplay/FlClashX/releases/latest',
+            windows: 'https://github.com/pluralplay/FlClashX/releases/latest',
+            macos: 'https://github.com/pluralplay/FlClashX/releases/latest',
+            linux: 'https://github.com/pluralplay/FlClashX/releases/latest'
         },
         links: {
             github: 'https://github.com/pluralplay/FlClashX',
@@ -115,7 +115,7 @@ export const CLIENTS: Client[] = [
         description: 'A powerful Mihomo-based proxy client for Android',
         githubRepo: 'MetaCubeX/ClashMetaForAndroid',
         downloadLinks: {
-            android: 'https://github.com/MetaCubeX/ClashMetaForAndroid/releases'
+            android: 'https://github.com/MetaCubeX/ClashMetaForAndroid/releases/latest'
         },
         links: {
             github: 'https://github.com/MetaCubeX/ClashMetaForAndroid'
@@ -129,23 +129,13 @@ export const CLIENTS: Client[] = [
         description: 'Multi-platform proxy client based on ClashMeta, simple and easy to use',
         githubRepo: 'chen08209/FlClash',
         downloadLinks: {
-            android: 'https://github.com/chen08209/FlClash/releases',
-            windows: 'https://github.com/chen08209/FlClash/releases',
-            macos: 'https://github.com/chen08209/FlClash/releases',
-            linux: 'https://github.com/chen08209/FlClash/releases'
+            android: 'https://github.com/chen08209/FlClash/releases/latest',
+            windows: 'https://github.com/chen08209/FlClash/releases/latest',
+            macos: 'https://github.com/chen08209/FlClash/releases/latest',
+            linux: 'https://github.com/chen08209/FlClash/releases/latest'
         },
         links: {
             github: 'https://github.com/chen08209/FlClash'
-        }
-    },
-    {
-        id: 'clash-mi',
-        name: 'Clash Mi',
-        core: 'mihomo',
-        platforms: ['android', 'ios'],
-        description: 'Mihomo client for Android and iOS (Alpha version)',
-        links: {
-            github: 'https://github.com/placeholder/clash-mi'
         }
     },
     {
@@ -158,9 +148,9 @@ export const CLIENTS: Client[] = [
         downloadLinks: {
             android: 'https://play.google.com/store/apps/details?id=net.yuandev.onexray',
             ios: 'https://apps.apple.com/app/onexray/id6503296188',
-            windows: 'https://github.com/OneXray/OneXray/releases',
+            windows: 'https://github.com/OneXray/OneXray/releases/latest',
             macos: 'https://apps.apple.com/app/onexray/id6503296188',
-            linux: 'https://github.com/OneXray/OneXray/releases'
+            linux: 'https://github.com/OneXray/OneXray/releases/latest'
         },
         links: {
             github: 'https://github.com/OneXray/OneXray'
@@ -174,7 +164,7 @@ export const CLIENTS: Client[] = [
         description: 'Popular and widely-used V2Ray client for Android',
         githubRepo: '2dust/v2rayNG',
         downloadLinks: {
-            android: 'https://github.com/2dust/v2rayNG/releases'
+            android: 'https://github.com/2dust/v2rayNG/releases/latest'
         },
         links: {
             github: 'https://github.com/2dust/v2rayNG'
@@ -213,10 +203,11 @@ export const CLIENTS: Client[] = [
         name: 'SimpleXray',
         core: 'xray',
         platforms: ['android'],
-        description: 'Straightforward Xray client for Android',
+        description:
+            'SimpleXray is a high-performance proxy client for Android, built upon the robust Xray-core.',
         githubRepo: 'lhear/SimpleXray',
         downloadLinks: {
-            android: 'https://github.com/lhear/SimpleXray/releases'
+            android: 'https://github.com/lhear/SimpleXray/releases/latest'
         },
         links: {
             github: 'https://github.com/lhear/SimpleXray'
@@ -224,13 +215,19 @@ export const CLIENTS: Client[] = [
     },
     {
         id: 'singbox',
-        name: 'sing-box',
+        name: 'Sing-box',
         core: 'singbox',
         platforms: ['android', 'ios', 'macos'],
-        description: 'Universal proxy platform with multiple protocol support',
+        description:
+            'Universal proxy platform with multiple protocol support. ⚠️ iOS/macOS version outdated.',
+        downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=io.nekohasekai.sfa',
+            ios: 'https://apps.apple.com/us/app/sing-box-vt/id6673731168',
+            macos: 'https://apps.apple.com/us/app/sing-box-vt/id6673731168'
+        },
         links: {
-            github: 'https://github.com/placeholder/sing-box',
-            website: 'https://play.google.com/store/apps/placeholder'
+            github: 'https://github.com/sing-box/sing-box',
+            docs: 'https://sing-box.sagernet.org/'
         }
     },
     {
@@ -238,19 +235,30 @@ export const CLIENTS: Client[] = [
         name: 'Husi',
         core: 'singbox',
         platforms: ['android'],
-        description: 'Feature-rich Sing-box based proxy client',
+        description:
+            'Husi is a non-professional and recreational proxy tool integration, aiming at promoting proxy customization.',
+        githubRepo: 'xchacha20-poly1305/husi',
+        downloadLinks: {
+            android: 'https://github.com/xchacha20-poly1305/husi/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/husi'
+            github: 'https://github.com/xchacha20-poly1305/husi'
         }
     },
     {
         id: 'nekobox',
-        name: 'NekoBox',
+        name: 'NekoBox For Android',
         core: 'singbox',
         platforms: ['android'],
         description: 'Sing-box based proxy client with modern UI',
+        githubRepo: 'MatsuriDayo/NekoBoxForAndroid',
+        downloadLinks: {
+            android: 'https://github.com/MatsuriDayo/NekoBoxForAndroid/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/nekobox'
+            telegram: 'https://t.me/nekoray_group',
+            docs: 'https://matsuridayo.github.io/',
+            github: 'https://github.com/MatsuriDayo/NekoBoxForAndroid'
         }
     },
     {
@@ -258,19 +266,17 @@ export const CLIENTS: Client[] = [
         name: 'Karing',
         core: 'singbox',
         platforms: ['android', 'ios', 'macos', 'windows'],
-        description: 'Multi-platform proxy client based on Sing-box core',
+        description: 'Multi-platform proxy client based on Sing-box core.',
+        githubRepo: 'KaringX/karing',
+        downloadLinks: {
+            android: 'https://github.com/KaringX/karing/releases/latest',
+            ios: 'https://apps.apple.com/us/app/karing/id6472431552',
+            macos: 'https://apps.apple.com/us/app/karing/id6472431552',
+            windows: 'https://github.com/KaringX/karing/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/karing'
-        }
-    },
-    {
-        id: 'hiddify',
-        name: 'Hiddify',
-        core: 'singbox',
-        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
-        description: 'Sing-box client (⚠️ No updates since October 2024)',
-        links: {
-            github: 'https://github.com/placeholder/hiddify'
+            github: 'https://github.com/KaringX/karing',
+            docs: 'https://karing.app/'
         }
     },
     {
@@ -284,6 +290,11 @@ export const CLIENTS: Client[] = [
         badges: {
             hwid: true
         },
+        downloadLinks: {
+            windows: 'https://github.com/legiz-ru/Prizrak-Box/releases/latest',
+            macos: 'https://github.com/legiz-ru/Prizrak-Box/releases/latest',
+            linux: 'https://github.com/legiz-ru/Prizrak-Box/releases/latest'
+        },
         links: {
             github: 'https://github.com/legiz-ru/Prizrak-Box'
         }
@@ -293,9 +304,16 @@ export const CLIENTS: Client[] = [
         name: 'Clash Verge',
         core: 'mihomo',
         platforms: ['windows', 'macos', 'linux'],
-        description: 'Modern Clash Meta GUI based on Tauri framework',
+        description: 'A Clash Meta GUI based on Tauri.',
+        githubRepo: 'clash-verge-rev/clash-verge-rev',
+        downloadLinks: {
+            windows: 'https://github.com/clash-verge-rev/clash-verge-rev/releases/latest',
+            macos: 'https://github.com/clash-verge-rev/clash-verge-rev/releases/latest',
+            linux: 'https://github.com/clash-verge-rev/clash-verge-rev/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/clash-verge'
+            telegram: 'https://t.me/clash_verge_rev',
+            github: 'https://github.com/clash-verge-rev/clash-verge-rev'
         }
     },
     {
@@ -306,7 +324,13 @@ export const CLIENTS: Client[] = [
         description: 'Fork of Clash Verge Rev with improvements and optimizations.',
         githubRepo: 'coolcoala/clash-verge-rev-lite',
         badges: {
-            hwid: true
+            hwid: true,
+            featured: true
+        },
+        downloadLinks: {
+            windows: 'https://github.com/coolcoala/clash-verge-rev-lite/releases/latest',
+            macos: 'https://github.com/coolcoala/clash-verge-rev-lite/releases/latest',
+            linux: 'https://github.com/coolcoala/clash-verge-rev-lite/releases/latest'
         },
         links: {
             github: 'https://github.com/coolcoala/clash-verge-rev-lite',
@@ -319,18 +343,31 @@ export const CLIENTS: Client[] = [
         core: 'xray',
         platforms: ['windows', 'macos', 'linux'],
         description: 'Popular V2Ray client.',
+        githubRepo: '2dust/v2rayN',
+        downloadLinks: {
+            windows: 'https://github.com/2dust/v2rayN/releases/latest',
+            macos: 'https://github.com/2dust/v2rayN/releases/latest',
+            linux: 'https://github.com/2dust/v2rayN/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/v2rayn'
+            github: 'https://github.com/2dust/v2rayN',
+            docs: 'https://github.com/2dust/v2rayN/wiki'
         }
     },
     {
-        id: 'nekoray',
-        name: 'NekoRay',
+        id: 'throne',
+        name: 'Throne (Formerly Nekoray)',
         core: 'singbox',
         platforms: ['windows', 'macos', 'linux'],
         description: 'Feature-rich Sing-box based client.',
+        githubRepo: 'throneproj/Throne',
+        downloadLinks: {
+            windows: 'https://github.com/throneproj/Throne/releases/latest',
+            macos: 'https://github.com/throneproj/Throne/releases/latest',
+            linux: 'https://github.com/throneproj/Throne/releases/latest'
+        },
         links: {
-            github: 'https://github.com/placeholder/nekoray'
+            github: 'https://github.com/throneproj/Throne'
         }
     },
 
@@ -339,19 +376,27 @@ export const CLIENTS: Client[] = [
         name: 'Streisand',
         core: 'xray',
         platforms: ['ios', 'macos'],
-        description: 'X-Ray client (⚠️ sometimes has connection issues)',
-        links: {
-            website: 'https://apps.apple.com/placeholder'
+        description: '⚠️ Sometimes has connection issues!',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/streisand/id6450534064',
+            macos: 'https://apps.apple.com/us/app/streisand/id6450534064'
         }
     },
     {
         id: 'v2raytun',
         name: 'V2rayTun',
         core: 'xray',
-        platforms: ['ios', 'macos'],
-        description: 'V2Ray client with tunnel support',
+        platforms: ['ios', 'macos', 'android', 'windows'],
+        description: 'Simple and lightweight Xray client.',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/en/app/v2raytun/id6476628951',
+            android: 'https://play.google.com/store/apps/details?id=com.v2raytun.android',
+            windows: 'https://v2raytun.com/',
+            macos: 'https://apps.apple.com/en/app/v2raytun/id6476628951'
+        },
         links: {
-            website: 'https://apps.apple.com/placeholder'
+            telegram: 'https://t.me/v2raytun',
+            website: 'https://v2raytun.com/'
         }
     },
     {
@@ -360,9 +405,12 @@ export const CLIENTS: Client[] = [
         core: 'other',
         platforms: ['ios', 'macos'],
         description: 'Advanced proxy client ($7)',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/app/stash/id1596063349?platform=iphone',
+            macos: 'https://stash.ws/macos/pricing/'
+        },
         links: {
-            website: 'https://apps.apple.com/placeholder',
-            docs: 'https://placeholder.wiki'
+            docs: 'https://stash.ws/'
         }
     },
     {
@@ -371,8 +419,9 @@ export const CLIENTS: Client[] = [
         core: 'other',
         platforms: ['ios', 'macos'],
         description: 'Popular proxy client ($3)',
-        links: {
-            website: 'https://apps.apple.com/placeholder'
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
+            macos: 'https://apps.apple.com/us/app/shadowrocket/id932747118'
         }
     },
     {
@@ -381,8 +430,48 @@ export const CLIENTS: Client[] = [
         core: 'other',
         platforms: ['ios', 'macos'],
         description: 'Advanced proxy client with scripting support ($8)',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/in/app/loon/id1373567447',
+            macos: 'https://apps.apple.com/in/app/loon/id1373567447'
+        },
         links: {
-            website: 'https://apps.apple.com/placeholder'
+            website: 'https://nsloon.app/'
+        }
+    },
+
+    //
+
+    {
+        id: 'clash-mi',
+        name: 'Clash Mi',
+        core: 'mihomo',
+        platforms: ['android', 'ios'],
+        description: 'Mihomo client for Android and iOS (Alpha version)',
+        downloadLinks: {
+            android: 'https://github.com/KaringX/clashmi/releases/latest',
+            ios: 'https://apps.apple.com/us/app/clash-mi/id6744321968'
+        },
+        links: {
+            docs: 'https://clashmi.app'
+        }
+    },
+
+    {
+        id: 'hiddify',
+        name: 'Hiddify',
+        core: 'singbox',
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
+        description: '⚠️ No updates since October 2024!',
+        githubRepo: 'hiddify/hiddify-app',
+        downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=app.hiddify.com',
+            ios: 'https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532',
+            macos: 'https://github.com/hiddify/hiddify-app/releases',
+            windows: 'https://github.com/hiddify/hiddify-app/releases',
+            linux: 'https://github.com/hiddify/hiddify-app/releases'
+        },
+        links: {
+            github: 'https://github.com/hiddify/hiddify-app'
         }
     }
 ]
