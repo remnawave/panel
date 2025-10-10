@@ -33,8 +33,6 @@ export type CoreType = 'mihomo' | 'other' | 'singbox' | 'xray'
 export type Platform = 'android' | 'ios' | 'linux' | 'macos' | 'windows'
 
 export interface Client {
-    author?: string
-    authorLink?: string
     badges?: {
         featured?: boolean
         hwid?: boolean
@@ -188,8 +186,6 @@ export const CLIENTS: Client[] = [
         core: 'xray',
         platforms: ['android'],
         description: 'Minimalistic V2Ray GUI client for Android',
-        author: 'SaeedDev94',
-        authorLink: 'https://github.com/SaeedDev94',
         githubRepo: 'SaeedDev94/Xray',
         downloadLinks: {
             android: 'https://github.com/SaeedDev94/Xray/releases'
