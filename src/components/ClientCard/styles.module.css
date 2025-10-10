@@ -59,7 +59,7 @@
         135deg,
         var(--ifm-card-background-color) 0%,
         rgba(var(--ifm-color-primary-rgb), 0.03) 100%
-    );
+    ) !important;
 }
 
 /* Core Badge - Bottom of Card */
