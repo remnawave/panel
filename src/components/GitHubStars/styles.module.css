@@ -1,0 +1,40 @@
+.stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: inherit;
+}
+
+.icon {
+    color: #daaa3f;
+    flex-shrink: 0;
+}
+
+.count {
+    font-weight: 700;
+    color: inherit;
+    line-height: 1;
+}
+
+.skeleton {
+    color: rgba(255, 255, 255, 0.6);
+    animation: pulse 1.5s ease-in-out infinite;
+    line-height: 1;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+[data-theme='dark'] .icon {
+    color: #f1c40f;
+}

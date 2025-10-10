@@ -1,0 +1,112 @@
+.categorySection {
+    margin: 4rem 0;
+    scroll-margin-top: 80px;
+}
+
+.categoryHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.categoryTitleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 80px;
+}
+
+.anchorLink {
+    color: inherit;
+    text-decoration: none;
+}
+
+.categoryIcon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.categoryTitle {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--ifm-color-white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.categoryTitle:hover {
+    background: var(--ifm-color-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.categoryDescription {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--ifm-color-emphasis-700);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.categoryContent {
+    display: grid;
+    gap: 2rem;
+}
+
+.categoryContent[data-columns='1'] {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.categoryContent[data-columns='2'] {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.categoryContent[data-columns='3'] {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 996px) {
+    .categoryContent[data-columns='3'] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .categorySection {
+        margin: 3rem 0;
+    }
+
+    .categoryHeader {
+        margin-bottom: 2rem;
+    }
+
+    .categoryTitleWrapper {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .categoryTitle {
+        font-size: 2rem;
+    }
+
+    .categoryDescription {
+        font-size: 1rem;
+    }
+
+    .categoryContent {
+        gap: 1.5rem;
+    }
+
+    .categoryContent[data-columns='1'],
+    .categoryContent[data-columns='2'],
+    .categoryContent[data-columns='3'] {
+        grid-template-columns: 1fr;
+    }
+}
