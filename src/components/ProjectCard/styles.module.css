@@ -160,6 +160,102 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+.hwidBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: help;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.hwidBadge::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    padding: 0.6rem 0.9rem;
+    background: var(--ifm-color-emphasis-900);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    transform: translateY(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.hwidBadge::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    right: 20px;
+    border: 6px solid transparent;
+    border-top-color: var(--ifm-color-emphasis-900);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.hwidBadge:hover::before {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hwidBadge:hover::after {
+    opacity: 1;
+}
+
+.hwidBadge:hover {
+    background: #c3e6cb;
+    border-color: #b1dfbb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(21, 87, 36, 0.2);
+}
+
+.hwidBadge svg {
+    width: 13px;
+    height: 13px;
+}
+
+[data-theme='dark'] .hwidBadge::before {
+    background: var(--ifm-color-emphasis-100);
+    color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] .hwidBadge::after {
+    border-top-color: var(--ifm-color-emphasis-100);
+}
+
+[data-theme='dark'] .hwidBadge {
+    background: #1e4620;
+    color: #a3d9a5;
+    border-color: #2d5a2f;
+}
+
+[data-theme='dark'] .hwidBadge:hover {
+    background: #2d5a2f;
+    border-color: #3d6a3f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 [data-theme='dark'] .starsBadge {
     background: #2d333b;
     color: white;
@@ -186,6 +282,16 @@
     }
 
     .aiPoweredBadge svg {
+        width: 11px;
+        height: 11px;
+    }
+
+    .hwidBadge {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.65rem;
+    }
+
+    .hwidBadge svg {
         width: 11px;
         height: 11px;
     }
