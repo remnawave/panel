@@ -23,15 +23,15 @@ export default function GitHubStars({ repo }: GitHubStarsProps) {
             }
         }
 
-        fetch(`https://api.github.com/repos/${repo}`)
+        fetch(`https://ungh.cc/repos/${repo}`)
             .then((res) => res.json())
             .then((data) => {
-                if (data.stargazers_count !== undefined) {
-                    setStars(data.stargazers_count)
+                if (data.repo.stars !== undefined) {
+                    setStars(data.repo.stars)
                     localStorage.setItem(
                         cacheKey,
                         JSON.stringify({
-                            stars: data.stargazers_count,
+                            stars: data.repo.stars,
                             timestamp: Date.now()
                         })
                     )
@@ -44,7 +44,7 @@ export default function GitHubStars({ repo }: GitHubStarsProps) {
             })
     }, [repo])
 
-    if (loading) {
+    if (loading || stars === null) {
         return (
             <span className={styles.stars}>
                 <svg
@@ -59,10 +59,6 @@ export default function GitHubStars({ repo }: GitHubStarsProps) {
                 <span className={styles.skeleton}>···</span>
             </span>
         )
-    }
-
-    if (stars === null) {
-        return null
     }
 
     const formatStars = (count: number): string => {
