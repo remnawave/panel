@@ -1,0 +1,89 @@
+---
+sidebar_position: 8
+title: 📱 Clients
+hide_title: true
+hide_table_of_contents: true
+description: 'A comprehensive list of proxy clients that work with Remnawave across all platforms - Android, iOS, Windows, macOS, and Linux. Find the perfect client for your needs.'
+---
+
+<HeroSection
+    title="Clients"
+    subtitle="A comprehensive list of proxy clients that work with Remnawave. Choose the best client for your platform and preferred proxy core."
+/>
+
+<CategoryNav
+    categories={[
+        { id: 'android', icon: '📱', title: 'Android' },
+        { id: 'windows', icon: '💻', title: 'Windows' },
+        { id: 'ios', icon: '🍎', title: 'iOS' },
+        { id: 'macos', icon: '👛', title: 'macOS' },
+        { id: 'linux', icon: '🐧', title: 'Linux' }
+    ]}
+/>
+
+<CategorySection
+    id="android"
+    title="Android"
+    description="Proxy clients for Android devices"
+    icon="📱"
+    columns={3}
+>
+    <ClientsList platform="android" />
+</CategorySection>
+
+<CategorySection
+    id="ios"
+    title="iOS"
+    description="Proxy clients for iOS devices"
+    icon="🍎"
+    columns={3}
+>
+    <ClientsList platform="ios" />
+</CategorySection>
+
+<CategorySection
+    id="windows"
+    title="Windows"
+    description="Proxy clients for Windows"
+    icon="💻"
+    columns={3}
+>
+    <ClientsList platform="windows" />
+</CategorySection>
+
+<CategorySection
+    id="macos"
+    title="macOS"
+    description="Proxy clients for macOS"
+    icon="👛"
+    columns={3}
+>
+    <ClientsList platform="macos" />
+</CategorySection>
+
+<CategorySection
+    id="linux"
+    title="Linux"
+    description="Proxy clients for Linux"
+    icon="🐧"
+    columns={3}
+>
+    <ClientsList platform="linux" />
+</CategorySection>
+
+---
+
+<div
+    style={{
+        textAlign: 'center',
+        marginTop: '4rem',
+        padding: '2rem',
+        borderRadius: '12px'
+    }}
+>
+    <h3>ℹ️ Notice</h3>
+    <p>
+        This list is community-maintained. If you find any broken links or want to add a client,
+        please open a PR on GitHub.
+    </p>
+</div>
