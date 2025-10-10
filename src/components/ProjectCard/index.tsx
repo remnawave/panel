@@ -13,6 +13,7 @@ interface ProjectCardProps {
     description: string
     featured?: boolean
     githubRepo?: string
+    hwidSupported?: boolean
     id?: string
     image?: string
     links?: {
@@ -34,6 +35,7 @@ export default function ProjectCard({
     links,
     featured = false,
     aiPowered = false,
+    hwidSupported = false,
     githubRepo,
     id,
     children
@@ -70,6 +72,17 @@ export default function ProjectCard({
                                 <path d="M2 17L12 22L22 17V12L12 17L2 12V17Z" opacity="0.7" />
                             </svg>
                             <span>AI</span>
+                        </div>
+                    )}
+                    {hwidSupported && (
+                        <div
+                            className={styles.hwidBadge}
+                            data-tooltip="This client support sending HWID"
+                        >
+                            <svg fill="currentColor" height="16" viewBox="0 0 16 16" width="16">
+                                <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z" />
+                            </svg>
+                            <span>HWID</span>
                         </div>
                     )}
                     {githubRepo && links?.github && (
