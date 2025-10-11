@@ -20,37 +20,36 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Core-specific border colors on hover */
 .clientCard[data-core='mihomo']:hover {
-    border-color: #3a4f66;
+    border-color: #4a6fa5;
 }
 
 .clientCard[data-core='xray']:hover {
-    border-color: #4a3d5a;
+    border-color: #7b5a9e;
 }
 
 .clientCard[data-core='singbox']:hover {
-    border-color: #2d4a3d;
+    border-color: #4a8d5e;
 }
 
 .clientCard[data-core='other']:hover {
-    border-color: #3d4349;
+    border-color: #5a6570;
 }
 
 [data-theme='dark'] .clientCard[data-core='mihomo']:hover {
-    border-color: #2a3847;
+    border-color: #3a5985;
 }
 
 [data-theme='dark'] .clientCard[data-core='xray']:hover {
-    border-color: #3a2d4a;
+    border-color: #6b4a8e;
 }
 
 [data-theme='dark'] .clientCard[data-core='singbox']:hover {
-    border-color: #1d3a2d;
+    border-color: #3a7d4e;
 }
 
 [data-theme='dark'] .clientCard[data-core='other']:hover {
-    border-color: #2d3339;
+    border-color: #4a5560;
 }
 
 .featured {
@@ -62,59 +61,58 @@
     ) !important;
 }
 
-/* Core Badge - Bottom of Card */
 .coreBadge {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    font-size: 0.75rem;
+    gap: 0.3rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
-    margin-top: auto;
-    border-radius: 0 0 12px 12px;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .coreBadge[data-core='mihomo'] {
-    background: #3a4f66;
-    color: #d4e3f0;
+    background: #4a6fa5;
+    color: #e8f2ff;
 }
 
 .coreBadge[data-core='xray'] {
-    background: #4a3d5a;
-    color: #e5dff0;
+    background: #7b5a9e;
+    color: #f3ebff;
 }
 
 .coreBadge[data-core='singbox'] {
-    background: #2d4a3d;
-    color: #d4f0e0;
+    background: #4a8d5e;
+    color: #e8ffe8;
 }
 
 .coreBadge[data-core='other'] {
-    background: #3d4349;
-    color: #e0e3e6;
+    background: #5a6570;
+    color: #e8ebee;
 }
 
 [data-theme='dark'] .coreBadge[data-core='mihomo'] {
-    background: #2a3847;
-    color: #b8d0e5;
+    background: #3a5985;
+    color: #c8e0ff;
 }
 
 [data-theme='dark'] .coreBadge[data-core='xray'] {
-    background: #3a2d4a;
-    color: #d5c8e5;
+    background: #6b4a8e;
+    color: #e8d5ff;
 }
 
 [data-theme='dark'] .coreBadge[data-core='singbox'] {
-    background: #1d3a2d;
-    color: #b8e5d0;
+    background: #3a7d4e;
+    color: #d8ffd8;
 }
 
 [data-theme='dark'] .coreBadge[data-core='other'] {
-    background: #2d3339;
-    color: #c8ced3;
+    background: #4a5560;
+    color: #d8dbe0;
 }
 
 .coreIcon {
@@ -123,25 +121,32 @@
 }
 
 .coreIconSvg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     object-fit: contain;
     flex-shrink: 0;
 }
 
 .coreLabel {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
 }
 
-/* Badges Row */
 .badgesRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    min-height: 28px;
+    margin-bottom: 0.5rem;
+}
+
+.rightBadges {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 0.5rem;
     flex-wrap: wrap;
-    min-height: 28px;
-    margin-bottom: 0.5rem;
 }
 
 .hwidBadge {
@@ -268,7 +273,6 @@
     color: white;
 }
 
-/* Card Content */
 .cardContent {
     padding: 1.25rem;
     flex: 1;
@@ -302,10 +306,20 @@
 
 .clientTitle {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--ifm-heading-color);
     line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.clientLogo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .clientAnchor {
@@ -507,22 +521,22 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .coreBadge {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.7rem;
-        gap: 0.4rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.6rem;
+        gap: 0.25rem;
     }
 
     .coreIcon {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .coreIconSvg {
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
     }
 
     .coreLabel {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
     .badgesRow {
@@ -542,7 +556,12 @@
     }
 
     .clientTitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .clientLogo {
+        width: 26px;
+        height: 26px;
     }
 
     .description {

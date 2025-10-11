@@ -14,7 +14,6 @@ export default function ClientsList({ platform }: ClientsListProps) {
     return (
         <>
             {clients.map((client: Client) => {
-                // Merge platform-specific download link with general links
                 const platformDownloadLink = client.downloadLinks?.[platform]
                 const links = {
                     ...client.links,
@@ -28,7 +27,8 @@ export default function ClientsList({ platform }: ClientsListProps) {
                         title={client.name}
                         description={client.description}
                         core={client.core}
-                        coreIcon={client.coreIcon}
+                        coreIcon={client.badges?.coreIcon}
+                        logo={client.logo}
                         author={client.author}
                         authorLink={client.authorLink}
                         githubRepo={client.githubRepo}

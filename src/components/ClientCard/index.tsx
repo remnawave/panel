@@ -11,7 +11,7 @@ interface ClientCardProps {
     author?: string
     authorLink?: string
     core: CoreType
-    coreIcon?: string // SVG icon URL
+    coreIcon?: string
     description: string
     featured?: boolean
     githubRepo?: string
@@ -24,6 +24,7 @@ interface ClientCardProps {
         telegram?: string
         website?: string
     }
+    logo?: string
     platform?: string
     title: string
 }
@@ -34,19 +35,19 @@ const CORE_CONFIG: Record<
 > = {
     mihomo: {
         label: 'Mihomo',
-        iconSvg: '/clients/mihomo_black.svg',
+        iconSvg: '/clients/mihomo.svg',
         color: '#3a4f66',
         darkColor: '#2a3847'
     },
     xray: {
         label: 'X-Ray',
-        iconSvg: '/clients/xray_black.svg',
+        iconSvg: '/clients/xray.svg',
         color: '#4a3d5a',
         darkColor: '#3a2d4a'
     },
     singbox: {
         label: 'Sing-Box',
-        iconSvg: '/clients/sb_black.svg',
+        iconSvg: '/clients/sb.svg',
         color: '#2d4a3d',
         darkColor: '#1d3a2d'
     },
@@ -65,6 +66,7 @@ export default function ClientCard({
     links,
     core,
     coreIcon,
+    logo,
     featured = false,
     hwidSupported = false,
     githubRepo,
@@ -86,31 +88,48 @@ export default function ClientCard({
             data-core={core}
             id={clientId}
         >
-            {/* Content */}
             <div className={styles.cardContent}>
-                {/* Badges Row - Always render to maintain consistent spacing */}
                 <div className={styles.badgesRow}>
-                    {featured && <span className={styles.featuredBadge}>⭐</span>}
-                    {hwidSupported && (
-                        <div
-                            className={styles.hwidBadge}
-                            data-tooltip="This client supports sending HWID"
-                        >
-                            <svg fill="currentColor" height="14" viewBox="0 0 16 16" width="14">
-                                <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z" />
-                            </svg>
-                            <span>HWID</span>
-                        </div>
-                    )}
-                    {githubRepo && links?.github && (
-                        <Link className={styles.starsBadge} to={links.github}>
-                            <GitHubStars repo={githubRepo} />
-                        </Link>
-                    )}
+                    <div className={styles.coreBadge} data-core={core}>
+                        {(coreIcon || coreConfig.iconSvg) && (
+                            <img
+                                alt={coreConfig.label}
+                                className={styles.coreIconSvg}
+                                src={coreIcon || coreConfig.iconSvg}
+                            />
+                        )}
+                        <span className={styles.coreLabel}>{coreConfig.label}</span>
+                    </div>
+                    <div className={styles.rightBadges}>
+                        {featured && <span className={styles.featuredBadge}>⭐</span>}
+                        {hwidSupported && (
+                            <div
+                                className={styles.hwidBadge}
+                                data-tooltip="This client supports sending HWID"
+                            >
+                                <svg fill="currentColor" height="14" viewBox="0 0 16 16" width="14">
+                                    <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z" />
+                                </svg>
+                                <span>HWID</span>
+                            </div>
+                        )}
+                        {githubRepo && links?.github && (
+                            <Link className={styles.starsBadge} to={links.github}>
+                                <GitHubStars repo={githubRepo} />
+                            </Link>
+                        )}
+                    </div>
                 </div>
                 <div className={styles.cardHeader}>
                     <div className={styles.titleWrapper}>
                         <h3 className={styles.clientTitle}>
+                            {logo && (
+                                <img
+                                    alt={`${title} logo`}
+                                    className={styles.clientLogo}
+                                    src={logo}
+                                />
+                            )}
                             <a className={styles.clientAnchor} href={`#${clientId}`}>
                                 {title}
                             </a>
@@ -192,18 +211,6 @@ export default function ClientCard({
                         )}
                     </div>
                 )}
-
-                {/* Core Badge - Bottom */}
-                <div className={styles.coreBadge} data-core={core}>
-                    {(coreIcon || coreConfig.iconSvg) && (
-                        <img
-                            alt={coreConfig.label}
-                            className={styles.coreIconSvg}
-                            src={coreIcon || coreConfig.iconSvg}
-                        />
-                    )}
-                    <span className={styles.coreLabel}>{coreConfig.label}</span>
-                </div>
             </div>
         </div>
     )
