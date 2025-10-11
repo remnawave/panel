@@ -8,8 +8,6 @@ import styles from './styles.module.css'
 type CoreType = 'mihomo' | 'other' | 'singbox' | 'xray'
 
 interface ClientCardProps {
-    author?: string
-    authorLink?: string
     core: CoreType
     coreIcon?: string
     description: string
@@ -40,7 +38,7 @@ const CORE_CONFIG: Record<
         darkColor: '#2a3847'
     },
     xray: {
-        label: 'X-Ray',
+        label: 'Xray',
         iconSvg: '/clients/xray.svg',
         color: '#4a3d5a',
         darkColor: '#3a2d4a'
@@ -61,8 +59,6 @@ const CORE_CONFIG: Record<
 export default function ClientCard({
     title,
     description,
-    author,
-    authorLink,
     links,
     core,
     coreIcon,
@@ -134,18 +130,6 @@ export default function ClientCard({
                                 {title}
                             </a>
                         </h3>
-                        {author && (
-                            <div className={styles.authorInfo}>
-                                <span className={styles.byText}>by</span>
-                                {authorLink ? (
-                                    <Link className={styles.authorLink} to={authorLink}>
-                                        {author}
-                                    </Link>
-                                ) : (
-                                    <span className={styles.authorName}>{author}</span>
-                                )}
-                            </div>
-                        )}
                         {platform && <div className={styles.platformBadge}>{platform}</div>}
                     </div>
                 </div>
