@@ -105,7 +105,7 @@
 @media (max-width: 768px) {
     .categoryNav {
         padding: 1.5rem;
-        margin: 2rem 0;
+        margin: 2rem auto;
     }
 
     .navTitle {
