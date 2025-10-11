@@ -36,10 +36,9 @@ export interface Client {
     badges?: {
         featured?: boolean
         hwid?: boolean
-        core?: CoreType
-        coreIcon?: string
     }
-
+    core?: CoreType
+    coreIcon?: string
     description: string
     downloadLinks?: {
         android?: string
@@ -406,6 +405,9 @@ export const CLIENTS: Client[] = [
         platforms: ['ios', 'macos', 'android', 'windows'],
         description: 'Simple and lightweight Xray client.',
         logo: '/clients/logo/v2raytun-dark.svg',
+        badges: {
+            hwid: true
+        },
         downloadLinks: {
             ios: 'https://apps.apple.com/en/app/v2raytun/id6476628951',
             android: 'https://play.google.com/store/apps/details?id=com.v2raytun.android',
