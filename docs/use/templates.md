@@ -8,7 +8,7 @@ As mentioned earlier, when you create a user, they’re assigned a Subscription 
 
 You probably noticed that when we opened our subscription URL in a browser, we saw a human-readable webpage. But when we added the same URL to a client app, it imported without any issues.
 
-This happens because Remnawave automatically detects which client application is making the subscription request:
+This happens because Remnawave automatically detects who is accessing the URL:
 
 When opened from a browser, Remnawave recognizes it and serves the webpage.
 

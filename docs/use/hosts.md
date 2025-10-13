@@ -6,11 +6,11 @@ import DocCard from '@theme/DocCard';
 
 Think of a Host as the gateway that directs users to your Nodes.
 
-When users get a **subscription URL** and add it to their client app, the app fetches a list of available Hosts. Each Host contains the connection details like server address and port, guiding the user to the right Node.
+When users get a subscription URL and add it to their client app, the app fetches a list of available Hosts. Each Host contains the connection details like server address and port, guiding the user to the right Node.
 
 Here’s how it works:
 
-1. The user receives a subscription URL.
+1. The user receives a subscription URL and imports it into the client app.
 2. The client app retrieves a list of available Hosts.
 3. The user picks a Host, which connects them to the associated Node.
 

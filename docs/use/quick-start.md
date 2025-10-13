@@ -28,8 +28,6 @@ If you ever forget your password, you can always recreate the super-admin accoun
 To access the Rescue CLI, use the command: `docker exec -it remnawave remnawave-rescue-cli`
 :::
 
----
-
 ## Home Page {#home}
 
 After registration, you will be taken to the main dashboard.
@@ -79,6 +77,7 @@ On the left side you will see the navigation menu:
     * `Users` -  Create and manage [Users](/docs/use/users).
     * `Internal Squads` - Configure [Internal Squads](/docs/use/internal-squads).
     * `Config Profiles` - Create and manage [Xray-core configurations](/docs/use/config-profiles).
+    * `Hosts` - Manage [entry points](/docs/use/hosts) for users.
     * `Nodes`:
         - `Management` - View, edit, disable, or delete [Nodes](/docs/use/nodes).
         - `Statistics` - Review detailed usage statistics per Node.
