@@ -2,6 +2,7 @@
 title: Nodes
 sidebar_position: 1
 ---
+
 import DocCard from '@theme/DocCard';
 
 :::warning Warning
@@ -20,7 +21,7 @@ To do that, navigate to `Nodes` → `Management`.
 
 At the top, you'll see a small block of four cards displaying statistics for the current hour (e.g., if it's 4:30 PM, the stats are from 4:00 PM to 4:30 PM).
 
-Below that, you’ll find the `Actions` block. Here, you can manually `Update` Node data or perform a bulk action to `Restart all nodes`.  
+Below that, you’ll find the `Actions` block. Here, you can manually `Update` Node data or perform a bulk action to `Restart all nodes`.
 
 However, before you can use these options, you’ll need to add at least one node by clicking `+ Create new node`.
 
@@ -30,17 +31,17 @@ However, before you can use these options, you’ll need to add at least one nod
 
 This block contains essential parameters required to create a Node.
 
-* **Country** – Select the country where the Node is located.
-* **Internal name** – A name used to identify the Node within Remnawave.
-* **Address** – The IP address or domain name of the Node.
-* **Port** – The port your Node is running on.
+- **Country** – Select the country where the Node is located.
+- **Internal name** – A name used to identify the Node within Remnawave.
+- **Address** – The IP address or domain name of the Node.
+- **Port** – The port your Node is running on.
 
 ### Consumption {#consumption}
 
 <img src={require('./images/8.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Consumption" />
 
 This block lets you configure how user traffic is counted using a multiplier (coefficient):  
-`1.0` means normal usage, `0.5` counts half the actual traffic, and `2.0` doubles it.  
+`1.0` means normal usage, `0.5` counts half the actual traffic, and `2.0` doubles it.
 
 For instance, if a user has a 1 GB data limit and the coefficient is set to `2.0`, they’ll only be able to use **0.5 GB** of actual traffic.  
 Remnawave will still report **1 GB** used, and the user's status will change to `LIMITED`.
@@ -68,17 +69,16 @@ For now, since `Shadowsocks` is the only available option, select it and click `
 
 <img src={require('./images/11.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Config Profiles" />
 
-
 ### Tracking & Billing {#tracking-and-billing}
 
 <img src={require('./images/12.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Tracking & Billing" />
 
 This block contains optional settings that do not need to be filled out.
 
-* **Infrastructure Provider** – This option is currently unavailable because no providers have been set up yet — we’ll walk through that later in the guide.  
-In short, a provider is the service where your server is hosted. Once you create one, you’ll be able to link it to a Node, and Remnawave will show that information in the Node list.
+- **Infrastructure Provider** – This option is currently unavailable because no providers have been set up yet — we’ll walk through that later in the guide.  
+  In short, a provider is the service where your server is hosted. Once you create one, you’ll be able to link it to a Node, and Remnawave will show that information in the Node list.
 
-* **Track traffic usage** – This checkbox determines if Remnawave will actively track usage against a set limit for this Node. The Panel always records traffic, but if you enable and configure this option, it will send you a notification when the limit is reached. The limit will also reset on the specified day.
+- **Track traffic usage** – This checkbox determines if Remnawave will actively track usage against a set limit for this Node. The Panel always records traffic, but if you enable and configure this option, it will send you a notification when the limit is reached. The limit will also reset on the specified day.
 
 For example:  
 Imagine you’ve rented a VPS from Hetzner, which offers 20 TB of monthly traffic. Hetzner measures this as combined incoming + outgoing traffic.
@@ -86,9 +86,9 @@ Since Xray generates traffic in both directions, your practical limit is 10 TB
 
 Based on this, we can set the following parameters:
 
-* `Traffic limit` – The traffic cap in GB. For 10 TB, this equals 10,240 GB.
-* `Reset day` – The day of the month when the traffic counter resets. In this case, `1`.
-* `Notification %` – The usage percentage that triggers a notification. For example, `90`.
+- `Traffic limit` – The traffic cap in GB. For 10 TB, this equals 10,240 GB.
+- `Reset day` – The day of the month when the traffic counter resets. In this case, `1`.
+- `Notification %` – The usage percentage that triggers a notification. For example, `90`.
 
 With these settings, Remnawave will notify you when 9 TB of traffic has been used. Then, on the 1st of the month, the counter resets and the cycle starts over.
 
@@ -113,23 +113,23 @@ Clicking on the Node card will open a modal window where you can edit its settin
 
 The highlighted block appears only after a Node has been created and connected. The labels indicate:
 
-* **Left:** Number of connections to this Node (duplicates are counted).
-* **Center:** Version of the Xray-core running on the Node.
-* **Right:** Version of the Remnawave Node.
+- **Left:** Number of connections to this Node (duplicates are counted).
+- **Center:** Version of the Xray-core running on the Node.
+- **Right:** Version of the Remnawave Node.
 
 <img src={require('./images/16.webp').default} width="100%" style={{borderRadius: '8px'}} alt="More actions" />
 
 The `More actions` button is now visible, giving you access to additional features:
 
-* `Show usage` – Opens a modal displaying detailed usage statistics for the Node by user over a selected time period. Since there’s no data yet, we’ll revisit this later.
-* `Copy Node UUID` – Copies the Node’s UUID, useful for API operations.
-* `Disable` – Deactivates the Node.
-* `Delete` – Permanently removes the Node.
+- `Show usage` – Opens a modal displaying detailed usage statistics for the Node by user over a selected time period. Since there’s no data yet, we’ll revisit this later.
+- `Copy Node UUID` – Copies the Node’s UUID, useful for API operations.
+- `Disable` – Deactivates the Node.
+- `Delete` – Permanently removes the Node.
 
 ---
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Hosts', description: 'After creating your first Node, the next step is to configure a Host.', href: '/docs/use/hosts' }}
+  item={{ type: 'link', label: 'Hosts', description: 'After creating your first Node, the next step is to configure a Host.', href: '/docs/learn-en/hosts' }}
 />
 ```

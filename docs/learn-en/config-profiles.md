@@ -2,6 +2,7 @@
 title: Config Profiles
 sidebar_position: 5
 ---
+
 import DocCard from '@theme/DocCard';
 
 :::warning
@@ -41,8 +42,9 @@ Once you're done, return to the Config Profile list to confirm our new setup.
 As you can see, the new profile we just created — `Sample` — has appeared in the list.
 
 Below the profile name, you'll notice two small icons:
-* The **left** icon shows the number of **Inbounds** defined in the Profile.
-* The **right** icon shows the number of **Nodes** currently using this Profile.
+
+- The **left** icon shows the number of **Inbounds** defined in the Profile.
+- The **right** icon shows the number of **Nodes** currently using this Profile.
 
 In our case, the `Sample` Profile contains 2 Inbounds and is not yet used by any Node.
 
@@ -75,6 +77,6 @@ Now that everything is set, click `Save` to apply the changes and finish creatin
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Templates', description: 'Define what client applications receive.', href: '/docs/use/templates' }}
+  item={{ type: 'link', label: 'Templates', description: 'Define what client applications receive.', href: '/docs/learn-en/templates' }}
 />
 ```

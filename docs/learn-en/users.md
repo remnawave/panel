@@ -2,6 +2,7 @@
 title: Users
 sidebar_position: 4
 ---
+
 import DocCard from '@theme/DocCard';
 
 ## Create a user {#create-user}
@@ -14,8 +15,8 @@ Start by choosing a username. It can be anything, but must not contain spaces.
 
 Next, in the `Traffic & Limits` section, set the user’s data restrictions:
 
-* `Data limit` – The traffic quota in GB.
-* `Traffic reset strategy` – How often the traffic counter resets for this user.
+- `Data limit` – The traffic quota in GB.
+- `Traffic reset strategy` – How often the traffic counter resets for this user.
 
 For this example, we’ll set a **1 GB** limit with a **daily reset**.
 
@@ -29,7 +30,7 @@ Create the user by clicking `Create user`.
 
 <img src={require('./images/25.webp').default} width="100%" style={{borderRadius: '8px'}} alt="User table" />
 
-After creating the user, you’ll return to the user list. 
+After creating the user, you’ll return to the user list.
 
 :::tip
 Here, you can customize which columns are visible, toggle full-screen mode, and search users by specific fields — useful tools to help you efficiently manage an expanding user base.
@@ -40,6 +41,7 @@ Here, you can customize which columns are visible, toggle full-screen mode, and 
 If you click the pencil icon to open the `Edit user` menu, you’ll notice a new button — `More actions`.
 
 This menu includes several useful tools beyond basic user management:
+
 1. `Detailed Info` – Includes extra information such as VLESS UUIDs and Happ Crypto links.
 2. `Show usage` – Displays detailed traffic statistics for the user.
 3. `HWIDs and Devices` – Shows hardware and device info reported by client apps.
@@ -52,20 +54,19 @@ This menu includes several useful tools beyond basic user management:
 
 Back on the `Users` page, you’ll see a red button with a gear icon on the right — this is the **Bulk Actions** menu.
 
-Clicking it opens a panel where you can perform actions across **all users**.  
+Clicking it opens a panel where you can perform actions across **all users**.
 
 If you want to target specific users only, you have two options:
 
-* Use the checkboxes on the left to select them manually.
-* Or use the sorting/filtering tools on the right, then click `Bulk actions`.
+- Use the checkboxes on the left to select them manually.
+- Or use the sorting/filtering tools on the right, then click `Bulk actions`.
 
 From the Bulk Actions menu, you can:
 
-* Activate or deactivate selected users
-* Set a unified data limit and traffic reset strategy
-* Extend subscription time for all selected users
-* And more
-
+- Activate or deactivate selected users
+- Set a unified data limit and traffic reset strategy
+- Extend subscription time for all selected users
+- And more
 
 ### Get the Subscription URL {#get-subscription}
 
@@ -84,7 +85,6 @@ Opening this link in a browser will display the `Subscription Page`, confirming 
 :::tip
 You can customize the Subscription Page, as explained in one of the installation [articles](/docs/install/subscription-page/customization).
 :::
-
 
 ## Verifying the Setup {#remark-four}
 
@@ -106,6 +106,6 @@ As promised, you can now view updated statistics on the Panel’s Home page and 
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Config Profiles', description: 'Define how Nodes behave by creating Config Profiles.', href: '/docs/use/config-profiles' }}
+  item={{ type: 'link', label: 'Config Profiles', description: 'Define how Nodes behave by creating Config Profiles.', href: '/docs/learn-en/config-profiles' }}
 />
 ```

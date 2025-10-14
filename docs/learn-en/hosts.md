@@ -2,6 +2,7 @@
 title: Hosts
 sidebar_position: 2
 ---
+
 import DocCard from '@theme/DocCard';
 
 Think of a Host as the gateway that directs users to your Nodes.
@@ -24,10 +25,10 @@ Navigate to the `Hosts` section and click `Create new host`.
 
 This will open a modal window where you can configure the Host.
 
-* `Host visibility` – Controls whether the Host is available to users.  
-For example, you can create a Host but leave it disabled. In this case, it won’t appear in the user’s subscription, and client applications won’t be able to access it.
-* `Remark` – This is the name of the host that will be displayed in the dashboard.  
-For instance, if the Host uses only Finnish nodes, you might name it "Finland" to reflect that.
+- `Host visibility` – Controls whether the Host is available to users.  
+  For example, you can create a Host but leave it disabled. In this case, it won’t appear in the user’s subscription, and client applications won’t be able to access it.
+- `Remark` – This is the name of the host that will be displayed in the dashboard.  
+  For instance, if the Host uses only Finnish nodes, you might name it "Finland" to reflect that.
 
 ### Select an Inbound {#select-inbound}
 
@@ -39,8 +40,6 @@ Click the `Select` button to choose an Inbound. You’ll see a familiar window l
 <img src={require('./images/18.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Create host modal" />
 
 Let’s choose `Shadowsocks` and save the selection by clicking `Apply changes`.
-
-
 
 <img src={require('./images/19.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Select inbound" />
 
@@ -87,6 +86,6 @@ For most use cases, it's best to leave this section as is — unless you're sure
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Internal Squads', description: 'With Hosts created, the next step is to create an Internal Squad.', href: '/docs/use/internal-squads' }}
+  item={{ type: 'link', label: 'Internal Squads', description: 'With Hosts created, the next step is to create an Internal Squad.', href: '/docs/learn-en/internal-squads' }}
 />
 ```
