@@ -65,6 +65,7 @@ services:
 
 networks:
     remnawave-network:
+        name: remnawave-network
         driver: bridge
         external: false
 ```
