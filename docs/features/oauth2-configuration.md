@@ -37,29 +37,12 @@ Don't forget to set the correct callback URL. Change `YOUR_PANEL_DOMAIN` to your
 
 ### Configuring OAuth2 in Remnawave
 
-```bash title="Editing .env file"
-cd /opt/remnawave && nano .env
-```
-
-```bash title=".env configuration"
-# Enable Github OAuth2, possible values: true, false
-OAUTH2_GITHUB_ENABLED=true
-
-# Github client ID, you can get it from Github application settings
-OAUTH2_GITHUB_CLIENT_ID="REPLACE_WITH_YOUR_CLIENT_ID"
-
-# Github client secret, you can get it from Github application settings
-OAUTH2_GITHUB_CLIENT_SECRET="REPLACE_WITH_YOUR_CLIENT_SECRET"
-
-# List of allowed emails, separated by commas
-OAUTH2_GITHUB_ALLOWED_EMAILS=["admin@example.com", "user@example.com"]
-```
-
-Don't forget to restart the Remnawave container:
-
-```bash
-docker compose down && docker compose up -d && docker compose logs -f -t
-```
+1. Open Remnawave Panel and move to `Remnawave Settings` -> `Authentication Methods`.
+2. Select desired method and click on it to open configuration.
+3. Click on `Enable` button.
+4. Enter Client ID and Client Secret.
+5. Enter List of allowed emails.
+6. Click on `Save` button.
 
 ## PocketID {#pocketid}
 
@@ -76,35 +59,6 @@ https://YOUR_PANEL_DOMAIN/oauth2/callback/pocketid
 
 Don't forget to set the correct callback URL. Change `YOUR_PANEL_DOMAIN` to your panel domain.
 :::
-
-### Configuring OAuth2 in Remnawave
-
-```bash title="Editing .env file"
-cd /opt/remnawave && nano .env
-```
-
-```bash title=".env configuration"
-# Enable PocketID OAuth2, possible values: true, false
-OAUTH2_POCKETID_ENABLED=true
-
-# PocketID Client ID, you can get it from OIDC Client settings
-OAUTH2_POCKETID_CLIENT_ID="REPLACE_WITH_YOUR_CLIENT_ID"
-
-# PocketID Client Secret, you can get it from OIDC Client settings
-OAUTH2_POCKETID_CLIENT_SECRET="REPLACE_WITH_YOUR_CLIENT_SECRET"
-
-# Plain domain where PocketID is hosted, do not place any paths here. Just plain domain.
-OAUTH2_POCKETID_PLAIN_DOMAIN="pocketid.domain.com"
-
-# List of allowed emails, separated by commas
-OAUTH2_POCKETID_ALLOWED_EMAILS=["admin@example.com", "user@example.com"]
-```
-
-Don't forget to restart the Remnawave container:
-
-```bash
-docker compose down && docker compose up -d && docker compose logs -f -t
-```
 
 ## Yandex {#yandex}
 
@@ -131,29 +85,3 @@ Don't forget to set the correct callback URL. Change `YOUR_PANEL_DOMAIN` to your
 :::
 
 In the third step of creation allow "Access to email address", no other permissions are needed.
-
-### Configuring OAuth2 in Remnawave
-
-```bash title="Editing .env file"
-cd /opt/remnawave && nano .env
-```
-
-```bash title=".env configuration"
-# Enable Yandex OAuth2, possible values: true, false
-OAUTH2_YANDEX_ENABLED=true
-
-# Yandex Client ID, you can get it from OIDC Client settings
-OAUTH2_YANDEX_CLIENT_ID="REPLACE_WITH_YOUR_CLIENT_ID"
-
-# Yandex Client Secret, you can get it from OIDC Client settings
-OAUTH2_YANDEX_CLIENT_SECRET="REPLACE_WITH_YOUR_CLIENT_SECRET"
-
-# List of allowed emails, separated by commas
-OAUTH2_YANDEX_ALLOWED_EMAILS=["admin@example.com", "user@example.com"]
-```
-
-Don't forget to restart the Remnawave container:
-
-```bash
-docker compose down && docker compose up -d && docker compose logs -f -t
-```
