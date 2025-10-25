@@ -15,7 +15,9 @@ As mentioned earlier, a Config Profile is essentially a full Xray-core configura
 
 ---
 
-Let's try creating a new Profile.
+## Create a Config Profile {#create-profile}
+
+Let's create a new Profile.
 
 Navigate to the `Config Profiles` section and click `Create Config Profile`.
 
@@ -72,6 +74,62 @@ Let’s enable the remaining Inbounds from the new Profile.
 <img src={require('./images/40.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Enable all inbounds in squad" />
 
 Now that everything is set, click `Save` to apply the changes and finish creating your custom Config Profile.
+
+### Use Snippets {#snippets}
+
+Snippets simplify the process of creating Config Profiles by allowing you to predefine some of your settings.
+
+<img src={require('./images/47.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Snippets" />
+
+A snippet should include an array of `"outbounds"` or `"routing"` objects. You can take advantage of autocomplete to quickly insert snippet names, and hover over them in the editor to preview their contents.
+
+:::tip For example
+Snippets are applied accross all Profiles.
+
+Assume you have 10 Config Profiles. Each of them uses identical routing rules.  
+You can edit these rules through snippets, instead of manually changing each Profile.
+:::
+
+---
+
+Let's create a snippet for routing `geoip:private` to `BLOCK`.
+
+First, open the snippets menu by clicking `{ }` at the bottom of the editor. Click `+ New snippet`.  
+Let's name it `Block Private` since we are creating a routing rule for private connections.
+
+<img src={require('./images/48.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Snippets" />
+
+We want to send `geoip:private` to `BLOCK`, so your snippet should look like this:
+
+```json title="Block Private"
+[
+  {
+    "ip": [
+      "geoip:private"
+    ],
+    "outboundTag": "BLOCK",
+  }
+]
+```
+:::warning
+Remember to use square brackets `[]` at the beginning and end of your snippet.
+:::
+
+Now that you’ve defined the snippet, reference it in your Xray JSON with `"snippet": "Block Private"`.
+
+<img src={require('./images/49.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Snippets" />
+
+Complete routing object will look like this:
+
+```json title="routing"
+"routing": {
+  "rules": [
+    {
+      "snippet": "Block Private"
+    }
+  ]
+}
+```
 
 ---
 

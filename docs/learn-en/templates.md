@@ -29,7 +29,13 @@ Generally, subscription formats fall into four main families:
 />
 ```
 <br></br>
-<img src={require('./images/41.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Templates menu" />
+
+---
+
+Since version 2.2.0, you can create multiple Templates for each core.  
+You can then either use [External Squads](/docs/learn-en/squads/#whats-external-squad) or [Routing Rules](/docs/learn-en/routing-rules) to manage which users or client apps get the needed Templates.
+
+<img src={require('./images/51.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Templates menu" />
 
 ### Mihomo {#mihomo}
 

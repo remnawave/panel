@@ -1,5 +1,5 @@
 ---
-title: Internal Squads
+title: Squads
 sidebar_position: 3
 ---
 
@@ -25,7 +25,7 @@ This architecture allows you to create powerful combinations.
 If a user is upgraded to premium, you simply assign them to both the premium and regular Squads.
 :::
 
-## Create a Squad {#create-squad}
+### Create an Internal Squad {#create-internal-squad}
 
 Navigate to the `Internal Squads` page and either click `+` to create a new Squad, or `Edit` the default one.
 <img src={require('./images/23.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Internal Squad" />
@@ -46,6 +46,38 @@ You can **bulk**-manage Squad members by clicking the arrow next to the `Edit` b
 
 You can also see which Nodes are available to Squad members by clicking `View accessible nodes`.
 :::
+
+## What are External Squads? {#whats-external-squad}
+
+Smart readers might have wondered, "If there are Internal Squads, where are External Squads?".
+
+Since version 2.2.0, External Squads are implemented and are used to redefine the settings (e.g. Templates and the headers set in Subscription Settings) that users get.
+
+For example, you can give some users a different `Announce` message to be displayed in clients.
+Or you could apply custom routing per user group.
+
+Essentially, External Squads are there to override Templates and other settings.
+
+:::tip For example
+- You might have one External Squad for **Iran**, with Templates specific to that country.
+- And you might have another Squad for **China**, with appropriate configs given to users.
+:::
+
+### Create an External Squad {#create-external-squad}
+
+Let's create an External Squad.
+
+First, navigate to `External Squads` page. From there, press `+` button. Let's call it `Remnawave Supporters`.
+
+A modal opens and we are given two tabs: `Templates` and `Settings`.
+
+<img src={require('./images/45.webp').default} width="100%" style={{borderRadius: '8px'}} alt="External Squad Templates" />
+
+In the `Templates` tab you can override the subscription Template. Currently, you can't choose anything and default Templates are selected. But worry not, once you created a new Template, you can return to this step.
+
+<img src={require('./images/46.webp').default} width="100%" style={{borderRadius: '8px'}} alt="External Squad Settings" />
+
+In the `Settings` tab you can override the subscription information that you defined in `Subscription` → `Settings`.
 
 ---
 
