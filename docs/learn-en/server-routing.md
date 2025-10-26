@@ -4,7 +4,7 @@ sidebar_position: 7
 ---
 
 :::warning Demonstration Only | Not Production-Ready
-This guide is meant purely as a demonstration of server-side routing. Do not assume that copying these examples will produce a fully functional setup in a production. It does not cover all capabilities of Xray-core, nor is it guaranteed to work perfectly in every environment.  
+This guide is meant purely as a demonstration of server-side routing. Do not assume that copying these examples will produce a fully functional setup in a production. It does not cover all capabilities of Xray-core, nor is it guaranteed to work perfectly in every environment.
 
 For full details on configuration syntax and behavior, refer to the [official Xray documentation](https://xtls.github.io/config/).
 :::
@@ -14,12 +14,14 @@ Some users may have noticed that Remnawave automatically clears the `clients` ar
 ---
 
 In this guide, we'll walk through setting up server-side traffic routing using two Nodes: `RU` and `DE`. Users will connect to the `RU` Node. From there, the traffic will be routed as follows:
+
 - Traffic to `.ru` websites will be proxied directly through the `RU` Node.
 - All other traffic will be routed through the `DE` Node.
 
 To achieve this, we'll create a _service user_ that will facilitate the traffic routing.
 
 As a result, the traffic "flow" could look something like this:
+
 1. The user opens `google.com`.
 2. The request first reaches the `RU` Node.
 3. The `RU` Node applies the routing rules. Since `google.com` is not a `.ru` domain, the traffic is routed to the `DE` Node.
@@ -49,11 +51,7 @@ Navigate to the Config Profiles section and [create a new Config Profile](/docs/
             },
             "sniffing": {
                 "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ]
+                "destOverride": ["http", "tls", "quic"]
             }
         }
     ],
@@ -78,7 +76,7 @@ Navigate to the Config Profiles section and [create a new Config Profile](/docs/
 
 ---
 
-[Create a new Internal Squad](/docs/learn-en/internal-squads#create-squad), let's call it `Bridge Squad`. Enable the Inbound we created earlier — `BRIDGE_DE_IN`.
+[Create a new Internal Squad](/docs/learn-en/squads#create-internal-squad), let's call it `Bridge Squad`. Enable the Inbound we created earlier — `BRIDGE_DE_IN`.
 :::
 
 ## Create a Service User {#create-service-user}
@@ -91,7 +89,7 @@ Since this is a service user, we obviously don't want its subscription to expire
 
 Next, assign the appropriate Squad to this user. In our case, that's `Bridge Squad`.
 
-After the service user is created, we will need to get its password. Open the user card, click on the `More Actions` button, then `Detailed Info`. There you should see `Connection Information` section.  
+After the service user is created, we will need to get its password. Open the user card, click on the `More Actions` button, then `Detailed Info`. There you should see `Connection Information` section.
 
 Depending on the Inbound's protocol (Shadowsocks in our case), copy the appropriate value:
 
@@ -100,18 +98,17 @@ Depending on the Inbound's protocol (Shadowsocks in our case), copy the appropri
 | Trojan      | Trojan Password       |
 | VLESS       | VLESS UUID            |
 | Shadowsocks | SS Password           |
-    
 
 ## Configure a Public Profile {#create-pub-profile}
 
-Most likely, you already have a Config Profile that your users connect to. If not, refer to [this guide](/docs/learn-en/config-profiles).  
+Most likely, you already have a Config Profile that your users connect to. If not, refer to [this guide](/docs/learn-en/config-profiles).
 
 For this step, we're not interested in the `"inbounds"` — instead, we'll be modifying the `"outbounds"`, `"routing"`, and `"rules"` arrays of that Profile.
 
 ```json title="Public Profile Example"
 {
     "log": {
-        "loglevel": "none" 
+        "loglevel": "none"
     },
     "inbounds": [
         {
@@ -125,11 +122,7 @@ For this step, we're not interested in the `"inbounds"` — instead, we'll be mo
             },
             "sniffing": {
                 "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ] 
+                "destOverride": ["http", "tls", "quic"]
             },
             "streamSettings": {
                 "network": "raw",
@@ -147,7 +140,7 @@ For this step, we're not interested in the `"inbounds"` — instead, we'll be mo
     ],
     "outbounds": [
         {
-            "protocol": "freedom", 
+            "protocol": "freedom",
             "tag": "DIRECT"
         },
         {
@@ -165,8 +158,8 @@ For this step, we're not interested in the `"inbounds"` — instead, we'll be mo
                 "domain": ["geosite:private"],
                 "outboundTag": "BLOCK"
             },
-            { 
-                "protocol": ["bittorrent"], 
+            {
+                "protocol": ["bittorrent"],
                 "outboundTag": "BLOCK"
             }
         ]
@@ -245,16 +238,12 @@ The complete public Config Profile could look like this:
             "listen": "0.0.0.0",
             "protocol": "vless",
             "settings": {
-                "clients": [], 
-                "decryption": "none" 
+                "clients": [],
+                "decryption": "none"
             },
             "sniffing": {
                 "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ] 
+                "destOverride": ["http", "tls", "quic"]
             },
             "streamSettings": {
                 "network": "raw",
@@ -302,11 +291,11 @@ The complete public Config Profile could look like this:
                 "ip": ["geoip:private"],
                 "outboundTag": "BLOCK"
             },
-            { 
+            {
                 "domain": ["geosite:private"],
                 "outboundTag": "BLOCK"
             },
-            { 
+            {
                 "protocol": ["bittorrent"],
                 "outboundTag": "BLOCK"
             },
@@ -332,22 +321,22 @@ Xray routing rules are processed in order, from **top to bottom**.
 Here's how the rules in our example work:
 
 1. Private IPs (`geoip:private`) → `BLOCK`  
-Traffic matching this rule is sent to the `BLOCK` Outbound, which is a `blackhole` protocol (completely blocked).
+   Traffic matching this rule is sent to the `BLOCK` Outbound, which is a `blackhole` protocol (completely blocked).
 
 2. Private domains (`geosite:private`) → `BLOCK`  
-Same as above, but for domain names.
+   Same as above, but for domain names.
 
 3. Bittorrent traffic (`bittorrent`) → `BLOCK`  
-All BitTorrent traffic is blocked.
+   All BitTorrent traffic is blocked.
 
 4. Russian IPs (`geoip:ru`) → `DIRECT`  
-Traffic matching this rule is sent to the `DIRECT` Outbound, which is a `freedom` protocol (`RU` Node acts as an exit node).
+   Traffic matching this rule is sent to the `DIRECT` Outbound, which is a `freedom` protocol (`RU` Node acts as an exit node).
 
 5. Russian domains (`geosite:category-ru`) → `DIRECT`  
-Traffic to Russian domains also goes directly out from the RU Node.
+   Traffic to Russian domains also goes directly out from the RU Node.
 
 6. No rule match (the rest of the traffic) → `SS_OUTBOUND_TO_DE`  
-Any remaining traffic arriving at the `PUBLIC_RU_INBOUND` is routed to the `DE` Node via the `Shadowsocks` Outbound we created earlier.
+   Any remaining traffic arriving at the `PUBLIC_RU_INBOUND` is routed to the `DE` Node via the `Shadowsocks` Outbound we created earlier.
 
 ---
 

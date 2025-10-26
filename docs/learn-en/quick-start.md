@@ -106,11 +106,11 @@ With the 2.2.0 update, authentication methods and branding can now be managed in
 You can customize your Brand Name and use your own Logo.
 
 - `Brand Name`  
-Set any text to replace the default “Remnawave” brand name on the login page and navigation menu.
+  Set any text to replace the default “Remnawave” brand name on the login page and navigation menu.
 - `Logo URL`  
-Upload your custom logo image to display on the login page and navigation menu.
+  Upload your custom logo image to display on the login page and navigation menu.
 
-### Authentication Methods {#oauth} 
+### Authentication Methods {#oauth}
 
 Remnawave supports multiple authentication methods for passwordless logins. You can enable one or more options based on your needs.
 
@@ -131,11 +131,11 @@ Before setting up Passkey authentication, you need to define your Panel domain.
     Define the fully qualified HTTPS origin for your backend your backend (e.g., `https://panel.example.com`)
 
 2. **Register a Passkey**  
-Click `Manage`, then `Register`. Follow the steps your browser/device provides.
+   Click `Manage`, then `Register`. Follow the steps your browser/device provides.
 
 3. **Login Using Passkey**  
 After registration, return to the login page to test the passkey. Once confirmed, you can disable username/password login.
-</details>
+ </details>
 
 #### GitHub {#github}
 
@@ -152,14 +152,14 @@ Visit [Developer Settings page](https://github.com/settings/applications/new) to
 2. **Get Client ID and Client Secret**  
 Copy the `Client ID` and `Client Secret` from app page.
 
-3. **Set the Variables in Remnawave**  
+3. **Set the Variables in Remnawave**
     - `Client ID`
     - `Client Secret`
     - `Allowed Emails` — specify which GitHub email addresses can log in.
 
 4. **Login Using GitHub**  
 After registration, return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-</details>
+ </details>
 
 #### PocketID {#pocketid}
 
@@ -173,17 +173,16 @@ In `Administration` → `OIDC Clients`, click `Add OIDC Client`.
     - `Callback URLs` — `https://panel.example.com/oauth2/callback/pocketid` (replace `panel.example.com` with your Panel domain).
 
 2. **Get Client ID and Client Secret**  
-Copy the `Client ID` and `Client Secret`.
+   Copy the `Client ID` and `Client Secret`.
 
-3. **Set the Variables in Remnawave**  
+3. **Set the Variables in Remnawave**
     - `Client ID`
     - `Client Secret`
     - `Plain Domain` — plain domain for PocketID instance. Do not use any paths or protocols, just a plain domain (e.g., `pocketid.example.com`)
     - `Allowed Emails` — add email addresses allowed to log in.
-    
 4. **Login Using PocketID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-</details>
+ </details>
 
 #### Yandex ID {#yandexid}
 
@@ -201,16 +200,16 @@ Visit [Yandex ID page](https://oauth.yandex.com/client/new/id) to create an app.
     -  `Permissions` — only `Access to email address` is required.
 
 2. **Get Client ID and Client Secret**  
-Once the Yandex ID app is created, you'll see app profile where you need to copy `Client ID` and `Client Secret`.
+   Once the Yandex ID app is created, you'll see app profile where you need to copy `Client ID` and `Client Secret`.
 
-3. **Set the Variables in Remnawave**  
+3. **Set the Variables in Remnawave**
     - `Client ID`
     - `Client Secret`
-    - `Allowed Emails` — set the email adresses of the yandex accounts you wish to give access to. The account on yandex that logins in be registered to the email that you specified here. 
+    - `Allowed Emails` — set the email adresses of the yandex accounts you wish to give access to. The account on yandex that logins in be registered to the email that you specified here.
 
 4. **Login Using Yandex ID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-</details>
+ </details>
 
 #### Telegram OAuth {#telegram}
 
@@ -220,22 +219,22 @@ You can log in with your Telegram account.
 <summary>How to Set Up Telegram OAuth</summary>
 
 1. **Create a Bot**  
-Message `/newbot` to [@BotFather](t.me/BotFather) and create a new bot. Copy its token.
+   Message `/newbot` to [@BotFather](https://t.me/BotFather) and create a new bot. Copy its token.
 
 2. **Set Domain**  
-Message `/mybots`. Select the bot you created. The go to `Bot Settings` → `Domain` → `Set domain`.  
-Message the domain of your Panel. E.g. `https://panel.example.com`.
+   Message `/mybots`. Select the bot you created. The go to `Bot Settings` → `Domain` → `Set domain`.  
+   Message the domain of your Panel. E.g. `https://panel.example.com`.
 
 3. **Get Admin IDs**  
-Message `/start` to [@userinfobot](t.me/userinfobot). Copy the ID it responded with.
+   Message `/start` to [@userinfobot](https://t.me/userinfobot). Copy the ID it responded with.
 
-4. **Set the Variables in Remnawave**  
+4. **Set the Variables in Remnawave**
     - `Bot Token` — set the token of a bot you created earlier.
-    - `Allowed Admin IDs` — set the ID you got earlier from @userinfobot. 
+    - `Allowed Admin IDs` — set the ID you got earlier from @userinfobot.
 
 5. **Login Using Telegram Auth**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-</details>
+ </details>
 
 ---
 
