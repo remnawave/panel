@@ -22,7 +22,8 @@ For this example, we’ll set a **1 GB** limit with a **daily reset**.
 
 In the `Access Settings` section, configure the subscription expiration date and assign the user to one or more Internal Squads.
 
-Let’s set the subscription to expire in one month and assign the only available Squad.
+Let’s set the subscription to expire in one month and assign the only available Internal Squad.  
+Also, if you chose to create an External Squad, you can also assign it here.
 
 <img src={require('./images/24.webp').default} width="100%" style={{borderRadius: '8px'}} alt="User settings" />
 
