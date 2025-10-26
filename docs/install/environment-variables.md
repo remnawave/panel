@@ -205,26 +205,6 @@ TELEGRAM_NOTIFY_CRM_THREAD_ID=
 
 </details>
 
-## Telegram OAuth
-
-| Variable                   | Description                                                  | Default | Possible values |
-| -------------------------- | ------------------------------------------------------------ | ------- | --------------- |
-| `TELEGRAM_OAUTH_ENABLED`   | Disable/Enable Telegram OAuth                                | `false` | `true`, `false` |
-| `TELEGRAM_OAUTH_ADMIN_IDS` | Array of Admin Chat Ids. These ids will be allowed to login. |         |
-
-<details>
-<summary>Example</summary>
-
-```bash title=".env file"
-### Telegram Oauth (Login with Telegram)
-### true/false
-TELEGRAM_OAUTH_ENABLED=false
-### Array of Admin Chat Ids. These ids will be allowed to login.
-TELEGRAM_OAUTH_ADMIN_IDS=[123, 321]
-```
-
-</details>
-
 ## Domains
 
 | Variable           | Description                                                  | Default | Required |
@@ -372,6 +352,26 @@ BANDWIDTH_USAGE_NOTIFICATIONS_THRESHOLD=[60, 80]
 
 </details>
 
+## Not Connected Users Notifications
+
+| Variable                                        | Description                                                                                                                                                                                             | Default | Possible values |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------- |
+| `NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED`     | Enable/Disable not connected users notifications                                                                                                                                                        | `false` | `true`, `false` |
+| `NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS` | The hours after which to send notifications for users who haven't connected. Only in ASC order (example: [6, 12, 24]), must be valid array of integer(min: 1, max: 168) numbers. No more than 3 values. |         |                 |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+### Not connected users notification (webhook, telegram)
+NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED=false
+# Only in ASC order (example: [6, 12, 24]), must be valid array of integer(min: 1, max: 168) numbers. No more than 3 values.
+# Each value represents HOURS passed after user creation (user.createdAt)
+NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
+```
+
+</details>
+
 ## HWID
 
 | Variable                     | Description                                                                              | Default |
@@ -390,13 +390,6 @@ HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 ```
 
 </details>
-
-## Branding
-
-| Variable            | Description                        | Default |
-| ------------------- | ---------------------------------- | ------- |
-| `BRANDING_TITLE`    | The name of the brand              |         |
-| `BRANDING_LOGO_URL` | The https:// URL of the brand logo |         |
 
 ## Miscellaneous
 
