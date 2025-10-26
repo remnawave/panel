@@ -236,6 +236,15 @@ You can log in with your Telegram account.
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
  </details>
 
+:::tip Locked yourself out?
+If you disabled the password login and your OAuth doesn't work, you can enable it back with Remnawave Rescue CLI.
+
+On a server hosting the Panel, run:
+```bash
+docker exec -it remnawave remnawave
+```
+:::
+
 ---
 
 ```mdx-code-block
