@@ -31,7 +31,7 @@ title: Быстрый старт
 :::tip Совет
 Если вы вдруг забудете пароль, вы всегда можете пересоздать супер-админа через Rescue CLI.
 
-Для входа в Rescue CLI введите команду: `docker exec -it remnawave remnawave-rescue-cli`
+Для входа в Rescue CLI введите команду: `docker exec -it remnawave remnawave`
 :::
 
 ---

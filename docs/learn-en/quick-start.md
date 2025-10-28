@@ -26,7 +26,7 @@ First, you need to create a user. The first user to register automatically becom
 :::tip Tip
 If you ever forget your password, you can always recreate the super-admin account using the Rescue CLI.
 
-To access the Rescue CLI, use the command: `docker exec -it remnawave remnawave-rescue-cli`
+To access the Rescue CLI, use the command: `docker exec -it remnawave remnawave`
 :::
 
 ## Home Page {#home}
@@ -135,7 +135,7 @@ Before setting up Passkey authentication, you need to define your Panel domain.
 
 3. **Login Using Passkey**  
 After registration, return to the login page to test the passkey. Once confirmed, you can disable username/password login.
- </details>
+  </details>
 
 #### GitHub {#github}
 
@@ -159,7 +159,7 @@ Copy the `Client ID` and `Client Secret` from app page.
 
 4. **Login Using GitHub**  
 After registration, return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
- </details>
+  </details>
 
 #### PocketID {#pocketid}
 
@@ -182,7 +182,7 @@ In `Administration` → `OIDC Clients`, click `Add OIDC Client`.
     - `Allowed Emails` — add email addresses allowed to log in.
 4. **Login Using PocketID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
- </details>
+  </details>
 
 #### Yandex ID {#yandexid}
 
@@ -209,7 +209,7 @@ Visit [Yandex ID page](https://oauth.yandex.com/client/new/id) to create an app.
 
 4. **Login Using Yandex ID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
- </details>
+  </details>
 
 #### Telegram OAuth {#telegram}
 
@@ -234,7 +234,7 @@ You can log in with your Telegram account.
 
 5. **Login Using Telegram Auth**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
- </details>
+  </details>
 
 :::tip Locked yourself out?
 If you disabled the password login and your OAuth doesn't work, you can enable it back with Remnawave Rescue CLI.
