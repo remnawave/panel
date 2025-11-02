@@ -1,31 +1,32 @@
-## Xray JSON Subscription Format
+## Xray JSON 订阅格式
 
-The Xray JSON format provides native JSON-based subscription support for compatible clients. Simply append `/json` to your subscription URL to enable this format.
+Xray 的 JSON 格式为兼容客户端提供了原生的基于 JSON 的订阅支持。
+只需在订阅链接后添加 `/json` 即可启用此格式。
 
-### Supported Applications
+### 支持的客户端
 
-- **v2rayNG** — version 1.8.29 or higher
-- **V2rayN** — version 6.40 or higher
-- **Streisand** — all versions
-- **Happ** — all versions
-- **V2Box** — all versions
-- **ktor-client** — all versions
+- **v2rayNG** — 版本 1.8.29 或更高
+- **V2rayN** — 版本 6.40 或更高
+- **Streisand** — 所有版本
+- **Happ** — 所有版本
+- **V2Box** — 所有版本
+- **ktor-client** — 所有版本
 
-### Usage Instructions
+### 使用说明
 
-**Step 1:** Modify your subscription URL
+**步骤 1:** 修改订阅链接
 
-Append `/json` to the end of your subscription link:  
+在你的订阅链接末尾添加 `/json` :  
 `https://<server>/api/sub/xxxx/json`
 
-**Step 2:** Verify compatibility
+**步骤 2:** 检查兼容性
 
-Ensure your client application meets the minimum version requirements listed above.
+确保你的客户端版本满足上方列出的最低要求。
 
-**Alternatively:** Enable JSON At the base path
+**可选方式:** 在基础路径启用 JSON
 
-Enable the "Serve JSON at base subscription" option in the subscription settings. This will serve the JSON subscription at the base subscription path (without having to append /json).
+在订阅设置中启用 "在基础订阅路径提供 JSON" 选项。 启用后，系统会直接在基础路径提供 JSON 订阅 (无需额外添加 /json).
 
-### Fallback Behavior
+### 回退机制
 
-For clients that don't support the JSON format (such as Base64 or Mihomo-based clients), the subscription will automatically fall back to the standard format compatible with your client.
+对于不支持 JSON 格式的客户端（例如使用 Base64 或 Mihomo 协议的客户端），系统会自动回退到与客户端兼容的标准订阅格式。
