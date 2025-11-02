@@ -1,21 +1,21 @@
-## Internal Squads
+## 内部分组
 
-The main purpose of internal squads is **access control** for users.
+内部分组的主要目的在于为用户提供**访问控制** 。
 
-Internal squads are directly linked to **profiles** and their **inbounds**. You can assign them as many active inbounds as needed (which are located inside profiles). And since profiles and their inbounds are directly linked to nodes – using an internal squad, we can finely control which users or groups of users can have access to nodes.
-
----
-
-In each squad's card (in the general list), you can see the number of active inbounds, as well as the number of members in this squad (users who belong to it).
-
-By clicking on the additional actions button (in the squad card), you can also quickly add or remove all users. If you need to assign a squad to _specific_ users – you can do this in the **"Users"** section.
-
-Managing users and nodes that can be accessible to them can sometimes be very confusing – use the **"Available Nodes"** button to quickly see which nodes are available to this squad. Let me remind you that when creating or modifying a **node**, we also select which **profile** will be used and which **inbounds** from it will be active on the node. And since we also select **inbounds** inside the squad, we can use these relationships to determine specific nodes that this squad (and consequently its members) will have access to.
+内部分组与**配置文件（Profiles）** 及其**入站（Inbounds）** 直接关联。 你可以为一个内部分组分配任意数量的活动入站（这些入站存在于配置文件中）。 由于配置文件及其入站又与节点直接相关 – 因此通过使用内部分组, 我们可以精细地控制哪些用户或用户组可以访问哪些节点。
 
 ---
 
-For example, we have two user groups: **free** and **paid**. And we want **free** users to have access to _server group #1_, and paid users to have access to both _server group #1_ and additionally to _server group #2_.
+在每个分组卡片（列表视图中）上，你可以看到该分组的活动入站数量，以及分组内的成员数量（即属于该分组的用户）。
 
-For this purpose, we create two squads: **Free** and **Premium**, and inside each of them we select the corresponding inbounds.
+点击分组卡片中的“更多操作”按钮，你可以快速添加或移除所有用户。 如果你只想将某个分组分配给 _特定_ 用户 – 可以前往 **"用户（Users）"** 页面进行操作。
 
-And let's say we're creating a user – in this case, if we have a free user – we simply activate the **Free** internal squad for them. And when we have a paid user – we activate both squads – **Free** and **Premium** (if the user needs access to all nodes/inbounds). But we can also activate only one squad for a paid user – **Premium**, in which case the user will not have access to the nodes/inbounds from the **Free** group.
+在管理用户与节点的访问权限时，有时会比较混乱——这时可以使用 **"可用节点（Available Nodes）"** 按钮，快速查看该分组可访问的节点。 请记住，在创建或修改一个 **节点**, 我们需要选择对应的 **配置文件** 并指定该配置文件中哪些 **入站** 会在该节点上启用。 而由于我们在内部分组中也会选择 **入站** , 因此可以通过这种关联关系，确定该分组 (以及其成员) 可以访问的具体节点。
+
+---
+
+例如，我们有两个用户组： **免费组（Free）** 和 **付费组（Paid）**. 我们希望 **免费** 用户只能访问 _服务器组 #1_, 而付费用户则可以访问 _服务器组 #1_ 和 _服务器组 #2_.
+
+为此，我们可以创建两个分组： **Free** 和 **Premium**, 并在各自的分组中选择对应的入站。
+
+当我们创建一个用户时，如果这是一个免费用户，只需为其启用 **Free** 内部分组。 而如果是付费用户，则可以同时启用**Free**和**Premium** (如果该用户需要访问所有节点/入站)。 当然，我们也可以只为付费用户启用一个分组 – **Premium**, 这样该用户将无法访问来自 **Free** 分组的节点或入站。
