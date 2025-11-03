@@ -8,7 +8,7 @@ const config: Config = {
     title: 'Remnawave Documentation',
     tagline: 'Remnawave Documentation',
     favicon: 'img/favicon.ico',
-    url: 'https://remna.st',
+    url: 'https://docs.rw',
     baseUrl: '/',
     organizationName: 'remnawave',
     projectName: 'panel',
