@@ -1,43 +1,44 @@
-## External Squads
+## 外部分组
 
-Using external squads, you can override certain settings or templates that users use when requesting a subscription. _A user cannot have more than one active external squad._
+通过使用外部分组，你可以在用户请求订阅时覆盖其使用的某些设置或模板。 _每个用户同一时间只能拥有一个活动的外部分组。_
 
-For example, for different user groups, you can set different routing (for Happ, v2rayTUN), and different routing can also be within templates.
+例如，你可以为不同的用户群体设置不同的路由方案（如 Happ、v2rayTUN），而不同的路由方案也可以定义在模板中。
 
-Using the additional menu, you can quickly assign an external squad to all users (or conversely remove all users from an external squad).
+通过右侧的附加菜单，你可以快速为所有用户分配一个外部分组 (或反向操作，将所有用户从该外部分组中移除)。
 
-If a user has no external squad selected – global settings from the "**Subscription**" section are used, as well as the "**Default**" client config template.
+如果用户没有被分配任何外部分组 - 则会使用 "**订阅（Subscription）**" 页面中的全局设置， 以及默认的 "**Default**" 客户端配置模板。
 
 ---
 
-Let's smoothly move on to reviewing the settings available in the external squad card.
+接下来，我们来逐步了解外部分组卡片中可用的设置。
 
-### Template Override
+### 模板覆盖（Template Override）
 
-When a user requests a subscription – depending on the client application from which the request came, the user may receive different templates. For example, if the application runs on the Mihomo core – Remnawave will detect this and provide the **Default** template of the **Mihomo** type. (You can manage templates in the corresponding section).
+当用户请求订阅时，系统会根据请求来源的客户端类型为其提供相应的模板。 例如，如果客户端基于 Mihomo 内核运行，Remnawave 会自动识别，并提供 **Mihomo** 类型 的 **Default** 模板（可在模板管理页面进行设置）。
 
-Inside Remnawave, you can create an infinite number of templates for each type (Mihomo, Stash, Xray Json, Singbox, Clash), but by default, the **Default** template will always be provided.
+在 Remnawave 中，你可以为每种类型（Mihomo、Stash、Xray Json、Singbox、Clash）创建任意数量的模板，但默认情况下系统总是会提供 **Default** 模板。
 
-**To override this behavior is exactly what this setting inside the external squad exists for.**
+**而外部分组中的此项设置，正是用于覆盖这一默认行为。**
 
-Let's say, for a specific external squad we want to use a _Custom Template_ that belongs to the **Mihomo** type, in this case we select this template in the corresponding section and save the changes. If a request comes from a user who belongs to this external squad – instead of the _Default_ template, they will receive the _Custom Template_.
+举例来说，假设我们希望某个外部分组使用 _自定义模板（Custom Template）_ ,该模板属于 **Mihomo** 类型, 那么只需在对应选项中选择该模板并保存更改。 此后，当属于该外部分组的用户发起订阅请求时，他们将收到 _Custom Template_ 模板, 而不是 _Default_.
 
-If you leave the override field empty – the user who is in this squad will receive the _Default_ template.
+如果你将模板覆盖字段留空，则该分组中的用户仍会接收 _Default_ 模板。
 
-_Please note, template override in the "Response Rules" section has a higher priority than override in this section._
+_请注意，在 “请求订阅的应用（Response Rules）” 中的模板覆盖优先级高于本处设置。_
 
-### Settings (Subscription)
+### 设置（订阅）
 
-In this section, general settings that are located in the "Subscription" → "Settings" section are overridden. Accordingly, by overriding settings within the squad, you can override many parameters at once for an entire group of users.
+在此部分，你可以覆盖“订阅（Subscription）→ 设置（Settings）”中定义的全局配置。
+通过这种方式，你可以一次性为整个用户组覆盖多个参数。
 
-Keep in mind, if any of the parameters is explicitly overridden (including an empty value) – it will be overridden. Only deletion of the override (trash icon) will cancel the override.
+请记住，如果某个参数被显式覆盖（包括空值），该值就会被应用。 只有删除覆盖（点击垃圾桶图标）才能取消覆盖。
 
-For example, in general settings my profile header is set as "Remnawave", but for 10 users I want to override it, for example to "Remnawave v.2.x", in this case I override this parameter in this section, and then assign this external squad to the needed 10 users.
+例如，假设在全局设置中，我的订阅标题是 “Remnawave”， 但我想为 10 个特定用户将其改为 “Remnawave v.2.x”， 这时我只需在此部分中修改该参数，然后将此外部分组分配给这 10 位用户即可。
 
-### Hosts
+### 主机（Hosts）
 
-Based on the logic from the previous point – in this section you can completely override some parameters that you might have noticed in the card of each **host** you created.
+延续上面的逻辑，在此部分中，你可以完全覆盖你在每个 **主机（Host）** 卡片中看到的某些参数。
 
-**Values overridden here will be applied to all hosts that the user receives in the subscription.**
+**此处设置的覆盖值将应用于用户在订阅中收到的所有主机。**
 
-For example, by overriding `vlessRouteId` we can assign a specific value and thus "_route_" an entire group of users (those who will be in this squad). Naturally, the other half of such routing settings is located in the server configuration – the Config Profile.
+例如，通过覆盖 `vlessRouteId` 参数，我们可以为特定用户组（即该外部分组中的用户）分配特定值，从而实现整组用户的 "_路由（route）_" 划分。 当然，这种路由设置的另一半逻辑在服务器端的配置文件（Config Profile）中定义。
