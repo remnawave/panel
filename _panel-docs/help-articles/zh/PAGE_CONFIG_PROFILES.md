@@ -1,55 +1,59 @@
-## Config Profiles
+## 配置文件（Config Profiles）
 
-A Config Profile, in the context of Remnawave, represents a complete server configuration for the [Xray](https://xtls.github.io/en/config/) core.
+在 Remnawave 的配套设置中，配置文件（Config Profile） 代表一份完整的服务器配置， 用于 [Xray](https://xtls.github.io/en/config/) 内核.
 
-In this configuration, you define _inbounds_ that your users will later connect to.
+在此配置中，你可以定义用户将来要连接的 _入站（inbounds）_ 。
 
-**The details of Xray configuration setup will not be described here, as this is a topic for independent study - use the official [Xray](https://xtls.github.io/en/config/) documentation to learn about all the capabilities of the core.**
+**此处不会详细介绍 Xray 配置的具体结构和语法，因为这是一个需要独立学习的主题。 - 如需了解核心的完整功能，请参阅官方 [Xray文档](https://xtls.github.io/en/config/) 。**
 
-When creating a new Config Profile, it is created by default with one _inbound_ of type **Shadowsocks**. After the Config Profile is created - you can modify this or add a new _inbound_.
+当你创建一个新的配置文件时，系统会默认生成一个类型为**Shadowsocks**的 _入站（inbounds）_。 创建完成后，你可以修改该入站，或添加新的 _入站（inbounds）_。
 
-_Tip: To add a new inbound, for example with the **VLESS** protocol - simply add another object inside the `inbounds:[]` array._
+_如果你想添加一个新的入站（例如使用 **VLESS** 协议），只需在 `inbounds:[]` 数组中添加一个新的对象即可。_
 
-Currently, Remnawave supports protocols such as: `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`). And also the following transports: `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`.
+目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`.
 
-It's important to note that Remnawave also supports protocols: `mixed(socks)`, `wireguard`, `http` - however, the panel will completely ignore them and user management for these protocols will be unavailable. These _inbounds_ will be passed to Xray in the exact form you specify them.
+需要注意的是，Remnawave 也支持以下协议： `mixed(socks)`, `wireguard`, `http` - 但面板不会对它们进行任何处理，这些协议的用户管理功能将不可用。 此类 _入站（inbounds）_ 将按原样传递给 Xray，不会被修改。
 
-For the main protocols (`VLESS`, `Trojan`, `Shadowsocks`), Remnawave will manage the list of users that will be inside the server configuration. No additional actions are required on your part.
-
----
-
-### Config Profiles List
-
-In the general list of Config Profiles, a brief summary is available for each created Config Profile. Under the Config Profile name, you can see the number of active _inbounds_ within it, as well as the number of active **nodes** on which this Config Profile is active. Both icons are clickable - clicking on them will open the corresponding sections.
-
-When clicking on _inbounds_ - a list of _inbounds_ will open, and for each inbound, it will show on how many internal squads this _inbound_ is activated.
-When clicking on _nodes_ - a list of _nodes_ where this specific Config Profile is active will open.
-
-In the additional actions menu (down arrow), options for quick Config Profile viewing, viewing Config Profile with snippets, as well as other service options are available.
+对于主要协议 (`VLESS`, `Trojan`, `Shadowsocks`), Remnawave 会自动管理服务器配置中的用户列表，无需额外手动操作。
 
 ---
 
-### Config Profile Editor
+### 配置文件列表（Config Profiles List）
 
-The Config Profile editor provides a full-featured JSON editor with syntax checking. Also, when hovering over certain objects, a tooltip with information from the Xray documentation will be available.
+在配置文件列表中，每个配置文件都会显示简要概览。 在配置文件名称下方，你可以看到其中活动的 _入站（inbounds）_ 数量， 以及当前使用该配置文件的 **节点（nodes）** 数量。 这两个图标均可点击，点击后会打开对应的详细页面。
 
-With any changes, the entire configuration is immediately validated by running a lightweight version of the core. Such validation helps prevent trivial errors and typos.
 
-In the additional menu (at the very bottom, button with three bars), additional options are available. Let's skip the basic things: copy all, select all, and so on - these options are self-explanatory.
+点击 _入站（inbounds）_ - 会显示该配置文件中的 _入站_ 列表，并显示每个 _入站_ 在多少个内部分组中被激活。
+点击 _节点（nodes）_ - 会显示当前使用此配置文件的所有 _节点_ 列表。
 
-The "**Download from Github**" option will open an additional menu where you can download configuration examples from users. **These examples are not ready-to-use configurations, but are merely examples - keep this in mind.**
-
-The "**Generate Keys**" option allows you to quickly and conveniently generate necessary key pairs right in the browser - for example, in the case of `Reality`, you will definitely need a `privateKey`, which can be generated in this menu. Other generation options are also available there, which will be useful for `Vless Encryption` - `ML-DSA65` and `ML-KEM768`.
+在“更多操作”菜单（向下箭头）中，你还可以快速查看配置文件、查看带有代码片段（snippets）的配置文件，以及其他服务相关选项。
 
 ---
 
-### Snippets
+### 配置文件编辑器（Config Profile Editor）
 
-When you have many Config Profiles - it can be quite difficult to quickly change small details that are present in all Config Profiles but differ in minor aspects.
+配置文件编辑器提供了一个功能完整的 JSON 编辑器，支持语法高亮和结构检查。当鼠标悬停在某些对象上时，还会显示来自 Xray 文档的提示信息。
 
-For example, you have several profiles - let's say 10 pieces. In each of the 10, the routing section is the same and you would like to quickly and conveniently replace the rules in all profiles at once. With the snippets functionality, you only need to change the "rule" or "rules" in one place, and then they will automatically be pulled into the profiles.
+每当进行更改时，系统会立即运行轻量级的核心实例来验证整个配置。这种实时验证可以有效防止低级错误或拼写问题。
 
-Currently, you can predefine array elements for objects such as `outbounds` and `rules`. After creating a snippet, it will be available in one of these objects.
+在底部的附加菜单（带三条横线的按钮）中，你可以找到更多选项。像“全选”、“复制全部”等基础功能就不赘述了。
+
+"**从 Github 加载**" 选项会打开一个菜单，允许你下载其他用户分享的配置示例。 **这些示例仅供参考，并非可直接使用的配置。**
+
+"**生成密钥**" 功能可以直接在浏览器中生成所需的密钥对 - 例如，在使用 `Reality` 时, 你需要生成一个 `privateKey`,可以在此处完成。 此外，还支持生成适用于 `Vless Encryption` 的 `ML-DSA65` 和 `ML-KEM768`.
+
+---
+
+### 代码片段（Snippets）
+
+当你拥有多个配置文件时，若需要修改一些在所有配置中都存在但略有不同的细节，手动逐一修改将非常麻烦。
+
+例如，你有 10 个配置文件，它们的路由规则基本一致，只是细节不同。
+此时可以使用 Snippets 功能——你只需在一个地方修改“规则（rule）”或“规则集（rules）”，
+系统就会自动将这些更改同步到所有配置文件中。
+
+目前，你可以为以下对象预定义数组元素： `outbounds` 和 `rules`。 创建片段后，它将可以在这些对象中被引用，
+例如：
 
 ```
 {
@@ -61,4 +65,4 @@ Currently, you can predefine array elements for objects such as `outbounds` and 
 }
 ```
 
-Additional information about them is available by clicking on the question mark in the snippets menu.
+关于片段的更多信息，可以点击片段菜单中的问号图标查看说明。
