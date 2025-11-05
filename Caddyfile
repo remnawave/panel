@@ -1,0 +1,40 @@
+# global options
+{
+	admin off
+	persist_config off
+	auto_https off
+	log {
+		format json
+	}
+	servers {
+		trusted_proxies static private_ranges 100.0.0.0/8
+	}
+}
+
+{$OLD_DOMAIN} {
+	redir https://{$NEW_DOMAIN}{uri} permanent
+}
+
+:{$PORT:3000} {
+	log {
+		format json
+	}
+
+	handle /health {
+		respond "OK" 200
+	}
+
+	root * /app/build
+
+	encode gzip
+
+	file_server
+
+	try_files {path} /index.html
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		X-XSS-Protection "1; mode=block"
+	}
+}
