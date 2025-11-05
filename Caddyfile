@@ -3,33 +3,29 @@
 	admin off
 	persist_config off
 	auto_https off
-	log {
-		format json
-	}
+	# log {
+	#	format json
+	# }
 	servers {
 		trusted_proxies static private_ranges 100.0.0.0/8
 	}
 }
 
-{$OLD_DOMAIN} {
-	redir https://{$NEW_DOMAIN}{uri} permanent
-}
-
-:{$PORT:3000} {
-	log {
-		format json
-	}
-
+:{$PORT:8080} {
 	handle /health {
 		respond "OK" 200
 	}
 
+	@notMainDomain {
+		not header Host docs.rw
+	}
+	handle @notMainDomain {
+		redir https://docs.rw{uri} permanent
+	}
+
 	root * /app/build
-
 	encode gzip
-
 	file_server
-
 	try_files {path} /index.html
 
 	header {
