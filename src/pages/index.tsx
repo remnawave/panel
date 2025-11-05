@@ -1,235 +1,472 @@
 import {
+    IconBox,
+    IconBrandGithub,
+    IconBrandTelegram,
+    IconCloudDataConnection,
+    IconDevices,
+    IconHeart,
+    IconRocket,
+    IconServer,
+    IconShieldCheck,
+    IconUsers
+} from '@tabler/icons-react'
+import '@mantine/core/styles.css'
+import {
+    Anchor,
+    Badge,
     Box,
-    BoxProps,
     Button,
-    ElementProps,
+    Container,
+    Divider,
+    Grid,
     Group,
     Image,
     MantineProvider,
     Stack,
     Text,
     ThemeIcon,
-    Title,
-    useMantineTheme
+    Title
 } from '@mantine/core'
-import { TbArrowRightDashed, TbHeartFilled } from 'react-icons/tb'
-import '@mantine/core/styles.css'
+import { TbArrowRightDashed, TbCloud, TbHeartFilled } from 'react-icons/tb'
 import { BiLogoTelegram } from 'react-icons/bi'
 import { SiNestjs } from 'react-icons/si'
+import { motion } from 'framer-motion'
 import Link from '@docusaurus/Link'
-import Layout from '@theme/Layout'
 import React, { JSX } from 'react'
+import Layout from '@theme/Layout'
 
+import { AnimatedBackground } from '../components/AnimatedBackground'
+import { FeatureCard } from '../components/FeatureCard'
 import { theme } from '../theme/mantine-theme/theme'
+import { StatCard } from '../components/StatCard'
 
-interface LogoProps
-    extends ElementProps<'svg', keyof BoxProps>,
-        Omit<BoxProps, 'children' | 'ref'> {
-    size?: number | string
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2
+        }
+    }
 }
 
-export function Logo({ size, style, ...props }: LogoProps) {
-    return (
-        <Box
-            component="svg"
-            fill="none"
-            style={{ width: size, height: size, ...style }}
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            {...props}
-        >
-            <path
-                clipRule="evenodd"
-                d="M8 1a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-1.5 0V1.75A.75.75 0 0 1 8 1Zm6 2a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-1.5 0v-8.5A.75.75 0 0 1 14 3ZM5 4a.75.75 0 0 1 .75.75v6.5a.75.75 0 0 1-1.5 0v-6.5A.75.75 0 0 1 5 4Zm6 1a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 11 5ZM2 6a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 2 6Z"
-                fill="currentColor"
-                fillRule="evenodd"
-            />
-        </Box>
-    )
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: 'spring' as const,
+            stiffness: 80,
+            damping: 15
+        }
+    }
 }
 
 export function HomePage() {
-    const theme = useMantineTheme()
-
     return (
-        <Box
-            style={{
-                background: 'linear-gradient(135deg, #0a0e14 0%, #121a24 50%, #0a0e14 100%)',
-                borderRadius: theme.radius.md,
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                position: 'relative',
-                overflow: 'hidden',
-                width: '100%',
-                padding: '50px'
-            }}
-        >
-            <Box
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background:
-                        'radial-gradient(circle at 20% 150%, rgba(0, 210, 255, 0.2) 0%, rgba(0, 0, 0, 0) 50%)',
-                    zIndex: 0
-                }}
-            />
-            <Box
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background:
-                        'radial-gradient(circle at 80% 20%, rgba(0, 140, 255, 0.15) 0%, rgba(0, 0, 0, 0) 50%)',
-                    zIndex: 0
-                }}
-            />
-
-            <Box
-                style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    width: '100%'
-                }}
+        <div className="landing-page-wrapper">
+            <AnimatedBackground />
+            <Container
+                maw={1400}
+                px={{ base: 'md', sm: 'lg', md: 'xl' }}
+                py={{ base: 'xl', sm: '3rem', md: '4rem' }}
+                style={{ position: 'relative', zIndex: 1 }}
             >
-                <Stack align="center" gap={4} justify="center" mb={0} w="100%">
-                    <ThemeIcon radius="xl" size={100} variant="outline">
-                        <Logo size={60} />
-                    </ThemeIcon>
-                </Stack>
+                <motion.div
+                    animate="visible"
+                    initial="hidden"
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 'var(--section-gap, 4rem)'
+                    }}
+                    variants={containerVariants}
+                >
+                    <motion.div variants={itemVariants}>
+                        <Stack align="center" gap="xl">
+                            <Box ta="center">
+                                <Title
+                                    c="white"
+                                    ff="Unbounded"
+                                    mb="md"
+                                    order={1}
+                                    style={{
+                                        fontSize: 'clamp(2rem, 8vw, 3.5rem)',
+                                        lineHeight: 1.2
+                                    }}
+                                    ta="center"
+                                >
+                                    <Text c="cyan" component="span" fw="inherit" fz="inherit">
+                                        Remna
+                                    </Text>
+                                    <Text c="white" component="span" fw="inherit" fz="inherit">
+                                        wave
+                                    </Text>
+                                </Title>
 
-                <Box mb={50} ta="center" w="100%">
-                    <Title order={1} pos="relative">
-                        <Text c="cyan" component="span" fw="inherit" fz="inherit" pos="relative">
-                            Remna
-                        </Text>
-                        <Text c="white" component="span" fw="inherit" fz="inherit" pos="relative">
-                            wave
-                        </Text>
-                    </Title>
+                                <Title
+                                    c="white"
+                                    ff="Unbounded"
+                                    mb="md"
+                                    order={2}
+                                    style={{
+                                        fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                                        lineHeight: 1.3
+                                    }}
+                                    ta="center"
+                                >
+                                    <Text
+                                        component="span"
+                                        fw="inherit"
+                                        fz="inherit"
+                                        style={{
+                                            background:
+                                                'linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text'
+                                        }}
+                                    >
+                                        Proxy and user management
+                                    </Text>{' '}
+                                    <Text component="span" fw="inherit" fz="inherit">
+                                        solution
+                                    </Text>
+                                </Title>
 
-                    <Title mb={10} order={1}>
-                        {' '}
-                        <Text
-                            component="span"
-                            gradient={{ from: 'blue', to: 'cyan' }}
-                            inherit
-                            variant="gradient"
-                        >
-                            Proxy and user management
-                        </Text>{' '}
-                        <Text component="span" inherit>
-                            solution
-                        </Text>
-                    </Title>
+                                <Text
+                                    c="dimmed"
+                                    ff="Unbounded"
+                                    maw={800}
+                                    mx="auto"
+                                    px={{ base: 'sm', sm: 'sm' }}
+                                    style={{
+                                        lineHeight: 1.7,
+                                        fontSize: 'clamp(0.95rem, 2.5vw, 1.25rem)'
+                                    }}
+                                    ta="center"
+                                >
+                                    Built on top of{' '}
+                                    <Text
+                                        c="cyan"
+                                        component="a"
+                                        fw={600}
+                                        fz="inherit"
+                                        href="https://github.com/XTLS/Xray-core"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        Xray Core
+                                    </Text>
+                                    , Remnawave provides rich functionality for user and proxy
+                                    management.
+                                    <br />
+                                    Easily add users, nodes, configure Xray and much more with a
+                                    feature-rich{' '}
+                                    <Text c="cyan" component="span" fw={600} fz="inherit">
+                                        REST API
+                                    </Text>{' '}
+                                    powered by{' '}
+                                    <Text
+                                        c="cyan"
+                                        component="a"
+                                        fw={600}
+                                        fz="inherit"
+                                        href="https://nestjs.com"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <SiNestjs size={20} style={{ verticalAlign: 'middle' }} />{' '}
+                                        NestJS
+                                    </Text>
+                                    .
+                                </Text>
+                            </Box>
+                        </Stack>
+                    </motion.div>
 
-                    <Text c="dimmed" maw={800} mt="xl" mx="auto" size="lg">
-                        Built on top of{' '}
-                        <Text
-                            c="cyan"
-                            component="a"
-                            href="https://github.com/XTLS/Xray-core"
-                            inherit
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            Xray Core,
-                        </Text>{' '}
-                        Remnawave provides a rich functionality for user and proxy management.
-                        <br />
-                        Easily add users, nodes, configure Xray and much more.
-                        <br />
-                        Enjoy feature rich and well typed Rest API powered by{' '}
-                        <Text
-                            c="cyan"
-                            component="a"
-                            href="https://nestjs.com"
-                            inherit
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <SiNestjs size={20} /> NestJS.
-                        </Text>
-                    </Text>
+                    <Stack justify="center">
+                        <motion.div variants={itemVariants}>
+                            <Group justify="center" wrap="wrap">
+                                <Button
+                                    component={Link}
+                                    href="/docs/overview/quick-start"
+                                    leftSection={<TbArrowRightDashed size={20} />}
+                                    radius="md"
+                                    size="md"
+                                    td="none"
+                                >
+                                    Get started
+                                </Button>
 
-                    <Group justify="center" mt={40}>
-                        <Button
-                            component={Link}
-                            href="/docs/overview/introduction"
-                            leftSection={<TbArrowRightDashed size={20} />}
-                            radius="md"
-                            size="md"
+                                <Button
+                                    component={Link}
+                                    href="https://try.tg"
+                                    leftSection={<TbCloud size={20} />}
+                                    radius="md"
+                                    size="md"
+                                    td="none"
+                                    variant="light"
+                                >
+                                    Try risk-free
+                                </Button>
+                            </Group>
+                        </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <Group justify="center" wrap="wrap">
+                                <Button
+                                    color="#0088cc"
+                                    component="a"
+                                    href="https://t.me/remnawave"
+                                    leftSection={<BiLogoTelegram color="white" size={20} />}
+                                    radius="md"
+                                    size="md"
+                                    td="none"
+                                    variant="filled"
+                                >
+                                    Join Community
+                                </Button>
+
+                                <Button
+                                    color="red"
+                                    component="a"
+                                    href="/docs/donate"
+                                    leftSection={<TbHeartFilled size={20} />}
+                                    radius="md"
+                                    size="md"
+                                    td="none"
+                                    variant="filled"
+                                >
+                                    Sponsor
+                                </Button>
+                            </Group>
+                        </motion.div>
+                    </Stack>
+
+                    <motion.div variants={itemVariants}>
+                        <Box
+                            px={{ base: 'xs', sm: 'md' }}
                             style={{
-                                textDecoration: 'none',
-                                '&:hover': {
-                                    textDecoration: 'none'
-                                }
+                                maxWidth: '1500px',
+                                margin: '0 auto'
                             }}
                         >
-                            Get started
-                        </Button>
+                            <Image
+                                alt="Remnawave Panel"
+                                radius="md"
+                                src="/pages/landing_page.webp"
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    position: 'relative',
+                                    zIndex: 0
+                                }}
+                            />
+                        </Box>
+                    </motion.div>
 
-                        <Button
-                            color={'#0088cc'}
-                            component="a"
-                            href="https://t.me/remnawave"
-                            leftSection={<BiLogoTelegram color={'white'} size={20} />}
-                            radius={'md'}
-                            size="md"
-                            style={{
-                                textDecoration: 'none',
-                                '&:hover': {
-                                    textDecoration: 'none'
-                                }
-                            }}
-                            variant="filled"
-                        >
-                            Join Community
-                        </Button>
+                    <motion.div variants={itemVariants}>
+                        <Grid gutter="xl" justify="center">
+                            <Grid.Col span={{ base: 12, sm: 6, lg: 3 }}>
+                                <StatCard
+                                    color="violet"
+                                    icon={<IconUsers size={32} />}
+                                    label="Active community members"
+                                    value="3K+"
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={{ base: 12, sm: 6, lg: 3 }}>
+                                <StatCard
+                                    color="cyan"
+                                    icon={<IconRocket size={32} />}
+                                    label="DockerHub pulls"
+                                    value="40K+"
+                                />
+                            </Grid.Col>
+                        </Grid>
+                    </motion.div>
 
-                        <Button
-                            color={'red'}
-                            component="a"
-                            href="/docs/donate"
-                            leftSection={<TbHeartFilled size={20} />}
-                            radius={'md'}
-                            size="md"
-                            style={{
-                                textDecoration: 'none',
-                                '&:hover': {
-                                    textDecoration: 'none'
-                                }
-                            }}
-                            variant="filled"
-                        >
-                            Sponsor
-                        </Button>
-                    </Group>
-                </Box>
+                    <motion.div variants={itemVariants}>
+                        <Stack gap="xl">
+                            <Box ta="center">
+                                <Badge
+                                    mb="md"
+                                    size="lg"
+                                    style={{
+                                        background: 'rgba(34, 211, 238, 0.1)',
+                                        border: '1px solid rgba(34, 211, 238, 0.3)',
+                                        color: '#22d3ee'
+                                    }}
+                                    variant="dot"
+                                >
+                                    KEY FEATURES
+                                </Badge>
+                                <Title
+                                    c="white"
+                                    order={2}
+                                    px={{ base: 'sm', sm: 'md' }}
+                                    style={{
+                                        fontSize: 'clamp(1.5rem, 5vw, 2.5rem)'
+                                    }}
+                                >
+                                    Everything You Need
+                                </Title>
+                            </Box>
 
-                <Box style={{ padding: '0 20px' }} w="100%">
-                    <Box
-                        style={{
-                            maxWidth: '1200px',
-                            margin: '0 auto'
-                        }}
-                    >
-                        <Image
-                            alt="Remna Wave"
-                            radius="md"
-                            src="/pages/landing_page.webp"
-                            style={{
-                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
-                                border: '1px solid rgba(255,255,255,0.1)'
-                            }}
-                        />
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
+                            <Grid gutter="lg">
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="cyan"
+                                        description="Connect as many nodes as you want, and manage them all in one place."
+                                        icon={<IconServer size={24} />}
+                                        title="Multiple nodes support"
+                                    />
+                                </Grid.Col>
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="violet"
+                                        description="Create and manage users with flexible settings."
+                                        icon={<IconUsers size={24} />}
+                                        title="User Management"
+                                    />
+                                </Grid.Col>
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="blue"
+                                        description="Full-featured REST API with comprehensive documentation for easy integration."
+                                        icon={<IconCloudDataConnection size={24} />}
+                                        title="REST API"
+                                    />
+                                </Grid.Col>
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="green"
+                                        description="Support for all major protocols: VLESS, Trojan, Shadowsocks."
+                                        icon={<IconBox size={24} />}
+                                        title="Protocols support"
+                                    />
+                                </Grid.Col>
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="cyan"
+                                        description="Remnawave providers for your users to connect to. Supports all major client applications."
+                                        icon={<IconDevices size={24} />}
+                                        title="Subscription Links"
+                                    />
+                                </Grid.Col>
+                                <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+                                    <FeatureCard
+                                        color="violet"
+                                        description="Auth with Passkeys, GitHub, and more. Connections to nodes are secured with mTLS."
+                                        icon={<IconShieldCheck size={24} />}
+                                        title="Security First"
+                                    />
+                                </Grid.Col>
+                            </Grid>
+                        </Stack>
+                    </motion.div>
+
+                    <Container maw={800}>
+                        <motion.div animate="visible" initial="hidden" variants={itemVariants}>
+                            <Stack gap="lg" pb={0} py="xl">
+                                <Divider opacity="0.5" />
+                                <Group gap="xl" justify="center" wrap="wrap">
+                                    <Anchor
+                                        href="https://github.com/remnawave"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            textDecoration: 'none'
+                                        }}
+                                        target="_blank"
+                                    >
+                                        <Group gap="xs">
+                                            <ThemeIcon
+                                                color="gray"
+                                                radius="md"
+                                                size="lg"
+                                                variant="light"
+                                            >
+                                                <IconBrandGithub size={18} />
+                                            </ThemeIcon>
+                                            <Text c="dimmed" fw={500} size="sm">
+                                                GitHub
+                                            </Text>
+                                        </Group>
+                                    </Anchor>
+
+                                    <Anchor
+                                        href="https://t.me/remnawave"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            textDecoration: 'none'
+                                        }}
+                                        target="_blank"
+                                    >
+                                        <Group gap="xs">
+                                            <ThemeIcon
+                                                color="blue"
+                                                radius="md"
+                                                size="lg"
+                                                variant="light"
+                                            >
+                                                <IconBrandTelegram size={18} />
+                                            </ThemeIcon>
+                                            <Text c="dimmed" fw={500} size="sm">
+                                                Telegram
+                                            </Text>
+                                        </Group>
+                                    </Anchor>
+                                </Group>
+
+                                <Divider />
+
+                                <Stack align="center" gap="xs" px="sm">
+                                    <Group
+                                        align="center"
+                                        gap={6}
+                                        justify="center"
+                                        style={{ flexWrap: 'wrap' }}
+                                    >
+                                        <Text c="dimmed" ff="Unbounded" size="sm" ta="center">
+                                            Created by{' '}
+                                            <Anchor
+                                                c="cyan"
+                                                fw={600}
+                                                href="https://github.com/kastov"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                                td="none"
+                                            >
+                                                kastov
+                                            </Anchor>{' '}
+                                            and{' '}
+                                            <Anchor
+                                                c="cyan"
+                                                fw={600}
+                                                href="https://t.me/remnawave"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                                td="none"
+                                            >
+                                                <IconHeart
+                                                    color="#ef4444"
+                                                    fill="#ef4444"
+                                                    size={20}
+                                                    style={{ verticalAlign: 'middle' }}
+                                                />{' '}
+                                                community
+                                            </Anchor>
+                                        </Text>
+                                    </Group>
+                                </Stack>
+                            </Stack>
+                        </motion.div>
+                    </Container>
+                </motion.div>
+            </Container>
+        </div>
     )
 }
 
@@ -239,7 +476,7 @@ export default function Home(): JSX.Element {
             <Layout
                 description="Remnawave – user and proxy management solution"
                 noFooter={true}
-                title="Home"
+                wrapperClassName="landing-page-layout"
             >
                 <HomePage />
             </Layout>

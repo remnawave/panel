@@ -16,21 +16,21 @@
 		respond "OK" 200
 	}
 
-	@notMainDomain {
-		not header Host docs.rw
-	}
 	handle @notMainDomain {
+		not header Host docs.rw
 		redir https://docs.rw{uri} permanent
 	}
 
-	root * /app/build
-	encode gzip
-	file_server
-	try_files {path} /index.html
+	handle {
+		root * /app/build
+		encode gzip
+		try_files {path} /index.html
+		file_server
 
-	header {
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "DENY"
-		X-XSS-Protection "1; mode=block"
+		header {
+			X-Content-Type-Options "nosniff"
+			X-Frame-Options "DENY"
+			X-XSS-Protection "1; mode=block"
+		}
 	}
 }
