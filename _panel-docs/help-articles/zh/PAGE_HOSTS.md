@@ -1,53 +1,56 @@
-## Hosts
+## 主机（Hosts）
 
-In brief, hosts are the client representation of your server configuration. If an **inbound** is required on the server for a successful connection, then on the client side the user needs a **host**.
+简单来说，主机（Host） 是服务器配置在客户端侧的表现形式。 如果服务器端需要一个 **入站（Inbound）** 才能建立连接，那么客户端侧的用户就需要一个 **主机（Host）**。
 
-A group of hosts (or you could say a _list_) represents a subscription. A subscription is a link, and after adding such a link to a client application, the user sees a list of hosts (servers, if you will). The user can then choose any of them.
+一组主机（或称为 _列表_）代表一个订阅。 订阅是一个链接，当用户将此链接添加到客户端后，就会看到一个主机列表（也可以理解为“服务器列表”）。用户随后可以从中选择任意一个主机进行连接。
 
-It's important to note that a **host** is primarily just a client interpretation of your server component. For example, if a user has received a subscription (the list of hosts is already in their hands) and you disable this host - the user will **still be able** to connect to the server that this host points to. But upon updating the subscription - they will no longer have this host.
+需要特别注意的是， **主机（Host）** 仅仅是你服务器配置的客户端解释形式。 例如，如果用户已经获取了订阅（也就是说，主机列表已经在他们手中），即使你在面板上禁用了该主机，用户 **仍然可以** 连接到该主机所指向的服务器。 但当用户更新订阅时，该主机将会从列表中消失。
 
-Since a host is directly bound to an inbound (which is located in the profile) - the host inherits most settings from it. However, in some cases it can be useful to override or supplement these settings - that's what the **advanced** settings section is for.
-
----
-
-When creating a new host or editing an existing one, you have access to two sections: **Basic** and **Advanced** (settings).
-
-### Basic
-
-#### Remark
-
-In this field, you define how this host will be displayed in the client application. Usually, the name of the country the user will be connecting to is written here.
-
-_Tip: To display a country flag in the client application - add an emoji at the very beginning of the remark._
-
-#### Inbound Selection (and profile)
-
-As mentioned above - a host is just a client representation of your server configuration, so selecting an inbound is a mandatory requirement for creating a host. Depending on the number of inbounds, nodes, and profiles, select the appropriate inbound in the selection menu.
-
-#### Address and Port
-
-The address is a domain or IP address. In most cases, you need to specify the address or domain of the server the user will be connecting to. The port usually corresponds to the **inbound** port, _in some cases it may differ._
-
-_You can also enter multiple domain names in the address field - for example: `node-1.com,node-2.com,node-3.com`. You might think that this could theoretically be used for some load balancing, but it's important to note - the user will receive only one of these addresses when requesting a subscription (which specific one they get is determined randomly and is not tied to any load balancing logic). Consequently - until the user updates the subscription in the client application (or unless auto-update triggers) - the user's address will not change._
-
-#### Tag and Nodes
-
-These parameters are not visible to the end user, they are more for the panel administrator (you) to make it easier to navigate through created hosts in the future if there are many of them.
-In particular, selecting a node in this field doesn't play a functional role - **this is only a visual binding for easier navigation in the future.**
+由于主机直接绑定到一个入站（该入站位于配置文件中） - 主机会继承大部分来自入站的设置。 不过在某些情况下，可能需要覆盖或补充这些设置，这正是 **高级设置（Advanced）** 部分的用途。
 
 ---
 
-### Advanced
+当你创建一个新主机或编辑现有主机时，将会看到两个设置区域: **基础（Basic）** and **高级（Advanced）** 设置。
 
-**In most cases, you don't need to edit anything from this section unless you clearly understand what purposes you're doing it for. Incorrect modification of some parameters may result in your connection not working. Approach editing each item with all seriousness and always double-check settings before applying changes.**
+### 基础设置（Basic）
 
-In this section, we won't go through every item - we'll focus on the main ones.
+#### 备注（Remark）
+
+此字段定义该主机在客户端中的显示名称。通常，这里会填写用户将要连接的国家或地区名称。
+
+_提示：若希望客户端中显示国旗图标，可在备注开头添加国旗 emoji。_
+
+#### 入站与配置文件选择（Inbound Selection & Profile）
+
+如前所述，主机只是你服务器配置的客户端表示形式，因此创建主机时必须选择一个入站。根据你已有的入站、节点和配置文件数量，从菜单中选择合适的入站。
+
+#### 地址与端口（Address and Port）
+
+地址可以是域名或 IP 地址。 在大多数情况下，应填写用户将要连接的服务器域名或地址。端口通常与对应 **入站** 的端口相同，但在 _某些情况下也可能不同_ 。
+
+_你还可以在地址栏中输入多个域名，例如: `node-1.com,node-2.com,node-3.com`. 虽然这看起来可以用于负载均衡，但实际上用户在请求订阅时只会随机获取其中一个地址，且并非真正的负载均衡。
+在用户刷新订阅（或触发自动更新）之前，他们的连接地址不会改变。_
+
+#### 标签与节点（Tag and Nodes）
+
+这些参数对最终用户不可见，主要是为了方便你（面板管理员）在管理大量主机时更容易区分。
+特别是“节点”字段的选择不影响功能 - **仅用于视觉标识和导航方便**。
+
+---
+
+### 高级设置（Advanced）
+
+**在大多数情况下，除非你明确知道自己在做什么，否则不建议修改此部分内容。
+某些参数错误地修改后可能导致连接无法正常工作。
+请谨慎操作，并在应用更改前反复确认设置。**
+
+以下只介绍几个主要项目：
 
 #### SNI (ServerNames)
 
-In some cases, it may be necessary to override the `serverNames` object settings (which are defined within the inbound in the profile) for a specific host.
+在某些场景下，你可能需要为特定主机覆盖入站（配置文件中的） `serverNames` 对象。
 
-Keep in mind, `serverNames` in simple terms is the _password_ by which, for example, **Reality** determines the **validity** of the connection. If you specify an **SNI** in this field, for example `example.com`, and within the inbound `serverNames` looks like this:
+请记住， `serverNames` 本质上可以理解为 **Reality** 协议中的“_连接验证密码_”, 例如，如果你在此字段中手动指定了 `example.com`, 而入站中的 `serverNames` 定义如下：
 
 ```json
 "serverNames": [
@@ -56,12 +59,12 @@ Keep in mind, `serverNames` in simple terms is the _password_ by which, for exam
     ]
 ```
 
-Such a connection will not work, as `example.com` is not in the list of allowed `SNI`.
+此连接将无法工作，因为 `example.com` 不在允许的 `SNI`中。
 
-#### Override SNI from Address
+#### 从地址覆盖 SNI（Override SNI from Address）
 
-By default, Remnawave takes the first object from the `serverNames` array (of the inbound) to add SNI to the client host. If you enable this parameter - Remnawave will take the address (which you specified in the **Basic** section) and pass it to the client.
+默认情况下，Remnawave 会取入站中 `serverNames` 数组的第一个值，作为客户端的 SNI。 若启用此选项，系统将使用你在“**基础设置**”中指定的地址作为 SNI 传递给客户端。
 
-Among other items in this section, the `vlessRouteId` field is also worth noting, which is a small abstraction layer over Xray Core and provides you with a simple way to use the `vlessRoute` functionality that Xray provides. <a href="https://xtls.github.io/en/config/routing.html#ruleobject">Learn more about routing rules.</a>
+除此之外，本节中还值得注意的是 `vlessRouteId` 字段。 该字段是对 Xray Core 的一个小型抽象层，允许你更方便地使用 Xray 的 `vlessRoute` 功能。 <a href="https://xtls.github.io/en/config/routing.html#ruleobject">了解更多关于路由规则.</a>
 
 ---
