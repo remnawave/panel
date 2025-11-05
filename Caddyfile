@@ -16,16 +16,20 @@
 		respond "OK" 200
 	}
 
-	handle @notMainDomain {
+	@notMainDomain {
 		not header Host docs.rw
-		redir https://docs.rw{uri} permanent
+	}
+	redir @notMainDomain https://docs.rw{uri} permanent
+
+	@mainDomain {
+		header Host docs.rw
 	}
 
-	handle {
+	handle @mainDomain {
 		root * /app/build
 		encode gzip
-		try_files {path} /index.html
 		file_server
+		try_files {path} /index.html
 
 		header {
 			X-Content-Type-Options "nosniff"
