@@ -30,7 +30,7 @@
 		redir /blog/learn/quick-start /docs/learn/quick-start permanent
 		redir /docs/install/reverse-proxies/ /docs/install/reverse-proxies/ permanent
 		redir /apps /docs/clients permanent
-		redir /client /docs/clients permanent
+		redir /clients /docs/clients permanent
 		redir /donate /docs/donate permanent
 
 		handle / {
