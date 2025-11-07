@@ -29,22 +29,47 @@
 		redir /blog/learn /docs/learn/quick-start permanent
 		redir /blog/learn/quick-start /docs/learn/quick-start permanent
 		redir /docs/install/reverse-proxies/ /docs/install/reverse-proxies/ permanent
-		redir /docs/ /docs/overview/introduction permanent
 		redir /apps /docs/clients permanent
 		redir /client /docs/clients permanent
 		redir /donate /docs/donate permanent
-		redir /blog/learn /docs/learn/quick-start permanent
-		redir /blog/learn/quick-start /docs/learn/quick-start permanent
 
-		root * /app/build
-		encode gzip
-		file_server
-		try_files {path} /index.html
+		handle / {
+			root * /app/landing
+			encode gzip
+			file_server
+			try_files {path} /index.html
 
-		header {
-			X-Content-Type-Options "nosniff"
-			X-Frame-Options "DENY"
-			X-XSS-Protection "1; mode=block"
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
+		}
+
+		handle_path /landing-assets/* {
+			root * /app/landing/landing-assets
+			encode gzip
+			file_server
+			try_files {path} /index.html
+
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
+		}
+
+		handle {
+			root * /app/docs
+			encode gzip
+			file_server
+			try_files {path} /index.html
+
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
 		}
 	}
 }

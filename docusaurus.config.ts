@@ -176,7 +176,8 @@ const config: Config = {
             title: 'Remnawave',
             logo: {
                 alt: 'Remnawave Logo',
-                src: 'img/logo.svg'
+                src: 'img/logo.svg',
+                href: 'https://docs.rw'
             },
             items: [
                 {

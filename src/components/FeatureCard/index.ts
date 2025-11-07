@@ -1,2 +1,0 @@
-export { FeatureCard } from './FeatureCard'
-

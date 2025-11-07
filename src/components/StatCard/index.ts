@@ -1,2 +1,0 @@
-export { StatCard } from './StatCard'
-
