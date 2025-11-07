@@ -1,0 +1,50 @@
+.logoLink {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.logoLink:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logoImage {
+    color: #3cc9db;
+    height: 32px;
+    width: 32px;
+}
+
+.logoText {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.logoTextHighlight {
+    color: #3cc9db;
+}
+
+.logoTextNormal {
+    color: white;
+}
+
+@media (max-width: 640px) {
+    .logoLink {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .logoText {
+        font-size: 1.125rem;
+    }
+}

@@ -283,11 +283,9 @@
 }
 
 .featured .cardContent {
-    background: linear-gradient(
-        135deg,
-        var(--ifm-card-background-color) 0%,
-        rgba(var(--ifm-color-primary-rgb), 0.03) 100%
-    );
+    background: rgba(28, 33, 40, 0.9);
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    border-radius: 0.75rem;
 }
 
 .cardHeader {
@@ -338,7 +336,7 @@
     justify-content: center;
     gap: 0.3rem;
     padding: 0.35rem 0.65rem;
-    background: var(--ifm-color-primary);
+    background: #24292e;
     color: white;
     border-radius: 6px;
     font-size: 0.7rem;
