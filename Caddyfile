@@ -26,6 +26,16 @@
 	}
 
 	handle @mainDomain {
+		redir /blog/learn /docs/learn/quick-start permanent
+		redir /blog/learn/quick-start /docs/learn/quick-start permanent
+		redir /docs/install/reverse-proxies/ /docs/install/reverse-proxies/ permanent
+		redir /docs/ /docs/overview/introduction permanent
+		redir /apps /docs/clients permanent
+		redir /client /docs/clients permanent
+		redir /donate /docs/donate permanent
+		redir /blog/learn /docs/learn/quick-start permanent
+		redir /blog/learn/quick-start /docs/learn/quick-start permanent
+
 		root * /app/build
 		encode gzip
 		file_server
