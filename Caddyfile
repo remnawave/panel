@@ -19,7 +19,9 @@
 	@notMainDomain {
 		not header Host docs.rw
 	}
-	redir @notMainDomain https://docs.rw{uri} permanent
+	handle @notMainDomain {
+		redir https://docs.rw{uri} permanent
+	}
 
 	@mainDomain {
 		header Host docs.rw
