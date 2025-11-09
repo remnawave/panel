@@ -2,7 +2,7 @@
 
 ### Creating an OIDC Client
 
-Log in to the PocketID admin panel and navigate to: `Settings` → `OIDC Clients` → `Add OIDC Client`
+Log in to the PocketID admin panel and navigate to the `Settings` → `OIDC Clients` → `Add OIDC Client` section.
 
 ```
 # Replace YOUR_PANEL_DOMAIN with your Remnawave panel address
