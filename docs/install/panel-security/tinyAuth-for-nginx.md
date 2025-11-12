@@ -61,7 +61,7 @@ Every configuration option that has a `FILE` equivalent (e.g. `USERS` and `
 
 `USERS_FILE=` A file containing a list of tinyauth users.
 
-All environment variables you can see on official documentation https://tinyauth.app/docs/reference/configuration.html
+All environment variables you can see on official documentation https://tinyauth.app/docs/reference/configuration
 
 :::
 
