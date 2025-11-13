@@ -516,3 +516,6 @@ Remnawave автоматически определяет с какого име
 Популярные клиентские приложения, которые используют этот формат:
 
 - [Sing-box](https://sing-box.sagernet.org/clients/)
+- [Throne](https://github.com/throneproj/Throne)
+- [Nekobox](https://github.com/MatsuriDayo/NekoBoxForAndroid)
+- [Karing](https://karing.app/)
