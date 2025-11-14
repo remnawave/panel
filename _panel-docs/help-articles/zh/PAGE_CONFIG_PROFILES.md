@@ -10,7 +10,7 @@
 
 _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只需在 `inbounds:[]` 数组中添加一个新的对象即可。_
 
-目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`.
+目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`.
 
 需要注意的是，Remnawave 也支持以下协议： `mixed(socks)`, `wireguard`, `http` - 但面板不会对它们进行任何处理，这些协议的用户管理功能将不可用。 此类 _入站（inbounds）_ 将按原样传递给 Xray，不会被修改。
 
