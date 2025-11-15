@@ -1,20 +1,20 @@
-## OAuth2: Yandex
+## OAuth2：Yandex
 
-The Yandex authentication method is not recommended for use.
+不推荐使用 Yandex 的身份验证方式。
 
-### Creating an OAuth Application
+### 创建 OAuth 应用
 
-You need to create an OAuth application in Yandex.
+你需要在 Yandex 中创建一个 OAuth 应用。
 
-Follow the link to create an application: https://oauth.yandex.com/client/new
+点击此链接创建应用： [https://oauth.yandex.com/client/new](https://oauth.yandex.com/client/new)
 
-On the second step of application creation, select the "Web application" option and enter the `Callback URL`
+在创建应用的第二步中，选择 “Web application”（网页应用）选项，并填写 `Callback URL`
 
 ```
-# Replace YOUR_PANEL_DOMAIN with your Remnawave panel address
+# 将 YOUR_PANEL_DOMAIN 替换为你的 Remnawave 面板地址
 https://YOUR_PANEL_DOMAIN/oauth2/callback/yandex
 ```
 
-Don't forget to replace `YOUR_PANEL_DOMAIN` with the correct panel address.
+别忘了将 `YOUR_PANEL_DOMAIN` 替换为正确的面板域名。
 
-On the third step of creation – make sure to check the box next to `Access to email address`, no other permissions are required.
+在创建的第三步中 —— 请确保勾选  “Access to email address”（访问邮箱地址），不需要其他权限。
