@@ -5,7 +5,9 @@
 First, you need to create an OAuth application.
 Follow the link to create an application: [https://github.com/settings/applications/new](https://github.com/settings/applications/new)
 
-```bash title="Authorization callback URL"
+In the `Authorization callback URL` field, enter the address of your panel.
+
+```bash
 # Replace YOUR_PANEL_DOMAIN with your panel address
 https://YOUR_PANEL_DOMAIN/oauth2/callback/github
 ```
