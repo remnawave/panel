@@ -79,8 +79,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+            - NODE_PORT=2222
+            - SECRET_KEY="" 
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
@@ -138,8 +139,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+            - NODE_PORT=2222
+            - SECRET_KEY="" # Paste your SECRET_KEY here
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
