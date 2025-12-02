@@ -25,7 +25,8 @@ tinyauth:
       - APP_URL=https://tinyauth.example.com
       - USERS=your-username-password-hash
       - SECRET=some-random-32-chars-string
-
+    volumes:
+      - ./data:/data
   # To get USERS and SECRET read below
 
 ```
