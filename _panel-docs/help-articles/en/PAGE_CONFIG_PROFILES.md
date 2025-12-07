@@ -62,3 +62,24 @@ Currently, you can predefine array elements for objects such as `outbounds` and 
 ```
 
 Additional information about them is available by clicking on the question mark in the snippets menu.
+
+### Flow Control (VLESS)
+
+_This feature is available only in version 2.3.0 and above._
+
+By default, Remnawave automatically adds the `flow` parameter for the following configurations: VLESS+TLS, REALITY+RAW, or TCP.
+
+If you wish to override this behavior, add the `flow` field to the `settings` object.
+
+```json
+"settings": {
+  "flow": "",
+  "clients": [],
+  "decryption": "none"
+},
+```
+
+Available values for `flow`:
+
+- `xtls-rprx-vision`
+- `""`
