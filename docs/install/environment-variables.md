@@ -77,6 +77,7 @@ API_INSTANCES=1
 | `REDIS_PORT`     | The port of the Redis server     | `6379`            | Yes      |
 | `REDIS_DB`       | The database of the Redis server | `0`               | No       |
 | `REDIS_PASSWORD` | The password of the Redis server |                   | No       |
+| `REDIS_SOCKET`   | The socket of the Redis server   |                   | No       |
 
 <details>
 <summary>Example</summary>
@@ -368,25 +369,6 @@ NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED=false
 # Only in ASC order (example: [6, 12, 24]), must be valid array of integer(min: 1, max: 168) numbers. No more than 3 values.
 # Each value represents HOURS passed after user creation (user.createdAt)
 NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
-```
-
-</details>
-
-## HWID
-
-| Variable                     | Description                                                                              | Default |
-| ---------------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| `HWID_DEVICE_LIMIT_ENABLED`  | Enable/Disable Global HWID device limit                                                  | `false` |
-| `HWID_FALLBACK_DEVICE_LIMIT` | The fallback number of devices allowed per user                                          |         |
-| `HWID_MAX_DEVICES_ANNOUNCE`  | Annonunce message when max devices are reached or HWID is not sent by client application |         |
-
-<details>
-<summary>Example</summary>
-
-```bash title=".env file"
-HWID_DEVICE_LIMIT_ENABLED=true
-HWID_FALLBACK_DEVICE_LIMIT=10
-HWID_MAX_DEVICES_ANNOUNCE="Max devices reached"
 ```
 
 </details>
