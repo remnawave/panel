@@ -79,6 +79,11 @@ REMNAWAVE_PANEL_URL=https://panel.example.com
 META_TITLE="Subscription page"
 META_DESCRIPTION="Subscription page description"
 
+# If you want to display raw keys in the subscription page, set this to true.
+# Please note, this setting will not have any effect if you have HWID enabled.
+SUBSCRIPTION_UI_DISPLAY_RAW_KEYS=false
+
+
 
 # Serve at custom root path, for example, this value can be: CUSTOM_SUB_PREFIX=sub
 # Do not place / at the start/end
