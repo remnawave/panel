@@ -441,6 +441,9 @@ export const CLIENTS: Client[] = [
         platforms: ['ios', 'macos'],
         description: 'Popular proxy client ($3)',
         logo: '/clients/logo/shadowrocker-dark.svg',
+        badges: {
+            hwid: true
+        },
         downloadLinks: {
             ios: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
             macos: 'https://apps.apple.com/us/app/shadowrocket/id932747118'
