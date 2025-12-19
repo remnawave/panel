@@ -57,11 +57,14 @@ Now create .env file:
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano .env
 ```
 
+Create API token in Remnawave dashboard. Remnawave Settings → API Tokens.
+
 Paste the following content into the .env file:
 
 ```bash title=".env file"
 APP_PORT=3010
 REMNAWAVE_PANEL_URL=http://remnawave:3000
+REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 META_TITLE="Subscription page"
 META_DESCRIPTION="Subscription page description"
 ```
@@ -73,7 +76,8 @@ META_DESCRIPTION="Subscription page description"
 APP_PORT=3010
 
 ### Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com
-REMNAWAVE_PANEL_URL=https://panel.example.com
+REMNAWAVE_PANEL_URL=http://remnawave:3000
+REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 
 
 META_TITLE="Subscription page"
@@ -94,7 +98,6 @@ CUSTOM_SUB_PREFIX=
 # Support Marzban links
 MARZBAN_LEGACY_LINK_ENABLED=false
 MARZBAN_LEGACY_SECRET_KEY=
-REMNAWAVE_API_TOKEN=
 
 
 # If you use "Caddy with security" addon, you can place here X-Api-Key, which will be applied to requests to Remnawave Panel.
