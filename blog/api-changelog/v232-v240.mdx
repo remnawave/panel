@@ -1,0 +1,143 @@
+---
+title: API Changelog 2.3.2 vs. 2.4.0
+authors: remnawave
+tags: [api-changelog]
+date: 2025-12-19
+hide_table_of_contents: true
+---
+
+# API Changelog v2.3.2 vs. v2.4.0
+
+### New Endpoints: 14
+
+- `GET /api/bandwidth-stats/nodes`
+- `GET /api/bandwidth-stats/nodes/realtime`
+- `GET /api/bandwidth-stats/nodes/{uuid}/users`
+- `GET /api/bandwidth-stats/nodes/{uuid}/users/legacy`
+- `GET /api/bandwidth-stats/users/{uuid}`
+- `GET /api/bandwidth-stats/users/{uuid}/legacy`
+- `GET /api/subscription-page-configs`
+- `PATCH /api/subscription-page-configs`
+- `POST /api/subscription-page-configs`
+- `POST /api/subscription-page-configs/actions/clone`
+- `POST /api/subscription-page-configs/actions/reorder`
+- `DELETE /api/subscription-page-configs/{uuid}`
+- `GET /api/subscription-page-configs/{uuid}`
+- `GET /api/subscriptions/subpage-config/{shortUuid}`
+
+### Deleted Endpoints: 4
+
+- `GET /api/nodes/usage/range`
+- `GET /api/nodes/usage/realtime`
+- `GET /api/nodes/usage/{uuid}/users/range`  
+  → replaced with `GET /api/bandwidth-stats/nodes/{uuid}/users/legacy`
+- `GET /api/users/stats/usage/{uuid}/range`  
+  → replaced with `GET /api/bandwidth-stats/users/{uuid}/legacy`
+
+### Modified Endpoints: 7
+
+---
+
+GET /api/external-squads
+
+- Responses changed
+    - Modified response: 200
+        - Content changed
+            - Modified media type: application/json
+                - Schema changed
+                    - Properties changed
+                        - Modified property: response
+                            - Properties changed
+                                - Modified property: externalSquads
+                                    - Items changed
+                                        - Required changed
+                                            - New required property: subpageConfigUuid
+                                        - Properties changed
+                                            - New property: subpageConfigUuid
+
+PATCH /api/external-squads
+
+- Request body changed
+    - Content changed
+        - Modified media type: application/json
+            - Schema changed
+                - Properties changed
+                    - New property: subpageConfigUuid
+- Responses changed
+    - Modified response: 200
+        - Content changed
+            - Modified media type: application/json
+                - Schema changed
+                    - Properties changed
+                        - Modified property: response
+                            - Required changed
+                                - New required property: subpageConfigUuid
+                            - Properties changed
+                                - New property: subpageConfigUuid
+
+POST /api/external-squads
+
+- Responses changed
+    - Modified response: 201
+        - Content changed
+            - Modified media type: application/json
+                - Schema changed
+                    - Properties changed
+                        - Modified property: response
+                            - Required changed
+                                - New required property: subpageConfigUuid
+                            - Properties changed
+                                - New property: subpageConfigUuid
+
+POST /api/external-squads/actions/reorder
+
+- Responses changed
+    - Modified response: 200
+        - Content changed
+            - Modified media type: application/json
+                - Schema changed
+                    - Properties changed
+                        - Modified property: response
+                            - Properties changed
+                                - Modified property: externalSquads
+                                    - Items changed
+                                        - Required changed
+                                            - New required property: subpageConfigUuid
+                                        - Properties changed
+                                            - New property: subpageConfigUuid
+
+GET /api/external-squads/\{uuid\}
+
+- Responses changed
+    - Modified response: 200
+        - Content changed
+            - Modified media type: application/json
+                - Schema changed
+                    - Properties changed
+                        - Modified property: response
+                            - Required changed
+                                - New required property: subpageConfigUuid
+                            - Properties changed
+                                - New property: subpageConfigUuid
+
+PATCH /api/nodes
+
+- Request body changed
+    - Content changed
+        - Modified media type: application/json
+            - Schema changed
+                - Properties changed
+                    - Modified property: consumptionMultiplier
+                        - Min changed from 0.1 to 0
+                        - Max changed from null to 100
+
+POST /api/nodes
+
+- Request body changed
+    - Content changed
+        - Modified media type: application/json
+            - Schema changed
+                - Properties changed
+                    - Modified property: consumptionMultiplier
+                        - Min changed from 0.1 to 0
+                        - Max changed from null to 100
