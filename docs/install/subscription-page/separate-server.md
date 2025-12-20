@@ -86,8 +86,6 @@ APP_PORT=3010
 REMNAWAVE_PANEL_URL=https://remnawave.panel.com
 // highlight-next-line-red
 REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
-META_TITLE="Subscription page"
-META_DESCRIPTION="Subscription page description"
 ```
 
 Replace `remnawave.panel.com` with your panel domain name.
@@ -102,15 +100,9 @@ APP_PORT=3010
 REMNAWAVE_PANEL_URL=https://panel.example.com
 REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 
-META_TITLE="Subscription page"
-META_DESCRIPTION="Subscription page description"
-
-
 # Serve at custom root path, for example, this value can be: CUSTOM_SUB_PREFIX=sub
 # Do not place / at the start/end
 CUSTOM_SUB_PREFIX=
-
-
 
 # Support Marzban links
 MARZBAN_LEGACY_LINK_ENABLED=false
@@ -238,7 +230,7 @@ The subscription page will be available at `https://subdomain.panel.com/<shortUu
 
 ## Configuring subscription page (optional) {#customization}
 
-You can customize the subscription page by creating an `app-config.json` file. This allows you to:
+You can customize the subscription page in the Subpage Builder in Remnawave Dashboard. This allows you to:
 
 - Add support for different VPN apps
 - Customize text and instructions in multiple languages

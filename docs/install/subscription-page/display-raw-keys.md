@@ -10,16 +10,7 @@ title: Display Raw Keys
 This setting will not have any effect if you have HWID enabled.
 :::
 
-If you want to display raw keys in the subscription page, you can set the `SUBSCRIPTION_UI_DISPLAY_RAW_KEYS` variable to `true` in the `.env` file.
-
-```bash title=".env file"
-cd /opt/remnawave/subscription && nano .env
-```
-
-```bash title=".env file content"
-
-SUBSCRIPTION_UI_DISPLAY_RAW_KEYS=true
-```
+If you want to display raw keys in the subscription page, you can turn on the "Show Connection Keys" toggle in the Subpage Builder in Remnawave Dashboard.
 
 Restart the subscription page container to apply the changes.
 
@@ -29,15 +20,7 @@ cd /opt/remnawave/subscription && docker compose down && docker compose up -d &&
 
 ### Disable Display Raw Keys {#disable-display-raw-keys}
 
-If you want to disable displaying raw keys in the subscription page, you can set the `SUBSCRIPTION_UI_DISPLAY_RAW_KEYS` variable to `false` in the `.env` file.
-
-```bash title=".env file"
-cd /opt/remnawave/subscription && nano .env
-```
-
-```bash
-SUBSCRIPTION_UI_DISPLAY_RAW_KEYS=false
-```
+If you want to disable displaying raw keys in the subscription page, you can turn off the "Show Connection Keys" toggle in the Subpage Builder in Remnawave Dashboard.
 
 ### Restart the subscription page container {#restart-subscription-page-container}
 
