@@ -19,3 +19,9 @@ docker image prune
 ```bash title="Update and restart"
 cd /opt/remnanode && docker compose pull && docker compose down && docker compose up -d && docker compose logs -f
 ```
+
+## Remnawave Subscription Page
+
+```bash title="Update and restart"
+cd /opt/remnawave/subscription && docker compose pull && docker compose down && docker compose up -d && docker compose logs -f
+```
