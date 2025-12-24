@@ -179,7 +179,6 @@ First we need to modify the `outbounds` array.
         "servers": [
             {
                 "address": "DE NODE ADDRESS",
-                "email": "bridge_user",
                 "password": "PASSWORD FROM PREVIOUS STEP",
                 "port": 9999,
                 "level": 0,
@@ -194,7 +193,6 @@ First we need to modify the `outbounds` array.
 | ---------- | ------------------------------------------------------------------------------------------------ |
 | `address`  | The IP address or domain name of your `DE` Node server.                                          |
 | `port`     | The Inbound port, in our case the port of `BRIDGE_DE_IN`.                                        |
-| `email`    | The username of the service user you created. In our case, `bridge_user`.                        |
 | `password` | The password for the service user. Depends on the protocol you are using; see the previous step. |
 | `method`   | Encryption method. For Shadowsocks in Remnawave, always use `chacha20-ietf-poly1305`.            |
 
@@ -275,7 +273,6 @@ The complete public Config Profile could look like this:
                 "servers": [
                     {
                         "address": "DE NODE ADDRESS",
-                        "email": "bridge_user",
                         "password": "PASSWORD FROM PREVIOUS STEP",
                         "port": 9999,
                         "level": 0,
