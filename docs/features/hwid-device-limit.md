@@ -18,31 +18,20 @@ This feature works only with a few client applications (which currently support 
 
 HWID Device Limit is a feature that allows you to restrict the number of devices that can use a subscription.
 
-If the `HWID_DEVICE_LIMIT_ENABLED` variable is set to `true`,
+If the HWID Device Limit is enabled,
 Remnawave will use HWID and other headers to limit the number of devices that can use a subscription.
 
 Remnawave will strictly enforce the limit on the number of devices that can add the subscription.
 
 :::danger
-If `HWID_DEVICE_LIMIT_ENABLED` is set to `true` and you do not disable the HWID limit for a user in the panel, it will be **impossible** for them to get a subscription if their client application does not send a HWID header.
+If HWID Device Limit is enabled and you do not disable the HWID limit for a user in the panel, it will be **impossible** for them to get a subscription if their client application does not send a HWID header.
 
 Remnawave will return a `404` error if no HWID header is sent.
 :::
 
-### .env configuration
+### Configuration
 
-```bash title=".env configuration"
-### HWID DEVICE DETECTION AND LIMITATION ###
-HWID_DEVICE_LIMIT_ENABLED=true
-HWID_FALLBACK_DEVICE_LIMIT=5
-HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
-```
-
-`HWID_DEVICE_LIMIT_ENABLED` - enables device limit restriction.
-
-`HWID_FALLBACK_DEVICE_LIMIT` - the default device limit that will be used if a user does not have their own limit set.
-
-`HWID_MAX_DEVICES_ANNOUNCE` - the message that will be displayed to the user if they exceed the device limit. (Header: `announce`)
+You can configure HWID Device Limit in Subscription → Settings → HWID Device Limit. Also, there is possible to override settings for each External Squad.
 
 ### User limits
 
@@ -62,16 +51,6 @@ In the user card, you can see the list of devices that user has added the subscr
   <img src="/features/hwid-device-limit/hwid-user-devices-list.webp" alt="HWID Device Limit Settings" width="800" />
 </div>
 
-### Example configuration
-
-```bash title="Example configuration"
-HWID_DEVICE_LIMIT_ENABLED=true
-HWID_FALLBACK_DEVICE_LIMIT=1
-HWID_MAX_DEVICES_ANNOUNCE="You have reached the maximum number of allowed devices for your subscription."
-```
-
-In this case, the user will be able to use only one device - only in applications that support sending the `x-hwid` header.
-
 ### Supported applications
 
 :::info
@@ -81,10 +60,11 @@ Not all client applications send a HWID header. Here is the list of applications
 - [Happ](https://happ.su)
 - [v2RayTun](https://docs.v2raytun.com/overview/supported-headers)
 - Forks by Remnawave community:
-  - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
-  - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
-  - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
+    - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
+    - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
+    - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
 - [Throne](https://github.com/throneproj/Throne/) - HWID [disabled by default](https://github.com/throneproj/Throne/pull/789)
+- [Shadowrocket](https://apps.apple.com/ru/app/shadowrocket/id932747118?l=en-GB) - HWID disabled by default
 
 ## For app developers
 

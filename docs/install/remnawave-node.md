@@ -53,6 +53,10 @@ docker compose up -d && docker compose logs -f -t
 
 In the Node creation card, click on `Next`, select desired `Config Profile` and after that click on `Create` button.
 
+:::danger Important note
+Please remember to close NODE_PORT in the node firewall only for the IP panel.
+:::
+
 ## Advanced usage
 
 ### Loading modified geosite and geoip files
@@ -61,7 +65,7 @@ In the Node creation card, click on `Next`, select desired `Config Profile` and 
 
 1. This example uses placeholder names for the `*-zapret.dat` files and the `:zapret` categories. Actual file names and categories will be different.
 2. Routing configured on the server (node) controls server-side traffic and will not affect client DIRECT connections. To manage client traffic routing, configure routing on the client side.
-   :::
+:::
 
 You can add additional geosite and geoip files by mounting them into the `/usr/local/share/xray/` directory inside the container.
 
@@ -79,8 +83,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+          - NODE_PORT=2222
+          - SECRET_KEY="supersecretkey"
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
@@ -138,8 +143,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+          - NODE_PORT=2222
+          - SECRET_KEY="supersecretkey"
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green

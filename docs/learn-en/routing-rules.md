@@ -59,7 +59,7 @@ Here's how the rule could look:
 }  
 ```
 
-## `rules`
+## `rules` {#rules}
 
 Each rule is an object with the following fields:
 
@@ -113,22 +113,34 @@ Each rule is an object with the following fields:
   Additional modifications to apply to the response. Can be used to give a custom Template or headers.
     
     - `subscriptionTemplate` (string) - optional  
-      Define a specific Template to be given if the rule is matched.
+      Define a specific Template to be given if the rule is matched.  
+    - `headers` (array) - optional  
+      Respond with a custom header.  
+      - `key` (string) - optional  
+        Header name.  
+      - `value` (string) - optional  
+        Header value.  
   ```json
   "responseType": "SINGBOX",
   "responseModifications": {
-      "subscriptionTemplate": "Singbox Legacy"
+      "subscriptionTemplate": "Singbox Legacy",
+      "headers": [
+        {
+          "key": "x-custom-header",
+          "value": "CustomHeaderValue"
+        }
+      ]
   }
   ```
 
-### `rules.conditions`
+### `rules.conditions` {#rules.conditions}
 
 - `headerName` (string) — required  
   The HTTP header to check. Must comply with [RFC 7230](https://www.rfc-editor.org/rfc/rfc7230).
   ```json
   "headerName": "user-agent"    // Client app user-agent
   ```
-
+  
 - `operator` (enum) — required  
   Comparison operation to perform:
 
@@ -156,7 +168,64 @@ Each rule is an object with the following fields:
   "caseSensitive": true   // The value is compared as is
   "caseSensitive": false  // The value is lowercased before comparison
   ```
-  
+
+:::tip Serve OS-specific Templates
+You can easily respond with different Templates to different OSes.  
+
+In the example below users with iOS will get a `Happ iOS` JSON, and users with Android will get a `Happ Android` JSON.  
+
+```json
+{
+  "name": "Happ Android",
+  "description": "Serve custom JSON for Android",
+  "enabled": true,
+  "operator": "AND",
+  "conditions": [
+    {
+      "caseSensitive": false,
+      "headerName": "user-agent",
+      "operator": "CONTAINS",
+      "value": "happ"
+    },
+    {
+      "caseSensitive": false,
+      "headerName": "x-device-os",
+      "operator": "CONTAINS",
+      "value": "android"
+    }
+  ],
+  "responseType": "XRAY_JSON",
+  "responseModifications": {
+    "subscriptionTemplate": "Happ Android"
+  }
+},
+{
+  "name": "Happ iOS",
+  "description": "Serve custom JSON for iOS",
+  "enabled": true,
+  "operator": "AND",
+  "conditions": [
+    {
+      "caseSensitive": false,
+      "headerName": "user-agent",
+      "operator": "CONTAINS",
+      "value": "happ"
+    },
+    {
+      "caseSensitive": false,
+      "headerName": "x-device-os",
+      "operator": "CONTAINS",
+      "value": "ios"
+    }
+  ],
+  "responseType": "XRAY_JSON",
+  "responseModifications": {
+    "subscriptionTemplate": "Happ iOS"
+  }
+}
+```
+:::
+
 :::tip Header Resolution Rules
 1. Header names are case-insensitive
    ```json

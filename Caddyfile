@@ -30,7 +30,6 @@
 	handle @mainDomain {
 		redir /blog/learn /docs/learn/quick-start permanent
 		redir /blog/learn/quick-start /docs/learn/quick-start permanent
-		redir /docs/install/reverse-proxies/ /docs/install/reverse-proxies/ permanent
 		redir /apps /docs/clients permanent
 		redir /clients /docs/clients permanent
 		redir /donate /docs/donate permanent

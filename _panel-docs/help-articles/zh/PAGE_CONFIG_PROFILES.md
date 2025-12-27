@@ -10,7 +10,7 @@
 
 _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只需在 `inbounds:[]` 数组中添加一个新的对象即可。_
 
-目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`.
+目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`.
 
 需要注意的是，Remnawave 也支持以下协议： `mixed(socks)`, `wireguard`, `http` - 但面板不会对它们进行任何处理，这些协议的用户管理功能将不可用。 此类 _入站（inbounds）_ 将按原样传递给 Xray，不会被修改。
 
@@ -21,7 +21,6 @@ _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只�
 ### 配置文件列表（Config Profiles List）
 
 在配置文件列表中，每个配置文件都会显示简要概览。 在配置文件名称下方，你可以看到其中活动的 _入站（inbounds）_ 数量， 以及当前使用该配置文件的 **节点（nodes）** 数量。 这两个图标均可点击，点击后会打开对应的详细页面。
-
 
 点击 _入站（inbounds）_ - 会显示该配置文件中的 _入站_ 列表，并显示每个 _入站_ 在多少个内部分组中被激活。
 点击 _节点（nodes）_ - 会显示当前使用此配置文件的所有 _节点_ 列表。
@@ -66,3 +65,24 @@ _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只�
 ```
 
 关于片段的更多信息，可以点击片段菜单中的问号图标查看说明。
+
+### Flow Control (VLESS)
+
+_This feature is available only in version 2.3.0 and above._
+
+By default, Remnawave automatically adds the `flow` parameter for the following configurations: VLESS+TLS, REALITY+RAW, or TCP.
+
+If you wish to override this behavior, add the `flow` field to the `settings` object.
+
+```json
+"settings": {
+  "flow": "",
+  "clients": [],
+  "decryption": "none"
+},
+```
+
+Available values for `flow`:
+
+- `xtls-rprx-vision`
+- `""`

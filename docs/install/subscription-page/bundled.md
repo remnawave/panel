@@ -57,13 +57,14 @@ Now create .env file:
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano .env
 ```
 
+Create API token in Remnawave dashboard. Remnawave Settings → API Tokens.
+
 Paste the following content into the .env file:
 
 ```bash title=".env file"
 APP_PORT=3010
 REMNAWAVE_PANEL_URL=http://remnawave:3000
-META_TITLE="Subscription page"
-META_DESCRIPTION="Subscription page description"
+REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 ```
 
 <details>
@@ -73,12 +74,8 @@ META_DESCRIPTION="Subscription page description"
 APP_PORT=3010
 
 ### Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com
-REMNAWAVE_PANEL_URL=https://panel.example.com
-
-
-META_TITLE="Subscription page"
-META_DESCRIPTION="Subscription page description"
-
+REMNAWAVE_PANEL_URL=http://remnawave:3000
+REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 
 # Serve at custom root path, for example, this value can be: CUSTOM_SUB_PREFIX=sub
 # Do not place / at the start/end
@@ -89,7 +86,6 @@ CUSTOM_SUB_PREFIX=
 # Support Marzban links
 MARZBAN_LEGACY_LINK_ENABLED=false
 MARZBAN_LEGACY_SECRET_KEY=
-REMNAWAVE_API_TOKEN=
 
 
 # If you use "Caddy with security" addon, you can place here X-Api-Key, which will be applied to requests to Remnawave Panel.
@@ -381,7 +377,7 @@ The subscription page will be available at `https://subdomain.panel.com/<shortUu
 
 ## Configuring subscription page (optional) {#customization}
 
-You can customize the subscription page by creating an `app-config.json` file. This allows you to:
+You can customize the subscription page in the Subpage Builder in Remnawave Dashboard. This allows you to:
 
 - Add support for different VPN apps
 - Customize text and instructions in multiple languages
