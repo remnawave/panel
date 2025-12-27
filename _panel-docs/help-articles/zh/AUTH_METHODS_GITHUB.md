@@ -1,19 +1,21 @@
-## OAuth2: GitHub
+## OAuth2：GitHub
 
-### Creating an OAuth Application
+### 创建 OAuth 应用
 
-First, you need to create an OAuth application.
-Follow the link to create an application: [https://github.com/settings/applications/new](https://github.com/settings/applications/new)
+首先，你需要创建一个 OAuth 应用。
+请通过以下链接创建应用：
+[https://github.com/settings/applications/new](https://github.com/settings/applications/new)
 
-In the `Authorization callback URL` field, enter the address of your panel.
+在 `Authorization callback URL` 字段中，填写你的面板地址。
 
 ```bash
-# Replace YOUR_PANEL_DOMAIN with your panel address
+# 将 YOUR_PANEL_DOMAIN 替换为你的面板地址
 https://YOUR_PANEL_DOMAIN/oauth2/callback/github
 ```
 
-Don't forget to replace `YOUR_PANEL_DOMAIN` with the correct panel address.
+请务必将 `YOUR_PANEL_DOMAIN` 替换为正确的面板域名。
 
-### OAuth2 Settings in Remnawave
+### Remnawave 中的 OAuth2 设置
 
-After creating the OAuth2 application – copy the `Client ID` and `Client Secret`. Insert this data in the corresponding section. And below, enter the list of email addresses for which login will be allowed.
+创建 OAuth2 应用后，复制生成的 `Client ID` 和 `Client Secret`，并将它们填写到对应的配置项中。
+然后，在下方填写允许登录的邮箱地址列表。
