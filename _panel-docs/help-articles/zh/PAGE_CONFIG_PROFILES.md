@@ -66,13 +66,14 @@ _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只�
 
 关于片段的更多信息，可以点击片段菜单中的问号图标查看说明。
 
-### Flow Control (VLESS)
+### 流控（Flow Control / VLESS）
 
-_This feature is available only in version 2.3.0 and above._
+_该功能仅在 2.3.0 及以上版本中可用。_
 
-By default, Remnawave automatically adds the `flow` parameter for the following configurations: VLESS+TLS, REALITY+RAW, or TCP.
+默认情况下，Remnawave 会自动为以下配置添加 `flow` 参数：  
+VLESS + TLS、REALITY + RAW 或 TCP。
 
-If you wish to override this behavior, add the `flow` field to the `settings` object.
+如果你希望手动覆盖这一默认行为，可以在 `settings` 对象中显式指定 `flow` 字段。
 
 ```json
 "settings": {
@@ -82,7 +83,7 @@ If you wish to override this behavior, add the `flow` field to the `settings` ob
 },
 ```
 
-Available values for `flow`:
+可用的 `flow` 值如下：
 
 - `xtls-rprx-vision`
 - `""`
