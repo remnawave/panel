@@ -375,6 +375,9 @@ export const CLIENTS: Client[] = [
         platforms: ['windows', 'macos', 'linux'],
         description: 'Feature-rich Sing-box based client.',
         logo: '/clients/logo/throne-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'throneproj/Throne',
         downloadLinks: {
             windows: 'https://github.com/throneproj/Throne/releases/latest',
