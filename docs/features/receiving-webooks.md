@@ -65,47 +65,75 @@ User payload will contain full User object.
 <summary>User object</summary>
 
 ```typescript
-uuid: string
-subscriptionUuid: string
-shortUuid: string
-username: string
-status: 'DISABLED' | 'LIMITED' | 'EXPIRED' | 'ACTIVE'
-usedTrafficBytes: string
-lifetimeUsedTrafficBytes: string
+uuid: string;
+subscriptionUuid: string;
+shortUuid: string;
+username: string;
+status: "DISABLED" | "LIMITED" | "EXPIRED" | "ACTIVE";
+usedTrafficBytes: string;
+lifetimeUsedTrafficBytes: string;
 
-trafficLimitBytes: string
+trafficLimitBytes: string;
 
-trafficLimitStrategy: 'NO_RESET' | 'DAY' | 'WEEK' | 'MONTH'
-subLastUserAgent: string | null
-subLastOpenedAt: string | null
+trafficLimitStrategy: "NO_RESET" | "DAY" | "WEEK" | "MONTH";
+subLastUserAgent: string | null;
+subLastOpenedAt: string | null;
 
-expireAt: string
-onlineAt: string | null
-subRevokedAt: string | null
-lastTrafficResetAt: string | null
+expireAt: string;
+onlineAt: string | null;
+subRevokedAt: string | null;
+lastTrafficResetAt: string | null;
 
-trojanPassword: string
-vlessUuid: string
-ssPassword: string
+trojanPassword: string;
+vlessUuid: string;
+ssPassword: string;
 
-description: null | string
-telegramId: string | null
-email: string | null
+description: null | string;
+telegramId: string | null;
+email: string | null;
 
-hwidDeviceLimit: number | null
-createdAt: string
-updatedAt: string
+hwidDeviceLimit: number | null;
+createdAt: string;
+updatedAt: string;
 
-firstConnectedAt: string | null
-lastTriggeredThreshold: number
+firstConnectedAt: string | null;
+lastTriggeredThreshold: number;
 
 activeUserInbounds: Array<{
-    uuid: string
-    tag: string
-    type: string
-    network: string | null
-    security: string | null
-}>
+  uuid: string;
+  tag: string;
+  type: string;
+  network: string | null;
+  security: string | null;
+}>;
+```
+
+</details>
+
+#### HWID Devices
+
+- `user_hwid_devices.added` - A HWID device was added for the user.
+- `user_hwid_devices.deleted` - A HWID device was deleted for the user.
+
+HWID Devices payload will contain user and hwidUserDevice objects.
+
+<details>
+<summary>HWID Devices payload</summary>
+
+```typescript
+data: {
+  user: User; // User object (see User section)
+  hwidUserDevice: {
+    hwid: string;
+    userUuid: string;
+    platform: string | null;
+    osVersion: string | null;
+    deviceModel: string | null;
+    userAgent: string | null;
+    createdAt: string;
+    updatedAt: string;
+  }
+}
 ```
 
 </details>
@@ -127,47 +155,47 @@ Node payload will contain full Node object.
 <summary>Node object</summary>
 
 ```typescript
-uuid: string
-name: string
-address: string
-port: null | number
-isConnected: boolean
-isConnecting: boolean
-isDisabled: boolean
-isNodeOnline: boolean
-isXrayRunning: boolean
-lastStatusChange: string | null
-lastStatusMessage: string | null
+uuid: string;
+name: string;
+address: string;
+port: null | number;
+isConnected: boolean;
+isConnecting: boolean;
+isDisabled: boolean;
+isNodeOnline: boolean;
+isXrayRunning: boolean;
+lastStatusChange: string | null;
+lastStatusMessage: string | null;
 
-xrayVersion: string | null
-xrayUptime: string
+xrayVersion: string | null;
+xrayUptime: string;
 
-usersOnline: number | null
+usersOnline: number | null;
 
-isTrafficTrackingActive: boolean
-trafficResetDay: number | null
-trafficLimitBytes: string | null
-trafficUsedBytes: string | null
-notifyPercent: number | null
+isTrafficTrackingActive: boolean;
+trafficResetDay: number | null;
+trafficLimitBytes: string | null;
+trafficUsedBytes: string | null;
+notifyPercent: number | null;
 
-viewPosition: number
-countryCode: string
-consumptionMultiplier: string
+viewPosition: number;
+countryCode: string;
+consumptionMultiplier: string;
 
-cpuCount: number | null
-cpuModel: string | null
-totalRam: string | null
+cpuCount: number | null;
+cpuModel: string | null;
+totalRam: string | null;
 
-createdAt: string
-updatedAt: string
+createdAt: string;
+updatedAt: string;
 
 excludedInbounds: Array<{
-    uuid: string
-    tag: string
-    type: string
-    network: string | null
-    security: string | null
-}>
+  uuid: string;
+  tag: string;
+  type: string;
+  network: string | null;
+  security: string | null;
+}>;
 ```
 
 </details>
@@ -186,10 +214,10 @@ excludedInbounds: Array<{
 <summary>Infra Billing Summary</summary>
 
 ```typescript
-nodeName: string
-providerName: string
-loginUrl: string
-nextBillingAt: date
+nodeName: string;
+providerName: string;
+loginUrl: string;
+nextBillingAt: date;
 ```
 
 </details>
