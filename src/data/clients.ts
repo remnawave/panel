@@ -505,7 +505,7 @@ export const CLIENTS: Client[] = [
     },
 
     {
-        id: 'ClashMac',
+        id: 'clashMac',
         name: 'ClashMac',
         core: 'mihomo',
         platforms: ['macos'],
