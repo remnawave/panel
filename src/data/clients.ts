@@ -512,7 +512,7 @@ export const CLIENTS: Client[] = [
         description: 'A Modern Proxy Tool Built for macOS',
         logo: 'https://clashmac.app/assets/logo.png',
         downloadLinks: {
-            android: 'https://clashmac.app/#download/'
+            macos: 'https://clashmac.app/#download/'
         },
         links: {
             website: 'https://clashmac.app/'
