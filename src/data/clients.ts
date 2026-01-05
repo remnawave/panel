@@ -502,6 +502,21 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/hiddify/hiddify-app'
         }
+    },
+
+    {
+        id: 'ClashMac',
+        name: 'ClashMac',
+        core: 'mihomo',
+        platforms: ['macos'],
+        description: 'A Modern Proxy Tool Built for macOS',
+        logo: 'https://clashmac.app/assets/logo.png',
+        downloadLinks: {
+            android: 'https://clashmac.app/#download/'
+        },
+        links: {
+            website: 'https://clashmac.app/'
+        }
     }
 ]
 
