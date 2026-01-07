@@ -48,7 +48,7 @@ The payload will be a JSON object.
 
 Properties:
 
-- `scope` - The scope of the webhook payload.
+- `scope` - The scope of the webhook payload. (Since v2.5.0)
     - `user` - User events
     - `user_hwid_devices` - User HWID devices events
     - `node` - Node events
