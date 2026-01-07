@@ -18,11 +18,11 @@ WEBHOOK_URL=https://your-server.com/webhook
 WEBHOOK_SECRET_HEADER=your-secret-header
 ```
 
-| Variable                | Description                                                                         |
-| ----------------------- | ----------------------------------------------------------------------------------- |
-| `WEBHOOK_ENABLED`       | Enable webhooks.                                                                    |
-| `WEBHOOK_URL`           | The URL to send the webhook to. (must start with https:// or http://)               |
-| `WEBHOOK_SECRET_HEADER` | This header will be used to sign the webhook payload. (only aA-zZ, 0-9 are allowed) |
+| Variable                | Description                                                                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `WEBHOOK_ENABLED`       | Enable webhooks.                                                                                                                              |
+| `WEBHOOK_URL`           | The URL to send the webhook to. (must start with https:// or http://). Possible to specify multiple URLs separated by commas (without spaces) |
+| `WEBHOOK_SECRET_HEADER` | This header will be used to sign the webhook payload. (only aA-zZ, 0-9 are allowed)                                                           |
 
 ### Headers
 
@@ -33,217 +33,178 @@ Remnawave will send the following headers with the webhook payload:
 
 ### Payload
 
-The payload will be a JSON object with the following fields:
+The payload will be a JSON object.
+
+```json title="Example webhook payload"
+{
+    "scope": "service",
+    "event": "service.panel_started",
+    "timestamp": "2026-01-07T11:57:29.426Z",
+    "data": {
+        "panelVersion": "2.5.0"
+    }
+}
+```
+
+Properties:
+
+- `scope` - The scope of the webhook payload.
+    - `user` - User events
+    - `user_hwid_devices` - User HWID devices events
+    - `node` - Node events
+    - `service` - Service events
+    - `crm` - Infra Billing events
+    - `errors` - Errors events (reserved for future use)
 
 - `event` - The event that occurred.
-- `data` - The data associated with the event. Will contain full User, Node or Service object.
-- `timestamp` - The timestamp of the webhook payload.
+- `timestamp` - The timestamp of the webhook payload in ISO 8601 format.
+- `data` - The data associated with the event.
 
-### Events
+:::tip
 
-#### User
+Detailed payload schema for each scope is available in the OpenAPI documentation.
 
-- `user.created` - The user was created.
-- `user.modified` - The user was modified.
-- `user.deleted` - The user was deleted.
-- `user.revoked` - The user was revoked.
-- `user.disabled` - The user was disabled.
-- `user.enabled` - The user was enabled.
-- `user.limited` - The user was limited.
-- `user.expired` - The user was expired.
-- `user.traffic_reset` - The user's traffic was reset.
-- `user.expires_in_72_hours` - The user's subscription will expire in 72 hours.
-- `user.expires_in_48_hours` - The user's subscription will expire in 48 hours.
-- `user.expires_in_24_hours` - The user's subscription will expire in 24 hours.
-- `user.expired_24_hours_ago` - The user's subscription expired 24 hours ago.
-- `user.first_connected` - The user connected to the node for the first time.
-- `user.bandwidth_usage_threshold_reached` - The user's bandwidth usage threshold was reached.
+👉 Refer to `Model Link` on each scope section below.
 
-User payload will contain full User object.
+:::
 
-<details>
-<summary>User object</summary>
+## Scope: user
 
-```typescript
-uuid: string;
-subscriptionUuid: string;
-shortUuid: string;
-username: string;
-status: "DISABLED" | "LIMITED" | "EXPIRED" | "ACTIVE";
-usedTrafficBytes: string;
-lifetimeUsedTrafficBytes: string;
+OpenAPI Model: `RemnawaveWebhookUserEventsDto`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookusereventsdto
 
-trafficLimitBytes: string;
+Available events (`event` property):
 
-trafficLimitStrategy: "NO_RESET" | "DAY" | "WEEK" | "MONTH";
-subLastUserAgent: string | null;
-subLastOpenedAt: string | null;
+- `user.created` - User created
+- `user.modified` - User modified
+- `user.deleted` - User deleted
+- `user.revoked` - User revoked
+- `user.disabled` - User disabled
+- `user.enabled` - User enabled
+- `user.limited` - User limited
+- `user.expired` - User expired
+- `user.traffic_reset` - User traffic reset
+- `user.expires_in_72_hours` - User expires in 72 hours
+- `user.expires_in_48_hours` - User expires in 48 hours
+- `user.expires_in_24_hours` - User expires in 24 hours
+- `user.expired_24_hours_ago` - User expired 24 hours ago
+- `user.first_connected` - User first connected
+- `user.bandwidth_usage_threshold_reached` - User bandwidth usage threshold reached
+- `user.not_connected` - User not connected (Active only when `NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED` is true in .env.)
 
-expireAt: string;
-onlineAt: string | null;
-subRevokedAt: string | null;
-lastTrafficResetAt: string | null;
-
-trojanPassword: string;
-vlessUuid: string;
-ssPassword: string;
-
-description: null | string;
-telegramId: string | null;
-email: string | null;
-
-hwidDeviceLimit: number | null;
-createdAt: string;
-updatedAt: string;
-
-firstConnectedAt: string | null;
-lastTriggeredThreshold: number;
-
-activeUserInbounds: Array<{
-  uuid: string;
-  tag: string;
-  type: string;
-  network: string | null;
-  security: string | null;
-}>;
-```
-
-</details>
-
-#### HWID Devices
-
-- `user_hwid_devices.added` - A HWID device was added for the user.
-- `user_hwid_devices.deleted` - A HWID device was deleted for the user.
-
-HWID Devices payload will contain user and hwidUserDevice objects.
-
-<details>
-<summary>HWID Devices payload</summary>
+Remnawave Typescript SDK types:
 
 ```typescript
-data: {
-  user: User; // User object (see User section)
-  hwidUserDevice: {
-    hwid: string;
-    userUuid: string;
-    platform: string | null;
-    osVersion: string | null;
-    deviceModel: string | null;
-    userAgent: string | null;
-    createdAt: string;
-    updatedAt: string;
-  }
-}
+import { TRemnawaveWebhookUserEvent, RemnawaveWebhookUserEvents } from '@remnawave/backend-contract'
 ```
 
-</details>
+- `RemnawaveWebhookUserEvents` – raw Zod schema
+- `TRemnawaveWebhookUserEvent` – inferred type from the schema
 
-#### Node
+## Scope: user_hwid_devices
 
-- `node.created` - Node was created.
-- `node.modified` - Node was modified.
-- `node.disabled` - Node was disabled.
-- `node.enabled` - Node was enabled.
-- `node.deleted` - Node was deleted.
-- `node.connection_lost` - Node's connection was lost.
-- `node.connection_restored` - Node's connection was restored.
-- `node.traffic_notify` - Node reached the traffic notify limit.
+OpenAPI Model: `RemnawaveWebhookUserHwidDevicesEventsDto​`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookuserhwiddeviceseventsdto
 
-Node payload will contain full Node object.
+Available events (`event` property):
 
-<details>
-<summary>Node object</summary>
+- `user_hwid_devices.added` - User HWID device added
+- `user_hwid_devices.deleted` - User HWID device deleted
+
+Remnawave Typescript SDK types:
 
 ```typescript
-uuid: string;
-name: string;
-address: string;
-port: null | number;
-isConnected: boolean;
-isConnecting: boolean;
-isDisabled: boolean;
-isNodeOnline: boolean;
-isXrayRunning: boolean;
-lastStatusChange: string | null;
-lastStatusMessage: string | null;
-
-xrayVersion: string | null;
-xrayUptime: string;
-
-usersOnline: number | null;
-
-isTrafficTrackingActive: boolean;
-trafficResetDay: number | null;
-trafficLimitBytes: string | null;
-trafficUsedBytes: string | null;
-notifyPercent: number | null;
-
-viewPosition: number;
-countryCode: string;
-consumptionMultiplier: string;
-
-cpuCount: number | null;
-cpuModel: string | null;
-totalRam: string | null;
-
-createdAt: string;
-updatedAt: string;
-
-excludedInbounds: Array<{
-  uuid: string;
-  tag: string;
-  type: string;
-  network: string | null;
-  security: string | null;
-}>;
+import {
+    TRemnawaveWebhookUserHwidDevicesEvent,
+    RemnawaveWebhookUserHwidDevicesEvents
+} from '@remnawave/backend-contract'
 ```
 
-</details>
+- `RemnawaveWebhookUserHwidDevicesEvents` – raw Zod schema
+- `TRemnawaveWebhookUserHwidDevicesEvent` – inferred type from the schema
 
-#### Node Infra Billing
+## Scope: node
 
-- `crm.infra_billing_node_payment_in_7_days` - Payment reminder 7 days in advance.
-- `crm.infra_billing_node_payment_in_48hrs` - Payment reminder 48 hours in advance.
-- `crm.infra_billing_node_payment_in_24hrs` - Payment reminder 24 hours in advance.
-- `crm.infra_billing_node_payment_due_today` - Payment reminder on the due date
-- `crm.infra_billing_node_payment_overdue_24hrs` - Overdue payment notification after 24 hours.
-- `crm.infra_billing_node_payment_overdue_48hrs` - Overdue payment notification after 48 hours.
-- `crm.infra_billing_node_payment_overdue_7_days` - Overdue payment notification after 7 days.
+OpenAPI Model: `RemnawaveWebhookServiceEventsDto​`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookenodeeventsdto
 
-<details>	
-<summary>Infra Billing Summary</summary>
+Available events (`event` property):
+
+- `node.created` - Node created
+- `node.modified` - Node modified
+- `node.disabled` - Node disabled
+- `node.enabled` - Node enabled
+- `node.deleted` - Node deleted
+- `node.connection_lost` - Node connection lost
+- `node.connection_restored` - Node connection restored
+- `node.traffic_notify` - Node traffic notify
+
+Remnawave Typescript SDK types:
 
 ```typescript
-nodeName: string;
-providerName: string;
-loginUrl: string;
-nextBillingAt: date;
+import { TRemnawaveWebhookNodeEvent, RemnawaveWebhookNodeEvents } from '@remnawave/backend-contract'
 ```
 
-</details>
+- `RemnawaveWebhookNodeEvents` – raw Zod schema
+- `TRemnawaveWebhookNodeEvent` – inferred type from the schema
 
-#### Service
+## Scope: service
 
-- `service.panel_started` - The service started.
-- `service.login_attempt_failed` - The login attempt failed.
-- `service.login_attempt_success` - The login attempt was successful.
+OpenAPI Model: `RemnawaveWebhookServiceEventsDto`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookserviceeventsdto
 
-Service payload will contain Service object.
+Available events (`event` property):
 
-<details>
-<summary>Service object</summary>
+- `service.panel_started` - Panel started
+- `service.login_attempt_failed` - Login attempt failed
+- `service.login_attempt_success` - Login attempt success
+
+Remnawave Typescript SDK types:
 
 ```typescript
-loginAttempt?: {
-    username: string
-    ip: string
-    userAgent: string
-    description?: string
-    password?: string
-}
+import {
+    TRemnawaveWebhookServiceEvent,
+    RemnawaveWebhookServiceEvents
+} from '@remnawave/backend-contract'
 ```
 
-</details>
+- `RemnawaveWebhookServiceEvents` – raw Zod schema
+- `TRemnawaveWebhookServiceEvent` – inferred type from the schema
+
+## Scope: crm
+
+OpenAPI Model: `RemnawaveWebhookCrmEventsDto`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookcrmeventsdto
+
+Available events (`event` property):
+
+- `crm.infra_billing_node_payment_in_7_days` - Infra billing node payment in 7 days
+- `crm.infra_billing_node_payment_in_48hrs` - Infra billing node payment in 48 hours
+- `crm.infra_billing_node_payment_in_24hrs` - Infra billing node payment in 24 hours
+- `crm.infra_billing_node_payment_due_today` - Infra billing node payment due today
+- `crm.infra_billing_node_payment_overdue_24hrs` - Infra billing node payment overdue 24 hours
+- `crm.infra_billing_node_payment_overdue_48hrs` - Infra billing node payment overdue 48 hours
+- `crm.infra_billing_node_payment_overdue_7_days` - Infra billing node payment overdue 7 days
+
+Remnawave Typescript SDK types:
+
+```typescript
+import { TRemnawaveWebhookCrmEvent, RemnawaveWebhookCrmEvents } from '@remnawave/backend-contract'
+```
+
+- `RemnawaveWebhookCrmEvents` – raw Zod schema
+- `TRemnawaveWebhookCrmEvent` – inferred type from the schema
+
+## Scope: errors
+
+OpenAPI Model: `RemnawaveWebhookErrorsEventsDto`  
+Model Link: https://docs.rw/api/#model/remnawavewebhookererroreventsdto
+
+:::info
+
+Reserved for future use.
+
+:::
 
 ## Verify webhook
 
