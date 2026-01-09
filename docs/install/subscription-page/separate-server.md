@@ -45,6 +45,8 @@ Make sure you have Docker installed on the server where you will install the sub
 
 :::
 
+import InstallDocker from '/docs/partials/\_install_docker.md';
+
 ```bash title="Creating docker-compose.yml file"
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano docker-compose.yml
 ```
