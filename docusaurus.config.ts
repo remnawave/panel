@@ -8,12 +8,13 @@ const config: Config = {
     title: 'Remnawave Documentation',
     tagline: 'Remnawave Documentation',
     favicon: 'img/favicon.ico',
-    url: 'https://remna.st',
+    url: 'https://docs.rw',
     baseUrl: '/',
     organizationName: 'remnawave',
     projectName: 'panel',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
+
     i18n: {
         defaultLocale: 'en',
         locales: ['en']
@@ -30,6 +31,31 @@ const config: Config = {
                 name: 'theme-color',
                 content: '#242c38'
             }
+        },
+        {
+            tagName: 'link',
+            attributes: {
+                key: 'docusaurus-plugin-plausible-preconnect',
+                rel: 'preconnect',
+                href: `https://ps.log.rw`
+            }
+        },
+        {
+            tagName: 'script',
+            attributes: {
+                async: 'true',
+                src: 'https://ps.log.rw/js/pa-fsigGX5NspgeKn5IItyE7.js'
+            }
+        },
+        {
+            tagName: 'script',
+            attributes: {
+                key: 'docusaurus-plugin-plausible-custom-events'
+            },
+            innerHTML: `
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+            `
         }
     ],
 
@@ -93,6 +119,10 @@ const config: Config = {
             {
                 redirects: [
                     // /docs/oldDoc -> /docs/newDoc
+                    {
+                        from: '/blog/learn',
+                        to: '/docs/learn/quick-start'
+                    },
                     {
                         to: '/docs/install/reverse-proxies/',
                         from: '/category/reverse-proxies'
@@ -171,7 +201,8 @@ const config: Config = {
             title: 'Remnawave',
             logo: {
                 alt: 'Remnawave Logo',
-                src: 'img/logo.svg'
+                src: 'img/logo.svg',
+                href: 'https://docs.rw'
             },
             items: [
                 {

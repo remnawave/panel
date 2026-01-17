@@ -1,0 +1,74 @@
+.statsBar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem;
+    margin: 3rem 0;
+    background: var(--ifm-color-emphasis-100);
+    border-radius: 12px;
+    flex-wrap: wrap;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.statContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.value {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(
+        120deg,
+        var(--ifm-color-primary) 0%,
+        var(--ifm-color-primary-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: var(--ifm-color-emphasis-700);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .statsBar {
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .statItem {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .icon {
+        font-size: 2rem;
+    }
+
+    .value {
+        font-size: 1.5rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+}

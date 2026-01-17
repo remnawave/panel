@@ -28,7 +28,7 @@ Remnawave Panel API schema changed, so you need to update your API clients.
 
 Almost all endpoints are changed!
 
-Please, review [new API schema](https://remna.st/api) before updating.
+Please, review [new API schema](https://docs.rw/api) before updating.
 
 :::
 

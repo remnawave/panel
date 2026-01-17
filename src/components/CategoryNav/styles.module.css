@@ -1,0 +1,132 @@
+.categoryNav {
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--ifm-card-background-color);
+    border: 1px solid var(--ifm-color-emphasis-200);
+    border-radius: 16px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.navTitle {
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ifm-heading-color);
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.categoryButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: var(--ifm-color-emphasis-100);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.categoryButton:hover {
+    background: var(--ifm-color-primary-lightest);
+    border-color: var(--ifm-color-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(var(--ifm-color-primary-rgb), 0.2);
+}
+
+.categoryButton:active {
+    transform: translateY(-2px);
+}
+
+.categoryIcon {
+    font-size: 2.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.categoryButton:hover .categoryIcon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.categoryTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ifm-heading-color);
+    text-align: center;
+    line-height: 1.3;
+}
+
+.categoryButton {
+    background: var(--ifm-color-emphasis-200);
+}
+
+.categoryButton:hover {
+    background: var(--ifm-color-emphasis-300);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.categoryTitle {
+    color: var(--ifm-font-color-base);
+}
+
+.navTitle {
+    color: var(--ifm-font-color-base);
+}
+
+@media (max-width: 996px) {
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .categoryButton {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .categoryIcon {
+        font-size: 2rem;
+    }
+
+    .categoryTitle {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .categoryNav {
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .navTitle {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .categoryButton {
+        padding: 1rem 0.5rem;
+    }
+
+    .categoryIcon {
+        font-size: 1.75rem;
+    }
+
+    .categoryTitle {
+        font-size: 0.85rem;
+    }
+}

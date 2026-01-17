@@ -1,0 +1,76 @@
+# global options
+{
+	admin off
+	persist_config off
+	auto_https off
+	# log {
+	#	format json
+	# }
+	servers {
+		trusted_proxies static private_ranges 100.0.0.0/8
+	}
+}
+
+:{$PORT:8080} {
+	handle /health {
+		respond "OK" 200
+	}
+
+	@notMainDomain {
+		not header Host docs.rw
+	}
+	handle @notMainDomain {
+		redir https://docs.rw{uri} permanent
+	}
+
+	@mainDomain {
+		header Host docs.rw
+	}
+
+	handle @mainDomain {
+		redir /blog/learn /docs/learn/quick-start permanent
+		redir /blog/learn/quick-start /docs/learn/quick-start permanent
+		redir /apps /docs/clients permanent
+		redir /clients /docs/clients permanent
+		redir /donate /docs/donate permanent
+
+		handle / {
+			root * /app/landing
+			encode gzip
+			file_server
+			try_files {path} /index.html
+
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
+		}
+
+		handle_path /landing-assets/* {
+			root * /app/landing/landing-assets
+			encode gzip
+			file_server
+			try_files {path} /index.html
+
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
+		}
+
+		handle {
+			root * /app/docs
+			encode gzip
+			file_server
+			try_files {path} /index.html
+
+			header {
+				X-Content-Type-Options "nosniff"
+				X-Frame-Options "DENY"
+				X-XSS-Protection "1; mode=block"
+			}
+		}
+	}
+}

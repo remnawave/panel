@@ -1,363 +1,81 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
 
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgK_7Ss9XZYalI.woff2)
-        format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+* {
+    box-sizing: border-box;
 }
-/* cyrillic */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgIv7Ss9XZYalI.woff2)
-        format('woff2');
-    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+
+html {
+    background-color: #0d1117 !important;
+    background-image:
+        linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px) !important;
+    background-size: 60px 60px !important;
+    background-attachment: fixed !important;
+    min-height: 100vh !important;
 }
-/* greek-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgKv7Ss9XZYalI.woff2)
-        format('woff2');
-    unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgJf7Ss9XZYalI.woff2)
-        format('woff2');
-    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* symbols2 */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgnN_3nP3TaZFxBQ.woff2)
-        format('woff2');
-    unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgKP7Ss9XZYalI.woff2)
-        format('woff2');
-    unicode-range:
-        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-        U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bX2SlFPv1weGeLZDtgJv7Ss9XZYQ.woff2)
-        format('woff2');
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3Hk_fUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HmvfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HkvfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HnffUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* symbols2 */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HJNbxZLtLDDy8Rg.woff2)
-        format('woff2');
-    unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HkPfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range:
-        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-        U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDto1d3HnvfUS5NBBA.woff2)
-        format('woff2');
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHk_fUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHmvfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHkvfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHnffUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* symbols2 */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHJNbxZLtLDDy8Rg.woff2)
-        format('woff2');
-    unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHkPfUS5NBBASF.woff2)
-        format('woff2');
-    unicode-range:
-        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-        U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Fira Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/firamono/v15/N0bS2SlFPv1weGeLZDtondvHnvfUS5NBBA.woff2)
-        format('woff2');
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRxC7m0dR9pBOi.woff2)
-        format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRzS7m0dR9pBOi.woff2)
-        format('woff2');
-    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRxi7m0dR9pBOi.woff2)
-        format('woff2');
-    unicode-range:
-        U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
-        U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRxy7m0dR9pBOi.woff2)
-        format('woff2');
-    unicode-range:
-        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-        U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUQjIg1_i6t8kCHKm459WxRyS7m0dR9pA.woff2)
-        format('woff2');
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2)
-        format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2)
-        format('woff2');
-    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2)
-        format('woff2');
-    unicode-range:
-        U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
-        U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2)
-        format('woff2');
-    unicode-range:
-        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-        U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2)
-        format('woff2');
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+
 body {
     font-family: 'Montserrat', sans-serif !important;
     font-optical-sizing: auto;
-    background-color: #161b22 !important;
-    /* font-size: 1.125rem;
-    ascent-override: 106.25%;
-    size-adjust: 106.25%; */
+    background: transparent !important;
+    position: relative;
+    min-height: 100vh;
 }
 
 :root {
-    --ifm-background-color: #161b22 !important;
-    --ifm-background-surface-color: #242c38 !important;
+    --ifm-background-color: #0d1117 !important;
+    --ifm-background-surface-color: #1c2128 !important;
+
     --ifm-font-family-base: 'Montserrat', sans-serif !important;
     --ifm-font-family-monospace: 'Fira Mono', monospace !important;
-    --ifm-font-family-heading: 'Montserrat', sans-serif !important;
+    --ifm-font-family-heading: 'Unbounded', sans-serif !important;
+
+    --ifm-color-primary: #22d3ee;
+    --ifm-color-primary-dark: #06b6d4;
+    --ifm-color-primary-darker: #0891b2;
+    --ifm-color-primary-darkest: #0e7490;
+    --ifm-color-primary-light: #67e8f9;
+    --ifm-color-primary-lighter: #a5f3fc;
+    --ifm-color-primary-lightest: #cffafe;
+
+    --ifm-color-secondary: #9775fa;
+    --ifm-color-secondary-dark: #845ef7;
+    --ifm-color-secondary-darker: #7950f2;
+    --ifm-color-secondary-darkest: #6741d9;
+    --ifm-color-secondary-light: #b197fc;
+    --ifm-color-secondary-lighter: #c3affe;
+    --ifm-color-secondary-lightest: #e5dbff;
+
+    --ifm-color-content: #c9d1d9;
+    --ifm-color-content-secondary: #8b949e;
+    --ifm-heading-color: #c9d1d9;
+    --ifm-link-color: #22d3ee;
+    --ifm-link-hover-color: #67e8f9;
+
+    --ifm-card-background-color: rgba(36, 44, 56, 0.8);
+    --ifm-navbar-background-color: rgba(22, 27, 34, 0.95);
+    --ifm-footer-background-color: #161b22;
+
+    --ifm-color-emphasis-200: rgba(139, 148, 158, 0.2);
+    --ifm-color-emphasis-300: rgba(139, 148, 158, 0.3);
+
+    --section-gap: 2rem;
+
+    --ifm-global-radius: 0.75rem;
+    --ifm-button-border-radius: 0.75rem;
+    --ifm-card-border-radius: 0.75rem;
+}
+
+@media (min-width: 48em) {
+    :root {
+        --section-gap: 3rem;
+    }
+}
+
+@media (min-width: 62em) {
+    :root {
+        --section-gap: 4rem;
+    }
 }
 
 .breadcrumbs__link {
@@ -390,12 +108,12 @@ body {
     border-left: 3px solid #ffff0080;
 }
 .footer {
-    background-color: #161b22;
+    background-color: #0d1117;
 }
 
 html[data-theme='dark'] {
-    --ifm-background-color: #161b22;
-    --ifm-background-surface-color: #242c38;
+    --ifm-background-color: #0d1117;
+    --ifm-background-surface-color: #1c2128;
 }
 
 .alert--warning {
@@ -419,6 +137,13 @@ html[data-theme='dark'] {
     border-bottom: 1px solid var(--ifm-color-info-dark);
 }
 
+.alert--secondary {
+    color: #eaeaea;
+    border-right: 3px solid #fff;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
 .alert--danger {
     color: #eaeaea;
     border-right: 3px solid var(--ifm-color-danger-dark);
@@ -426,19 +151,616 @@ html[data-theme='dark'] {
     border-bottom: 1px solid var(--ifm-color-danger-dark);
 }
 
+.navbar {
+    background: rgba(13, 17, 23, 0.95) !important;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.15) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.navbar__brand {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.navbar__brand:hover {
+    transform: scale(1.02) !important;
+}
+
+.navbar__title {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+    color: white !important;
+}
+
+.navbar__item {
+    margin: 0 0.25rem;
+}
+
+.navbar__link {
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+    position: relative !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none !important;
+    font-family: Unbounded, sans-serif !important;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+.navbar__link:hover {
+    background: rgba(34, 211, 238, 0.08) !important;
+    color: var(--ifm-color-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+.navbar__link--active {
+    color: var(--ifm-color-primary) !important;
+    background: rgba(34, 211, 238, 0.1) !important;
+}
+
+.navbar__link--active::after {
+    width: 100%;
+}
+
+.navbar__toggle {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar__toggle:hover {
+    color: var(--ifm-color-primary) !important;
+}
+
+.theme-doc-sidebar-container {
+    background: rgba(28, 33, 40, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(139, 148, 158, 0.1);
+}
+
 .menu__link {
     padding: 10px;
-    padding-left: 16px;
-    border-radius: 24px;
-    margin-right: 16px;
+    border-radius: 0.75rem;
+    margin: 4px 16px 4px 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.menu__link:hover::before {
+    left: 100%;
+}
+
+.menu__link:hover {
+    background: rgba(34, 211, 238, 0.1);
+    color: var(--ifm-color-primary);
+    transform: translateX(4px);
 }
 
 .menu__list-item-collapsible {
-    border-radius: 10px;
+    border-radius: 0.75rem;
     margin-right: 16px;
-    border-radius: 24px;
+    margin-bottom: 4px;
 }
 
 .menu__link--active {
-    font-weight: 500;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(151, 117, 250, 0.15));
+    color: var(--ifm-color-primary);
+}
+
+@media (hover: hover) {
+    .landing-page-wrapper .mantine-Image-root:hover {
+        transform: scale(1.02);
+    }
+}
+
+@media (max-width: 48em) {
+    .landing-page-wrapper {
+        background-size: 40px 40px;
+    }
+}
+
+body {
+    background: transparent !important;
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -10;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(151, 117, 250, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(34, 211, 238, 0.15) 0%, transparent 50%);
+    filter: blur(60px);
+    opacity: 0.3;
+}
+
+.main-wrapper {
+    position: relative;
+    background: transparent;
+}
+
+.main-wrapper::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -5;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(151, 117, 250, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 60%);
+    filter: blur(40px);
+    opacity: 0.3;
+}
+
+@media (max-width: 48em) {
+    html {
+        background-size: 40px 40px;
+    }
+}
+
+@keyframes blob-float {
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    33% {
+        transform: scale(1.1) rotate(120deg);
+        opacity: 0.5;
+    }
+    66% {
+        transform: scale(1.2) rotate(240deg);
+        opacity: 0.4;
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Additional blob animations for variety */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(151, 117, 250, 0.08) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes blob-float-1 {
+    0%,
+    100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.3;
+    }
+    33% {
+        transform: scale(1.1) translate(-20px, 20px);
+        opacity: 0.5;
+    }
+    66% {
+        transform: scale(1.2) translate(20px, -20px);
+        opacity: 0.4;
+    }
+}
+
+@keyframes blob-float-2 {
+    0%,
+    100% {
+        transform: scale(1.2) translate(0, 0);
+        opacity: 0.3;
+    }
+    33% {
+        transform: scale(1) translate(30px, -30px);
+        opacity: 0.5;
+    }
+    66% {
+        transform: scale(1.1) translate(-30px, 30px);
+        opacity: 0.4;
+    }
+}
+
+.card {
+    background: rgba(28, 33, 40, 0.9) !important;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    border-radius: 0.75rem !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(36, 44, 56, 0.9) !important;
+    border-color: rgba(34, 211, 238, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.button {
+    border-radius: 0.75rem !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button--primary,
+.button--secondary,
+.button--outline,
+.button--link,
+button,
+input[type='button'],
+input[type='submit'],
+input[type='reset'] {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.navbar .button,
+.navbar__item .button {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.button--primary {
+    background: linear-gradient(
+        135deg,
+        var(--ifm-color-primary),
+        var(--ifm-color-secondary)
+    ) !important;
+    border: none;
+    color: #000 !important;
+}
+
+.button--primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.button--primary:hover::before {
+    left: 100%;
+}
+
+.button--secondary {
+    background: rgba(36, 44, 56, 0.8) !important;
+    border: 1px solid rgba(34, 211, 238, 0.3) !important;
+    color: var(--ifm-color-primary) !important;
+}
+
+.button--secondary:hover {
+    background: rgba(34, 211, 238, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.alert {
+    border-radius: 0.75rem !important;
+    border-left: 4px solid;
+    background: rgba(36, 44, 56, 0.8) !important;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    opacity: 0.3;
+}
+
+.alert--info {
+    border-left-color: var(--ifm-color-primary);
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(36, 44, 56, 0.8)) !important;
+}
+
+.alert--warning {
+    border-left-color: #fbbf24;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(36, 44, 56, 0.8)) !important;
+}
+
+.alert--success {
+    border-left-color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(36, 44, 56, 0.8)) !important;
+}
+
+.alert--danger {
+    border-left-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(36, 44, 56, 0.8)) !important;
+}
+
+.table-wrapper table {
+    background: rgba(36, 44, 56, 0.8) !important;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+}
+
+.table-wrapper th {
+    background: rgba(22, 27, 34, 0.8) !important;
+    color: var(--ifm-color-primary);
+    font-weight: 600;
+}
+
+.table-wrapper tr:hover {
+    background: rgba(34, 211, 238, 0.05) !important;
+}
+
+.footer {
+    background: #0d1117 !important;
+    border-top: 1px solid rgba(139, 148, 158, 0.1);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+    opacity: 0.3;
+}
+
+.footer__title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    color: var(--ifm-color-primary);
+}
+
+.pagination-nav__link {
+    background: rgba(36, 44, 56, 0.8) !important;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagination-nav__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.pagination-nav__link:hover::before {
+    left: 100%;
+}
+
+.prism-code {
+    background: rgba(28, 33, 40, 0.9) !important;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    border-radius: 0.75rem !important;
+    backdrop-filter: blur(10px);
+}
+
+.pagination-nav__link:hover {
+    background: rgba(34, 211, 238, 0.1) !important;
+    border-color: rgba(34, 211, 238, 0.3);
+    transform: translateY(-2px);
+}
+
+/* TOC styling */
+.table-of-contents {
+    background: rgba(36, 44, 56, 0.6);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 1px solid rgba(139, 148, 158, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.table-of-contents__link--active {
+    color: var(--ifm-color-primary);
+    font-weight: 600;
+    position: relative;
+}
+
+.table-of-contents__link--active::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 16px;
+    background: var(--ifm-color-primary);
+    border-radius: 2px;
+}
+
+.DocSearch-Button {
+    background: rgba(36, 44, 56, 0.8) !important;
+    border: 1px solid rgba(139, 148, 158, 0.2) !important;
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease;
+}
+
+.DocSearch-Button:hover {
+    background: rgba(34, 211, 238, 0.1) !important;
+    border-color: rgba(34, 211, 238, 0.3) !important;
+}
+
+.main-wrapper {
+    background: transparent !important;
+}
+
+.container {
+    max-width: 1200px;
+    background: transparent !important;
+}
+
+#__docusaurus {
+    background: transparent !important;
+}
+
+.theme-doc-root {
+    background: transparent !important;
+}
+
+.docusaurus-wrapper {
+    background: transparent !important;
+}
+
+body,
+#__docusaurus,
+.main-wrapper,
+.theme-doc-root {
+    background-color: transparent !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 600;
+    color: var(--ifm-heading-color);
+}
+
+img {
+    border-radius: 20px !important;
+    transition: all 0.3s ease;
+}
+
+.markdown img,
+.theme-doc-markdown img,
+article img,
+.docusaurus-wrapper img {
+    border-radius: 20px !important;
+}
+
+img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.navbar__logo img,
+.footer__logo img,
+img[alt*='icon'],
+img[alt*='logo'] {
+    border-radius: 8px !important;
+}
+
+/* SVG images */
+svg {
+    border-radius: 0 !important;
+}
+
+code {
+    border-radius: 4px !important;
+}
+
+@media (max-width: 48em) {
+    .navbar::before {
+        width: 200px;
+        height: 200px;
+        top: -100px;
+        left: -100px;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .menu__link:hover {
+        transform: none;
+    }
+
+    .pagination-nav__link:hover {
+        transform: none;
+    }
+
+    .button--secondary:hover {
+        transform: none;
+    }
+
+    img:hover {
+        transform: none;
+        box-shadow: none;
+    }
 }

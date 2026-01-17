@@ -1,0 +1,416 @@
+---
+sidebar_position: 7
+title: ❤️ Awesome Remnawave
+hide_title: true
+hide_table_of_contents: true
+description: 'Discover the amazing ecosystem of tools, scripts, and integrations built by the Remnawave community. From monitoring solutions to automation scripts, find everything you need to enhance your Remnawave experience.'
+image: '/awesome/awesome-preview.webp'
+---
+
+import Button from '@site/src/components/Button'
+import ProjectCard from '@site/src/components/ProjectCard'
+import ProjectsGrid from '@site/src/components/ProjectsGrid'
+import HeroSection from '@site/src/components/HeroSection'
+import CategoryNav from '@site/src/components/CategoryNav'
+
+import RemnavaweTelegramMiniAppGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-telegram-mini-app.md'
+import RemnawaveManagementScriptsGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-management-scripts.md'
+import RemnasetupGuide from '/docs/awesome-remnawave/\_install-guides/remnasetup.md'
+import AnsiblePlaybookGuide from '/docs/awesome-remnawave/\_install-guides/ansible-playbook.md'
+import RemnawaveReverseProxyGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-reverse-proxy.md'
+import RemnawaveBackupRestoreGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-backup-restore.md'
+import RemnawaveCloudflareNodes from '/docs/awesome-remnawave/\_install-guides/remnawave-cloudflare-nodes.md'
+import WarpNativeInstallerGuide from '/docs/awesome-remnawave/\_install-guides/warp-native-installer.md'
+import RemnavaweBedolagaBotGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-bedolaga-bot.md'
+import RemnashopGuide from '/docs/awesome-remnawave/\_install-guides/remnashop.md'
+import RemnawaveBackuperGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-backuper.md'
+import XrayCheckerGuide from '/docs/awesome-remnawave/\_install-guides/xray-checker.md'
+
+<HeroSection
+    title="❤️ Awesome Remnawave"
+    subtitle="Discover the amazing ecosystem of tools, scripts, and integrations built by the Remnawave community. From monitoring solutions to automation scripts, find everything you need to enhance your Remnawave experience."
+/>
+
+<CategoryNav
+    categories={[
+        { id: 'monitoring-analytics', icon: '📊', title: 'Monitoring & Analytics' },
+        { id: 'commerce', icon: '💰', title: 'Commerce' },
+        { id: 'auto-installers', icon: '🚀', title: 'Auto-installers' },
+        { id: 'backup-restore', icon: '💾', title: 'Backup & Restore' },
+        { id: 'misc', icon: '🔧', title: 'Misc' },
+        { id: 'clients', icon: '🖥️', title: 'Clients' }
+
+    ]}
+
+/>
+
+<CategorySection
+    id="monitoring-analytics"
+    title="Monitoring & Analytics"
+    description="Tools for monitoring, analyzing, and visualizing your Remnawave infrastructure"
+    icon="📊"
+    columns={1}
+>
+    <ProjectCard
+        id="xray-checker"
+        title="Xray Checker"
+        description="Xray Checker is a tool for monitoring proxy server availability with support for VLESS, VMess, Trojan, and Shadowsocks protocols. It automatically tests connections through Xray Core and provides metrics for Prometheus, as well as API endpoints for integration with various monitoring systems."
+        author="kutovoys"
+        authorLink="https://github.com/kutovoys"
+        image="/awesome/xray-checker.webp"
+        githubRepo="kutovoys/xray-checker"
+        links={{
+            github: 'https://github.com/kutovoys/xray-checker',
+            docs: 'https://xray-checker.kutovoy.dev/',
+            telegram: 'https://t.me/+FvF4gjr_JLZiOGEy'
+        }}
+    >
+        <XrayCheckerGuide />
+    </ProjectCard>
+</CategorySection>
+
+<CategorySection
+    id="commerce"
+    title="Commerce"
+    description="Telegram bots and mini apps made for commerce with Remnawave."
+    icon="📦"
+    columns={2}
+>
+    <ProjectCard
+        id="remnawave-telegram-shop-bot"
+        title="Remnawave Telegram Shop Bot"
+        description="A Telegram bot for selling subscriptions with integration to Remnawave. This service allows users to purchase and manage subscriptions through Telegram with multiple payment system options."
+        author="jolymmiles"
+        authorLink="https://github.com/Jolymmiles"
+        image="/awesome/remnawave-telegram-shop-bot.webp"
+        githubRepo="Jolymmiels/remnawave-telegram-shop"
+        links={{
+            github: 'https://github.com/Jolymmiels/remnawave-telegram-shop',
+            docs: 'https://remnawave-telegram-shop-bot-doc.vercel.app',
+            telegram: 'https://t.me/remnawavetelegramshop'
+        }}
+        featured={true}
+    />
+    <ProjectCard
+        id="remnawave-tg-shop"
+        title="Remnawave TG Shop"
+        description="A Telegram bot for selling and managing Remnawave subscriptions. It supports user registration, trial periods, promo codes, referral programs, subscription management. Payments are accepted through YooKassa, CryptoPay, Telegram Stars, Tribute. Admins get access to a secure panel with statistics, user management, promo code creation, broadcast messaging and other functions"
+        author="machka pasla"
+        authorLink="https://github.com/machka-pasla"
+        image="/awesome/remnawave-tg-shop.webp"
+        githubRepo="machka-pasla/remnawave-tg-shop"
+        links={{
+            github: 'https://github.com/machka-pasla/remnawave-tg-shop',
+            telegram: 'https://t.me/remnawave_tg_shop'
+        }}
+    />
+    <ProjectCard
+        id="remnawave-bedolaga-bot"
+        title="Remnawave Bedolaga Bot"
+        description="Modern Telegram bot for automating VPN business through Remnawave API. Full-featured solution with user management, multi-channel payments, referral system, detailed analytics, Web API, and Telegram Mini App integration."
+        author="Fr1ngg"
+        authorLink="https://github.com/Fr1ngg"
+        image="/awesome/bedolaga.webp"
+        githubRepo="Fr1ngg/remnawave-bedolaga-telegram-bot"
+        links={{
+            github: 'https://github.com/Fr1ngg/remnawave-bedolaga-telegram-bot',
+            website: 'https://t.me/FringVPN_bot',
+            telegram: 'https://t.me/+wTdMtSWq8YdmZmVi'
+        }}
+    >
+        <RemnavaweBedolagaBotGuide />
+    </ProjectCard>
+
+    <ProjectCard
+        id="remnashop"
+        title="Remnashop"
+        description="A modern Telegram bot for selling and managing subscriptions with maximum flexibility. Create trial, free, or paid plans, restrict access for specific users or groups, set limits, adjust prices, and assign plans to different nodes — all through an intuitive plan configurator."
+        author="snoups"
+        authorLink="https://github.com/snoups"
+        image="/awesome/remnashop.webp"
+        githubRepo="snoups/remnashop"
+        links={{
+            github: 'https://github.com/snoups/remnashop',
+            telegram: 'https://t.me/remna_shop'
+        }}
+    >
+        <RemnashopGuide />
+    </ProjectCard>    
+</CategorySection>
+
+<CategorySection
+    id="auto-installers"
+    title="Auto-installers"
+    description="Automated installation, configuration, and deployment tools for Remnawave infrastructure."
+    icon="🚀 "
+    columns={2}
+>
+    <ProjectCard
+        id="remnawave-reverse-proxy"
+        title="Remnawave Reverse Proxy"
+        description="Server Setup Using NGINX Reverse Proxy. This script is designed to streamline the setup of a reverse proxy server using NGINX and Xray, as well as to automate the installation of the Remnawave control panel and node. In this configuration, Xray operates directly on port 443, forwarding traffic through a socket that NGINX listens to."
+        author="eGamesAPI"
+        authorLink="https://github.com/eGamesAPI"
+        image="/awesome/remnawave-reverse-proxy.webp"
+        githubRepo="eGamesAPI/remnawave-reverse-proxy"
+        links={{
+            github: 'https://github.com/eGamesAPI/remnawave-reverse-proxy',
+            docs: 'https://wiki.egam.es',
+            telegram: 'https://t.me/+G8GtPf9dW9FlMWVi'
+        }}
+        featured={true}
+    >
+        <RemnawaveReverseProxyGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="remnawave-management-scripts"
+        title="Remnawave Management Scripts"
+        description="Comprehensive bash scripts for Remnawave Panel, Remnawave Node, and Reality Selfsteal with full automation support. Features Docker integration, intelligent backup/restore system with version checking, advanced monitoring, and complete lifecycle management."
+        author="DigneZzZ"
+        authorLink="https://github.com/DigneZzZ"
+        image="/awesome/remnawave-script.webp"
+        githubRepo="DigneZzZ/remnawave-scripts"
+        links={{
+            github: 'https://github.com/DigneZzZ/remnawave-scripts'
+        }}
+    >
+        <RemnawaveManagementScriptsGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="remnasetup"
+        title="RemnaSetup"
+        description="Universal script for automatic installation, configuration, and updating of Remnawave and Remnanode infrastructure. Includes installation of the control panel, node, subscription page, Caddy setup, Tblocker, BBR, WARP, and an automatic backup system with Telegram integration."
+        author="Capybara-z"
+        authorLink="https://github.com/Capybara-z"
+        image="/awesome/remnasetup.webp"
+        githubRepo="Capybara-z/RemnaSetup"
+        links={{
+            github: 'https://github.com/Capybara-z/RemnaSetup'
+        }}
+    >
+        <RemnasetupGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="ansible-playbook"
+        title="Ansible playbook for Install Remnawave"
+        description="This project helps install Remnawave via Ansible."
+        author="iphizic"
+        authorLink="https://github.com/iphizic"
+        image="/awesome/ansible.webp"
+        githubRepo="iphizic/remna-playbook"
+        links={{
+            github: 'https://github.com/iphizic/remna-playbook'
+        }}
+    >
+        <AnsiblePlaybookGuide />
+    </ProjectCard>
+</CategorySection>
+
+<CategorySection
+    id="backup-restore"
+    title="Backup & Restore"
+    description="Tools for backing up and restoring your Remnawave database and configurations"
+    icon="💾"
+    columns={1}
+>
+    <ProjectCard
+        id="remnawave-backup-restore"
+        title="Remnawave Backup & Restore"
+        description="The script automates backups and performs a restore of the Remnawave database."
+        author="distillium"
+        authorLink="https://github.com/distillium"
+        image="/awesome/remnawave-backup-restore.webp"
+        githubRepo="distillium/remnawave-backup-restore"
+        links={{
+            github: 'https://github.com/distillium/remnawave-backup-restore'
+        }}
+    >
+        <RemnawaveBackupRestoreGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="remnawave-backuper"
+        title="Backuper"
+        description="Automated backup solution with unlimited size support and multi-platform delivery. Supports Gmail, Telegram, and Discord with password protection and Telegram topic integration."
+        author="erfjab"
+        authorLink="https://github.com/erfjab"
+        image="/awesome/remnawave-backuper.webp"
+        githubRepo="erfjab/Backuper"
+        links={{
+            github: 'https://github.com/erfjab/Backuper'
+        }}
+    >
+        <RemnawaveBackuperGuide />
+    </ProjectCard>
+</CategorySection>
+
+<CategorySection
+    id="misc"
+    title="Misc"
+    description="Utilities, tools, and integrations that don't fit into other categories."
+    icon="🔧"
+    columns={2}
+>
+    <ProjectCard
+        id="remnawave-telegram-mini-app"
+        title="Remnawave Telegram Subscription Mini App"
+        description="This is a Telegram Subscription Mini App that allows users to view their subscriptions directly through Telegram. As a requirement for using the page, the Telegram ID must be set in the user's profile to ensure proper identification and linking of subscriptions."
+        author="maposia"
+        authorLink="https://github.com/maposia"
+        image="/awesome/remnawave-telegram-sub-mini-app.webp"
+        githubRepo="maposia/remnawave-telegram-sub-mini-app"
+        links={{
+            github: 'https://github.com/maposia/remnawave-telegram-sub-mini-app'
+        }}
+    >
+        <RemnavaweTelegramMiniAppGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="remnawave-cloudflare-nodes"
+        title="Cloudflare Nodes"
+        description="Automatically manage Cloudflare DNS records based on Remnawave node health status."
+        author="hteppl"
+        authorLink="https://github.com/hteppl"
+        image="/awesome/remnawave-cloudflare-nodes.webp"
+        githubRepo="hteppl/remnawave-cloudflare-nodes"
+        links={{
+            github: 'https://github.com/hteppl/remnawave-cloudflare-nodes',
+            telegram: 'https://t.me/+oWSs_u-Wg2piNDIy'
+        }}
+    >
+        <RemnawaveCloudflareNodes />
+    </ProjectCard>
+    <ProjectCard
+        id="warp-native-installer"
+        title="WARP Native Installer"
+        description="This script installs Cloudflare WARP in 'native' mode via WireGuard, without using warp-cli. Automates package installation, wgcf configuration, and enables autorun. Available as both shell script and Ansible role."
+        author="distillium & TheMelbine"
+        authorLink="https://github.com/distillium"
+        image="/awesome/warp-native.webp"
+        githubRepo="distillium/warp-native"
+        links={{
+            github: 'https://github.com/distillium/warp-native'
+        }}
+    >
+        <WarpNativeInstallerGuide />
+    </ProjectCard>
+    <ProjectCard
+        id="geo-file-viewer"
+        title="Geo File Viewer"
+        description="A utility for viewing the contents of geoip and geofile (.dat) files in the v2fly format."
+        image="/awesome/geofileviewer.webp"
+        links={{
+            website: 'https://jomertix.github.io/geofileviewer'
+        }}
+    />
+</CategorySection>
+
+<CategorySection
+    id="clients"
+    title="Clients"
+    description="Proxy clients based on Remnawave functionality"
+    icon="🖥️"
+    columns={2}
+>
+    <ProjectCard
+        id="koala-clash"
+        title="Koala-Clash (fork of Clash Verge Rev)"
+        description="Koala-Clash is a desktop (Windows, Linux, macOS) client for Mihomo. A Clash Meta GUI based on Tauri."
+        author="coolcoala"
+        authorLink="https://github.com/coolcoala"
+        image="/awesome/koalaclash.webp"
+        githubRepo="coolcoala/clash-verge-rev-lite"
+        hwidSupported={true}
+        links={{
+            github: 'https://github.com/coolcoala/clash-verge-rev-lite',
+            telegram: 'https://t.me/+WCL__GOFzZJkYjZi'
+        }}
+    />
+    <ProjectCard
+        id="flclashx"
+        title="FlClashX (fork of FlClash)"
+        description="A fork of the multi-platform (Windows, Android, Linux, macOS) proxy client FlClash based on ClashMeta, simple and easy to use, open source and ad-free."
+        author="pluralplay"
+        authorLink="https://github.com/pluralplay"
+        image="/awesome/flclashx.webp"
+        githubRepo="pluralplay/flclashx"
+        links={{
+            github: 'https://github.com/pluralplay/flclashx',
+            telegram: 'https://t.me/flclashx'
+        }}
+        hwidSupported={true}
+        featured={true}
+    />
+    <ProjectCard
+        id="prizrakbox"
+        title="Prizrak-Box (fork of Pandora-Box)"
+        description="Prizrak-Box is a desktop (Windows, Linux, macOS) client for Mihomo, supporting subscription management and routing rule configuration. 
+        It allows using and overriding routes with custom templates (includes built-in templates relevant for Russia)."
+        author="legiz"
+        authorLink="https://github.com/legiz-ru"
+        image="/awesome/prizrakbox.webp"
+        githubRepo="legiz-ru/Prizrak-Box"
+        hwidSupported={true}
+        links={{
+            github: 'https://github.com/legiz-ru/Prizrak-Box'
+        }}
+    />
+    <ProjectCard
+        id="flowvy"
+        title="Flowvy (fork of FlClash)"
+        description="Flowvy is a multi-platform (Windows, Android) client based on FlClash, featuring advanced notifications for traffic usage and subscription expiry. It offers a redesigned UI with Russian localization, a new home widget, and supports core setting overrides from the config."
+        author="x_kit_"
+        authorLink="https://github.com/this-xkit/"
+        image="/awesome/flowvy.webp"
+        githubRepo="this-xkit/Flowvy"
+        hwidSupported={true}
+        links={{
+            github: 'https://github.com/this-xkit/Flowvy'
+        }}
+    />
+</CategorySection>
+
+---
+
+<h2 id="remnafamily">💬 Join the chat list in Telegram</h2>
+
+### RemnaFamily
+
+[Join the chat list](https://t.me/addlist/_MNKSbbkAlQ3ZjQy)
+
+## 🎯 Add Your Project
+
+Want to showcase your Remnawave-related project? We'd love to see it!
+
+**Requirements:**
+
+- ✅ Project must be open source
+- ✅ Project must be related to Remnawave or useful for Remnawave users
+
+**How to submit:**
+
+1. Open a PR on [GitHub](https://github.com/remnawave/panel/blob/main/docs/awesome-remnawave.mdx)
+2. Make sure the target branch is `main`
+
+:::tip Making beautiful previews
+
+1. Make screenshot of your project
+2. Paste it to https://shots.so
+3. Select background colors and download image
+4. Compress it to `webp` format with https://squoosh.app/
+5. Put it to `static/awesome` directory
+
+:::
+
+---
+
+<div
+    style={{
+        textAlign: 'center',
+        marginTop: '4rem',
+        padding: '2rem',
+        borderRadius: '12px'
+    }}
+>
+    <h3>🌟 Thank you to all contributors!</h3>
+    <p>The Remnawave community thrives because of amazing developers like you.</p>
+</div>

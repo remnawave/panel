@@ -25,7 +25,8 @@ tinyauth:
       - APP_URL=https://tinyauth.example.com
       - USERS=your-username-password-hash
       - SECRET=some-random-32-chars-string
-
+    volumes:
+      - ./data:/data
   # To get USERS and SECRET read below
 
 ```
@@ -61,7 +62,7 @@ Every configuration option that has a `FILE` equivalent (e.g. `USERS` and `
 
 `USERS_FILE=` A file containing a list of tinyauth users.
 
-All environment variables you can see on official documentation https://tinyauth.app/docs/reference/configuration.html
+All environment variables you can see on official documentation https://tinyauth.app/docs/reference/configuration
 
 :::
 
@@ -145,6 +146,22 @@ After that, restart nginx and launch tinyAuth
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f
+```
+
+:::warning
+
+Important: If you used tinyAuth before 01.12.2025 and updated, you have switched from version 3 to 4.
+
+:::
+## Updating from v3 to v4
+
+Starting from v4, Tinyauth is a stateful application that uses a SQLite database to store sessions. This change improves security. For Docker setups, include the following volume:
+
+```bash
+services:
+  tinyauth:
+    volumes:
+      - ./data:/data
 ```
 
 ## Issuing API-keys

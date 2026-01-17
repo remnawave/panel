@@ -1,0 +1,106 @@
+name: Build docs and landing
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    build-landing:
+        name: Build landing
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout landing repository
+              uses: actions/checkout@v4
+              with:
+                  repository: remnawave/landing
+                  token: ${{ secrets.LANDING_REPO_TOKEN }}
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22.18.0'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build landing
+              run: npm run start:build
+
+            - name: Upload landing artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: landing-build
+                  path: landing/
+
+    build-docs:
+        name: Build documentation
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout docs repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22.18.0'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build documentation
+              run: npm run build
+
+            - name: Upload docs artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: docs-build
+                  path: build/
+
+    build-docker:
+        name: Build and push Docker image
+        runs-on: ubuntu-22.04
+        needs: [build-landing, build-docs]
+        steps:
+            - name: Checkout docs repository
+              uses: actions/checkout@v4
+
+            - name: Download landing artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: landing-build
+                  path: landing/
+
+            - name: Download docs artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: docs-build
+                  path: build/
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  push: true
+                  tags: |
+                      remnawave/internal-docs:latest
+                  platforms: linux/amd64
+
+            - name: Deploy to Railway
+              run: |
+                  curl -fsSL https://railway.app/install.sh | sh
+                  export PATH=$PATH:$HOME/.railway/bin
+                  railway redeploy --service ${{ env.SVC_ID }} -y
+              env:
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+                  SVC_ID: ${{ secrets.RAILWAY_SERVICE_ID }}

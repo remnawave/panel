@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://remna.st">
+  <a href="https://docs.rw">
     <img src="https://cdn.remna.st/logos/logo.svg" alt="Logo" width="160" height="160">
   </a>
 
@@ -9,7 +9,7 @@
     A powerful proxy management tool, built on top of Xray-core, with a focus on simplicity and ease of use.
     <br />
     <p align="center">
-    <a href="https://remna.st">
+    <a href="https://docs.rw">
         <img src="https://img.shields.io/badge/Get%20Started-%E2%86%92-0969da?style=for-the-badge&labelColor=0969da&color=0969da" alt="Get Started" width="200" height="auto">
     </a>
     </p>

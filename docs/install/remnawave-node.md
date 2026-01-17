@@ -21,46 +21,25 @@ Remnawave Panel does not include Xray-core, so you need to install Remnawave Nod
 mkdir /opt/remnanode && cd /opt/remnanode
 ```
 
-## Step 2 — Configure the .env file
+## Step 2 - Adding Node
 
-```bash title="Create .env file"
-nano .env
-```
+Navigate to `Nodes` -> `Management` and click `+` button to add a new node.
 
-:::tip
-`SSL_CERT` value can be obtained from the Panel under Nodes → Management → Create new node (`+` button). Copy button in `Important note` will add `SSL_CERT=` to your clipboard. 
-`APP_PORT` can be customized. Make sure it's not being used by other services.
-:::
+Fill out the form.
 
-```bash title=".env file content"
-APP_PORT=2222
+Pay attention to `Node Port` field. It will be used by Remnawave Node to listen internal API requests from Remnawave Panel. It won't be used any other way.
 
-SSL_CERT=CERT_FROM_MAIN_PANEL
-```
+Click on `Copy docker-compose.yml` button to copy the configuration to your clipboard.
 
-:::caution
-The line copied from the Panel already contains `SSL_CERT=` — just paste it directly from the clipboard.
-:::
+![Creating Node](/install/remnawave-node.webp)
 
 ## Step 3 — Create docker-compose.yml file
 
 ```bash title="Create docker-compose.yml file"
-nano docker-compose.yml
+cd /opt/remnanode && nano docker-compose.yml
 ```
 
-Paste this content and save:
-
-```yaml title="docker-compose.yml file content"
-services:
-    remnanode:
-        container_name: remnanode
-        hostname: remnanode
-        image: remnawave/node:latest
-        restart: always
-        network_mode: host
-        env_file:
-            - .env
-```
+Paste the configuration from the clipboard and save.
 
 ## Step 4 — Start the containers
 
@@ -69,6 +48,14 @@ Start the containers by running the following command:
 ```bash title="Start the containers"
 docker compose up -d && docker compose logs -f -t
 ```
+
+## Step 5 - Finish
+
+In the Node creation card, click on `Next`, select desired `Config Profile` and after that click on `Create` button.
+
+:::danger Important note
+Please remember to close NODE_PORT in the node firewall only for the IP panel.
+:::
 
 ## Advanced usage
 
@@ -96,8 +83,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+          - NODE_PORT=2222
+          - SECRET_KEY="supersecretkey"
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
@@ -155,8 +143,9 @@ services:
         image: remnawave/node:latest
         restart: always
         network_mode: host
-        env_file:
-            - .env
+        environment:
+          - NODE_PORT=2222
+          - SECRET_KEY="supersecretkey"
         // highlight-next-line-green
         volumes:
             // highlight-next-line-green
