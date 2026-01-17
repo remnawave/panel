@@ -486,7 +486,7 @@ export const CLIENTS: Client[] = [
         links: {
             docs: 'https://clashmi.app',
             telegram: 'https://t.me/ClashMiApp',
-            github:'https://github.com/KaringX/clashmi'
+            github: 'https://github.com/KaringX/clashmi'
         }
     },
 
