@@ -146,7 +146,7 @@ const config: Config = {
                 showNavLink: true, // optional, default is true
                 configuration: {
                     spec: {
-                        url: 'https://cdn.remna.st/docs/openapi.json'
+                        url: 'https://cdn.docs.rw/docs/openapi.json'
                     },
                     theme: 'purple',
                     hideDarkModeToggle: true,
