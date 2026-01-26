@@ -475,6 +475,9 @@ export const CLIENTS: Client[] = [
         platforms: ['android', 'ios', 'windows', 'linux', 'macos'],
         description: 'Mihomo client',
         logo: '/clients/logo/clash-mi-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'KaringX/clashmi',
         downloadLinks: {
             android: 'https://github.com/KaringX/clashmi/releases/latest',
