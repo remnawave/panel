@@ -274,17 +274,22 @@ export const CLIENTS: Client[] = [
         id: 'karing',
         name: 'Karing',
         core: 'singbox',
-        platforms: ['android', 'ios', 'macos', 'windows'],
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
         description: 'Multi-platform proxy client based on Sing-box core.',
         logo: '/clients/logo/karing-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'KaringX/karing',
         downloadLinks: {
             android: 'https://github.com/KaringX/karing/releases/latest',
             ios: 'https://apps.apple.com/us/app/karing/id6472431552',
-            macos: 'https://apps.apple.com/us/app/karing/id6472431552',
-            windows: 'https://github.com/KaringX/karing/releases/latest'
+            macos: 'https://github.com/KaringX/karing/releases/latest',
+            windows: 'https://github.com/KaringX/karing/releases/latest',
+            linux: 'https://github.com/KaringX/karing/releases/latest'
         },
         links: {
+            telegram: 'https://t.me/KaringApp',
             github: 'https://github.com/KaringX/karing',
             docs: 'https://karing.app/'
         }
@@ -475,6 +480,9 @@ export const CLIENTS: Client[] = [
         platforms: ['android', 'ios', 'windows', 'linux', 'macos'],
         description: 'Mihomo client',
         logo: '/clients/logo/clash-mi-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'KaringX/clashmi',
         downloadLinks: {
             android: 'https://github.com/KaringX/clashmi/releases/latest',
