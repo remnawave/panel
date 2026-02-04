@@ -148,6 +148,22 @@ After that, restart nginx and launch tinyAuth
 docker compose down && docker compose up -d && docker compose logs -f
 ```
 
+:::warning
+
+Important: If you used tinyAuth before 01.12.2025 and updated, you have switched from version 3 to 4.
+
+:::
+## Updating from v3 to v4
+
+Starting from v4, Tinyauth is a stateful application that uses a SQLite database to store sessions. This change improves security. For Docker setups, include the following volume:
+
+```bash
+services:
+  tinyauth:
+    volumes:
+      - ./data:/data
+```
+
 ## Issuing API-keys
 
 :::info

@@ -1,39 +1,46 @@
 ## Telegram OAuth2
 
-To configure the "Login via Telegram" feature, you need a Telegram bot. Additionally, you need to configure the bot for the feature to work correctly.
+### 配置 Telegram 登录
 
-### Bot Configuration
+要使用“通过 Telegram 登录”功能，你需要先创建一个 Telegram 机器人。
+此外，还需要对该机器人进行正确配置，功能才能正常使用。
 
-1. Open @BotFather (https://t.me/botfather)
+### 机器人配置
 
-2. Send the `/mybots` command and select the required bot
+1. 打开 @BotFather（https://t.me/botfather）
 
-3. Select the option `Bot settings` → `Domain`
+2. 发送 `/mybots` 命令，并选择对应的机器人
 
-4. Select the option `Set domain`
+3. 选择 `Bot settings` → `Domain`
 
-    Now send the bot a message containing the domain name used to access Remnawave.
+4. 选择 `Set domain`
+
+    然后向机器人发送用于访问 Remnawave 的域名，例如：
 
     ```
     https://panel.domain.com
     ```
 
-### Access Configuration
+### 访问权限配置
 
-After entering the bot token, you need to specify a list of administrator IDs who will have access to login.
+在填写完机器人 Token 后，需要指定允许登录的管理员 ID 列表。
 
-1. From the required account, launch the bot – https://t.me/Get_myidrobot
-2. In response, the bot will send you your ID, enter it in the corresponding field.
+1. 使用对应账号打开机器人：https://t.me/Get_myidrobot  
+2. 机器人会返回你的用户 ID，将该 ID 填入对应的配置项中。
 
 ---
 
-### Known Error Solutions
+### 常见错误说明
 
-###### Error: BOT_DOMAIN_INVALID
+#### 错误：BOT_DOMAIN_INVALID
 
-This error occurs due to incorrect bot domain configuration – review the "Bot Configuration" section (above). If necessary, repeat this step-by-step process.
+该错误通常由机器人域名配置不正确导致。
+请重新检查并按照「机器人配置」部分的步骤重新设置。
 
-###### Error: Telegram confirmation code not received during login
+#### 错误：登录时未收到 Telegram 验证码
 
-Unfortunately, this issue cannot be resolved from the Remnawave side. Try using a bot that was created a while ago or use a different browser.
-Alternatively, you can try logging in on one of the "official" resources – for example, https://fragment.com. Since the Telegram session within the browser will be shared – you can try logging into the panel.
+该问题无法通过 Remnawave 本身解决。
+建议使用较早创建的 Telegram 机器人，或更换浏览器重试。
+
+另外，也可以尝试先登录 Telegram 官方站点（例如 https://fragment.com），
+因为浏览器中的 Telegram 会话是共享的，然后再尝试登录面板。

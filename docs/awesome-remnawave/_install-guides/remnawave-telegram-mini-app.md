@@ -15,7 +15,7 @@ The application requires the following environment variables to be set:
 | `CRYPTO_LINK`         | Allows using encrypted links (currently supported Happ application)                                                                                                                                                                                                    |
 | `REDIRECT_LINK`       | Allows you to specify a **custom redirect page URL** for deep links. Useful for handling protocols like `v2box://` in Telegram Desktop (Windows). For more details and examples, see [Telegram Deep Link Redirect](https://github.com/maposia/redirect-page/tree/main) |
 | `AUTH_API_KEY`        | If you use "Caddy with security" or TinyAuth for Nginx addon, you can place here X-Api-Key, which will be applied to requests to Remnawave Panel.                                                                                                                      |
-
+| `FORCE_SNOWFLAKES`        | Allows snowfall on main page                                                                                                                                                                  |
 ### Install and Run
 
 #### 1. Create a new directory for the mini app

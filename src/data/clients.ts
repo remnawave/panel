@@ -65,7 +65,7 @@ export const CLIENTS: Client[] = [
         id: 'happ',
         name: 'Happ',
         core: 'xray',
-        platforms: ['android', 'ios', 'macos', 'windows'],
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
         description: 'Modern and feature-rich proxy client for Android, iOS, macOS, and Windows.',
         logo: '/clients/logo/happ-dark.svg',
         badges: {
@@ -76,9 +76,8 @@ export const CLIENTS: Client[] = [
             android: 'https://play.google.com/store/apps/details?id=com.happproxy',
             ios: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
             macos: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
-            windows:
-                'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x86.exe',
-            linux: 'https://github.com/Happ-proxy/happ-desktop/releases/'
+            windows: 'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe',
+            linux: 'https://github.com/Happ-proxy/happ-desktop/releases/latest'
         },
         links: {
             website: 'https://happ.su/main',
@@ -227,13 +226,14 @@ export const CLIENTS: Client[] = [
         description:
             'Universal proxy platform with multiple protocol support. ⚠️ iOS/macOS version outdated.',
         logo: '/clients/logo/sing-box-dark.svg',
+        githubRepo: 'SagerNet/sing-box',
         downloadLinks: {
             android: 'https://play.google.com/store/apps/details?id=io.nekohasekai.sfa',
             ios: 'https://apps.apple.com/us/app/sing-box-vt/id6673731168',
             macos: 'https://apps.apple.com/us/app/sing-box-vt/id6673731168'
         },
         links: {
-            github: 'https://github.com/sing-box/sing-box',
+            github: 'https://github.com/SagerNet/sing-box',
             docs: 'https://sing-box.sagernet.org/'
         }
     },
@@ -274,17 +274,22 @@ export const CLIENTS: Client[] = [
         id: 'karing',
         name: 'Karing',
         core: 'singbox',
-        platforms: ['android', 'ios', 'macos', 'windows'],
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
         description: 'Multi-platform proxy client based on Sing-box core.',
         logo: '/clients/logo/karing-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'KaringX/karing',
         downloadLinks: {
             android: 'https://github.com/KaringX/karing/releases/latest',
             ios: 'https://apps.apple.com/us/app/karing/id6472431552',
-            macos: 'https://apps.apple.com/us/app/karing/id6472431552',
-            windows: 'https://github.com/KaringX/karing/releases/latest'
+            macos: 'https://github.com/KaringX/karing/releases/latest',
+            windows: 'https://github.com/KaringX/karing/releases/latest',
+            linux: 'https://github.com/KaringX/karing/releases/latest'
         },
         links: {
+            telegram: 'https://t.me/KaringApp',
             github: 'https://github.com/KaringX/karing',
             docs: 'https://karing.app/'
         }
@@ -375,6 +380,9 @@ export const CLIENTS: Client[] = [
         platforms: ['windows', 'macos', 'linux'],
         description: 'Feature-rich Sing-box based client.',
         logo: '/clients/logo/throne-dark.svg',
+        badges: {
+            hwid: true
+        },
         githubRepo: 'throneproj/Throne',
         downloadLinks: {
             windows: 'https://github.com/throneproj/Throne/releases/latest',
@@ -441,6 +449,9 @@ export const CLIENTS: Client[] = [
         platforms: ['ios', 'macos'],
         description: 'Popular proxy client ($3)',
         logo: '/clients/logo/shadowrocker-dark.svg',
+        badges: {
+            hwid: true
+        },
         downloadLinks: {
             ios: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
             macos: 'https://apps.apple.com/us/app/shadowrocket/id932747118'
@@ -466,15 +477,24 @@ export const CLIENTS: Client[] = [
         id: 'clash-mi',
         name: 'Clash Mi',
         core: 'mihomo',
-        platforms: ['android', 'ios'],
-        description: 'Mihomo client for Android and iOS (Alpha version)',
+        platforms: ['android', 'ios', 'windows', 'linux', 'macos'],
+        description: 'Mihomo client',
         logo: '/clients/logo/clash-mi-dark.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'KaringX/clashmi',
         downloadLinks: {
             android: 'https://github.com/KaringX/clashmi/releases/latest',
-            ios: 'https://apps.apple.com/us/app/clash-mi/id6744321968'
+            ios: 'https://apps.apple.com/us/app/clash-mi/id6744321968',
+            windows: 'https://github.com/KaringX/clashmi/releases/latest',
+            linux: 'https://github.com/KaringX/clashmi/releases/latest',
+            macos: 'https://github.com/KaringX/clashmi/releases/latest'
         },
         links: {
-            docs: 'https://clashmi.app'
+            docs: 'https://clashmi.app',
+            telegram: 'https://t.me/ClashMiApp',
+            github: 'https://github.com/KaringX/clashmi'
         }
     },
 
@@ -495,6 +515,21 @@ export const CLIENTS: Client[] = [
         },
         links: {
             github: 'https://github.com/hiddify/hiddify-app'
+        }
+    },
+
+    {
+        id: 'clashMac',
+        name: 'ClashMac',
+        core: 'mihomo',
+        platforms: ['macos'],
+        description: 'A Modern Proxy Tool Built for macOS',
+        logo: 'https://clashmac.app/assets/logo.png',
+        downloadLinks: {
+            macos: 'https://clashmac.app/#download/'
+        },
+        links: {
+            website: 'https://clashmac.app/'
         }
     }
 ]
