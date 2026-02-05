@@ -19,6 +19,7 @@ interface ProjectCardProps {
     links?: {
         docs?: string
         github?: string
+        private?: string
         telegram?: string
         website?: string
     }
@@ -171,6 +172,22 @@ export default function ProjectCard({
                                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
                                     </svg>
                                     Docs
+                                </Link>
+                            )}
+                            {links?.private && (
+                                <Link
+                                    className={clsx(styles.link, styles.privateLink)}
+                                    to={links.private}
+                                >
+                                    <svg
+                                        fill="currentColor"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        width="16"
+                                    >
+                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                    </svg>
+                                    Private
                                 </Link>
                             )}
                             {links?.telegram && (

@@ -517,6 +517,28 @@
     text-decoration: none;
 }
 
+.privateLink {
+    background: #4b5563;
+    color: white;
+}
+
+.privateLink:hover {
+    background: #374151;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(75, 85, 99, 0.3);
+}
+
+[data-theme='dark'] .privateLink {
+    background: #4b5563;
+    color: white;
+}
+
+[data-theme='dark'] .privateLink:hover {
+    background: #6b7280;
+    color: white;
+}
+
 .telegramLink {
     background: #0088cc;
     color: white;
