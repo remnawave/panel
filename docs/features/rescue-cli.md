@@ -57,3 +57,25 @@ Clears the SRH (Subscription Request History) table. This command removes all su
 ### Exit
 
 Exits the Rescue CLI and returns to the shell.
+
+---
+
+## Remnawave Node Rescue CLI
+
+There is also a Rescue CLI for Remnawave Node. Currently, it provides a single feature: retrieving the cold Xray configuration.
+
+To access the Rescue CLI for Remnawave Node, use the following command:
+
+```bash
+docker exec -it remnanode cli
+```
+
+## Commands
+
+### Get cold config
+
+Retrieves the cold config for Xray.
+
+```bash
+docker exec -it remnanode cli --dump-config
+```
