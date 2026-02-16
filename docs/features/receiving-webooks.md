@@ -158,6 +158,7 @@ Available events (`event` property):
 - `service.panel_started` - Panel started
 - `service.login_attempt_failed` - Login attempt failed
 - `service.login_attempt_success` - Login attempt success
+- `service.subpage_config_changed` - Subpage config changed
 
 Remnawave Typescript SDK types:
 
