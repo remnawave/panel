@@ -539,6 +539,9 @@ export const CLIENTS: Client[] = [
         platforms: ['ios', 'macos'],
         description: 'Modern VPN client with VLESS, VMess, Trojan and Shadowsocks support.',
         logo: '/clients/logo/incy-dark.svg',
+        badges: {
+            hwid: true
+        },
         downloadLinks: {
             ios: 'https://apps.apple.com/us/app/incy/id6756943388',
             macos: 'https://apps.apple.com/us/app/incy/id6756943388'
