@@ -61,11 +61,11 @@ The migration tool uses command-line flags for configuration. Below is an exampl
 ```bash
 ./remnawave-migrate \
   --panel-type=marzban \
-  --panel-url="https://your-marzban-server" \
-  --panel-username="admin" \
-  --panel-password="your-admin-password" \
-  --remnawave-url="https://your-remnawave-server" \
-  --remnawave-token="your-remnawave-token" \
+  --panel-url=https://your-marzban-server \
+  --panel-username=admin \
+  --panel-password=your-admin-password \
+  --remnawave-url=https://your-remnawave-server \
+  --remnawave-token=your-remnawave-token \
   --preserve-status
 ```
 
