@@ -26,28 +26,40 @@ title: Xray JSON – Advanced
 
 ## Структура remnawave
 
-Объект `remnawave` добавляется на корневой уровень JSON-шаблона:
+Объект `remnawave` добавляется на корневой уровень JSON-шаблона. Поле `injectHosts` — это **массив** групп инжекта. Каждая группа содержит свой набор хостов и собственный `tagPrefix`:
 
 ```json
 "remnawave": {
-    "injectHosts": {
-        "hostUuids": ["uuid-хоста-1", "uuid-хоста-2"],
-        "tagPrefix": "proxy"
-    }
+    "injectHosts": [
+        {
+            "hostUuids": ["uuid-хоста-1", "uuid-хоста-2"],
+            "tagPrefix": "proxy"
+        },
+        {
+            "hostUuids": ["uuid-хоста-3", "uuid-хоста-4"],
+            "tagPrefix": "backup"
+        }
+    ]
 },
 ```
+
+Каждый элемент массива `injectHosts`:
 
 | Поле        | Описание                                                                                           |
 | ----------- | -------------------------------------------------------------------------------------------------- |
 | `hostUuids` | Массив UUID хостов, outbound'ы которых будут подставлены в шаблон. Хосты должны быть **скрытыми**. |
-| `tagPrefix` | Префикс тега для создаваемых outbound'ов.                                                          |
+| `tagPrefix` | Префикс тега для создаваемых outbound'ов в этой группе.                                            |
+
+Групп может быть сколько угодно — каждая формирует свой независимый набор outbound'ов с собственным префиксом. Это позволяет, например, завести отдельный балансировщик для каждой группы серверов.
 
 ### Правила формирования тегов
+
+В каждой группе теги формируются независимо:
 
 - Первый хост из массива получает тег, равный `tagPrefix` (например, `proxy`).
 - Каждый последующий хост получает тег `{tagPrefix}-{N}`, начиная с 2.
 
-Пример для трёх хостов с `tagPrefix: "proxy"`:
+Пример для группы из трёх хостов с `tagPrefix: "proxy"`:
 
 | Порядок в hostUuids | Тег outbound'а |
 | ------------------- | -------------- |
@@ -109,23 +121,25 @@ title: Xray JSON – Advanced
     //highlight-next-line-green
     "remnawave": {
         //highlight-next-line-green
-        "injectHosts": {
+        "injectHosts": [
             //highlight-next-line-green
-            "hostUuids": [
+            {
                 //highlight-next-line-green
-                "8478b271-95d3-4312-85ae-ecf63fb53d1d",
+                "hostUuids": [
+                    //highlight-next-line-green
+                    "8478b271-95d3-4312-85ae-ecf63fb53d1d",
+                    //highlight-next-line-green
+                    "d31d6161-1315-4c1e-9a4b-141ab1c022f6",
+                    //highlight-next-line-green
+                    "5749f69e-cd1b-4012-9407-450434085196"
                 //highlight-next-line-green
-                "d31d6161-1315-4c1e-9a4b-141ab1c022f6",
+                ],
                 //highlight-next-line-green
-                "5749f69e-cd1b-4012-9407-450434085196"
-                //highlight-next-line-green
-                "ЗАМЕНИТЬ_НА_СВОЙ_UUID"
+                "tagPrefix": "proxy"
             //highlight-next-line-green
-            ],
-            //highlight-next-line-green
-            "tagPrefix": "proxy"
-            //highlight-next-line-green
-        }
+            }
+        //highlight-next-line-green
+        ]
     },
     "burstObservatory": {
         "pingConfig": {
@@ -232,7 +246,7 @@ title: Xray JSON – Advanced
 
 1. Возьмёт шаблон, назначенный виртуальному хосту.
 2. Удалит из него объект `remnawave`.
-3. Для каждого UUID из `hostUuids` найдёт скрытый хост и соберёт его outbound.
+3. Для каждой группы в `injectHosts` и каждого UUID из `hostUuids` найдёт скрытый хост и соберёт его outbound.
 4. Подставит outbound'ы **в начало** массива `outbounds`.
 5. Установит `remarks` из примечания виртуального хоста.
 
