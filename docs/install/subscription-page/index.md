@@ -23,11 +23,3 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 <DocCardList items={[...[...useCurrentSidebarCategory().items].map((_,i)=>i<2?_:null).filter(Boolean)]} />
 ```
-
-After you install subscription page, you can customize it by following the guide below.
-
-```mdx-code-block
-
-<DocCardList items={[...[...useCurrentSidebarCategory().items].map((_,i)=>i>=useCurrentSidebarCategory().items.length-2?_:null).filter(Boolean)]} />
-
-```
