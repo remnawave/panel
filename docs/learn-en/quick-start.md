@@ -95,7 +95,6 @@ On the left side you will see the navigation menu:
     - `Response Rulse` - [Define](/docs/learn-en/routing-rules) how the configuration is generated for the client apps'.
 5. **Utilities** - Tools designed to simplify and automate common tasks.
     - `Happ Routing` - A rule builder for creating and managing routing rules for Happ.
-    - `Subscription Page` - Customize the content of the [Subscription Page](/docs/install/subscription-page/customization).
 
 ## Remnawave Settings {#settings}
 
@@ -135,7 +134,7 @@ Before setting up Passkey authentication, you need to define your Panel domain.
 
 3. **Login Using Passkey**  
 After registration, return to the login page to test the passkey. Once confirmed, you can disable username/password login.
-  </details>
+   </details>
 
 #### GitHub {#github}
 
@@ -159,7 +158,7 @@ Copy the `Client ID` and `Client Secret` from app page.
 
 4. **Login Using GitHub**  
 After registration, return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-  </details>
+   </details>
 
 #### PocketID {#pocketid}
 
@@ -182,7 +181,7 @@ In `Administration` → `OIDC Clients`, click `Add OIDC Client`.
     - `Allowed Emails` — add email addresses allowed to log in.
 4. **Login Using PocketID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-  </details>
+   </details>
 
 #### Yandex ID {#yandexid}
 
@@ -209,7 +208,7 @@ Visit [Yandex ID page](https://oauth.yandex.com/client/new/id) to create an app.
 
 4. **Login Using Yandex ID**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-  </details>
+   </details>
 
 #### Telegram OAuth {#telegram}
 
@@ -234,15 +233,17 @@ You can log in with your Telegram account.
 
 5. **Login Using Telegram Auth**  
 Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-  </details>
+   </details>
 
 :::tip Locked yourself out?
 If you disabled the password login and your OAuth doesn't work, you can enable it back with Remnawave Rescue CLI.
 
 On a server hosting the Panel, run:
+
 ```bash
 docker exec -it remnawave remnawave
 ```
+
 :::
 
 ---
