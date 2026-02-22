@@ -68,6 +68,7 @@ Not all client applications send a HWID header. Here is the list of applications
 - [Passwall-OpenWRT](https://github.com/Openwrt-Passwall/openwrt-passwall)
 - [Clash Mi](https://clashmi.app/) - HWID disabled by default
 - [Karing](https://karing.app/) - HWID disabled by default
+- [Incy](https://incy.cc/)
 
 ## For app developers
 
