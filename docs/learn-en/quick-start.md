@@ -133,8 +133,9 @@ Before setting up Passkey authentication, you need to define your Panel domain.
    Click `Manage`, then `Register`. Follow the steps your browser/device provides.
 
 3. **Login Using Passkey**  
-After registration, return to the login page to test the passkey. Once confirmed, you can disable username/password login.
-   </details>
+   After registration, return to the login page to test the passkey. Once confirmed, you can disable username/password login.
+
+</details>
 
 #### GitHub {#github}
 
@@ -157,8 +158,9 @@ Copy the `Client ID` and `Client Secret` from app page.
     - `Allowed Emails` — specify which GitHub email addresses can log in.
 
 4. **Login Using GitHub**  
-After registration, return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-   </details>
+   After registration, return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
+
+</details>
 
 #### PocketID {#pocketid}
 
@@ -180,8 +182,9 @@ In `Administration` → `OIDC Clients`, click `Add OIDC Client`.
     - `Plain Domain` — plain domain for PocketID instance. Do not use any paths or protocols, just a plain domain (e.g., `pocketid.example.com`)
     - `Allowed Emails` — add email addresses allowed to log in.
 4. **Login Using PocketID**  
-Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-   </details>
+   Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
+
+</details>
 
 #### Yandex ID {#yandexid}
 
@@ -207,8 +210,9 @@ Visit [Yandex ID page](https://oauth.yandex.com/client/new/id) to create an app.
     - `Allowed Emails` — set the email adresses of the yandex accounts you wish to give access to. The account on yandex that logins in be registered to the email that you specified here.
 
 4. **Login Using Yandex ID**  
-Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-   </details>
+   Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
+
+</details>
 
 #### Telegram OAuth {#telegram}
 
@@ -232,8 +236,9 @@ You can log in with your Telegram account.
     - `Allowed Admin IDs` — set the ID you got earlier from @userinfobot.
 
 5. **Login Using Telegram Auth**  
-Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
-   </details>
+   Return to the login page to test the new authentication method. Once confirmed, you can disable username/password login.
+
+</details>
 
 :::tip Locked yourself out?
 If you disabled the password login and your OAuth doesn't work, you can enable it back with Remnawave Rescue CLI.
