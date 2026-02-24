@@ -104,7 +104,7 @@
 
 #### 🔐 Security
 
-* 🪪 **JWT authentication** — access + refresh tokens
+* 🛡 **JWT authentication** — access + refresh tokens
 * 🔑 **Forced password change** — on first admin login
 * 📧 **Email verification** — confirmation via email link
 * 🚫 **Client blocking** — with reason specification
