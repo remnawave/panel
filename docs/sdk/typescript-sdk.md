@@ -28,6 +28,7 @@ Always pick and pin the correct version of the SDK to match the version of the R
 
 | Contract Version | Remnawave Panel Version                    |
 | ---------------- | ------------------------------------------ |
+| 2.6.17           | 2.6.3                                      |
 | 2.6.16           | 2.6.2                                      |
 | 2.6.1            | 2.6.1                                      |
 | 2.6.0            | 2.6.0                                      |
