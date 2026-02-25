@@ -276,7 +276,7 @@ title: Xray JSON – Advanced
     "burstObservatory": {
         "pingConfig": {
             "timeout": "3s",
-            "interval": "5m",
+            "interval": "1m",
             "sampling": 1,
             "destination": "http://www.gstatic.com/generate_204",
             "connectivity": ""
@@ -309,6 +309,11 @@ title: Xray JSON – Advanced
                 "type": "field",
                 "protocol": ["bittorrent"],
                 "outboundTag": "direct"
+            },
+            {
+                "type": "field",
+                "network": "tcp,udp",
+                "balancerTag": "Super_Balancer"
             }
         ],
         "domainMatcher": "hybrid",
@@ -397,6 +402,11 @@ title: Xray JSON – Advanced
                     "type": "field",
                     "protocol": ["bittorrent"],
                     "outboundTag": "direct"
+                },
+                {
+                    "type": "field",
+                    "network": "tcp,udp",
+                    "balancerTag": "Super_Balancer"
                 }
             ],
             "balancers": [
@@ -462,7 +472,7 @@ title: Xray JSON – Advanced
         "burstObservatory": {
             "pingConfig": {
                 "timeout": "3s",
-                "interval": "5m",
+                "interval": "1m",
                 "sampling": 1,
                 "destination": "http://www.gstatic.com/generate_204",
                 "connectivity": ""
