@@ -83,3 +83,25 @@ Available values for `flow`:
 
 - `xtls-rprx-vision`
 - `""`
+
+### Kcp with FinalMask
+
+_This feature is available only in version 2.7.0 and above._
+
+In some cases, you may need to specify a custom MTU (in the `kcpSettings` object) when using FinalMask. Unfortunately, Xray configuration does not clearly separate client and server MTU values.
+
+```json
+{
+    "mtu": 1350
+}
+```
+
+Since Remnawave needs to generate the client-side configuration, we have added a custom field that does not exist in the original Xray configuration.
+
+```json
+{
+    "clientMtu": 70
+}
+```
+
+The `clientMtu` parameter (if present) will be converted to `mtu` on the client side. This way, you can set a custom MTU for the client side.
