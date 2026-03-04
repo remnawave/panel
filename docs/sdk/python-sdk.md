@@ -24,7 +24,7 @@ Remnawave Python SDK is a library for convenient interaction with the RestAPI ty
 ## Installation
 
 ```bash
-pip install remnawave_api
+pip install remnawave
 ```
 
 ## Usage
@@ -36,29 +36,29 @@ pip install remnawave_api
 import os
 import asyncio
 
-from remnawave_api import RemnawaveSDK
-from remnawave_api.models import UsersResponseDto, UserResponseDto
+from remnawave import RemnawaveSDK  # Updated import for new package
+from remnawave.models import (  # Updated import path
+    UsersResponseDto, 
+    UserResponseDto,
+    GetAllConfigProfilesResponseDto,
+    CreateInternalSquadRequestDto
+)
 
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens)
+    # Bearer Token from panel (section: API Tokens) 
     token: str = os.getenv("REMNAWAVE_TOKEN")
 
     # Initialize the SDK
     remnawave = RemnawaveSDK(base_url=base_url, token=token)
 
     # Fetch all users
-    response: UsersResponseDto = await remnawave.users.get_all_users_v2()
+    response: UsersResponseDto = await remnawave.users.get_all_users()
     total_users: int = response.total
     users: list[UserResponseDto] = response.users
     print("Total users: ", total_users)
     print("List of users: ", users)
-
-    # Disable a specific user
-    test_uuid: str = "e4d3f3d2-4f4f-4f4f-4f4f-4f4f4f4f4f4f"
-    disabled_user: UserResponseDto = await remnawave.users.disable_user(test_uuid)
-    print("Disabled user: ", disabled_user)
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -73,13 +73,18 @@ if __name__ == "__main__":
 import os
 import asyncio
 
-from remnawave_api import RemnawaveSDK
-from remnawave_api.models import UsersResponseDto, UserResponseDto
+from remnawave import RemnawaveSDK  # Updated import for new package
+from remnawave.models import (  # Updated import path
+    UsersResponseDto, 
+    UserResponseDto,
+    GetAllConfigProfilesResponseDto,
+    CreateInternalSquadRequestDto
+)
 
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens)
+    # Bearer Token from panel (section: API Tokens) 
     token: str = os.getenv("REMNAWAVE_TOKEN")
     # Bearer Token for Caddy Auth
     caddy_token = os.getenv("CADDY_TOKEN_AUTH")
@@ -88,16 +93,11 @@ async def main():
     remnawave = RemnawaveSDK(base_url=base_url, token=token, caddy_token=caddy_token)
 
     # Fetch all users
-    response: UsersResponseDto = await remnawave.users.get_all_users_v2()
+    response: UsersResponseDto = await remnawave.users.get_all_users()
     total_users: int = response.total
     users: list[UserResponseDto] = response.users
     print("Total users: ", total_users)
     print("List of users: ", users)
-
-    # Disable a specific user
-    test_uuid: str = "e4d3f3d2-4f4f-4f4f-4f4f-4f4f4f4f4f4f"
-    disabled_user: UserResponseDto = await remnawave.users.disable_user(test_uuid)
-    print("Disabled user: ", disabled_user)
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -112,7 +112,7 @@ if __name__ == "__main__":
 import os
 import asyncio
 import httpx
-from remnawave_api import RemnawaveSDK
+from remnawave import RemnawaveSDK
 
 async def main():
     base_url = os.getenv("REMNAWAVE_BASE_URL")
@@ -134,5 +134,5 @@ asyncio.run(main())
 
 ## 🛠️ Project Links
 
-- **GitHub Repository:** [Remnawave API on GitHub](https://github.com/sm1ky/remnawave-api)
+- **GitHub Repository:** [Remnawave API on GitHub](https://github.com/remnawave/python-sdk)
 - **Authors:** [Artem (sm1ky)](https://github.com/sm1ky), [Kesevone](https://github.com/kesevone)
