@@ -93,11 +93,11 @@ REDIS_PORT=6379
 
 Variables below are not used by Remnawave, but by the database container.
 
-| Variable            | Description                     | Default    | Required |
-| ------------------- | ------------------------------- | ---------- | -------- |
-| `POSTGRES_USER`     | The host of the Database server | `postgres` | No       |
-| `POSTGRES_PASSWORD` | The port of the Database server | `postgres` | No       |
-| `POSTGRES_DB`       | The user of the Database server | `postgres` | No       |
+| Variable            | Description                         | Default    | Required |
+| ------------------- | ----------------------------------- | ---------- | -------- |
+| `POSTGRES_USER`     | The username of the Postgres server | `postgres` | No       |
+| `POSTGRES_PASSWORD` | The password of the Postgres server | `postgres` | No       |
+| `POSTGRES_DB`       | The database of the Postgres server | `postgres` | No       |
 
 Remnawave uses PostgreSQL URL to connect to the database.
 
