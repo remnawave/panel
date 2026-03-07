@@ -1,0 +1,459 @@
+---
+sidebar_position: 1
+title: Remnawave Panel
+description: 'Changelog for Remnawave Panel'
+hide_title: true
+hide_table_of_contents: true
+---
+
+# Remnawave Panel
+
+<ReleaseEntry version="2.7.0" dev>
+
+## Action needed
+
+This variables is not used anymore. Please remove them from your `.env` file.
+
+```bash title=".env"
+TELEGRAM_NOTIFY_USERS_CHAT_ID
+TELEGRAM_NOTIFY_NODES_CHAT_ID
+TELEGRAM_NOTIFY_CRM_CHAT_ID
+TELEGRAM_NOTIFY_USERS_THREAD_ID
+TELEGRAM_NOTIFY_NODES_THREAD_ID
+TELEGRAM_NOTIFY_CRM_THREAD_ID
+
+```
+
+Replace them with new variables:
+
+```bash title=".env"
+### TELEGRAM CHAT IDs in format: "chat_id:thread_id"
+# thread_id is optional, only if you want to use topics
+# example: "-100123:80" - -100123 is chat_id, 80 is thread_id
+# example: "-100123" - -100123 is chat_id, thread_id is not used
+TELEGRAM_NOTIFY_USERS=change_me
+TELEGRAM_NOTIFY_NODES=change_me
+TELEGRAM_NOTIFY_CRM=change_me
+TELEGRAM_NOTIFY_SERVICE=change_me
+TELEGRAM_NOTIFY_TBLOCKER=change_me
+
+```
+
+### New features
+
+– Node Plugins: **Torrent Blocker**, **Blacklist**, **Connection Drop** – [docs](https://docs.rw/docs/learn/node-plugins)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.4" date="25 February 2026">
+
+- hotfix: Mihomo and hidden hosts (hidden by default)
+- feat: Xray-Json Advanced: `addVirtualHostAsOutbound` – [docs](https://docs.rw/docs/learn/xray-json-advanced)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.3" date="25 February 2026">
+
+- **hotfix: missing host with enabled "Serve Json At The Base Path" and Xray-Json Advanced**
+- feat: additional Xray-Json Advanced options: `useHostRemarkAsTag`, `useHostTagAsTag`. [Docs](https://docs.rw/docs/learn/xray-json-advanced)
+- feat: special Remnawave directives for Mihomo templates: `remnawave.includeHiddenHosts: true`
+- feat: new Hosts option — "Exclude Host From Specific Subscription Types" (Host Card → Advanced)
+- feat: new SRR option (responseModifications) — `ignoreServeJsonAtBaseSubscription`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.2" date="24 February 2026">
+
+- feat: "Xray-Json – Advanced" – multiple outbounds in client xray-json, [documentation](https://docs.rw/docs/learn/xray-json-advanced)
+- feat: view, drop user connections from any nodes (Users → User Card → More Actions → **Show sessions**)
+- ...other minor changes
+
+:::warning
+Remnawave Node v2.6.0 or higher is required. To access additional features like IP Management — in Remnawave Node `docker-compose.yml` you **must** add under remnanode service:
+
+```yaml
+cap_add:
+    - NET_ADMIN
+```
+
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.1" date="16 February 2026">
+
+- feat: add `ignoreHostXrayJsonTemplate` flag in Response Rules (SRR)
+- fix: dynamic outline conf
+- feat: separate page for snippets
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.0" date="30 January 2026">
+
+- New webhook event: `service.subpage_config_changed`. Emitted when subpage config created, updated or deleted.
+- Bulk actions for Nodes, endpoint: [/api/nodes/bulk-actions](https://docs.rw/api/#tag/nodes-controller/POST/api/nodes/bulk-actions)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.7" date="21 January 2026">
+
+- Generic Oauth2 auth method
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.6" date="21 January 2026">
+
+- NodeJS v24
+- Fix: bulk and cron reset user traffic
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.5" date="17 January 2026">
+
+- hotfix: bulk revoke subscription
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.4" date="17 January 2026">
+
+- add KeyCloak as OAuth2 Provider
+- add Prizrak-Box to extended Mihomo Clients
+- Fix: OpenAPI schema date formats in bandwidth-stats route
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.3" date="9 January 2026">
+
+- frontend: fix Config & Inbound selection in Node creation card
+- backend: fix Xray-json additional host properties
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.2" date="8 January 2026">
+
+- Backend: hotfix for empty overrides in external squads
+- Frontend: config profile selection in Node Card
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.1" date="7 January 2026">
+
+- Hotfix: default custom remarks for External Squads
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.0" date="7 January 2026">
+
+- `scope` in webhook, OpenAPI models for webhook, refer to updated [docs](https://docs.rw/docs/features/webhooks)
+- [API changes](https://docs.rw/blog/api-changelog/v244-v250)
+- Custom remarks for: HWID Max Devices Exceeded, HWID Not Supported
+- Template Variables support in `maxDevicesAnnounce`
+- Revoke subscription: allow to revoke only connection passwords
+- ...other minor UI changes
+
+:::warning
+Recommended Node version — **v2.5.0**.
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.4" date="22 December 2025">
+
+- Subpage Builder: clone App, enhanced subpage config import, other UI fixes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.3" date="20 December 2025">
+
+- Move some of .env variables to Subpage Builder: `META_TITLE`, `META_DESCRIPTION`, `SUBSCRIPTION_UI_DISPLAY_RAW_KEYS`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.2" date="20 December 2025">
+
+- iOS Modal/Drawer header offset
+- Fix: Subpage Config — appname validation
+- ...other minor UI fixes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.0" date="20 December 2025">
+
+:::warning
+Always make **backup** before updating.
+:::
+
+- **New UI**: all charts across dashboard (Nodes → Statistics, Node Card → Show usage, User Card → Show usage)
+- **API Changes**: refactor stat routes. Before updating check up [API Changelog](https://docs.rw/blog/api-changelog/v232-v240)
+- Brand new **Subscription Page Builder**. New app-config format, full i18n with builder, separate app-configs for external squads and much more.
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.2" date="9 December 2025">
+
+- HWID Inspector: HWID top users table
+- **Rescue CLI**: truncate (clean all data) from HWID or SRH tables (`docker exec -it remnawave cli`)
+- Fix: adjust time ranges for "Online Now" badge (60s → 30s)
+- ...other: restore Internal Squads in Telegram notifications, correct OpenAPI schema for "Encrypt Cryptolink" endpoint
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.1" date="8 December 2025">
+
+- New: [fine-tuned notifications](https://docs.rw/docs/features/fine-tuned-notifications)
+- Fix: empty `/api/subscription` response
+- Fix: bulk reset race condition
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.0" date="7 December 2025">
+
+:::warning
+Обязательно сделайте бекап перед обновлением. Обновление содержит серьёзные изменения в API.
+:::
+
+Версия панели (2.3.0) требует обновить ноды до версии 2.3.0.
+
+**Основные изменения:**
+
+- Полный контроль flow для VLESS-инбаундов
+- Внешние сквады: переопределение настроек HWID, переопределение «примечаний» (по статусам)
+- Возможность изменить порядок: внутренние сквады, внешние сквады, профили, шаблоны
+- Поддержка balancers в сниппетах
+- Табличный вид отображения списка нод
+- ZSTD-сжатие конфига перед отправкой на ноды
+- Новая `.env` переменная — `REDIS_SOCKET` (подключение Redis/Valkey через unix-сокет)
+- Выбрать индивидуальный Xray-Json для каждого хоста (на основе шаблонов)
+- Исключить хост из определённых внутренних сквадов
+- «Теги» для нод (можно указать несколько тегов)
+- Массовое изменение активного профиля/инбаундов у нод (мультивыбор)
+- Новая `.env` переменная: `USER_USAGE_IGNORE_BELOW_BYTES`
+- Новая `.env` переменная: `SERVICE_DISABLE_USER_USAGE_RECORDS`
+- Рефактор: очереди, фоновые задачи, оптимизация таблиц в базе данных
+- ...прочие QoL изменения и исправления
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.6" date="6 November 2025">
+
+- Override response headers with External Squads
+- Add gRPC support
+- Branding: set colored brand name
+- Webhook URL: now supports multiple URLs (separated by commas)
+- Users table: filtering, search by External Squad
+- Fix: iOS floating header
+- Fix: missing background in Metrics
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.5" date="2 November 2025">
+
+- Hotfix: missing host creation button (if there is no hosts)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.4" date="2 November 2025">
+
+- Fix: Xray Json (Serve at base path) incorrect template response
+- Fix: VLESS Encryption — incorrect decryption parsing logic
+- New: Vazirmatn font for Persian language and Noto Sans SC for Chinese
+- New: Host overrides in External Squads
+- New: Reset Node Traffic
+- More strict passkey (register + auth) settings
+- **New: help action button with detailed articles on Hosts, Config Profiles, Internal and External Squads sections**
+- New: view computed Config Profile (Config Profile + applied snippets)
+- Monkey patch incorrect **serverNames** array before saving changes
+- Refactor some layouts in frontend
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.3" date="27 October 2025">
+
+- Hotfix: `/json` — incorrect response body
+
+:::warning
+In previous versions, when HWID was enabled, the panel forcibly removed the **profile-web-page-url** header, which is responsible for displaying the subscription link in client applications. This behavior from the panel has proven to be incorrect in practice. In this version, Remnawave will no longer forcibly hide this header when HWID is enabled.
+
+**If you're using HWID together with a crypto link (Happ), don't forget to disable the display of this header in the Subscription → Settings section. Look for the "Profile Webpage URL" option.**
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.2" date="26 October 2025">
+
+- Hotfix: 5xx errors while updating user **by username**
+- Fix: Incorrect response content type with "serve json at base path" option (or /json)
+- More clear errors while adding passkey device
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.0" date="26 October 2025">
+
+Крупнейшее обновление с момента выхода v2.x.
+
+[→ Ознакомиться с описанием обновления](https://telegra.ph/Remnawave-v220-10-25) **[RU]**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.19" date="12 October 2025">
+
+- **Infra Billing:** Multiselect in Infra Billing Nodes table (quickly change next billing date for multiple nodes)
+- **Infra Billing:** Quick update billing date button (move node to the next billing cycle with one click)
+- **Infra Billing:** Update Infra Billing Node request schema changed
+- Fix: Hosts, Nodes cards margins in mobile view
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.18" date="11 October 2025">
+
+- Add support for **mldsa65Seed** & verify
+- **Add full support for Vless Encryption**
+- Fix: incorrect boolean assignment in **ais** (base64)
+- Return **serverDescription** for **FlClashX**
+- Fix: ALPN in xray-json
+- **Add option to link nodes to Hosts** (visual assignment only)
+- Frontend: new keypairs generators: MLDSA65, ML-KEM768
+- Frontend: fix incorrect squads assignment in bulk actions
+- Frontend: Host card now inside Drawer (instead of Modal)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.17" date="2 October 2025">
+
+- Frontend: fix incorrect loader position
+- Frontend: fix aggressive reloads
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.16" date="30 September 2025">
+
+- Backend: added new object to GetSubscriptionRequestHistoryStats response
+- Frontend: hide header with scroll
+- Frontend: SRH Inspector — new chart
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.15" date="29 September 2025">
+
+- Main title and logo customization, new .env params: `BRANDING_TITLE`, `BRANDING_LOGO_URL`
+- Small UI fixes in Subscription Request History drawer
+- New: shuffleHost, mihomoX25519 in Host Card
+- Add UUID column to Users table (search, sorting)
+- Allow spaces in Config Profile and Internal Squad names
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.14" date="23 September 2025">
+
+- fix: telegramId incorrect search behaviour
+- fix: cleanup subscription request history
+- fix: incorrect link in profile-webpage-url header
+- allow to update user by username
+- allow to pass own UUID in user creation
+- update Happ CryptoLink to v3
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.13" date="15 September 2025">
+
+- **HWID Inspector**, view stats for your HWID devices, full featured table (list, search, sort, filter) available
+- API endpoint: [Get all HWID devices](https://remna.st/api/#tag/hwid-user-devices-controller/get/api/hwid/devices)
+- API endpoint: [Get HWID Device stats](https://remna.st/api/#tag/hwid-user-devices-controller/get/api/hwid/devices/stats)
+- fix: ip parsing in subscription requests
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.12" date="15 September 2025">
+
+- Minor UI fixes in frontend
+- [New webhook events related to HWID devices (added, deleted)](https://github.com/remnawave/backend/blob/main/libs/contract/constants/events/events.ts#L21)
+- add allowInsecure to Host
+- add User Subscription Request History, up to 24 latest records will be stored
+- [new API endpoint to delete all user HWID devices](https://remna.st/api/#tag/hwid-user-devices-controller/post/api/hwid/devices/delete-all)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.9" date="6 September 2025">
+
+- Restore curl in Dockerfile
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.8" date="3 September 2025">
+
+**Backend:**
+
+- `/api/system/tools/x25519/generate` — generate 30 x25519-keypairs
+- Bulk Actions now supports mass HWID modifications
+- `/raw` subscription schema and path changed. New path: `/api/subscriptions/by-short-uuid/{shortUuid}/raw`
+- Node version downgraded to 22.18.0
+- Change memory allocator from jemalloc to mimalloc
+- Upgrade deps (PrismaORM 6.15.0, etc)
+
+**Frontend:**
+
+- Queues (sidebar) now hidden by default. Toggle: `Cmd/Ctrl + Shift + J`
+- Fix incorrect tag assignment in Host card section
+- Add supports for HWID mass actions
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.7" date="30 August 2025">
+
+- new endpoints in [Subscriptions Controller](https://remna.st/api#tag/subscriptions-controller): get subscription info by short uuid and by uuid.
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.6" date="29 August 2025">
+
+:::warning
+`/raw` subscription route response changed.
+
+Previous: `{ "user": {}... }`
+New: `{ "response": { "user": {}... } }`
+:::
+
+- fix: subscription link is not shown with HWID enabled (only for admin dashboard)
+- fix: infra billing incorrect ranges
+- fallback hosts (expired, limited, disabled) now use vless instead of trojan
+- refactor: change infra billing notifications texts
+- minor UI fixes in frontend
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.5" date="26 August 2025">
+
+- Hotfix for incorrect migration behaviour on clean database
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.4" date="26 August 2025">
+
+**Backend:**
+
+- Add indexes to database
+- Add **tId** for internal use (speed up config generation & pagination)
+- Add option to **force** restart all nodes (Xray Core restart guaranteed, hash-checking will be skipped)
+- raw subscription keys will not be returned anymore in `/info` route if HWID enabled
+- add _bytes_ response in `/info` and `browser-json` of subscription
+- fix bug with `@nestjstools/messaging`, which was cause of memory leak with Redis/Valkey
+- Redis/Valkey DB will be completely flushed with panel start
+- Stash Subscription Generator now uses MihomoService under hood (allows Vless Reality with Stash)
+- Add `UTC` mark in Telegram notifications
+- **Add support for coming Vless-Route** option in Xray Core
+- Fix: clearing clients array from Xray Config before adding users
+- Fix: HWID Devices was not registered in database if HWID Detection is off for specific user
+- GetAllInbounds, GetInboundByProfileUuid — now returns activeSquads uuids
+
+**Frontend:**
+
+- Fix: input in Host card resets between tabs
+- Add unsaved changes warnings in Config Profile editor
+- Modify Restart all nodes action button, add modal with restart type selection (graceful, force)
+- Add _Inbounds With Active Squads_ drawer in Config Profiles section
+- Minor UI improvements and fixes
+
+</ReleaseEntry>
