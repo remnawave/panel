@@ -1,5 +1,6 @@
 .entry {
     margin-bottom: 2rem;
+    scroll-margin-top: 80px;
 }
 
 .header {
@@ -8,6 +9,15 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.badgeLink {
+    text-decoration: none !important;
+}
+
+.badgeLink:hover .badge {
+    border-color: rgba(34, 211, 238, 0.6);
+    background: rgba(34, 211, 238, 0.15);
 }
 
 .badge {

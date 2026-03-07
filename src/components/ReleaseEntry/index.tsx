@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import useBrokenLinks from '@docusaurus/useBrokenLinks'
+
 import styles from './styles.module.css'
 
 type Patch = {
@@ -16,10 +18,16 @@ type Props = {
 }
 
 export default function ReleaseEntry({ version, date, children, patches, dev }: Props) {
+    const anchor = `v${version.replace(/\./g, '-')}`
+
+    useBrokenLinks().collectAnchor(anchor)
+
     return (
-        <div className={styles.entry}>
+        <div className={styles.entry} id={anchor}>
             <div className={styles.header}>
-                <code className={styles.badge}>{version}</code>
+                <a className={styles.badgeLink} href={`#${anchor}`}>
+                    <code className={styles.badge}>{version}</code>
+                </a>
                 {dev && <span className={`${styles.tag} ${styles.tagTooltip}`}>development</span>}
                 {date && <span className={styles.date}>{date}</span>}
             </div>
