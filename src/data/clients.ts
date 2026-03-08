@@ -531,6 +531,24 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://clashmac.app/'
         }
+    },
+    {
+        id: 'incy',
+        name: 'Incy',
+        core: 'xray',
+        platforms: ['ios', 'macos'],
+        description: 'Modern VPN client with VLESS, VMess, Trojan and Shadowsocks support.',
+        logo: '/clients/logo/incy-dark.svg',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/incy/id6756943388',
+            macos: 'https://apps.apple.com/us/app/incy/id6756943388'
+        },
+        links: {
+            website: 'https://incy.cc/'
+        }
     }
 ]
 
