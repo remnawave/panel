@@ -6,7 +6,18 @@ hide_title: true
 hide_table_of_contents: true
 ---
 
-# Remnawave Subscription Page
+# Subscription Page
+
+<ReleaseEntry version="7.1.8" date="8 March 2026">
+
+### New features
+
+`MARZBAN_LEGACY_DROP_REVOKED_SUBSCRIPTIONS` .env variable.
+
+`true` – drop requests from legacy subscription urls, if `subRevokedAt` field is not `null` (subscription was revoked at least once).  
+`false` - **default** value, the same behavior as before.
+
+</ReleaseEntry>
 
 <ReleaseEntry version="7.1.7" date="30 January 2026">
 
