@@ -3,7 +3,7 @@ sidebar_position: 99
 title: Node Plugins β
 ---
 
-Плагины – это дополнительные модули, которые можно активировать на Remnawave Node для дополнительных функций: **Torrent Blocker**, **Blacklist**, настройка **Connection Drop**.
+Плагины – это дополнительные модули, которые можно активировать на Remnawave Node для дополнительных функций: **Torrent Blocker**, **Ingress Filter**, **Egress Filter**, настройка **Connection Drop**.
 
 <!-- truncate -->
 
