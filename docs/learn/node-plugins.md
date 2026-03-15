@@ -76,10 +76,10 @@ uname -r
 ```nftables title="nftables"
 table ip remnanode {
         counter processed {
-                packets 53172 bytes 7154272
+                packets 32 bytes 2060
         }
 
-        counter blacklist {
+        counter ingress-filter-ip {
                 packets 0 bytes 0
         }
 
@@ -95,7 +95,7 @@ table ip remnanode {
                 packets 0 bytes 0
         }
 
-        set blacklist {
+        set ingress-filter-ip {
                 type ipv4_addr
                 flags timeout
                 counter
@@ -122,14 +122,14 @@ table ip remnanode {
         chain input {
                 type filter hook input priority filter - 10; policy accept;
                 counter name "processed"
-                ip saddr @blacklist log prefix "blacklist: " counter name "blacklist" drop
+                ip saddr @ingress-filter-ip log prefix "ingress-filter-ip: " counter name "ingress-filter-ip" drop
                 ip saddr @torrent-blocker log prefix "torrent-blocker: " counter name "torrent-blocker" drop
         }
 
         chain forward {
                 type filter hook forward priority filter - 10; policy accept;
                 counter name "processed"
-                ip saddr @blacklist log prefix "blacklist: " counter name "blacklist" drop
+                ip saddr @ingress-filter-ip log prefix "ingress-filter-ip: " counter name "ingress-filter-ip" drop
                 ip saddr @torrent-blocker log prefix "torrent-blocker: " counter name "torrent-blocker" drop
         }
 
@@ -144,7 +144,7 @@ table ip6 remnanode6 {
                 packets 0 bytes 0
         }
 
-        counter blacklist6 {
+        counter ingress-filter-ip6 {
                 packets 0 bytes 0
         }
 
@@ -160,7 +160,7 @@ table ip6 remnanode6 {
                 packets 0 bytes 0
         }
 
-        set blacklist6 {
+        set ingress-filter-ip6 {
                 type ipv6_addr
                 flags timeout
                 counter
@@ -187,14 +187,14 @@ table ip6 remnanode6 {
         chain input {
                 type filter hook input priority filter - 10; policy accept;
                 counter name "processed"
-                ip6 saddr @blacklist6 log prefix "blacklist: " counter name "blacklist6" drop
+                ip6 saddr @ingress-filter-ip6 log prefix "ingress-filter-ip: " counter name "ingress-filter-ip6" drop
                 ip6 saddr @torrent-blocker6 log prefix "torrent-blocker: " counter name "torrent-blocker6" drop
         }
 
         chain forward {
                 type filter hook forward priority filter - 10; policy accept;
                 counter name "processed"
-                ip6 saddr @blacklist6 log prefix "blacklist: " counter name "blacklist6" drop
+                ip6 saddr @ingress-filter-ip6 log prefix "ingress-filter-ip: " counter name "ingress-filter-ip6" drop
                 ip6 saddr @torrent-blocker6 log prefix "torrent-blocker: " counter name "torrent-blocker6" drop
         }
 
