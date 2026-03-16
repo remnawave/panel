@@ -10,9 +10,27 @@ hide_table_of_contents: true
 
 <ReleaseEntry version="2.7.0" dev>
 
+:::warning
+Remnawave Node **v2.7.0** or higher is required.
+:::
+
 ### Action needed
 
-This variables is not used anymore. Please remove them from your `.env` file.
+#### 0. Telegram login — migrated to Generic OAuth2
+
+The built-in Telegram login widget has been replaced with a [Generic OAuth2](https://core.telegram.org/bots/telegram-login) integration. **Before updating**, disable the Telegram login method in the panel settings and switch to password or another provider.
+
+If you have already updated and can't log in, use the rescue CLI to enable password authentication:
+
+```bash
+docker exec -it remnawave cli
+```
+
+After updating, you can re-enable Telegram login by configuring it as a Generic OAuth2 provider.
+
+#### 1. Telegram notifications — new format
+
+Remove these variables from your `.env` file:
 
 ```bash title=".env"
 TELEGRAM_NOTIFY_USERS_CHAT_ID
@@ -21,27 +39,173 @@ TELEGRAM_NOTIFY_CRM_CHAT_ID
 TELEGRAM_NOTIFY_USERS_THREAD_ID
 TELEGRAM_NOTIFY_NODES_THREAD_ID
 TELEGRAM_NOTIFY_CRM_THREAD_ID
-
 ```
 
-Replace them with new variables:
+Replace with new unified format (`chat_id:thread_id`, thread_id is optional):
 
 ```bash title=".env"
-### TELEGRAM CHAT IDs in format: "chat_id:thread_id"
-# thread_id is optional, only if you want to use topics
-# example: "-100123:80" - -100123 is chat_id, 80 is thread_id
-# example: "-100123" - -100123 is chat_id, thread_id is not used
 TELEGRAM_NOTIFY_USERS=change_me
 TELEGRAM_NOTIFY_NODES=change_me
 TELEGRAM_NOTIFY_CRM=change_me
 TELEGRAM_NOTIFY_SERVICE=change_me
 TELEGRAM_NOTIFY_TBLOCKER=change_me
-
 ```
+
+#### 2. Prometheus metrics — breaking changes
+
+If you use Grafana dashboards or custom alerting based on Prometheus metrics, you **must** update your queries.
+
+**Renamed metrics** (`nodejs_*` → `process_*`):
+
+| Old name                        | New name                      |
+| ------------------------------- | ----------------------------- |
+| `nodejs_heap_used_bytes`        | `process_heap_used_bytes`     |
+| `nodejs_heap_total_bytes`       | `process_heap_total_bytes`    |
+| `nodejs_active_handlers`        | `process_active_handles`      |
+| `nodejs_event_loop_latency_p50` | `process_event_loop_delay_ms` |
+| `nodejs_event_loop_latency_p95` | `process_event_loop_p99_ms`   |
+
+**Removed metrics**: `nodejs_heap_usage_percent`, `nodejs_active_requests`, `nodejs_cpu_usage_percent`, `nodejs_memory_usage_bytes`, `nodejs_http_req_rate`, `nodejs_http_req_latency_p50`, `nodejs_http_req_latency_p95`
+
+**New process metrics**: `process_rss_bytes`, `process_external_bytes`, `process_array_buffers_bytes`, `process_uptime_seconds`
+
+**New node system metrics**: `node_network_rx_bytes_per_sec`, `node_network_tx_bytes_per_sec`, `node_network_rx_bytes_total`, `node_network_tx_bytes_total`, `node_memory_total_bytes`, `node_memory_free_bytes`, `node_uptime_seconds`, `node_cpu_count`, `node_system_info`
+
+**Reduced label cardinality**: `node_online_users`, `node_status` and all `node_inbound_*`/`node_outbound_*` bandwidth metrics now use only `node_uuid` (+ `tag` for bandwidth). Labels like `node_name`, `node_country_emoji`, `provider_name`, `tags` are moved to dedicated info metrics:
+
+- `node_basic_info` — static node labels (`node_uuid`, `node_name`, `node_country_emoji`, `provider_name`, `tags`)
+- `node_system_info` — OS-level labels (`node_uuid`, `arch`, `cpu_model`, `hostname`, `platform`, `release`, `version`)
+
+Use Prometheus [joins](https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching) to enrich queries, e.g.:
+
+```promql
+node_online_users * on(node_uuid) group_left(node_name) node_basic_info
+```
+
+#### 3. New optional variable
+
+```bash title=".env"
+PANEL_DOMAIN=panel.domain.com
+```
+
+Used for generating direct links (e.g. in Telegram notifications with inline buttons).
+
+&nbsp;
 
 ### New features
 
-– Node Plugins: **Torrent Blocker**, **Blacklist**, **Connection Drop** – [docs](https://docs.rw/docs/learn/node-plugins)
+- **Node Plugins**: extensible plugin system for nodes — [docs](https://docs.rw/docs/learn/node-plugins)
+    - **Torrent Blocker** — detect and block torrent traffic with configurable block duration, ignore lists, and per-rule-tag targeting. Telegram notifications with inline "View user" button
+    - **Ingress Filter** — block inbound connections from specific IPs via nftables
+    - **Egress Filter** — block outbound connections to specific IPs/ports
+    - **Connection Drop** — drop connections from non-whitelisted IPs
+    - Shared IP lists support (`ext:list_name` format) across plugins
+    - Plugin actions: clone, reorder, execute commands on nodes (block/unblock IPs, recreate tables)
+    - Torrent Blocker Reports: paginated list, statistics (top users, top nodes, 24h summary), truncate
+- **Metadata API**: store and retrieve custom key-value metadata for users and nodes (`GET/PUT /api/metadata/user/{uuid}`, `/api/metadata/node/{uuid}`)
+- **Resolve User endpoint** (`POST /api/users/resolve`): resolve a user by any one identifier (uuid, id, shortUuid, or username)
+- **System Recap** (`GET /api/system/stats/recap`): aggregated system overview — users, nodes, traffic, countries, version, init date
+- **Traffic Limit Strategy**: new `MONTH_ROLLING` reset period — rolling 30-day traffic window
+- **Fetch Users IPs**: new IP control endpoint (`POST /api/ip-control/fetch-users-ips/{nodeUuid}`) — fetch per-user IP addresses from a specific node
+- **IP format change**: IP addresses now returned as objects with `ip` and `lastSeen` fields (instead of plain strings)
+- **Telegram Bot proxy support**: new optional `TELEGRAM_BOT_PROXY` variable (format: `protocol://user:password@host:port`)
+- **Telegram inline keyboards**: notification messages now support interactive buttons
+- **Node Bulk Update**: update `countryCode`, `consumptionMultiplier`, `providerUuid`, `tags`, `activePluginUuid` for multiple nodes at once
+- **Node System Info**: CPU, memory, network, uptime now reported separately from the node model and cached with 30s TTL
+
+&nbsp;
+
+### Improvements
+
+- **Docker**: switched from Alpine to Debian-based image (`node:24.14-trixie-slim`)
+- **Valkey 9**: upgraded from 8.1, now uses Unix socket instead of TCP.
+- **Prometheus metrics refactor**: simplified metric labels (reduced cardinality), renamed `NODEJS_*` → `PROCESS_*`, added node system metrics (network rx/tx, memory, uptime, cpu count)
+- **Removed `systeminformation`**: system stats now use Node.js `os` module
+- **Cache refactor**: migrated from `@nestjs/cache-manager` to internal `RawCacheService`, cache TTLs changed from milliseconds to seconds
+- **Scheduler offsets**: cron jobs staggered by 5–20 minutes to avoid thundering herd at midnight
+- **OCI labels**: Docker image now includes standard container metadata labels
+
+&nbsp;
+
+### Removed
+
+- **Telegram OAuth2** (`POST /api/auth/oauth2/tg/callback`) — migrated to Generic OAuth2 provider
+- **Outline subscription route** (`GET /api/sub/outline/{shortUuid}/{type}/{encodedTag}`)
+- **Realtime bandwidth stats** (`GET /api/bandwidth-stats/nodes/realtime`)
+- **User tracking fields**: `subLastOpenedAt`, `subLastUserAgent` dropped from the database
+- **Node hardware fields**: `cpuCount`, `cpuModel`, `totalRam` dropped from the database (replaced by Node System Info cache)
+- **`tgAuthSettings`** removed from Remnawave Settings model (request and response)
+
+&nbsp;
+
+### API Changelog 2.6.4 vs. 2.7.0
+
+<details>
+<summary>View changelog</summary>
+
+#### Removed Endpoints
+
+- `GET /api/bandwidth-stats/nodes/realtime`
+- `POST /api/auth/oauth2/tg/callback`
+- `GET /api/sub/outline/{shortUuid}/{type}/{encodedTag}`
+
+#### New Endpoints
+
+- `POST /api/ip-control/fetch-users-ips/{nodeUuid}` — fetch per-user IPs
+- `GET /api/ip-control/fetch-users-ips/result/{jobId}` — get fetch results
+- `POST /api/users/resolve` — resolve user by any identifier
+- `GET /api/system/stats/recap` — system recap
+- `GET /api/metadata/node/{uuid}` — get node metadata
+- `PUT /api/metadata/node/{uuid}` — upsert node metadata
+- `GET /api/metadata/user/{uuid}` — get user metadata
+- `PUT /api/metadata/user/{uuid}` — upsert user metadata
+- `GET /api/node-plugins` — list all plugins
+- `GET /api/node-plugins/{uuid}` — get plugin
+- `POST /api/node-plugins` — create plugin
+- `PATCH /api/node-plugins` — update plugin
+- `DELETE /api/node-plugins/{uuid}` — delete plugin
+- `POST /api/node-plugins/actions/clone` — clone plugin
+- `POST /api/node-plugins/actions/reorder` — reorder plugins
+- `POST /api/node-plugins/executor` — execute commands on nodes
+- `GET /api/node-plugins/torrent-blocker` — get reports
+- `GET /api/node-plugins/torrent-blocker/stats` — get reports stats
+- `DELETE /api/node-plugins/torrent-blocker` — truncate reports
+
+---
+
+#### Removed `cpuCount`, `cpuModel`, `totalRam` from Node response
+
+Affected endpoints: `GET /api/nodes`, `PATCH /api/nodes`, `POST /api/nodes`, `POST /api/nodes/actions/reorder`, `GET /api/nodes/{uuid}`, `POST /api/nodes/{uuid}/actions/disable`, `POST /api/nodes/{uuid}/actions/enable`
+
+---
+
+#### Removed `subLastOpenedAt`, `subLastUserAgent` + added `MONTH_ROLLING` to `trafficLimitStrategy` enum in User response
+
+Affected endpoints: `GET /api/users`, `PATCH /api/users`, `POST /api/users`, `GET /api/users/{uuid}`, `GET /api/users/by-id/{id}`, `GET /api/users/by-email/{email}`, `GET /api/users/by-username/{username}`, `GET /api/users/by-short-uuid/{shortUuid}`, `GET /api/users/by-tag/{tag}`, `GET /api/users/by-telegram-id/{telegramId}`, `POST /api/users/{uuid}/actions/disable`, `POST /api/users/{uuid}/actions/enable`, `POST /api/users/{uuid}/actions/reset-traffic`, `POST /api/users/{uuid}/actions/revoke`
+
+---
+
+#### Added `MONTH_ROLLING` to `trafficLimitStrategy` enum in Subscription response
+
+Affected endpoints: `GET /api/sub/{shortUuid}/info`, `GET /api/subscriptions`, `GET /api/subscriptions/by-short-uuid/{shortUuid}`, `GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` (also removed `subLastOpenedAt`, `subLastUserAgent`), `GET /api/subscriptions/by-username/{username}`, `GET /api/subscriptions/by-uuid/{uuid}`
+
+---
+
+#### Removed `tgAuthSettings` from Remnawave Settings
+
+- `GET /api/remnawave-settings` — removed from response
+- `PATCH /api/remnawave-settings` — removed from response and request
+
+---
+
+#### Other changes
+
+- `GET /api/auth/status` — removed required property `tgAuth` from authentication response
+- `GET /api/ip-control/fetch-ips/result/{jobId}` — `ips` items type changed from `string` to `object` (`{ ip, lastSeen }`)
+- `GET /api/system/health` — replaced `pm2Stats` with `runtimeMetrics`
+- `GET /api/system/stats` — removed `cpu/physicalCores`, `memory/active`, `memory/available`
+
+</details>
 
 </ReleaseEntry>
 
