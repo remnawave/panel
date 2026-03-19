@@ -536,7 +536,7 @@ export const CLIENTS: Client[] = [
         id: 'incy',
         name: 'INCY',
         core: 'xray',
-        platforms: ['ios', 'macos'],
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
         description: 'Modern VPN client with VLESS, VMess, Trojan and Shadowsocks support.',
         logo: '/clients/logo/incy-dark.svg',
         badges: {
