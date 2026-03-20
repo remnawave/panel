@@ -112,6 +112,7 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 - **Telegram inline keyboards**: notification messages now support interactive buttons
 - **Node Bulk Update**: update `countryCode`, `consumptionMultiplier`, `providerUuid`, `tags`, `activePluginUuid` for multiple nodes at once
 - **Node System Info**: CPU, memory, network, uptime now reported separately from the node model and cached with 30s TTL
+- **RAW subscription refactor**: the `rawHosts` array in `/api/subscriptions/by-short-uuid/{shortUuid}/raw` is replaced with `resolvedProxyConfigs` — a fully typed structure with discriminated unions for protocol (`vless`, `trojan`, `shadowsocks`), transport (`tcp`, `ws`, `xhttp`, `httpupgrade`, `grpc`, `kcp`), and security (`tls`, `reality`, `none`). Each proxy entry now contains `protocolOptions`, `transportOptions`, `securityOptions`, `streamOverrides`, `mux`, `clientOverrides`, and `metadata` instead of flat fields
 
 &nbsp;
 
@@ -195,6 +196,22 @@ Affected endpoints: `GET /api/sub/{shortUuid}/info`, `GET /api/subscriptions`, `
 
 - `GET /api/remnawave-settings` — removed from response
 - `PATCH /api/remnawave-settings` — removed from response and request
+
+---
+
+#### RAW subscription response — `rawHosts` replaced with `resolvedProxyConfigs`
+
+`GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` — the `rawHosts` array is replaced with `resolvedProxyConfigs`. The flat host object is now a typed `ResolvedProxyConfig` structure:
+
+- `protocol` + `protocolOptions` (discriminated: `vless` / `trojan` / `shadowsocks`)
+- `transport` + `transportOptions` (discriminated: `tcp` / `ws` / `xhttp` / `httpupgrade` / `grpc` / `kcp`)
+- `security` + `securityOptions` (discriminated: `tls` / `reality` / `none`)
+- `streamOverrides` (`finalMask`, `sockopt`)
+- `mux`
+- `clientOverrides` (`shuffleHost`, `mihomoX25519`, `serverDescription`, `xrayJsonTemplate`)
+- `metadata` (`uuid`, `tag`, `inboundTag`, `configProfileUuid`, `isDisabled`, `isHidden`, `viewPosition`, `remark`, `vlessRouteId`, `rawInbound`, `excludeFromSubscriptionTypes`)
+
+Old flat fields (`password`, `sni`, `alpn`, `fingerprint`, `host`, `network`, `path`, `publicKey`, `shortId`, `spiderX`, `tls`, `rawSettings`, `additionalParams`, `xHttpExtraParams`, `muxParams`, `sockoptParams`, `encryption`, `flow`, `dbData`, etc.) are removed.
 
 ---
 
