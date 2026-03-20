@@ -534,17 +534,20 @@ export const CLIENTS: Client[] = [
     },
     {
         id: 'incy',
-        name: 'Incy',
+        name: 'INCY',
         core: 'xray',
-        platforms: ['ios', 'macos'],
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
         description: 'Modern VPN client with VLESS, VMess, Trojan and Shadowsocks support.',
         logo: '/clients/logo/incy-dark.svg',
         badges: {
             hwid: true
         },
         downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=llc.itdev.incy',
             ios: 'https://apps.apple.com/us/app/incy/id6756943388',
-            macos: 'https://apps.apple.com/us/app/incy/id6756943388'
+            macos: 'https://apps.apple.com/us/app/incy/id6756943388',
+            windows: 'https://github.com/INCY-DEV/incy-platforms/releases/latest',
+            linux: 'https://github.com/INCY-DEV/incy-platforms/releases/latest'
         },
         links: {
             website: 'https://incy.cc/'
