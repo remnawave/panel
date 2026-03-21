@@ -176,19 +176,49 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 
 #### Removed `cpuCount`, `cpuModel`, `totalRam` from Node response
 
-Affected endpoints: `GET /api/nodes`, `PATCH /api/nodes`, `POST /api/nodes`, `POST /api/nodes/actions/reorder`, `GET /api/nodes/{uuid}`, `POST /api/nodes/{uuid}/actions/disable`, `POST /api/nodes/{uuid}/actions/enable`
+Affected endpoints:
+
+- `GET /api/nodes`
+- `PATCH /api/nodes`
+- `POST /api/nodes`
+- `POST /api/nodes/actions/reorder`
+- `GET /api/nodes/{uuid}`
+- `POST /api/nodes/{uuid}/actions/disable`
+- `POST /api/nodes/{uuid}/actions/enable`
 
 ---
 
 #### Removed `subLastOpenedAt`, `subLastUserAgent` + added `MONTH_ROLLING` to `trafficLimitStrategy` enum in User response
 
-Affected endpoints: `GET /api/users`, `PATCH /api/users`, `POST /api/users`, `GET /api/users/{uuid}`, `GET /api/users/by-id/{id}`, `GET /api/users/by-email/{email}`, `GET /api/users/by-username/{username}`, `GET /api/users/by-short-uuid/{shortUuid}`, `GET /api/users/by-tag/{tag}`, `GET /api/users/by-telegram-id/{telegramId}`, `POST /api/users/{uuid}/actions/disable`, `POST /api/users/{uuid}/actions/enable`, `POST /api/users/{uuid}/actions/reset-traffic`, `POST /api/users/{uuid}/actions/revoke`
+Affected endpoints:
+
+- `GET /api/users`
+- `PATCH /api/users`
+- `POST /api/users`
+- `GET /api/users/{uuid}`
+- `GET /api/users/by-id/{id}`
+- `GET /api/users/by-email/{email}`
+- `GET /api/users/by-username/{username}`
+- `GET /api/users/by-short-uuid/{shortUuid}`
+- `GET /api/users/by-tag/{tag}`
+- `GET /api/users/by-telegram-id/{telegramId}`
+- `POST /api/users/{uuid}/actions/disable`
+- `POST /api/users/{uuid}/actions/enable`
+- `POST /api/users/{uuid}/actions/reset-traffic`
+- `POST /api/users/{uuid}/actions/revoke`
 
 ---
 
 #### Added `MONTH_ROLLING` to `trafficLimitStrategy` enum in Subscription response
 
-Affected endpoints: `GET /api/sub/{shortUuid}/info`, `GET /api/subscriptions`, `GET /api/subscriptions/by-short-uuid/{shortUuid}`, `GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` (also removed `subLastOpenedAt`, `subLastUserAgent`), `GET /api/subscriptions/by-username/{username}`, `GET /api/subscriptions/by-uuid/{uuid}`
+Affected endpoints:
+
+- `GET /api/sub/{shortUuid}/info`
+- `GET /api/subscriptions`
+- `GET /api/subscriptions/by-short-uuid/{shortUuid}`
+- `GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` (also removed `subLastOpenedAt`, `subLastUserAgent`)
+- `GET /api/subscriptions/by-username/{username}`
+- `GET /api/subscriptions/by-uuid/{uuid}`
 
 ---
 
