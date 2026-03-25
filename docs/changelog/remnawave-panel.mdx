@@ -10,8 +10,21 @@ hide_table_of_contents: true
 
 <ReleaseEntry version="2.7.0" dev>
 
+:::danger
+**Before updating**, make a full backup of your data (database, configuration files, `.env`). See [Backup & Restore tools](/docs/awesome-remnawave#backup-restore).
+:::
+
 :::warning
 Remnawave Node **v2.7.0** or higher is required.
+:::
+
+:::info Update order
+Update the **panel first**, then the **nodes**.
+
+```bash
+cd /opt/remnawave && docker compose pull remnawave && docker compose down && docker compose up -d && docker compose logs -f
+```
+
 :::
 
 ### Action needed
