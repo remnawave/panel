@@ -187,7 +187,11 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 
 ---
 
-#### Removed `cpuCount`, `cpuModel`, `totalRam` from Node response
+#### Removed `cpuCount`, `cpuModel`, `totalRam`, `xrayVersion`, `nodeVersion`, `usersOnline` from Node response + added `versions`, `system`
+
+- Removed: `cpuCount`, `cpuModel`, `totalRam`, `xrayVersion`, `nodeVersion`, `usersOnline`
+- Added: `versions` (nullable object with `xray` and `node` strings), `system` (nullable `NodeSystem` object), `activePluginUuid`
+- Changed: `xrayUptime` type from `string` to `number`, `usersOnline` type from `nullable(number)` to `number`
 
 Affected endpoints:
 
