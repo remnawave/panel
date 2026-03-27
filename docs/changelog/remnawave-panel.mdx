@@ -19,11 +19,22 @@ Remnawave Node **v2.7.0** or higher is required.
 :::
 
 :::info Update order
-Update the **panel first**, then the **nodes**.
 
-```bash
-cd /opt/remnawave && docker compose pull remnawave && docker compose down && docker compose up -d && docker compose logs -f
-```
+0. **Read the [Action needed](#action-needed) section below** and make a **full backup** of your data before proceeding.
+1. **Update the panel**:
+    ```bash
+    cd /opt/remnawave && docker compose pull remnawave && docker compose down && docker compose up -d && docker compose logs -f
+    ```
+2. **Update the nodes** (on each node server). Make sure `cap_add: NET_ADMIN` is present in your node's `docker-compose.yml` — it is required for plugins and IP management:
+    ```yaml
+    cap_add:
+        - NET_ADMIN
+    ```
+    Then update:
+    ```bash
+    cd /opt/remnawave && docker compose pull remnanode && docker compose down && docker compose up -d && docker compose logs -f
+    ```
+3. **Force restart all nodes**: once all nodes are updated, open the panel and go to **Nodes** → **Management**. Click the spiral button (grape color) and select **Force restart all nodes**.
 
 :::
 
@@ -122,6 +133,7 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 - **Fetch Users IPs**: new IP control endpoint (`POST /api/ip-control/fetch-users-ips/{nodeUuid}`) — fetch per-user IP addresses from a specific node
 - **IP format change**: IP addresses now returned as objects with `ip` and `lastSeen` fields (instead of plain strings)
 - **Telegram Bot proxy support**: new optional `TELEGRAM_BOT_PROXY` variable (format: `protocol://user:password@host:port`)
+- **Custom Telegram Bot API server**: new optional `TELEGRAM_BOT_API_ROOT` variable (default: `https://api.telegram.org`)
 - **Telegram inline keyboards**: notification messages now support interactive buttons
 - **Node Bulk Update**: update `countryCode`, `consumptionMultiplier`, `providerUuid`, `tags`, `activePluginUuid` for multiple nodes at once
 - **Node System Info**: CPU, memory, network, uptime now reported separately from the node model and cached with 30s TTL
@@ -132,7 +144,7 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 ### Improvements
 
 - **Docker**: switched from Alpine to Debian-based image (`node:24.14-trixie-slim`)
-- **Valkey 9**: upgraded from 8.1, now uses Unix socket instead of TCP.
+- **Valkey 9**: upgraded from 8.1, now uses Unix socket instead of TCP (default).
 - **Prometheus metrics refactor**: simplified metric labels (reduced cardinality), renamed `NODEJS_*` → `PROCESS_*`, added node system metrics (network rx/tx, memory, uptime, cpu count)
 - **Removed `systeminformation`**: system stats now use Node.js `os` module
 - **Cache refactor**: migrated from `@nestjs/cache-manager` to internal `RawCacheService`, cache TTLs changed from milliseconds to seconds
