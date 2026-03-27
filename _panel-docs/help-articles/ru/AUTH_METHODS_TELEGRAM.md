@@ -5,20 +5,16 @@
 ### Настройка бота
 
 1. Откройте @BotFather (https://t.me/botfather)
-   
 2. Откройте MiniApp кнопкой "Open"
-
 3. Выберите вашего бота и нажмите `Bot Settings`
-
 4. Если в разделе `Web Login` уже указан домен — удалите его.
-
 5. Нажмите кнопку Switch to OpenID Connect Login.  
-`Если такой кнопки нет, после удаления домена вернитесь на пункт меню назад и повторите действия с шага 3`
+   `Если такой кнопки нет, после удаления домена вернитесь на пункт меню назад и повторите действия с шага 3`
+6. Нажмите Add an Allowed URL.  
+   Укажите следующие значения:
 
-7. Нажмите Add an Allowed URL.  
-Укажите следующие значения:  
-- Trusted Origins: https://panel.domain.com  
-- Redirect URIs: https://panel.domain.com/oauth2/callback/telegram  
+- Trusted Origins: https://panel.domain.com
+- Redirect URIs: https://panel.domain.com/oauth2/callback/telegram
 
 ### Настройка доступа
 

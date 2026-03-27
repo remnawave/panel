@@ -5,22 +5,20 @@ To configure the "Login via Telegram" feature, you need a Telegram bot. Addition
 ### Bot Configuration
 
 1. Open @BotFather (https://t.me/botfather)
+2. Open the MiniApp by pressing "Open"
+3. Select your bot and press `Bot Settings`
+4. If there is already a domain specified in the `Web Login` section — delete it.
+5. Press the Switch to OpenID Connect Login button.
+   `If this button is not available, after deleting the domain go back one menu level and repeat from step 3`
+6. Press Add an Allowed URL.
+   Specify the following values:
 
-2. Send the `/mybots` command and select the required bot
-
-3. Select the option `Bot settings` → `Domain`
-
-4. Select the option `Set domain`
-
-    Now send the bot a message containing the domain name used to access Remnawave.
-
-    ```
-    https://panel.domain.com
-    ```
+- Trusted Origins: https://panel.domain.com
+- Redirect URIs: https://panel.domain.com/oauth2/callback/telegram
 
 ### Access Configuration
 
-After entering the bot token, you need to specify a list of administrator IDs who will have access to login.
+After filling in `Client ID`, `Client Secret` and `Frontend Domain`, you need to specify a list of administrator IDs who will have access to login.
 
 1. From the required account, launch the bot – https://t.me/Get_myidrobot
 2. In response, the bot will send you your ID, enter it in the corresponding field.
@@ -28,6 +26,10 @@ After entering the bot token, you need to specify a list of administrator IDs wh
 ---
 
 ### Known Error Solutions
+
+###### Various protections installed on top of the panel (such as cookies, etc.) may not work correctly with `Telegram OAuth2`.
+
+Use the /oauth2/ path in your reverse proxy to resolve this issue
 
 ###### Error: BOT_DOMAIN_INVALID
 

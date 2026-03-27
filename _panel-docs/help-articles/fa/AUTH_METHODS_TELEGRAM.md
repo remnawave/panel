@@ -1,39 +1,41 @@
 ## Telegram OAuth2
 
-To configure the "Login via Telegram" feature, you need a Telegram bot. Additionally, you need to configure the bot for the feature to work correctly.
+برای پیکربندی قابلیت «ورود از طریق تلگرام»، شما به یک ربات تلگرام نیاز دارید. همچنین باید ربات را به‌صورت اضافی پیکربندی کنید تا این قابلیت به‌درستی کار کند.
 
-### Bot Configuration
+### پیکربندی ربات
 
-1. Open @BotFather (https://t.me/botfather)
+1. @BotFather را باز کنید (https://t.me/botfather)
+2. MiniApp را با دکمه "Open" باز کنید
+3. ربات خود را انتخاب کرده و `Bot Settings` را بزنید
+4. اگر در بخش `Web Login` دامنه‌ای از قبل مشخص شده — آن را حذف کنید.
+5. دکمه Switch to OpenID Connect Login را بزنید.
+   `اگر این دکمه موجود نیست، پس از حذف دامنه یک سطح به عقب برگردید و مراحل را از مرحله ۳ تکرار کنید`
+6. دکمه Add an Allowed URL را بزنید.
+   مقادیر زیر را وارد کنید:
 
-2. Send the `/mybots` command and select the required bot
+- Trusted Origins: https://panel.domain.com
+- Redirect URIs: https://panel.domain.com/oauth2/callback/telegram
 
-3. Select the option `Bot settings` → `Domain`
+### پیکربندی دسترسی
 
-4. Select the option `Set domain`
+پس از تکمیل `Client ID`، `Client Secret` و `Frontend Domain`، باید فهرستی از شناسه‌های مدیرانی که اجازه ورود دارند را مشخص کنید.
 
-    Now send the bot a message containing the domain name used to access Remnawave.
-
-    ```
-    https://panel.domain.com
-    ```
-
-### Access Configuration
-
-After entering the bot token, you need to specify a list of administrator IDs who will have access to login.
-
-1. From the required account, launch the bot – https://t.me/Get_myidrobot
-2. In response, the bot will send you your ID, enter it in the corresponding field.
+1. از حساب مورد نظر، ربات را اجرا کنید – https://t.me/Get_myidrobot
+2. ربات در پاسخ شناسه شما را ارسال می‌کند، آن را در فیلد مربوطه وارد کنید.
 
 ---
 
-### Known Error Solutions
+### راه‌حل خطاهای شناخته‌شده
 
-###### Error: BOT_DOMAIN_INVALID
+###### محافظت‌های مختلفی که روی پنل نصب شده‌اند (مانند کوکی‌ها و غیره) ممکن است با `Telegram OAuth2` به‌درستی کار نکنند.
 
-This error occurs due to incorrect bot domain configuration – review the "Bot Configuration" section (above). If necessary, repeat this step-by-step process.
+از مسیر /oauth2/ در ریورس پروکسی خود برای حل این مشکل استفاده کنید
 
-###### Error: Telegram confirmation code not received during login
+###### خطا: BOT_DOMAIN_INVALID
 
-Unfortunately, this issue cannot be resolved from the Remnawave side. Try using a bot that was created a while ago or use a different browser.
-Alternatively, you can try logging in on one of the "official" resources – for example, https://fragment.com. Since the Telegram session within the browser will be shared – you can try logging into the panel.
+این خطا به دلیل پیکربندی نادرست دامنه ربات رخ می‌دهد — بخش «پیکربندی ربات» (بالا) را بررسی کنید. در صورت نیاز، مراحل را دوباره به‌ترتیب انجام دهید.
+
+###### خطا: کد تأیید تلگرام هنگام ورود دریافت نمی‌شود
+
+متأسفانه این مشکل از سمت Remnawave قابل حل نیست. سعی کنید از رباتی استفاده کنید که مدت‌ها پیش ایجاد شده یا از مرورگر دیگری استفاده کنید.
+همچنین می‌توانید سعی کنید در یکی از منابع «رسمی» وارد شوید — مثلاً https://fragment.com. از آنجا که نشست تلگرام در مرورگر مشترک است — می‌توانید سپس وارد پنل شوید.
