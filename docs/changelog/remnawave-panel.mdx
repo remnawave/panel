@@ -106,6 +106,8 @@ Use Prometheus [joins](https://prometheus.io/docs/prometheus/latest/querying/ope
 node_online_users * on(node_uuid) group_left(node_name) node_basic_info
 ```
 
+You can use the updated Grafana dashboard compatible with v2.7.0 metrics: [Remnawave Panel Dashboard](https://grafana.com/grafana/dashboards/24848-remnawave-panel/)
+
 #### 3. New optional variable
 
 ```bash title=".env"
@@ -137,6 +139,11 @@ Used for generating direct links (e.g. in Telegram notifications with inline but
 - **Telegram inline keyboards**: notification messages now support interactive buttons
 - **Node Bulk Update**: update `countryCode`, `consumptionMultiplier`, `providerUuid`, `tags`, `activePluginUuid` for multiple nodes at once
 - **Node System Info**: CPU, memory, network, uptime now reported separately from the node model and cached with 30s TTL
+- **Hysteria2 protocol**: support for Hysteria protocol and transport options (Xray-Json client only)
+- **KCP transport**: support for KCP network type with TTI and congestion options
+- **Tunnel protocol**: support for `tunnel` protocol in XRay configuration
+- **Shadowsocks ciphers**: added `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm` cipher methods
+- **CIDR ranges in plugins**: IP/CIDR validation support in node plugin configurations
 - **RAW subscription refactor**: the `rawHosts` array in `/api/subscriptions/by-short-uuid/{shortUuid}/raw` is replaced with `resolvedProxyConfigs` — a fully typed structure with discriminated unions for protocol (`vless`, `trojan`, `shadowsocks`), transport (`tcp`, `ws`, `xhttp`, `httpupgrade`, `grpc`, `kcp`), and security (`tls`, `reality`, `none`). Each proxy entry now contains `protocolOptions`, `transportOptions`, `securityOptions`, `streamOverrides`, `mux`, `clientOverrides`, and `metadata` instead of flat fields
 
 &nbsp;
