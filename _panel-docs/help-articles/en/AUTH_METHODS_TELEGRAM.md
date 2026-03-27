@@ -1,5 +1,7 @@
 ## Telegram OAuth2
 
+> This guide is applicable for version **2.7.0** and above.
+
 To configure the "Login via Telegram" feature, you need a Telegram bot. Additionally, you need to configure the bot for the feature to work correctly.
 
 ### Bot Configuration
