@@ -10,7 +10,7 @@
 
 _Совет: чтобы добавить новый инбаунд, например с протоколом **VLESS** – просто добавьте еще один объект внутрь массива `inbounds:[]`._
 
-На данный момент, Remnawave поддерживает такие протоколы как: `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`, `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm`), `Hysteria2`. И так же следующие транспорты: `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`, `KCP`.
+На данный момент, Remnawave поддерживает такие протоколы как: `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`, `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm`), `Hysteria2` (только для клиентского Xray-Json). И так же следующие транспорты: `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`, `KCP`.
 
 Важно отметить, что Remnawave так же поддерживает протоколы: `Tunnel`, `mixed(socks)`, `wireguard`,`http` – однако панель будет полностью их игнорировать и менеджмент пользователей для этих протоколов будет недоступен. Эти _инбаунды_ будет переданы в Xray в таком виде, в каком вы их укажите.
 
