@@ -7,12 +7,6 @@ title: Node Plugins β
 
 <!-- truncate -->
 
-:::warning
-
-🚧 Эта страница находится в стадии разработки.
-
-:::
-
 :::tip
 
 Плагины для нод доступны начиная с версии Remnawave Panel & Remnawave Node **v2.7.0**.
