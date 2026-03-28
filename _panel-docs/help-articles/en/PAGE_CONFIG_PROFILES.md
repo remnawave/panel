@@ -10,7 +10,7 @@ When creating a new Config Profile, it is created by default with one _inbound_ 
 
 _Tip: To add a new inbound, for example with the **VLESS** protocol - simply add another object inside the `inbounds:[]` array._
 
-Currently, Remnawave supports protocols such as: `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`). And also the following transports: `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`.
+Currently, Remnawave supports protocols such as: `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`, `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm`), `Hysteria2`, `Tunnel`. And also the following transports: `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`, `KCP`.
 
 It's important to note that Remnawave also supports protocols: `mixed(socks)`, `wireguard`, `http` - however, the panel will completely ignore them and user management for these protocols will be unavailable. These _inbounds_ will be passed to Xray in the exact form you specify them.
 
