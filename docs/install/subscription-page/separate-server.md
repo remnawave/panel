@@ -45,6 +45,8 @@ Make sure you have Docker installed on the server where you will install the sub
 
 :::
 
+import InstallDocker from '/docs/partials/\_install_docker.md';
+
 ```bash title="Creating docker-compose.yml file"
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano docker-compose.yml
 ```
@@ -236,11 +238,3 @@ You can customize the subscription page in the Subpage Builder in Remnawave Dash
 - Customize text and instructions in multiple languages
 - Add your own branding (logo, company name, support links)
 - Configure which apps appear as "featured"
-
-```mdx-code-block
-import DocCard from '@theme/DocCard';
-
-<DocCard
-  item={{ type: 'link', label: 'Customization', description: 'Customization guide', href: '/docs/install/subscription-page/customization' }}
-/>
-```

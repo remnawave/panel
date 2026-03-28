@@ -1,4 +1,5 @@
 import FeatureHighlight from '@site/src/components/FeatureHighlight'
+import ReleaseEntry from '@site/src/components/ReleaseEntry'
 import CategorySection from '@site/src/components/CategorySection'
 import ProjectsGrid from '@site/src/components/ProjectsGrid'
 import HeroSection from '@site/src/components/HeroSection'
@@ -23,5 +24,6 @@ export default {
     CategorySection,
     HeroSection,
     StatsBar,
-    FeatureHighlight
+    FeatureHighlight,
+    ReleaseEntry
 }

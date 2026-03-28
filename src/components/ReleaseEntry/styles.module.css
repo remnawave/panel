@@ -1,0 +1,154 @@
+.entry {
+    margin-bottom: 2rem;
+    scroll-margin-top: 80px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.badgeLink {
+    text-decoration: none !important;
+}
+
+.badgeLink:hover .badge {
+    border-color: rgba(34, 211, 238, 0.6);
+    background: rgba(34, 211, 238, 0.15);
+}
+
+.badge {
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    border-radius: 0.5rem !important;
+    padding: 0.3rem 1rem;
+    white-space: nowrap;
+}
+
+.tag {
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px !important;
+    white-space: nowrap;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    cursor: help;
+}
+
+.tagTooltip {
+    position: relative;
+    display: inline-flex;
+}
+
+.tagTooltip::after {
+    content: 'This version is under active development and has not been released yet';
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: #1c2128;
+    color: #c9d1d9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+}
+
+.tagTooltip:hover::after {
+    opacity: 1;
+}
+
+.date {
+    font-size: 0.8rem;
+    color: var(--ifm-color-content-secondary, #8b949e);
+    white-space: nowrap;
+    padding: 0.2rem 0.6rem;
+    background: rgba(139, 148, 158, 0.08);
+    border: 1px solid rgba(139, 148, 158, 0.15);
+    border-radius: 0.5rem;
+}
+
+.body {
+    margin-bottom: 1rem;
+    color: var(--ifm-color-content, #c9d1d9);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.body ul {
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.body li {
+    margin-bottom: 0.25rem;
+}
+
+.patches {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.patchesTitle {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--ifm-color-content, #c9d1d9);
+}
+
+.patchList {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.patchItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+    list-style: disc;
+}
+
+.patchBadge {
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ifm-color-content, #c9d1d9);
+    background: rgba(139, 148, 158, 0.1);
+    border: 1px solid rgba(139, 148, 158, 0.25);
+    border-radius: 0.375rem;
+    padding: 0.15rem 0.5rem;
+    white-space: nowrap;
+}
+
+.patchDate {
+    font-size: 0.875rem;
+    color: var(--ifm-color-content-secondary, #8b949e);
+}
+
+.divider {
+    border: none;
+    border-bottom: 1px solid rgba(139, 148, 158, 0.15);
+    margin: 2rem 0 0;
+}

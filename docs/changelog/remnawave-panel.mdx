@@ -1,0 +1,712 @@
+---
+sidebar_position: 1
+title: Remnawave Panel
+description: 'Changelog for Remnawave Panel'
+hide_title: true
+hide_table_of_contents: true
+---
+
+# Remnawave Panel
+
+<ReleaseEntry version="2.7.1" date="28 March 2026">
+
+- hotfix: custom remarks
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.7.0" date="28 March 2026">
+
+:::danger
+**Before updating**, make a full backup of your data (database, configuration files, `.env`). See [Backup & Restore tools](/docs/awesome-remnawave#backup-restore).
+:::
+
+:::warning
+Remnawave Node **v2.7.0** or higher is required.
+:::
+
+:::info Update order
+
+0. **Read the [Action needed](#action-needed) section below** and make a **full backup** of your data before proceeding.
+1. **Update the panel**:
+    ```bash
+    cd /opt/remnawave && docker compose pull remnawave && docker compose down && docker compose up -d && docker compose logs -f
+    ```
+2. **Update the nodes** (on each node server). Make sure `cap_add: NET_ADMIN` is present in your node's `docker-compose.yml` — it is required for plugins and IP management:
+    ```yaml
+    cap_add:
+        - NET_ADMIN
+    ```
+    Then update:
+    ```bash
+    cd /opt/remnanode && docker compose pull remnanode && docker compose down && docker compose up -d && docker compose logs -f
+    ```
+3. **Force restart all nodes**: once all nodes are updated, open the panel and go to **Nodes** → **Management**. Click the spiral button (grape color) and select **Force restart all nodes**.
+
+:::
+
+### Action needed
+
+#### 0. Telegram login — migrated to Generic OAuth2
+
+The built-in Telegram login widget has been replaced with a [Generic OAuth2](https://core.telegram.org/bots/telegram-login) integration. **Before updating**, disable the Telegram login method in the panel settings and switch to password or another provider.
+
+If you have already updated and can't log in, use the rescue CLI to enable password authentication:
+
+```bash
+docker exec -it remnawave cli
+```
+
+After updating, you can re-enable Telegram login by configuring it as a Generic OAuth2 provider.
+
+#### 1. Telegram notifications — new format
+
+Remove these variables from your `.env` file:
+
+```bash title=".env"
+TELEGRAM_NOTIFY_USERS_CHAT_ID
+TELEGRAM_NOTIFY_NODES_CHAT_ID
+TELEGRAM_NOTIFY_CRM_CHAT_ID
+TELEGRAM_NOTIFY_USERS_THREAD_ID
+TELEGRAM_NOTIFY_NODES_THREAD_ID
+TELEGRAM_NOTIFY_CRM_THREAD_ID
+```
+
+Replace with new unified format (`chat_id:thread_id`, thread_id is optional):
+
+```bash title=".env"
+TELEGRAM_NOTIFY_USERS=change_me
+TELEGRAM_NOTIFY_NODES=change_me
+TELEGRAM_NOTIFY_CRM=change_me
+TELEGRAM_NOTIFY_SERVICE=change_me
+TELEGRAM_NOTIFY_TBLOCKER=change_me
+```
+
+#### 2. Prometheus metrics — breaking changes
+
+If you use Grafana dashboards or custom alerting based on Prometheus metrics, you **must** update your queries.
+
+**Renamed metrics** (`nodejs_*` → `process_*`):
+
+| Old name                        | New name                      |
+| ------------------------------- | ----------------------------- |
+| `nodejs_heap_used_bytes`        | `process_heap_used_bytes`     |
+| `nodejs_heap_total_bytes`       | `process_heap_total_bytes`    |
+| `nodejs_active_handlers`        | `process_active_handles`      |
+| `nodejs_event_loop_latency_p50` | `process_event_loop_delay_ms` |
+| `nodejs_event_loop_latency_p95` | `process_event_loop_p99_ms`   |
+
+**Removed metrics**: `nodejs_heap_usage_percent`, `nodejs_active_requests`, `nodejs_cpu_usage_percent`, `nodejs_memory_usage_bytes`, `nodejs_http_req_rate`, `nodejs_http_req_latency_p50`, `nodejs_http_req_latency_p95`
+
+**New process metrics**: `process_rss_bytes`, `process_external_bytes`, `process_array_buffers_bytes`, `process_uptime_seconds`
+
+**New node system metrics**: `node_network_rx_bytes_per_sec`, `node_network_tx_bytes_per_sec`, `node_network_rx_bytes_total`, `node_network_tx_bytes_total`, `node_memory_total_bytes`, `node_memory_free_bytes`, `node_uptime_seconds`, `node_cpu_count`, `node_system_info`
+
+**Reduced label cardinality**: `node_online_users`, `node_status` and all `node_inbound_*`/`node_outbound_*` bandwidth metrics now use only `node_uuid` (+ `tag` for bandwidth). Labels like `node_name`, `node_country_emoji`, `provider_name`, `tags` are moved to dedicated info metrics:
+
+- `node_basic_info` — static node labels (`node_uuid`, `node_name`, `node_country_emoji`, `provider_name`, `tags`)
+- `node_system_info` — OS-level labels (`node_uuid`, `arch`, `cpu_model`, `hostname`, `platform`, `release`, `version`)
+
+Use Prometheus [joins](https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching) to enrich queries, e.g.:
+
+```promql
+node_online_users * on(node_uuid) group_left(node_name) node_basic_info
+```
+
+You can use the updated Grafana dashboard compatible with v2.7.0 metrics: [Remnawave Panel Dashboard](https://grafana.com/grafana/dashboards/25064-remnawave-monitoring-dashboard/)
+
+#### 3. New optional variable
+
+```bash title=".env"
+PANEL_DOMAIN=panel.domain.com
+```
+
+Used for generating direct links (e.g. in Telegram notifications with inline buttons).
+
+&nbsp;
+
+### New features
+
+- **Node Plugins**: extensible plugin system for nodes — [docs](https://docs.rw/docs/learn/node-plugins)
+    - **Torrent Blocker** — detect and block torrent traffic with configurable block duration, ignore lists, and per-rule-tag targeting. Telegram notifications with inline "View user" button
+    - **Ingress Filter** — block inbound connections from specific IPs via nftables
+    - **Egress Filter** — block outbound connections to specific IPs/ports
+    - **Connection Drop** — drop connections from non-whitelisted IPs
+    - Shared IP lists support (`ext:list_name` format) across plugins
+    - Plugin actions: clone, reorder, execute commands on nodes (block/unblock IPs, recreate tables)
+    - Torrent Blocker Reports: paginated list, statistics (top users, top nodes, 24h summary), truncate
+- **Metadata API**: store and retrieve custom key-value metadata for users and nodes (`GET/PUT /api/metadata/user/{uuid}`, `/api/metadata/node/{uuid}`)
+- **Resolve User endpoint** (`POST /api/users/resolve`): resolve a user by any one identifier (uuid, id, shortUuid, or username)
+- **System Recap** (`GET /api/system/stats/recap`): aggregated system overview — users, nodes, traffic, countries, version, init date
+- **Traffic Limit Strategy**: new `MONTH_ROLLING` reset period — rolling 30-day traffic window
+- **Fetch Users IPs**: new IP control endpoint (`POST /api/ip-control/fetch-users-ips/{nodeUuid}`) — fetch per-user IP addresses from a specific node
+- **IP format change**: IP addresses now returned as objects with `ip` and `lastSeen` fields (instead of plain strings)
+- **Telegram Bot proxy support**: new optional `TELEGRAM_BOT_PROXY` variable (format: `protocol://user:password@host:port`)
+- **Custom Telegram Bot API server**: new optional `TELEGRAM_BOT_API_ROOT` variable (default: `https://api.telegram.org`)
+- **Telegram inline keyboards**: notification messages now support interactive buttons
+- **Node Bulk Update**: update `countryCode`, `consumptionMultiplier`, `providerUuid`, `tags`, `activePluginUuid` for multiple nodes at once
+- **Node System Info**: CPU, memory, network, uptime now reported separately from the node model and cached with 30s TTL
+- **Hysteria2 protocol**: support for Hysteria protocol and transport options (Xray-Json client only)
+- **KCP transport**: support for KCP network type with TTI and congestion options
+- **Tunnel protocol**: support for `tunnel` protocol in XRay configuration
+- **Shadowsocks ciphers**: added `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm` cipher methods
+- **CIDR ranges in plugins**: IP/CIDR validation support in node plugin configurations
+- **RAW subscription refactor**: the `rawHosts` array in `/api/subscriptions/by-short-uuid/{shortUuid}/raw` is replaced with `resolvedProxyConfigs` — a fully typed structure with discriminated unions for protocol (`vless`, `trojan`, `shadowsocks`), transport (`tcp`, `ws`, `xhttp`, `httpupgrade`, `grpc`, `kcp`), and security (`tls`, `reality`, `none`). Each proxy entry now contains `protocolOptions`, `transportOptions`, `securityOptions`, `streamOverrides`, `mux`, `clientOverrides`, and `metadata` instead of flat fields
+
+&nbsp;
+
+### Improvements
+
+- **Docker**: switched from Alpine to Debian-based image (`node:24.14-trixie-slim`)
+- **Valkey 9**: upgraded from 8.1, now uses Unix socket instead of TCP (default).
+- **Prometheus metrics refactor**: simplified metric labels (reduced cardinality), renamed `NODEJS_*` → `PROCESS_*`, added node system metrics (network rx/tx, memory, uptime, cpu count)
+- **Removed `systeminformation`**: system stats now use Node.js `os` module
+- **Cache refactor**: migrated from `@nestjs/cache-manager` to internal `RawCacheService`, cache TTLs changed from milliseconds to seconds
+- **Scheduler offsets**: cron jobs staggered by 5–20 minutes to avoid thundering herd at midnight
+- **OCI labels**: Docker image now includes standard container metadata labels
+
+&nbsp;
+
+### Removed
+
+- **Telegram OAuth2** (`POST /api/auth/oauth2/tg/callback`) — migrated to Generic OAuth2 provider
+- **Outline subscription route** (`GET /api/sub/outline/{shortUuid}/{type}/{encodedTag}`)
+- **Realtime bandwidth stats** (`GET /api/bandwidth-stats/nodes/realtime`)
+- **User tracking fields**: `subLastOpenedAt`, `subLastUserAgent` dropped from the database
+- **Node hardware fields**: `cpuCount`, `cpuModel`, `totalRam` dropped from the database (replaced by Node System Info cache)
+- **`tgAuthSettings`** removed from Remnawave Settings model (request and response)
+
+&nbsp;
+
+### API Changelog 2.6.4 vs. 2.7.0
+
+<details>
+<summary>View changelog</summary>
+
+#### Removed Endpoints
+
+- `GET /api/bandwidth-stats/nodes/realtime`
+- `POST /api/auth/oauth2/tg/callback`
+- `GET /api/sub/outline/{shortUuid}/{type}/{encodedTag}`
+
+#### New Endpoints
+
+- `POST /api/ip-control/fetch-users-ips/{nodeUuid}` — fetch per-user IPs
+- `GET /api/ip-control/fetch-users-ips/result/{jobId}` — get fetch results
+- `POST /api/users/resolve` — resolve user by any identifier
+- `GET /api/system/stats/recap` — system recap
+- `GET /api/metadata/node/{uuid}` — get node metadata
+- `PUT /api/metadata/node/{uuid}` — upsert node metadata
+- `GET /api/metadata/user/{uuid}` — get user metadata
+- `PUT /api/metadata/user/{uuid}` — upsert user metadata
+- `GET /api/node-plugins` — list all plugins
+- `GET /api/node-plugins/{uuid}` — get plugin
+- `POST /api/node-plugins` — create plugin
+- `PATCH /api/node-plugins` — update plugin
+- `DELETE /api/node-plugins/{uuid}` — delete plugin
+- `POST /api/node-plugins/actions/clone` — clone plugin
+- `POST /api/node-plugins/actions/reorder` — reorder plugins
+- `POST /api/node-plugins/executor` — execute commands on nodes
+- `GET /api/node-plugins/torrent-blocker` — get reports
+- `GET /api/node-plugins/torrent-blocker/stats` — get reports stats
+- `DELETE /api/node-plugins/torrent-blocker` — truncate reports
+
+---
+
+#### Removed `cpuCount`, `cpuModel`, `totalRam`, `xrayVersion`, `nodeVersion` from Node response + added `versions`, `system`
+
+- Removed: `cpuCount`, `cpuModel`, `totalRam`, `xrayVersion`, `nodeVersion`
+- Added: `versions` (nullable object with `xray` and `node` strings), `system` (nullable `NodeSystem` object), `activePluginUuid`
+- Changed: `xrayUptime` type from `string` to `number`, `usersOnline` type from `nullable(number)` to `number`
+
+Affected endpoints:
+
+- `GET /api/nodes`
+- `PATCH /api/nodes`
+- `POST /api/nodes`
+- `POST /api/nodes/actions/reorder`
+- `GET /api/nodes/{uuid}`
+- `POST /api/nodes/{uuid}/actions/disable`
+- `POST /api/nodes/{uuid}/actions/enable`
+
+---
+
+#### Removed `subLastOpenedAt`, `subLastUserAgent` + added `MONTH_ROLLING` to `trafficLimitStrategy` enum in User response
+
+Affected endpoints:
+
+- `GET /api/users`
+- `PATCH /api/users`
+- `POST /api/users`
+- `GET /api/users/{uuid}`
+- `GET /api/users/by-id/{id}`
+- `GET /api/users/by-email/{email}`
+- `GET /api/users/by-username/{username}`
+- `GET /api/users/by-short-uuid/{shortUuid}`
+- `GET /api/users/by-tag/{tag}`
+- `GET /api/users/by-telegram-id/{telegramId}`
+- `POST /api/users/{uuid}/actions/disable`
+- `POST /api/users/{uuid}/actions/enable`
+- `POST /api/users/{uuid}/actions/reset-traffic`
+- `POST /api/users/{uuid}/actions/revoke`
+
+---
+
+#### Added `MONTH_ROLLING` to `trafficLimitStrategy` enum in Subscription response
+
+Affected endpoints:
+
+- `GET /api/sub/{shortUuid}/info`
+- `GET /api/subscriptions`
+- `GET /api/subscriptions/by-short-uuid/{shortUuid}`
+- `GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` (also removed `subLastOpenedAt`, `subLastUserAgent`)
+- `GET /api/subscriptions/by-username/{username}`
+- `GET /api/subscriptions/by-uuid/{uuid}`
+
+---
+
+#### Removed `tgAuthSettings` from Remnawave Settings
+
+- `GET /api/remnawave-settings` — removed from response
+- `PATCH /api/remnawave-settings` — removed from response and request
+
+---
+
+#### RAW subscription response — `rawHosts` replaced with `resolvedProxyConfigs`
+
+`GET /api/subscriptions/by-short-uuid/{shortUuid}/raw` — the `rawHosts` array is replaced with `resolvedProxyConfigs`. The flat host object is now a typed `ResolvedProxyConfig` structure:
+
+- `protocol` + `protocolOptions` (discriminated: `vless` / `trojan` / `shadowsocks`)
+- `transport` + `transportOptions` (discriminated: `tcp` / `ws` / `xhttp` / `httpupgrade` / `grpc` / `kcp`)
+- `security` + `securityOptions` (discriminated: `tls` / `reality` / `none`)
+- `streamOverrides` (`finalMask`, `sockopt`)
+- `mux`
+- `clientOverrides` (`shuffleHost`, `mihomoX25519`, `serverDescription`, `xrayJsonTemplate`)
+- `metadata` (`uuid`, `tag`, `inboundTag`, `configProfileUuid`, `isDisabled`, `isHidden`, `viewPosition`, `remark`, `vlessRouteId`, `rawInbound`, `excludeFromSubscriptionTypes`)
+
+Old flat fields (`password`, `sni`, `alpn`, `fingerprint`, `host`, `network`, `path`, `publicKey`, `shortId`, `spiderX`, `tls`, `rawSettings`, `additionalParams`, `xHttpExtraParams`, `muxParams`, `sockoptParams`, `encryption`, `flow`, `dbData`, etc.) are removed.
+
+---
+
+#### Other changes
+
+- `GET /api/auth/status` — removed required property `tgAuth` from authentication response
+- `GET /api/ip-control/fetch-ips/result/{jobId}` — `ips` items type changed from `string` to `object` (`{ ip, lastSeen }`)
+- `GET /api/system/health` — replaced `pm2Stats` with `runtimeMetrics`
+- `GET /api/system/stats` — removed `cpu/physicalCores`, `memory/active`, `memory/available`
+
+</details>
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.4" date="25 February 2026">
+
+- hotfix: Mihomo and hidden hosts (hidden by default)
+- feat: Xray-Json Advanced: `addVirtualHostAsOutbound` – [docs](https://docs.rw/docs/learn/xray-json-advanced)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.3" date="25 February 2026">
+
+- **hotfix: missing host with enabled "Serve Json At The Base Path" and Xray-Json Advanced**
+- feat: additional Xray-Json Advanced options: `useHostRemarkAsTag`, `useHostTagAsTag`. [Docs](https://docs.rw/docs/learn/xray-json-advanced)
+- feat: special Remnawave directives for Mihomo templates: `remnawave.includeHiddenHosts: true`
+- feat: new Hosts option — "Exclude Host From Specific Subscription Types" (Host Card → Advanced)
+- feat: new SRR option (responseModifications) — `ignoreServeJsonAtBaseSubscription`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.2" date="24 February 2026">
+
+- feat: "Xray-Json – Advanced" – multiple outbounds in client xray-json, [documentation](https://docs.rw/docs/learn/xray-json-advanced)
+- feat: view, drop user connections from any nodes (Users → User Card → More Actions → **Show sessions**)
+- ...other minor changes
+
+:::warning
+Remnawave Node v2.6.0 or higher is required. To access additional features like IP Management — in Remnawave Node `docker-compose.yml` you **must** add under remnanode service:
+
+```yaml
+cap_add:
+    - NET_ADMIN
+```
+
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.1" date="16 February 2026">
+
+- feat: add `ignoreHostXrayJsonTemplate` flag in Response Rules (SRR)
+- fix: dynamic outline conf
+- feat: separate page for snippets
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.0" date="30 January 2026">
+
+- New webhook event: `service.subpage_config_changed`. Emitted when subpage config created, updated or deleted.
+- Bulk actions for Nodes, endpoint: [/api/nodes/bulk-actions](https://docs.rw/api/#tag/nodes-controller/POST/api/nodes/bulk-actions)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.7" date="21 January 2026">
+
+- Generic Oauth2 auth method
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.6" date="21 January 2026">
+
+- NodeJS v24
+- Fix: bulk and cron reset user traffic
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.5" date="17 January 2026">
+
+- hotfix: bulk revoke subscription
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.4" date="17 January 2026">
+
+- add KeyCloak as OAuth2 Provider
+- add Prizrak-Box to extended Mihomo Clients
+- Fix: OpenAPI schema date formats in bandwidth-stats route
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.3" date="9 January 2026">
+
+- frontend: fix Config & Inbound selection in Node creation card
+- backend: fix Xray-json additional host properties
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.2" date="8 January 2026">
+
+- Backend: hotfix for empty overrides in external squads
+- Frontend: config profile selection in Node Card
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.1" date="7 January 2026">
+
+- Hotfix: default custom remarks for External Squads
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.0" date="7 January 2026">
+
+- `scope` in webhook, OpenAPI models for webhook, refer to updated [docs](https://docs.rw/docs/features/webhooks)
+- [API changes](https://docs.rw/blog/api-changelog/v244-v250)
+- Custom remarks for: HWID Max Devices Exceeded, HWID Not Supported
+- Template Variables support in `maxDevicesAnnounce`
+- Revoke subscription: allow to revoke only connection passwords
+- ...other minor UI changes
+
+:::warning
+Recommended Node version — **v2.5.0**.
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.4" date="22 December 2025">
+
+- Subpage Builder: clone App, enhanced subpage config import, other UI fixes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.3" date="20 December 2025">
+
+- Move some of .env variables to Subpage Builder: `META_TITLE`, `META_DESCRIPTION`, `SUBSCRIPTION_UI_DISPLAY_RAW_KEYS`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.2" date="20 December 2025">
+
+- iOS Modal/Drawer header offset
+- Fix: Subpage Config — appname validation
+- ...other minor UI fixes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.4.0" date="20 December 2025">
+
+:::warning
+Always make **backup** before updating.
+:::
+
+- **New UI**: all charts across dashboard (Nodes → Statistics, Node Card → Show usage, User Card → Show usage)
+- **API Changes**: refactor stat routes. Before updating check up [API Changelog](https://docs.rw/blog/api-changelog/v232-v240)
+- Brand new **Subscription Page Builder**. New app-config format, full i18n with builder, separate app-configs for external squads and much more.
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.2" date="9 December 2025">
+
+- HWID Inspector: HWID top users table
+- **Rescue CLI**: truncate (clean all data) from HWID or SRH tables (`docker exec -it remnawave cli`)
+- Fix: adjust time ranges for "Online Now" badge (60s → 30s)
+- ...other: restore Internal Squads in Telegram notifications, correct OpenAPI schema for "Encrypt Cryptolink" endpoint
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.1" date="8 December 2025">
+
+- New: [fine-tuned notifications](https://docs.rw/docs/features/fine-tuned-notifications)
+- Fix: empty `/api/subscription` response
+- Fix: bulk reset race condition
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.0" date="7 December 2025">
+
+:::warning
+Обязательно сделайте бекап перед обновлением. Обновление содержит серьёзные изменения в API.
+:::
+
+Версия панели (2.3.0) требует обновить ноды до версии 2.3.0.
+
+**Основные изменения:**
+
+- Полный контроль flow для VLESS-инбаундов
+- Внешние сквады: переопределение настроек HWID, переопределение «примечаний» (по статусам)
+- Возможность изменить порядок: внутренние сквады, внешние сквады, профили, шаблоны
+- Поддержка balancers в сниппетах
+- Табличный вид отображения списка нод
+- ZSTD-сжатие конфига перед отправкой на ноды
+- Новая `.env` переменная — `REDIS_SOCKET` (подключение Redis/Valkey через unix-сокет)
+- Выбрать индивидуальный Xray-Json для каждого хоста (на основе шаблонов)
+- Исключить хост из определённых внутренних сквадов
+- «Теги» для нод (можно указать несколько тегов)
+- Массовое изменение активного профиля/инбаундов у нод (мультивыбор)
+- Новая `.env` переменная: `USER_USAGE_IGNORE_BELOW_BYTES`
+- Новая `.env` переменная: `SERVICE_DISABLE_USER_USAGE_RECORDS`
+- Рефактор: очереди, фоновые задачи, оптимизация таблиц в базе данных
+- ...прочие QoL изменения и исправления
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.6" date="6 November 2025">
+
+- Override response headers with External Squads
+- Add gRPC support
+- Branding: set colored brand name
+- Webhook URL: now supports multiple URLs (separated by commas)
+- Users table: filtering, search by External Squad
+- Fix: iOS floating header
+- Fix: missing background in Metrics
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.5" date="2 November 2025">
+
+- Hotfix: missing host creation button (if there is no hosts)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.4" date="2 November 2025">
+
+- Fix: Xray Json (Serve at base path) incorrect template response
+- Fix: VLESS Encryption — incorrect decryption parsing logic
+- New: Vazirmatn font for Persian language and Noto Sans SC for Chinese
+- New: Host overrides in External Squads
+- New: Reset Node Traffic
+- More strict passkey (register + auth) settings
+- **New: help action button with detailed articles on Hosts, Config Profiles, Internal and External Squads sections**
+- New: view computed Config Profile (Config Profile + applied snippets)
+- Monkey patch incorrect **serverNames** array before saving changes
+- Refactor some layouts in frontend
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.3" date="27 October 2025">
+
+- Hotfix: `/json` — incorrect response body
+
+:::warning
+In previous versions, when HWID was enabled, the panel forcibly removed the **profile-web-page-url** header, which is responsible for displaying the subscription link in client applications. This behavior from the panel has proven to be incorrect in practice. In this version, Remnawave will no longer forcibly hide this header when HWID is enabled.
+
+**If you're using HWID together with a crypto link (Happ), don't forget to disable the display of this header in the Subscription → Settings section. Look for the "Profile Webpage URL" option.**
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.2" date="26 October 2025">
+
+- Hotfix: 5xx errors while updating user **by username**
+- Fix: Incorrect response content type with "serve json at base path" option (or /json)
+- More clear errors while adding passkey device
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.0" date="26 October 2025">
+
+Крупнейшее обновление с момента выхода v2.x.
+
+[→ Ознакомиться с описанием обновления](https://telegra.ph/Remnawave-v220-10-25) **[RU]**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.19" date="12 October 2025">
+
+- **Infra Billing:** Multiselect in Infra Billing Nodes table (quickly change next billing date for multiple nodes)
+- **Infra Billing:** Quick update billing date button (move node to the next billing cycle with one click)
+- **Infra Billing:** Update Infra Billing Node request schema changed
+- Fix: Hosts, Nodes cards margins in mobile view
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.18" date="11 October 2025">
+
+- Add support for **mldsa65Seed** & verify
+- **Add full support for Vless Encryption**
+- Fix: incorrect boolean assignment in **ais** (base64)
+- Return **serverDescription** for **FlClashX**
+- Fix: ALPN in xray-json
+- **Add option to link nodes to Hosts** (visual assignment only)
+- Frontend: new keypairs generators: MLDSA65, ML-KEM768
+- Frontend: fix incorrect squads assignment in bulk actions
+- Frontend: Host card now inside Drawer (instead of Modal)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.17" date="2 October 2025">
+
+- Frontend: fix incorrect loader position
+- Frontend: fix aggressive reloads
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.16" date="30 September 2025">
+
+- Backend: added new object to GetSubscriptionRequestHistoryStats response
+- Frontend: hide header with scroll
+- Frontend: SRH Inspector — new chart
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.15" date="29 September 2025">
+
+- Main title and logo customization, new .env params: `BRANDING_TITLE`, `BRANDING_LOGO_URL`
+- Small UI fixes in Subscription Request History drawer
+- New: shuffleHost, mihomoX25519 in Host Card
+- Add UUID column to Users table (search, sorting)
+- Allow spaces in Config Profile and Internal Squad names
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.14" date="23 September 2025">
+
+- fix: telegramId incorrect search behaviour
+- fix: cleanup subscription request history
+- fix: incorrect link in profile-webpage-url header
+- allow to update user by username
+- allow to pass own UUID in user creation
+- update Happ CryptoLink to v3
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.13" date="15 September 2025">
+
+- **HWID Inspector**, view stats for your HWID devices, full featured table (list, search, sort, filter) available
+- API endpoint: [Get all HWID devices](https://remna.st/api/#tag/hwid-user-devices-controller/get/api/hwid/devices)
+- API endpoint: [Get HWID Device stats](https://remna.st/api/#tag/hwid-user-devices-controller/get/api/hwid/devices/stats)
+- fix: ip parsing in subscription requests
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.12" date="15 September 2025">
+
+- Minor UI fixes in frontend
+- [New webhook events related to HWID devices (added, deleted)](https://github.com/remnawave/backend/blob/main/libs/contract/constants/events/events.ts#L21)
+- add allowInsecure to Host
+- add User Subscription Request History, up to 24 latest records will be stored
+- [new API endpoint to delete all user HWID devices](https://remna.st/api/#tag/hwid-user-devices-controller/post/api/hwid/devices/delete-all)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.9" date="6 September 2025">
+
+- Restore curl in Dockerfile
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.8" date="3 September 2025">
+
+**Backend:**
+
+- `/api/system/tools/x25519/generate` — generate 30 x25519-keypairs
+- Bulk Actions now supports mass HWID modifications
+- `/raw` subscription schema and path changed. New path: `/api/subscriptions/by-short-uuid/{shortUuid}/raw`
+- Node version downgraded to 22.18.0
+- Change memory allocator from jemalloc to mimalloc
+- Upgrade deps (PrismaORM 6.15.0, etc)
+
+**Frontend:**
+
+- Queues (sidebar) now hidden by default. Toggle: `Cmd/Ctrl + Shift + J`
+- Fix incorrect tag assignment in Host card section
+- Add supports for HWID mass actions
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.7" date="30 August 2025">
+
+- new endpoints in [Subscriptions Controller](https://remna.st/api#tag/subscriptions-controller): get subscription info by short uuid and by uuid.
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.6" date="29 August 2025">
+
+:::warning
+`/raw` subscription route response changed.
+
+Previous: `{ "user": {}... }`
+New: `{ "response": { "user": {}... } }`
+:::
+
+- fix: subscription link is not shown with HWID enabled (only for admin dashboard)
+- fix: infra billing incorrect ranges
+- fallback hosts (expired, limited, disabled) now use vless instead of trojan
+- refactor: change infra billing notifications texts
+- minor UI fixes in frontend
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.5" date="26 August 2025">
+
+- Hotfix for incorrect migration behaviour on clean database
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.4" date="26 August 2025">
+
+**Backend:**
+
+- Add indexes to database
+- Add **tId** for internal use (speed up config generation & pagination)
+- Add option to **force** restart all nodes (Xray Core restart guaranteed, hash-checking will be skipped)
+- raw subscription keys will not be returned anymore in `/info` route if HWID enabled
+- add _bytes_ response in `/info` and `browser-json` of subscription
+- fix bug with `@nestjstools/messaging`, which was cause of memory leak with Redis/Valkey
+- Redis/Valkey DB will be completely flushed with panel start
+- Stash Subscription Generator now uses MihomoService under hood (allows Vless Reality with Stash)
+- Add `UTC` mark in Telegram notifications
+- **Add support for coming Vless-Route** option in Xray Core
+- Fix: clearing clients array from Xray Config before adding users
+- Fix: HWID Devices was not registered in database if HWID Detection is off for specific user
+- GetAllInbounds, GetInboundByProfileUuid — now returns activeSquads uuids
+
+**Frontend:**
+
+- Fix: input in Host card resets between tabs
+- Add unsaved changes warnings in Config Profile editor
+- Modify Restart all nodes action button, add modal with restart type selection (graceful, force)
+- Add _Inbounds With Active Squads_ drawer in Config Profiles section
+- Minor UI improvements and fixes
+
+</ReleaseEntry>

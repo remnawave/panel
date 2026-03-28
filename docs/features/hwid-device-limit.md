@@ -65,6 +65,10 @@ Not all client applications send a HWID header. Here is the list of applications
     - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
 - [Throne](https://github.com/throneproj/Throne/) - HWID [disabled by default](https://github.com/throneproj/Throne/pull/789)
 - [Shadowrocket](https://apps.apple.com/ru/app/shadowrocket/id932747118?l=en-GB) - HWID disabled by default
+- [Passwall-OpenWRT](https://github.com/Openwrt-Passwall/openwrt-passwall)
+- [Clash Mi](https://clashmi.app/) - HWID disabled by default
+- [Karing](https://karing.app/) - HWID disabled by default
+- [Incy](https://incy.cc/)
 
 ## For app developers
 

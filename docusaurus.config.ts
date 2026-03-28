@@ -31,6 +31,31 @@ const config: Config = {
                 name: 'theme-color',
                 content: '#242c38'
             }
+        },
+        {
+            tagName: 'link',
+            attributes: {
+                key: 'docusaurus-plugin-plausible-preconnect',
+                rel: 'preconnect',
+                href: `https://ps.log.rw`
+            }
+        },
+        {
+            tagName: 'script',
+            attributes: {
+                async: 'true',
+                src: 'https://ps.log.rw/js/pa-fsigGX5NspgeKn5IItyE7.js'
+            }
+        },
+        {
+            tagName: 'script',
+            attributes: {
+                key: 'docusaurus-plugin-plausible-custom-events'
+            },
+            innerHTML: `
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+            `
         }
     ],
 
@@ -121,7 +146,7 @@ const config: Config = {
                 showNavLink: true, // optional, default is true
                 configuration: {
                     spec: {
-                        url: 'https://cdn.remna.st/docs/openapi.json'
+                        url: 'https://cdn.docs.rw/docs/openapi.json'
                     },
                     theme: 'purple',
                     hideDarkModeToggle: true,

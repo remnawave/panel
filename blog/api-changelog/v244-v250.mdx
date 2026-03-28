@@ -1,0 +1,65 @@
+---
+title: API Changelog 2.4.4 vs. 2.5.0
+authors: remnawave
+tags: [api-changelog]
+date: 2026-01-07
+hide_table_of_contents: true
+---
+
+# API Changelog 2.4.4 vs. 2.5.0
+
+#### GET /api/system/metadata
+
+- new endpoint added
+
+#### GET /api/external-squads
+
+- :warning: removed the required property 'response/externalSquads/items/customRemarks/emptyInternalSquads' from the response with the '200' status
+- added the required property 'response/externalSquads/items/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/externalSquads/items/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### PATCH /api/external-squads
+
+- :warning: added the new required request property 'customRemarks/HWIDMaxDevicesExceeded'
+- :warning: added the new required request property 'customRemarks/HWIDNotSupported'
+- :warning: removed the required property 'response/customRemarks/emptyInternalSquads' from the response with the '200' status
+- :warning: removed the request property 'customRemarks/emptyInternalSquads'
+- added the required property 'response/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### POST /api/external-squads
+
+- :warning: removed the required property 'response/customRemarks/emptyInternalSquads' from the response with the '201' status
+- added the required property 'response/customRemarks/HWIDMaxDevicesExceeded' to the response with the '201' status
+- added the required property 'response/customRemarks/HWIDNotSupported' to the response with the '201' status
+
+#### POST /api/external-squads/actions/reorder
+
+- :warning: removed the required property 'response/externalSquads/items/customRemarks/emptyInternalSquads' from the response with the '200' status
+- added the required property 'response/externalSquads/items/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/externalSquads/items/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### GET /api/external-squads/\{uuid\}
+
+- :warning: removed the required property 'response/customRemarks/emptyInternalSquads' from the response with the '200' status
+- added the required property 'response/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### GET /api/subscription-settings
+
+- :warning: removed the required property 'response/customRemarks/emptyInternalSquads' from the response with the '200' status
+- added the required property 'response/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### PATCH /api/subscription-settings
+
+- :warning: added the new required request property 'customRemarks/HWIDMaxDevicesExceeded'
+- :warning: added the new required request property 'customRemarks/HWIDNotSupported'
+- :warning: removed the required property 'response/customRemarks/emptyInternalSquads' from the response with the '200' status
+- :warning: removed the request property 'customRemarks/emptyInternalSquads'
+- added the required property 'response/customRemarks/HWIDMaxDevicesExceeded' to the response with the '200' status
+- added the required property 'response/customRemarks/HWIDNotSupported' to the response with the '200' status
+
+#### POST /api/users/\{uuid\}/actions/revoke
+
+- added the new optional request property 'revokeOnlyPasswords'

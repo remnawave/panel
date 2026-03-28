@@ -1,0 +1,168 @@
+---
+sidebar_position: 3
+title: Subscription Page
+description: 'Changelog for Remnawave Subscription Page'
+hide_title: true
+hide_table_of_contents: true
+---
+
+# Subscription Page
+
+<ReleaseEntry version="7.1.8" date="8 March 2026">
+
+### New features
+
+`MARZBAN_LEGACY_DROP_REVOKED_SUBSCRIPTIONS` .env variable.
+
+`true` – drop requests from legacy subscription urls, if `subRevokedAt` field is not `null` (subscription was revoked at least once).  
+`false` - **default** value, the same behavior as before.
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.7" date="30 January 2026">
+
+- Pass multiple Marzban Secret keys
+
+```
+MARZBAN_LEGACY_SECRET_KEY=key1,key2,key3
+```
+
+:::warning
+Minimum panel version — v2.5.x or higher
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.6" date="21 January 2026">
+
+- Bump NodeJS to v24.13
+- ...other minor changes
+
+:::warning
+Minimum panel version — v2.5.x or higher
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.4" date="17 January 2026">
+
+- change health check endpoint
+- add additional headers to ignore
+- fail fast on invalid subpage config during startup
+
+:::warning
+Minimum panel version — v2.5.x or higher
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.2" date="11 January 2026">
+
+- hotfix: headers
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.1" date="11 January 2026">
+
+- fix: remove headers filtering
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.1.0" date="7 January 2026">
+
+- Hide `Get Link` (Show QR) button via subpage config
+- New button types: `HAPP_CRYPT3_LINK`, `HAPP_CRYPT4_LINK`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.0.7" date="28 December 2025">
+
+- Fix: iOS18 cards
+- Fix: Scrollbar for language selector
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.0.5" date="22 December 2025">
+
+- New: **App Icons**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.0.4" date="20 December 2025">
+
+- Move some of .env variables to Subpage Builder: `META_TITLE`, `META_DESCRIPTION`, `SUBSCRIPTION_UI_DISPLAY_RAW_KEYS`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.0.3" date="20 December 2025">
+
+- Fix: fallback platform selection
+
+</ReleaseEntry>
+
+<ReleaseEntry version="7.0.0" date="20 December 2025">
+
+:::warning
+v7.0.0 (or higher) requires Remnawave v2.4.0 (or higher).
+
+**Breaking change**: API token now is required.
+.env variable: `REMNAWAVE_API_TOKEN`.
+:::
+
+- New app-config format
+- Dynamic App Config loading from Remnawave
+- Disable/enable any languages as you want. English now is not necessary.
+- Add as many blocks as you want, customize svg icons and more. **Check up Subscription Page Builder in Remnawave.**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.4.2" date="11 December 2025">
+
+- Fonts: Vazirmatn for Persian, NotoSans SC for Chinese
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.4.1" date="10 December 2025">
+
+- Display **Connection Keys** on Subscription Page
+
+:::info
+This feature is **disabled by default**. It must be enabled via .env/environment variables.
+
+Checkout docs: [Display Raw Keys](https://docs.rw/docs/install/subscription-page/display-raw-keys)
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.4.0" date="9 December 2025">
+
+- New design
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.3.0" date="7 December 2025">
+
+- Part of Remnawave v2.3.0 release
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.1.0" date="24 November 2025">
+
+- Add French language support
+- Add "Check Panel connection on application start"
+- Log panel url and custom_sub_prefix on application start for debug purposes
+- ...other minor changes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="6.0.6" date="15 September 2025">
+
+- Small fixes for IP Address parsing and handling
+- Add support for **Cloudflare Zero Trust** auth, new .env variables:
+
+```
+CLOUDFLARE_ZERO_TRUST_CLIENT_ID=""
+CLOUDFLARE_ZERO_TRUST_CLIENT_SECRET=""
+```
+
+</ReleaseEntry>

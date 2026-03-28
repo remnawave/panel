@@ -35,8 +35,8 @@ Download the precompiled Remnawave migration tool from the GitHub releases page.
 # Create and navigate to a working directory
 mkdir -p /opt/remnawave && cd /opt/remnawave
 
-# Download the latest version (v1.4.0 as of this guide)
-wget https://github.com/remnawave/migrate/releases/download/v1.4.0/remnawave-migrate-v1.4.0-linux-amd64.tar.gz
+# Download the latest version (v2.1.0 as of this guide)
+wget https://github.com/remnawave/migrate/releases/download/v2.1.0/remnawave-migrate-v2.1.0-linux-amd64.tar.gz
 ```
 
 ### 2.2. Extracting the Tool
@@ -45,7 +45,7 @@ Unpack the downloaded archive to access the binary.
 
 ```bash
 # Extract the tarball
-tar -xf remnawave-migrate-v1.4.0-linux-amd64.tar.gz
+tar -xf remnawave-migrate-v2.1.0-linux-amd64.tar.gz
 ```
 
 :::tip
@@ -61,11 +61,11 @@ The migration tool uses command-line flags for configuration. Below is an exampl
 ```bash
 ./remnawave-migrate \
   --panel-type=marzban \
-  --panel-url="https://your-marzban-server" \
-  --panel-username="admin" \
-  --panel-password="your-admin-password" \
-  --remnawave-url="https://your-remnawave-server" \
-  --remnawave-token="your-remnawave-token" \
+  --panel-url=https://your-marzban-server \
+  --panel-username=admin \
+  --panel-password=your-admin-password \
+  --remnawave-url=https://your-remnawave-server \
+  --remnawave-token=your-remnawave-token \
   --preserve-status
 ```
 
@@ -80,28 +80,61 @@ The tool supports the following flags and their corresponding environment variab
 | `--panel-username`     | `PANEL_USERNAME`     | Source panel admin username                                   | -         |
 | `--panel-password`     | `PANEL_PASSWORD`     | Source panel admin password                                   | -         |
 | `--remnawave-url`      | `REMNAWAVE_URL`      | Destination panel URL (e.g., `https://remnawave.example.com`) | -         |
-| `--remnawave-token`    | `REMNAWAVE_TOKEN`    | Destination panel API token                                   | -         |
+| `--remnawave-token`    | `REMNAWAVE_TOKEN`    | Destination panel API token (used as Authorization Bearer)    | -         |
 | `--batch-size`         | `BATCH_SIZE`         | Number of users to process per batch                          | `100`     |
 | `--last-users`         | `LAST_USERS`         | Migrate only the last N users (0 = all users)                 | `0`       |
-| `--preferred-strategy` | `PREFERRED_STRATEGY` | Traffic reset strategy for all users                          | -         |
-| `--source-headers`    | `SOURCE_HEADERS`      | Additional headers for source panel                           | -         |
-| `--dest-headers`      | `DEST_HEADERS`        | Additional headers for Remnawave (e.g., X-Api-Key)            | -         |
-| `--preserve-status`   | `PRESERVE_STATUS`     | Preserve user status from source panel                        | `false`   |
+| `--preferred-strategy` | `PREFERRED_STRATEGY` | Traffic reset strategy (`NO_RESET`, `DAY`, `WEEK`, `MONTH`)   | -         |
+| `--source-headers`     | `SOURCE_HEADERS`     | Additional headers for source panel                           | -         |
+| `--dest-headers`       | `DEST_HEADERS`       | Additional headers for Remnawave (e.g., X-Api-Key)            | -         |
+| `--preserve-status`    | `PRESERVE_STATUS`    | Preserve user status from source panel                        | `false`   |
+| `--preserve-subhash`   | `PRESERVE_SUBHASH`   | Preserve user subscription URL hash from source panel         | `false`   |
+| `--internal-squad`     | `INTERNAL_SQUAD`     | UUID(s) of internal squad(s) to assign (comma-separated)      | -         |
+| `--external-squad`     | `EXTERNAL_SQUAD`     | UUID of external squad to assign to all created users         | -         |
 
 :::tip
 If you’re using Remnawave with additional security provided by Caddy, you need to follow these steps:
+
 1. Log in to the Auth Portal and navigate to API Keys
 2. Issue a new API key
 3. Pass this key using the --dest-headers flag in the following format:
     ```bash
     --dest-headers="X-Api-Key:api-key-from-auth-portal"
     ```
-  :::
+    :::
 
 :::tip
+
 - Use `--last-users=5` for a test migration with a small subset of users.
 - Obtain your Remnawave API token from the Remnawave panel settings (e.g., under API or Integrations).
+- If `--preferred-strategy` is not specified, the original strategy from Marzban will be used. `YEAR` strategy is converted to `NO_RESET`.
   :::
+
+### 3.3. Assigning Users to Squads
+
+You can automatically assign all migrated users to internal and/or external squads:
+
+```bash
+# Assign to a single internal squad
+./remnawave-migrate \
+  [other flags...] \
+  --internal-squad=e5201a6a-c50e-4b58-9ecb-a4c26c5e74c8
+
+# Assign to multiple internal squads
+./remnawave-migrate \
+  [other flags...] \
+  --internal-squad=uuid1,uuid2,uuid3
+
+# Assign to an external squad
+./remnawave-migrate \
+  [other flags...] \
+  --external-squad=f6302b7b-d61f-5c69-0fdc-b5d37d6e85d9
+
+# Assign to both internal and external squads
+./remnawave-migrate \
+  [other flags...] \
+  --internal-squad=uuid1,uuid2 \
+  --external-squad=uuid3
+```
 
 ## 4. Post-Migration Verification {#post-migration-verification}
 
@@ -112,10 +145,12 @@ After migration, verify the following on the Remnawave panel:
 1. **User Count**: Ensure the number of migrated users matches the source.
 2. **Data Integrity**:
     - Usernames
-    - Passwords
-    - Traffic limits
+    - Passwords (Trojan, VLESS UUID, Shadowsocks)
+    - Traffic limits and reset strategies
     - Expiration dates
     - User statuses (if `--preserve-status` was used)
+    - Subscription URL hashes (if `--preserve-subhash` was used)
+    - Squad assignments (if `--internal-squad` or `--external-squad` was used)
 
 :::tip
 Log in to the Remnawave panel and spot-check a few users to confirm data accuracy.
@@ -143,8 +178,6 @@ services:
             - '127.0.0.1:3010:3010'
         networks:
             - remnawave-network
-        volumes:
-            - ./app-config.json:/opt/app/frontend/assets/app-config.json
 networks:
     remnawave-network:
         driver: bridge
@@ -173,8 +206,6 @@ services:
             - '127.0.0.1:3010:3010'
         networks:
             - remnawave-network
-        volumes:
-            - ./app-config.json:/opt/app/frontend/assets/app-config.json
 networks:
     remnawave-network:
         driver: bridge
@@ -183,14 +214,14 @@ networks:
 
 #### Configuration Options Explained
 
-| Variable                      | Description                                                                                     | Example Value      |
-| ----------------------------- | ----------------------------------------------------------------------------------------------- | ------------------ |
-| `REMNAWAVE_PANEL_URL`      | Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com                                      | `http://remnawave:3000` |
-| `APP_PORT`      | The port on which the subscription page service runs.                                           | `3010`             |
-| `MARZBAN_LEGACY_LINK_ENABLED` | Enables support for legacy Marzban subscription links. Must be `true` to use the options below. | `true`             |
-| `MARZBAN_LEGACY_SECRET_KEY`   | The secret key from your Marzban database, required for decrypting legacy links.                | `secret`           |
-| `REMNAWAVE_API_TOKEN`         | The API token generated from your Remnawave panel dashboard (under "API Tokens").               | `token`            |
-| `CUSTOM_SUB_PREFIX`           | A custom prefix for subscription URLs to match your Marzban setup (e.g., `sub`).                | `sub`              |
+| Variable                      | Description                                                                                     | Example Value           |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- |
+| `REMNAWAVE_PANEL_URL`         | Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com                  | `http://remnawave:3000` |
+| `APP_PORT`                    | The port on which the subscription page service runs.                                           | `3010`                  |
+| `MARZBAN_LEGACY_LINK_ENABLED` | Enables support for legacy Marzban subscription links. Must be `true` to use the options below. | `true`                  |
+| `MARZBAN_LEGACY_SECRET_KEY`   | The secret key from your Marzban database, required for decrypting legacy links.                | `secret`                |
+| `REMNAWAVE_API_TOKEN`         | The API token generated from your Remnawave panel dashboard (under "API Tokens").               | `token`                 |
+| `CUSTOM_SUB_PREFIX`           | A custom prefix for subscription URLs to match your Marzban setup (e.g., `sub`).                | `sub`                   |
 
 :::tip
 

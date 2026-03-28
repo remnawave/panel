@@ -93,11 +93,11 @@ REDIS_PORT=6379
 
 Variables below are not used by Remnawave, but by the database container.
 
-| Variable            | Description                     | Default    | Required |
-| ------------------- | ------------------------------- | ---------- | -------- |
-| `POSTGRES_USER`     | The host of the Database server | `postgres` | No       |
-| `POSTGRES_PASSWORD` | The port of the Database server | `postgres` | No       |
-| `POSTGRES_DB`       | The user of the Database server | `postgres` | No       |
+| Variable            | Description                         | Default    | Required |
+| ------------------- | ----------------------------------- | ---------- | -------- |
+| `POSTGRES_USER`     | The username of the Postgres server | `postgres` | No       |
+| `POSTGRES_PASSWORD` | The password of the Postgres server | `postgres` | No       |
+| `POSTGRES_DB`       | The database of the Postgres server | `postgres` | No       |
 
 Remnawave uses PostgreSQL URL to connect to the database.
 
@@ -156,26 +156,22 @@ JWT_API_TOKENS_SECRET=strong_secret_key
 
 ## Telegram Notifications
 
-`TELEGRAM_NOTIFY_USERS_CHAT_ID`, `TELEGRAM_NOTIFY_USERS_THREAD_ID` is used to send notifications about user events.
+Each notification variable uses the unified format: `chat_id:thread_id`, where `thread_id` is optional.
 
-`TELEGRAM_NOTIFY_NODES_CHAT_ID`, `TELEGRAM_NOTIFY_NODES_THREAD_ID` is used to send notifications about node events.
-
-`TELEGRAM_NOTIFY_CRM_CHAT_ID`, `TELEGRAM_NOTIFY_CRM_THREAD_ID` is used to send notifications about CRM events.
-
-| Variable                            | Description                           | Default | Possible values |
-| ----------------------------------- | ------------------------------------- | ------- | --------------- |
-| `IS_TELEGRAM_NOTIFICATIONS_ENABLED` | Disable/Enable Telegram notifications | `false` | `true`, `false` |
-| `TELEGRAM_BOT_TOKEN`                | The token for the Telegram bot        |         |                 |
-| `TELEGRAM_NOTIFY_USERS_CHAT_ID`     | The user/group chat id                |         |                 |
-| `TELEGRAM_NOTIFY_NODES_CHAT_ID`     | The user/group chat id                |         |                 |
-| `TELEGRAM_NOTIFY_CRM_CHAT_ID`       | The user/group chat id                |         |                 |
-| `TELEGRAM_NOTIFY_USERS_THREAD_ID`   | The topic id of Telegram group        |         |                 |
-| `TELEGRAM_NOTIFY_NODES_THREAD_ID`   | The topic id of Telegram group        |         |                 |
-| `TELEGRAM_NOTIFY_CRM_THREAD_ID`     | The topic id of Telegram group        |         |                 |
+| Variable                            | Description                                    | Default | Possible values |
+| ----------------------------------- | ---------------------------------------------- | ------- | --------------- |
+| `IS_TELEGRAM_NOTIFICATIONS_ENABLED` | Disable/Enable Telegram notifications          | `false` | `true`, `false` |
+| `TELEGRAM_BOT_TOKEN`                | The token for the Telegram bot                 |         |                 |
+| `TELEGRAM_BOT_API_ROOT`             | Custom Telegram Bot API root URL (optional)    | `https://api.telegram.org` |                 |
+| `TELEGRAM_BOT_PROXY`                | Proxy for Telegram Bot (optional)              |         | `protocol://user:password@host:port` |
+| `TELEGRAM_NOTIFY_USERS`             | Notifications about user events                |         | `chat_id` or `chat_id:thread_id` |
+| `TELEGRAM_NOTIFY_NODES`             | Notifications about node events                |         | `chat_id` or `chat_id:thread_id` |
+| `TELEGRAM_NOTIFY_CRM`               | Notifications about CRM events                 |         | `chat_id` or `chat_id:thread_id` |
+| `TELEGRAM_NOTIFY_SERVICE`           | Notifications about service events             |         | `chat_id` or `chat_id:thread_id` |
+| `TELEGRAM_NOTIFY_TBLOCKER`          | Notifications about Torrent Blocker events     |         | `chat_id` or `chat_id:thread_id` |
 
 :::note
-
-Telegram Group Chat ID is always starts with `-100`.
+Telegram Group Chat ID always starts with `-100`.
 :::
 
 <details>
@@ -189,19 +185,15 @@ IS_TELEGRAM_NOTIFICATIONS_ENABLED=false
 # Telegram bot token
 TELEGRAM_BOT_TOKEN=change_me
 
-# Notifications about users
-TELEGRAM_NOTIFY_USERS_CHAT_ID=change_me
+# Optional: proxy for Telegram Bot
+# TELEGRAM_BOT_PROXY=socks5://user:password@host:port
 
-# Notifications about nodes
-TELEGRAM_NOTIFY_NODES_CHAT_ID=change_me
-
-# Notifications about CRM
-TELEGRAM_NOTIFY_CRM_CHAT_ID=change_me
-
-# Optional, if you want to send notifications to specific topics in Telegram group
-TELEGRAM_NOTIFY_USERS_THREAD_ID=
-TELEGRAM_NOTIFY_NODES_THREAD_ID=
-TELEGRAM_NOTIFY_CRM_THREAD_ID=
+# Notifications (format: chat_id or chat_id:thread_id)
+TELEGRAM_NOTIFY_USERS=change_me
+TELEGRAM_NOTIFY_NODES=change_me
+TELEGRAM_NOTIFY_CRM=change_me
+TELEGRAM_NOTIFY_SERVICE=change_me
+TELEGRAM_NOTIFY_TBLOCKER=change_me
 ```
 
 </details>
@@ -216,6 +208,10 @@ TELEGRAM_NOTIFY_CRM_THREAD_ID=
 | ------------------- | ---------------------------------------------- | --------------------- | -------- |
 | `SUB_PUBLIC_DOMAIN` | The domain and path of public subscription URL | `example.com/api/sub` | Yes      |
 
+| Variable       | Description                                                                        | Default | Required |
+| -------------- | ---------------------------------------------------------------------------------- | ------- | -------- |
+| `PANEL_DOMAIN` | Panel domain for generating direct links (e.g. in Telegram notifications with inline buttons) |         | No       |
+
 `SUB_PUBLIC_DOMAIN` is used to set the public subscription URL in RestAPI responses/UI in dashboard.
 
 :::tip
@@ -229,6 +225,7 @@ If you are using with panel, just set to `yourpanel.com/api/sub`
 ```bash title=".env file"
 FRONT_END_DOMAIN=yourpanel.com
 SUB_PUBLIC_DOMAIN=yourpanel.com/api/sub
+PANEL_DOMAIN=yourpanel.com
 ```
 
 </details>
@@ -375,11 +372,15 @@ NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
 
 ## Miscellaneous
 
-| Variable                  | Description                                                                              | Default |
-| ------------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| `SHORT_UUID_LENGTH`       | The length of the generated short UUID (subscription). Min. length 16 and max. length 64 | `16`    |
-| `IS_HTTP_LOGGING_ENABLED` | Enable/Disable HTTP logging                                                              | `false` |
-| `JWT_AUTH_LIFETIME`       | The lifetime of the auth JWT in hours. Possible values from 12 to 168.                   | `12`    |
+| Variable                             | Description                                                                              | Default | Possible values |
+| ------------------------------------ | ---------------------------------------------------------------------------------------- | ------- | --------------- |
+| `SHORT_UUID_LENGTH`                  | The length of the generated short UUID (subscription). Min. length 16 and max. length 64 | `16`    |                 |
+| `IS_HTTP_LOGGING_ENABLED`            | Enable/Disable HTTP logging                                                              | `false` | `true`, `false` |
+| `ENABLE_DEBUG_LOGS`                  | Enable/Disable debug logs                                                                | `false` | `true`, `false` |
+| `JWT_AUTH_LIFETIME`                  | The lifetime of the auth JWT in hours. Possible values from 12 to 168.                   | `12`    |                 |
+| `SERVICE_CLEAN_USAGE_HISTORY`        | Enable/Disable cleaning of usage history                                                 | `false` | `true`, `false` |
+| `SERVICE_DISABLE_USER_USAGE_RECORDS` | Disable recording of user usage data                                                     | `false` | `true`, `false` |
+| `USER_USAGE_IGNORE_BELOW_BYTES`      | Ignore user usage below this threshold (in bytes, max 1048576)                           | `0`     |                 |
 
 <details>
 <summary>Example</summary>
@@ -387,7 +388,11 @@ NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
 ```bash title=".env file"
 SHORT_UUID_LENGTH=16
 IS_HTTP_LOGGING_ENABLED=true
+ENABLE_DEBUG_LOGS=false
 JWT_AUTH_LIFETIME=12
+SERVICE_CLEAN_USAGE_HISTORY=false
+SERVICE_DISABLE_USER_USAGE_RECORDS=false
+USER_USAGE_IGNORE_BELOW_BYTES=0
 ```
 
 </details>
