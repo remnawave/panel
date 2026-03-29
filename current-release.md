@@ -1,2 +1,2 @@
-Backend: v2.7.2
-Frontend: v2.7.2
+Backend: v2.7.3
+Frontend: v2.7.3
