@@ -91,3 +91,20 @@ user-agent: <user_agent>
 The only required item is `x-hwid`. Other headers are optional and can be used to identify the device more accurately.
 
 If your application has the ability to enable additional features based on where the subscription is coming from, Remnawave can send a provider id in the response headers, which you can use to figure out where the subscription is coming from.
+
+### HWID Headers sent by Remnawave
+
+:::info
+Available since Remnawave Panel **v2.7.5**.
+:::
+
+When HWID Device Limit is enabled, Remnawave includes the following headers in subscription responses:
+
+| Header                       | Description                                                                                              |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `x-hwid-active`              | Always `true` when HWID Device Limit is enabled on the panel side.                                       |
+| `x-hwid-not-supported`       | `true` if HWID Device Limit is enabled, but the client application did not send an `x-hwid` header.      |
+| `x-hwid-max-devices-reached` | `true` if HWID Device Limit is enabled and the user has reached their maximum number of allowed devices. |
+| `x-hwid-limit`               | `true` when the device limit has been reached. Sent for backwards compatibility with v2RayTun.           |
+
+These headers allow client applications to provide meaningful feedback to users — for example, displaying a warning when the device limit has been reached or when HWID support is missing.
