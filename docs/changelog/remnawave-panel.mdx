@@ -66,7 +66,11 @@ Remnawave Node **v2.7.0** or higher is required.
 
 ### Action needed
 
-#### 0. Telegram login — migrated to Generic OAuth2
+#### 0. Shadowsocks method `2022-blake3-aes-128-gcm` — removed
+
+If you have any inbounds using the `2022-blake3-aes-128-gcm` Shadowsocks method, **you must delete them before updating**. This method was never supported and did not work in previous versions either. Starting from this version, validation of supported methods is stricter — the presence of unsupported methods will cause errors during the update.
+
+#### 1. Telegram login — migrated to Generic OAuth2
 
 The built-in Telegram login widget has been replaced with a [Generic OAuth2](https://core.telegram.org/bots/telegram-login) integration. **Before updating**, disable the Telegram login method in the panel settings and switch to password or another provider.
 
@@ -78,7 +82,7 @@ docker exec -it remnawave cli
 
 After updating, you can re-enable Telegram login by configuring it as a Generic OAuth2 provider.
 
-#### 1. Telegram notifications — new format
+#### 2. Telegram notifications — new format
 
 Remove these variables from your `.env` file:
 
@@ -101,7 +105,7 @@ TELEGRAM_NOTIFY_SERVICE=change_me
 TELEGRAM_NOTIFY_TBLOCKER=change_me
 ```
 
-#### 2. Prometheus metrics — breaking changes
+#### 3. Prometheus metrics — breaking changes
 
 If you use Grafana dashboards or custom alerting based on Prometheus metrics, you **must** update your queries.
 
