@@ -4,6 +4,8 @@ sidebar_position: 99
 
 # Upgrading
 
+:::danger Before updating, be sure to check the [changelog](https://docs.rw/docs/changelog/remnawave-panel). It show the actions needed before updating. :::
+
 ## Remnawave Panel
 
 ```bash title="Update and restart"
