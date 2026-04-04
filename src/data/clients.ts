@@ -76,7 +76,8 @@ export const CLIENTS: Client[] = [
             android: 'https://play.google.com/store/apps/details?id=com.happproxy',
             ios: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
             macos: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
-            windows: 'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe',
+            windows:
+                'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe',
             linux: 'https://github.com/Happ-proxy/happ-desktop/releases/latest'
         },
         links: {
@@ -105,6 +106,26 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/pluralplay/FlClashX',
             telegram: 'https://t.me/flclashx'
+        }
+    },
+    {
+        id: 'rabbit-hole',
+        name: 'Rabbit Hole',
+        core: 'mihomo',
+        platforms: ['ios', 'macos'],
+        description: 'Clean UX/UI. Built for everyone, ready for power users.',
+        logo: '/clients/logo/rabbit-hole-dark.svg',
+        badges: {
+            featured: true,
+            hwid: true
+        },
+        downloadLinks: {
+            macos: 'https://apps.apple.com/app/rabbithole-vpn-client/id6683309629',
+            ios: 'https://apps.apple.com/app/rabbithole-vpn-client/id6683309629'
+        },
+        links: {
+            docs: 'https://rabbit-hole-1.gitbook.io/rabbit-hole-docs/',
+            telegram: 'https://t.me/rabbit_hole_vpn'
         }
     },
     {
