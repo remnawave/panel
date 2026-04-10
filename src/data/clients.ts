@@ -573,6 +573,26 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://incy.cc/'
         }
+    },
+    {
+        id: 'deskbox',
+        name: 'DeskBox',
+        core: 'singbox',
+        platforms: ['macos', 'windows', 'linux'],
+        description: 'Simple GUI app for sing-box management.',
+        logo: '/clients/logo/deskbox.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'mihail-jdanov/DeskBox',
+        downloadLinks: {
+            macos: 'https://github.com/mihail-jdanov/DeskBox/releases',
+            windows: 'https://github.com/mihail-jdanov/DeskBox/releases',
+            linux: 'https://github.com/mihail-jdanov/DeskBox/releases'
+        },
+        links: {
+            github: 'https://github.com/mihail-jdanov/DeskBox'
+        }
     }
 ]
 
