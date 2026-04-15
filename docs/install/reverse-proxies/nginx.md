@@ -58,7 +58,7 @@ Do not use domain zones: .ru, .su, .рф. Currently ZeroSSL does not support the
 :::
 
 ```bash
-acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --alpn --tlsport 8443
+acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --alpn --tlsport 8443 --reloadcmd "docker exec remnawave-nginx nginx -s reload"
 ```
 
 :::info
