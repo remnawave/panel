@@ -493,7 +493,22 @@ export const CLIENTS: Client[] = [
             website: 'https://nsloon.app/'
         }
     },
-
+    {
+        id: 'anywhere',
+        name: 'Anywhere',
+        core: 'other',
+        platforms: ['ios', 'macos', 'android'],
+        description: 'Lightning-fast native proxy client',
+        logo: '/clients/logo/anywhere-dark.svg',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/id6758235178',
+            macos: 'https://apps.apple.com/us/app/id6758235178',
+            android: 'https://play.google.com/store/apps/details?id=com.argsment.anywhere'
+        },
+        links: {
+            github: 'https://github.com/NodePassProject/Anywhere'
+        }
+    },
     {
         id: 'clash-mi',
         name: 'Clash Mi',
