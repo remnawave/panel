@@ -506,7 +506,7 @@ export const CLIENTS: Client[] = [
             android: 'https://play.google.com/store/apps/details?id=com.argsment.anywhere'
         },
         links: {
-            website: 'https://github.com/NodePassProject/Anywhere'
+            github: 'https://github.com/NodePassProject/Anywhere'
         }
     },
     {
