@@ -4,6 +4,11 @@ sidebar_position: 99
 
 # Upgrading
 
+:::tip
+It is recommended to update the **Remnawave Panel** first, then the **Remnawave Nodes**.
+
+:::
+
 ## Remnawave Panel
 
 ```bash title="Update and restart"
