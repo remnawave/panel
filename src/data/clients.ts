@@ -588,7 +588,7 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://incy.cc/'
         }
-    }.
+    },
     {
         id: 'renoarx',
         name: 'RenoarX',
