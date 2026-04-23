@@ -588,7 +588,22 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://incy.cc/'
         }
+    },
+    {
+        id: 'renoarx',
+        name: 'RenoarX',
+        core: 'xray',
+        platforms: ['windows'],
+        description: 'Modern XRay JSON client.',
+        logo: '/clients/logo/renoar_logo_black.svg',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            windows: 'https://github.com/RonnyFX/RenoarX/releases/latest',
+        }
     }
+    
 ]
 
 export function getClientsByPlatform(platform: Platform): Client[] {
