@@ -69,6 +69,7 @@ Not all client applications send a HWID header. Here is the list of applications
 - [Clash Mi](https://clashmi.app/) - HWID disabled by default
 - [Karing](https://karing.app/) - HWID disabled by default
 - [Incy](https://incy.cc/)
+- [DeskBox](https://github.com/mihail-jdanov/DeskBox)
 
 ## For app developers
 
