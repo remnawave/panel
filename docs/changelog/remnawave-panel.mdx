@@ -8,6 +8,111 @@ hide_table_of_contents: true
 
 # Remnawave Panel
 
+<ReleaseEntry version="2.8.0" dev>
+
+:::danger
+**Before updating**, make a full backup of your data (database, configuration files, `.env`). See [Backup & Restore tools](/docs/awesome-remnawave#backup-restore).
+:::
+
+### Action needed
+
+#### 1. Database migration — HWID devices and Subscription Request History
+
+The `userUuid` column has been replaced with `userId` (BigInt) in `hwid_user_devices` and `user_subscription_request_history` tables.
+
+- **HWID devices** — if the table contains ≤ 500k records, data will be migrated automatically. If > 500k records, the table will be **truncated** (all devices re-registered on next subscription update request).
+- **Subscription Request History** — the table is **always truncated** during migration.
+
+#### 2. New optional variable
+
+```bash title=".env"
+SERVICE_DISABLE_SRH_RECORDS=false
+```
+
+Set to `true` to disable storing subscription request history records. **Default is `false`**.
+
+&nbsp;
+
+### New Features
+
+- **Mihomo: Hysteria2 protocol support** — full Hysteria2 subscription generation for Mihomo/Stash clients, including QUIC params (brutal up/down, UDP hop), obfuscation (salamander), and TLS options
+- **Mihomo: xHTTP transport support** — xHTTP transport for Mihomo clients with full xmux, download-settings, and padding options
+- **ECH support in Xray-Json** — `echForceQuery` and `echConfigList` TLS options in Xray-Json generator
+- **KCP transport improvements** — `clientMtu`, `tti` params now passed to Base64 subscription; KCP `http` header type now includes `path` and `host` from request headers
+- **HWID advisory lock** — HWID device creation now uses PostgreSQL advisory locks to prevent race conditions
+- **HWID request IP tracking** — device records now store the `requestIp` of the subscription request
+- **Node CPU load average metrics** — new Prometheus metrics: `node_cpu_load_avg_1m`, `node_cpu_load_avg_5m`, `node_cpu_load_avg_15m`
+- **Node plugins: AS lists** — shared lists now support `asList` type (ASN numbers) in addition to `ipList`
+
+&nbsp;
+
+### Bug Fixes
+
+- fix: Xray-Json WS transport — `Host` header moved from `headers` object to dedicated `host` field
+- fix: Xray-Json virtual host candidates now exclude the recipient host itself
+- fix: plugin executor only targets enabled and connected nodes (not disabled/disconnecting)
+- fix: suppress 404 errors from exception logger (reduce log noise)
+- fix: event loop delay metrics now subtract resolution offset for accurate readings
+- fix: Xray-Json outbounds fallback — `baseTemplate.outbounds` is now safely handled when undefined
+
+&nbsp;
+
+### Improvements
+
+- **Database**: `userUuid` → `userId` (BigInt) in HWID devices and subscription request history tables — faster joins and smaller indexes
+- **Process titles**: API, processor, and scheduler processes now set `process.title` (`rw-api`, `rw-processor`, `rw-scheduler`)
+- **HWID flow refactor**: error checking for HWID device limit is now stricter — returns error on failure instead of silently proceeding
+
+&nbsp;
+
+### API Changelog 2.7.4 vs. 2.8.0
+
+<details>
+<summary>View changelog</summary>
+
+#### Replaced `userUuid` with `userId` in HWID devices and subscription request history
+
+The `userUuid` property is replaced with `userId` (number) in the response objects. `requestIp` (nullable string) is added to HWID device responses.
+
+Affected HWID endpoints:
+
+- `GET /api/hwid/devices`
+- `POST /api/hwid/devices`
+- `POST /api/hwid/devices/delete`
+- `POST /api/hwid/devices/delete-all`
+- `GET /api/hwid/devices/{userUuid}`
+
+Affected subscription request history endpoints:
+
+- `GET /api/subscription-request-history`
+- `GET /api/users/{uuid}/subscription-request-history`
+
+---
+
+#### `trafficLimitBytes` type changed from `integer` to `number`
+
+Affected endpoints:
+
+- `GET /api/subscriptions/by-short-uuid/{shortUuid}/raw`
+- `GET /api/users`
+- `PATCH /api/users`
+- `POST /api/users`
+- `GET /api/users/by-email/{email}`
+- `GET /api/users/by-id/{id}`
+- `GET /api/users/by-short-uuid/{shortUuid}`
+- `GET /api/users/by-tag/{tag}`
+- `GET /api/users/by-telegram-id/{telegramId}`
+- `GET /api/users/by-username/{username}`
+- `GET /api/users/{uuid}`
+- `POST /api/users/{uuid}/actions/disable`
+- `POST /api/users/{uuid}/actions/enable`
+- `POST /api/users/{uuid}/actions/reset-traffic`
+- `POST /api/users/{uuid}/actions/revoke`
+
+</details>
+
+</ReleaseEntry>
+
 <ReleaseEntry version="2.7.4" date="30 March 2026">
 
 ### New Features

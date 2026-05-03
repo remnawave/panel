@@ -493,7 +493,22 @@ export const CLIENTS: Client[] = [
             website: 'https://nsloon.app/'
         }
     },
-
+    {
+        id: 'anywhere',
+        name: 'Anywhere',
+        core: 'other',
+        platforms: ['ios', 'macos', 'android'],
+        description: 'Lightning-fast native proxy client',
+        logo: '/clients/logo/anywhere-dark.svg',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/id6758235178',
+            macos: 'https://apps.apple.com/us/app/id6758235178',
+            android: 'https://play.google.com/store/apps/details?id=com.argsment.anywhere'
+        },
+        links: {
+            github: 'https://github.com/NodePassProject/Anywhere'
+        }
+    },
     {
         id: 'clash-mi',
         name: 'Clash Mi',
@@ -572,6 +587,26 @@ export const CLIENTS: Client[] = [
         },
         links: {
             website: 'https://incy.cc/'
+        }
+    },
+    {
+        id: 'deskbox',
+        name: 'DeskBox',
+        core: 'singbox',
+        platforms: ['macos', 'windows', 'linux'],
+        description: 'Simple GUI app for sing-box management.',
+        logo: '/clients/logo/deskbox.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'mihail-jdanov/DeskBox',
+        downloadLinks: {
+            macos: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            windows: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            linux: 'https://github.com/mihail-jdanov/DeskBox/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/mihail-jdanov/DeskBox'
         }
     }
 ]
