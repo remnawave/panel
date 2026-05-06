@@ -1,5 +1,9 @@
 ### Installation
 
+:::warning
+Always inspect the script before running it to ensure its safety: [install.sh](https://github.com/DonMatteoVPN/Reshala-Remnawave-Bedolaga/blob/main/install.sh)
+:::
+
 Run the following command in your terminal to install the stable version:
 
 ```bash
