@@ -8,7 +8,7 @@ wget -O install.sh https://raw.githubusercontent.com/DonMatteoVPN/Reshala-Remnaw
   && reshala
 ```
 
-Usage
+### Usage
 Once installed, you can launch the tool at any time by typing:
 
 ```bash
