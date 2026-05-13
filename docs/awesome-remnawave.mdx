@@ -26,6 +26,7 @@ import RemnashopGuide from '/docs/awesome-remnawave/\_install-guides/remnashop.m
 import RemnawaveBackuperGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-backuper.md'
 import XrayCheckerGuide from '/docs/awesome-remnawave/\_install-guides/xray-checker.md'
 import WhiteboxGuide from '/docs/awesome-remnawave/\_install-guides/whitebox.md'
+import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remnawave.md'
 
 <HeroSection
     title="❤️ Awesome Remnawave"
@@ -108,19 +109,6 @@ import WhiteboxGuide from '/docs/awesome-remnawave/\_install-guides/whitebox.md'
         featured={true}
     />
     <ProjectCard
-        id="remnawave-tg-shop"
-        title="Remnawave TG Shop"
-        description="A Telegram bot for selling and managing Remnawave subscriptions. It supports user registration, trial periods, promo codes, referral programs, subscription management. Payments are accepted through YooKassa, CryptoPay, Telegram Stars, Tribute. Admins get access to a secure panel with statistics, user management, promo code creation, broadcast messaging and other functions"
-        author="machka pasla"
-        authorLink="https://github.com/machka-pasla"
-        image="/awesome/remnawave-tg-shop.webp"
-        githubRepo="machka-pasla/remnawave-tg-shop"
-        links={{
-            github: 'https://github.com/machka-pasla/remnawave-tg-shop',
-            telegram: 'https://t.me/remnawave_tg_shop'
-        }}
-    />
-    <ProjectCard
         id="remnawave-bedolaga-bot"
         title="Remnawave Bedolaga Bot"
         description="Modern Telegram bot for automating VPN business through Remnawave API. Full-featured solution with user management, multi-channel payments, referral system, detailed analytics, Web API, Web Cabinet and Telegram Mini App integration."
@@ -130,7 +118,6 @@ import WhiteboxGuide from '/docs/awesome-remnawave/\_install-guides/whitebox.md'
         githubRepo="Fr1ngg/remnawave-bedolaga-telegram-bot"
         links={{
             github: 'https://github.com/Fr1ngg/remnawave-bedolaga-telegram-bot',
-            website: 'https://t.me/FringVPN_bot',
             telegram: 'https://t.me/+wTdMtSWq8YdmZmVi'
         }}
         featured={true}
@@ -321,6 +308,75 @@ import WhiteboxGuide from '/docs/awesome-remnawave/\_install-guides/whitebox.md'
             website: 'https://jomertix.github.io/geofileviewer'
         }}
     />
+
+    <ProjectCard
+        id="remnawave-admin"
+        title="Remnawave Admin Web + Bot"
+        description="Web panel and telegram bot for managing Remnawave panel. Features user/node/host management, billing, anti-abuse system with multi-factor connection analysis, built-in mail server, webhook notifications, and an interactive web dashboard with geo-map visualization."
+        author="Case211"
+        authorLink="https://github.com/Case211"
+        image="/awesome/remnawave-admin.webp"
+        githubRepo="Case211/remnawave-admin"
+        links={{
+            github: 'https://github.com/Case211/remnawave-admin',
+            telegram: 'https://t.me/remnawave_admin'
+        }}
+        featured={true}
+    />
+
+    <ProjectCard
+        id="mcp-remnawave"
+        title="MCP Remnawave"
+        description="An MCP server for managing Remnawave panel through AI assistants like Claude Desktop, Cursor, and Windsurf. Provides 51 tools for managing users, nodes, hosts, subscriptions, squads, and HWID devices, along with real-time panel statistics and guided prompts for common tasks."
+        author="TrackLine"
+        authorLink="https://github.com/TrackLine"
+        image="/awesome/mcp-remnawave.webp"
+        githubRepo="TrackLine/mcp-remnawave"
+        links={{
+            github: 'https://github.com/TrackLine/mcp-remnawave'
+        }}
+    >
+        <McpRemnawaveGuide />
+    </ProjectCard>
+
+    <ProjectCard
+        id="version-regex-generator"
+        title="Version Regex Generator"
+        description="Utility for generating regular expressions to match application versions greater than or equal to a specified base version."
+        author="Mitsuha44"
+        authorLink="https://github.com/mitsuha44"
+        image="/awesome/version-regex-generator.webp"
+        links={{
+            website: 'https://mitsuha44.github.io/version-regex-generator/'
+        }}
+    />
+   
+    <ProjectCard
+        id="xray-config-ui-editor"
+        title="Xray Config UI Editor"
+        description="Not the simplest, but a fairly convenient X-Ray configuration editor that allows you to configure directly via the RemnaWave API. It also supports geofile viewing and outbound import, and includes a convenient Monaco editor for editing JSON directly if features are not available. Plus a couple of cosmetic features."
+        author="bropines & Gemini"
+        authorLink="https://github.com/bropines"
+        image="/awesome/xray-config-ui-editor.webp"
+        githubRepo="bropines/xray-config-ui-editor"
+        links={{
+            github: 'https://github.com/bropines/xray-config-ui-editor'
+        }}
+    />
+  
+    <ProjectCard
+        id="remnawave-limiter"
+        title="Remnawave Limiter"
+        description="Automatic monitoring of simultaneous user connections from the Remnawave panel. Tracks IP addresses from all nodes via API, compares against each user's device limit, and notifies administrators via Telegram bot with instant management capabilities."
+        author="syvlech"
+        authorLink="https://github.com/syvlech"
+        image="/awesome/remnawave-limiter.webp"
+        githubRepo="syvlech/remnawave-limiter"
+        links={{
+            github: 'https://github.com/syvlech/remnawave-limiter'
+        }}
+    />
+
 </CategorySection>
 
 <CategorySection

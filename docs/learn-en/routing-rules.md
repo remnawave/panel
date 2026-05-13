@@ -120,16 +120,27 @@ Each rule is an object with the following fields:
         Header name.  
       - `value` (string) - optional  
         Header value.  
+    - `applyHeadersToEnd` (boolean) - optional  
+      By default, headers are added when forming the response. In some cases, headers set in SRR may be overridden by headers from other parts of the system (such as External Squads). If you set this flag to `true`, headers from SRR will be added at the very end, just before the response is sent. In this case, SRR headers may override headers from other sections.  
+    - `ignoreHostXrayJsonTemplate` (boolean) - optional  
+      Each Host may have its own Xray Json Template. If you set this flag to `true`, the Xray Json Template defined by the SRR will be used. The Host's Xray Json Template will be ignored.  
+    - `ignoreServeJsonAtBaseSubscription` (boolean) - optional  
+      In certain scenarios you might want to serve `XRAY_BASE64` to client apps that are recognized by the Panel as capable of accepting `XRAY_JSON` when `Serve JSON at Base Subscription` is enabled.  
+      If you set this flag to `true`, the `Serve JSON at Base Subscription` setting will be ignored (set to `false`).  
+  
   ```json
   "responseType": "SINGBOX",
   "responseModifications": {
-      "subscriptionTemplate": "Singbox Legacy",
-      "headers": [
-        {
-          "key": "x-custom-header",
-          "value": "CustomHeaderValue"
-        }
-      ]
+    "applyHeadersToEnd": true,
+    "headers": [
+      {
+        "key": "X-Custom-Header",
+        "value": "CustomValue"
+      }
+    ],
+    "ignoreHostXrayJsonTemplate": true,
+    "ignoreServeJsonAtBaseSubscription": true,
+    "subscriptionTemplate": "Singbox Legacy"
   }
   ```
 

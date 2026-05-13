@@ -54,7 +54,8 @@ Properties:
     - `node` - Node events
     - `service` - Service events
     - `crm` - Infra Billing events
-    - `errors` - Errors events (reserved for future use)
+    - `torrent_blocker` - Torrent Blocker events
+    - `errors` - Errors events
 
 - `event` - The event that occurred.
 - `timestamp` - The timestamp of the webhook payload in ISO 8601 format.
@@ -71,7 +72,7 @@ Detailed payload schema for each scope is available in the OpenAPI documentation
 ## Scope: user
 
 OpenAPI Model: `RemnawaveWebhookUserEventsDto`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookusereventsdto
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookUserEventsDto
 
 Available events (`event` property):
 
@@ -104,7 +105,7 @@ import { TRemnawaveWebhookUserEvent, RemnawaveWebhookUserEvents } from '@remnawa
 ## Scope: user_hwid_devices
 
 OpenAPI Model: `RemnawaveWebhookUserHwidDevicesEventsDto​`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookuserhwiddeviceseventsdto
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookUserHwidDevicesEventsDto​
 
 Available events (`event` property):
 
@@ -126,7 +127,7 @@ import {
 ## Scope: node
 
 OpenAPI Model: `RemnawaveWebhookServiceEventsDto​`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookenodeeventsdto
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookServiceEventsDto​
 
 Available events (`event` property):
 
@@ -151,7 +152,7 @@ import { TRemnawaveWebhookNodeEvent, RemnawaveWebhookNodeEvents } from '@remnawa
 ## Scope: service
 
 OpenAPI Model: `RemnawaveWebhookServiceEventsDto`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookserviceeventsdto
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookServiceEventsDto
 
 Available events (`event` property):
 
@@ -175,7 +176,7 @@ import {
 ## Scope: crm
 
 OpenAPI Model: `RemnawaveWebhookCrmEventsDto`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookcrmeventsdto
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookCrmEventsDto
 
 Available events (`event` property):
 
@@ -196,16 +197,37 @@ import { TRemnawaveWebhookCrmEvent, RemnawaveWebhookCrmEvents } from '@remnawave
 - `RemnawaveWebhookCrmEvents` – raw Zod schema
 - `TRemnawaveWebhookCrmEvent` – inferred type from the schema
 
+## Scope: torrent_blocker
+
+From Remnawave Panel v2.7.0 and higher.
+
+OpenAPI Model: `RemnawaveWebhookTorrentBlockerEventsDto`
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookTorrentBlockerEventsDto
+
+Available events (`event` property):
+
+- `torrent_blocker.report` - Torrent blocker report (includes node data, user data, action report with blocked status/IP/block duration, and xray report with protocol/network/source/destination details)
+
+Remnawave Typescript SDK types:
+
+```typescript
+import {
+    TRemnawaveWebhookTorrentBlockerEvent,
+    RemnawaveWebhookTorrentBlockerEvents
+} from '@remnawave/backend-contract'
+```
+
+- `RemnawaveWebhookTorrentBlockerEvents` – raw Zod schema
+- `TRemnawaveWebhookTorrentBlockerEvent` – inferred type from the schema
+
 ## Scope: errors
 
-OpenAPI Model: `RemnawaveWebhookErrorsEventsDto`  
-Model Link: https://docs.rw/api/#model/remnawavewebhookererroreventsdto
+OpenAPI Model: `RemnawaveWebhookErrorsEventsDto`
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookErrorsEventsDto
 
-:::info
+Available events (`event` property):
 
-Reserved for future use.
-
-:::
+- `errors.bandwidth_usage_threshold_reached_max_notifications` - Bandwidth usage threshold reached max notifications
 
 ## Verify webhook
 

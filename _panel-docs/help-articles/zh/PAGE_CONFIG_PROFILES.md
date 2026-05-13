@@ -10,9 +10,9 @@
 
 _如果你想添加一个新的入站（例如使用 **VLESS** 协议），只需在 `inbounds:[]` 数组中添加一个新的对象即可。_
 
-目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`)。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`.
+目前，Remnawave 支持以下协议： `VLESS`, `Trojan`, `Shadowsocks` (`chacha20-ietf-poly1305`, `2022-blake3-aes-256-gcm`, `aes-128-gcm`, `aes-256-gcm`), `Hysteria2`（仅用于客户端 Xray-Json 生成）。 并支持以下传输方式： `RAW (TCP)`, `XHTTP`, `Websocket`, `HTTPUpgrade`, `gRPC`, `KCP`.
 
-需要注意的是，Remnawave 也支持以下协议： `mixed(socks)`, `wireguard`, `http` - 但面板不会对它们进行任何处理，这些协议的用户管理功能将不可用。 此类 _入站（inbounds）_ 将按原样传递给 Xray，不会被修改。
+需要注意的是，Remnawave 也支持以下协议： `Tunnel`, `mixed(socks)`, `wireguard`, `http` - 但面板不会对它们进行任何处理，这些协议的用户管理功能将不可用。 此类 _入站（inbounds）_ 将按原样传递给 Xray，不会被修改。
 
 对于主要协议 (`VLESS`, `Trojan`, `Shadowsocks`), Remnawave 会自动管理服务器配置中的用户列表，无需额外手动操作。
 
@@ -87,3 +87,25 @@ VLESS + TLS、REALITY + RAW 或 TCP。
 
 - `xtls-rprx-vision`
 - `""`
+
+### Kcp with FinalMask
+
+_This feature is available only in version 2.7.0 and above._
+
+In some cases, you may need to specify a custom MTU (in the `kcpSettings` object) when using FinalMask. Unfortunately, Xray configuration does not clearly separate client and server MTU values.
+
+```json
+{
+    "mtu": 1350
+}
+```
+
+Since Remnawave needs to generate the client-side configuration, we have added a custom field that does not exist in the original Xray configuration.
+
+```json
+{
+    "clientMtu": 70
+}
+```
+
+The `clientMtu` parameter (if present) will be converted to `mtu` on the client side. This way, you can set a custom MTU for the client side.

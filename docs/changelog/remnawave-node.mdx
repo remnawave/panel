@@ -1,0 +1,152 @@
+---
+sidebar_position: 2
+title: Remnawave Node
+description: 'Changelog for Remnawave Node'
+hide_title: true
+hide_table_of_contents: true
+---
+
+# Remnawave Node
+
+<ReleaseEntry version="2.7.0" date="28 March 2026">
+
+:::warning
+Remnawave Panel **v2.7.0** or higher is required.
+:::
+
+- Support for new features from [Remnawave Panel v2.7.0](/docs/changelog/remnawave-panel) (plugins, metadata, system stats, etc.)
+- **Xray Core v26.3.27**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.1" date="24 February 2026">
+
+- **Xray Core 26.2.6**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.6.0" date="24 February 2026">
+
+- Preps for Remnawave Panel v2.6.2 (additional notes will be available later)
+- **Xray Core 25.12.8**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.5" date="16 February 2026">
+
+- feat: Rescue CLI (`docker exec -it remnanode cli`)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.4" date="31 January 2026">
+
+- Fix: [#333](https://github.com/remnawave/panel/issues/333)
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.3" date="30 January 2026">
+
+- Fix: socket naming
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.2" date="30 January 2026">
+
+- Unix sockets for internal communications
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.1" date="25 January 2026">
+
+- Customize Internal ports via env variables: `SUPERVISORD_PORT`, `INTERNAL_REST_PORT`, `XTLS_API_PORT`
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.5.0" date="28 December 2025">
+
+- Preparations for Panel version 2.5.0
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.2" date="19 December 2025">
+
+- **Xray Core** version bump to **25.12.8**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.1" date="10 December 2025">
+
+- Add explicit error message if received request from unsupported Remnawave version
+
+:::warning
+Remnawave Node **версии 2.3.x и выше** работает только с **Remnawave 2.3.x и выше**.
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.3.0" date="7 December 2025">
+
+- Part of Remnawave v2.3.0 release
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.3" date="13 November 2025">
+
+- New log messages
+- Respect Level 0 Policies
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.2" date="25 October 2025">
+
+:::warning
+**APP_PORT**, **SSL_CERT** now is deprecated.
+
+**APP_PORT** → **NODE_PORT**
+**SSL_CERT** → **SECRET_KEY**
+
+Changes not required, but **recommended**. Old values will be automatically converted to new ones, but this behaviour will change in next versions.
+:::
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.1" date="24 October 2025">
+
+- Small bug fixes
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.2.0" date="22 October 2025">
+
+- **Xray Core** version bump to **25.10.15**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.7" date="15 September 2025">
+
+- **Xray Core** version bump to **25.9.11**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.6" date="6 September 2025">
+
+- **Xray Core** version bump to **25.9.5**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.5" date="3 September 2025">
+
+- **Xray Core** version bump to **25.8.31**
+
+</ReleaseEntry>
+
+<ReleaseEntry version="2.1.4" date="26 August 2025">
+
+- Add support for force Xray Core restart
+- Drop several unused packages (execa, others)
+- Refactor Xray Core version extraction
+- Add mutex for add/remove users from hot-core config (used by hash checkups)
+- Add shortcuts for log tailing of Xray Core stdout, stderr logs (`docker exec -it remnanode xlogs`, `docker exec -it remnanode xerros`)
+- Minor performance optimizations
+
+</ReleaseEntry>

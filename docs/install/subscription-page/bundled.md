@@ -171,7 +171,7 @@ If you have already configured Nginx, all you need to do is add a new location b
 Issue a certificate for the subscription page domain name:
 
 ```bash
-acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file /opt/remnawave/nginx/subdomain_privkey.key --fullchain-file /opt/remnawave/nginx/subdomain_fullchain.pem --alpn --tlsport 8443
+acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file /opt/remnawave/nginx/subdomain_privkey.key --fullchain-file /opt/remnawave/nginx/subdomain_fullchain.pem --alpn --tlsport 8443 --reloadcmd "docker exec remnawave-nginx nginx -s reload"
 ```
 
 Open Nginx configuration file:
@@ -383,11 +383,3 @@ You can customize the subscription page in the Subpage Builder in Remnawave Dash
 - Customize text and instructions in multiple languages
 - Add your own branding (logo, company name, support links)
 - Configure which apps appear as "featured"
-
-```mdx-code-block
-import DocCard from '@theme/DocCard';
-
-<DocCard
-  item={{ type: 'link', label: 'Customization', description: 'Customization guide', href: '/docs/install/subscription-page/customization' }}
-/>
-```

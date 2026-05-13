@@ -1,8 +1,6 @@
 ---
 title: Zapret RU GOV
-authors: remnawave
-tags: [learn, zapret]
-date: 2025-10-29
+sidebar_position: 99
 ---
 
 Блокировка доступа к запрещенным в РФ сервисам и сайтам. Файл обновляется регулярно и автоматически, подгружая последние списки запрета.
@@ -68,19 +66,19 @@ wget -O /opt/remnawave/xray/share/zapret.dat https://github.com/kutovoys/ru_gov_
 
 ```yaml
 volumes:
-  - /opt/remnawave/xray/share/zapret.dat:/usr/local/bin/zapret.dat
+    - /opt/remnawave/xray/share/zapret.dat:/usr/local/bin/zapret.dat
 ```
 
 Пример фрагмента конфигурации remnanode:
 
 ```yaml
 services:
-  remnanode:
-    image: remnawave/node:latest
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - /opt/remnawave/xray/share/zapret.dat:/usr/local/bin/zapret.dat
+    remnanode:
+        image: remnawave/node:latest
+        restart: unless-stopped
+        network_mode: host
+        volumes:
+            - /opt/remnawave/xray/share/zapret.dat:/usr/local/bin/zapret.dat
 ```
 
 ## Примечания

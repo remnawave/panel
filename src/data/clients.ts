@@ -76,7 +76,8 @@ export const CLIENTS: Client[] = [
             android: 'https://play.google.com/store/apps/details?id=com.happproxy',
             ios: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
             macos: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
-            windows: 'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe',
+            windows:
+                'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe',
             linux: 'https://github.com/Happ-proxy/happ-desktop/releases/latest'
         },
         links: {
@@ -105,6 +106,26 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/pluralplay/FlClashX',
             telegram: 'https://t.me/flclashx'
+        }
+    },
+    {
+        id: 'rabbit-hole',
+        name: 'Rabbit Hole',
+        core: 'mihomo',
+        platforms: ['ios', 'macos'],
+        description: 'Clean UX/UI. Built for everyone, ready for power users.',
+        logo: '/clients/logo/rabbit-hole-dark.svg',
+        badges: {
+            featured: true,
+            hwid: true
+        },
+        downloadLinks: {
+            macos: 'https://apps.apple.com/app/rabbithole-vpn-client/id6683309629',
+            ios: 'https://apps.apple.com/app/rabbithole-vpn-client/id6683309629'
+        },
+        links: {
+            docs: 'https://rabbit-hole-1.gitbook.io/rabbit-hole-docs/',
+            telegram: 'https://t.me/rabbit_hole_vpn'
         }
     },
     {
@@ -472,7 +493,22 @@ export const CLIENTS: Client[] = [
             website: 'https://nsloon.app/'
         }
     },
-
+    {
+        id: 'anywhere',
+        name: 'Anywhere',
+        core: 'other',
+        platforms: ['ios', 'macos', 'android'],
+        description: 'Lightning-fast native proxy client',
+        logo: '/clients/logo/anywhere-dark.svg',
+        downloadLinks: {
+            ios: 'https://apps.apple.com/us/app/id6758235178',
+            macos: 'https://apps.apple.com/us/app/id6758235178',
+            android: 'https://play.google.com/store/apps/details?id=com.argsment.anywhere'
+        },
+        links: {
+            github: 'https://github.com/NodePassProject/Anywhere'
+        }
+    },
     {
         id: 'clash-mi',
         name: 'Clash Mi',
@@ -530,6 +566,47 @@ export const CLIENTS: Client[] = [
         },
         links: {
             website: 'https://clashmac.app/'
+        }
+    },
+    {
+        id: 'incy',
+        name: 'INCY',
+        core: 'xray',
+        platforms: ['android', 'ios', 'macos', 'windows', 'linux'],
+        description: 'Modern VPN client with VLESS, VMess, Trojan and Shadowsocks support.',
+        logo: '/clients/logo/incy-dark.svg',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=llc.itdev.incy',
+            ios: 'https://apps.apple.com/us/app/incy/id6756943388',
+            macos: 'https://apps.apple.com/us/app/incy/id6756943388',
+            windows: 'https://github.com/INCY-DEV/incy-platforms/releases/latest',
+            linux: 'https://github.com/INCY-DEV/incy-platforms/releases/latest'
+        },
+        links: {
+            website: 'https://incy.cc/'
+        }
+    },
+    {
+        id: 'deskbox',
+        name: 'DeskBox',
+        core: 'singbox',
+        platforms: ['macos', 'windows', 'linux'],
+        description: 'Simple GUI app for sing-box management.',
+        logo: '/clients/logo/deskbox.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'mihail-jdanov/DeskBox',
+        downloadLinks: {
+            macos: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            windows: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            linux: 'https://github.com/mihail-jdanov/DeskBox/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/mihail-jdanov/DeskBox'
         }
     }
 ]
