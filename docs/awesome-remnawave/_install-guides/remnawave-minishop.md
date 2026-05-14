@@ -1,16 +1,15 @@
-* 📦 **Tariff Catalog** – Create and manage multiple tariffs with period-based subscriptions, traffic packages, RUB and Telegram Stars pricing, custom descriptions, and storefront visibility.
-* 🧩 **Web App Configurator** – Edit tariffs directly from the admin Web App, including periods, prices, traffic limits, Internal Squads, premium squads, and HWID device packages.
-* 🛰️ **Remnawave Squads** – Assign tariffs to specific Remnawave Internal Squads and automatically sync access with the panel.
-* ⚡ **Premium Squads** – Add separate premium squad access with its own monthly traffic limit, top-up packages, usage tracking, and automatic access removal when the premium limit is reached.
-* 📊 **Traffic Packages** – Sell GB-based packages with no fixed expiration, regular top-ups for active subscriptions, and separate premium traffic top-ups.
-* 🧪 **Trials** – Offer trial access with configurable duration, traffic limits, and Remnawave squad assignment.
-* 🎟️ **Promocodes** – Give users bonus days, plan activation, traffic, or purchase discounts with activation tracking.
-* 💳 **Payments** – Accept payments through YooKassa, FreeKassa, Platega, SeverPay, CryptoPay, and Telegram Stars with configurable method order.
-* 📱 **Mini App** – Let users view their subscription, connection link, traffic usage, premium limits, available tariffs, payments, referrals, and devices in a Telegram Web App.
-* 📱 **Device Management** – Support HWID device limits and paid device packages, with an optional “My Devices” section for users.
-* 👥 **Referral Program** – Give users referral links, welcome bonuses, purchase rewards, and referral statistics.
-* 📢 **Broadcasts** – Send targeted announcements with media, formatting, previews, and delivery statistics.
-* 🔔 **Notifications** – Notify users about expiring subscriptions, traffic thresholds, premium traffic limits, successful payments, promocodes, referrals, and system events.
-* 👤 **User Management** – Manage users from the admin panel with search, filters, subscription state, payments, traffic usage, premium traffic, devices, blocks, and manual actions.
-* 🔄 **Panel Sync** – Synchronize users, subscriptions, traffic, squad access, node data, and webhook events with Remnawave.
-* 🌐 **Internationalization** – Support RU/EN user flows, localized tariff names, descriptions, banners, and Web App texts.
+* 🛰️ **Squad-Based Access** – Route users into the right Remnawave Internal Squads per tariff, with panel sync keeping access rules up to date automatically.
+* 📟 **Telegram Mini App** – Give users a clean subscription dashboard with connection link, status, traffic usage, tariff options, payments, referrals, and device controls.
+* ⚡ **Premium Traffic Pools** – Add premium squads with a separate traffic counter, monthly quota, purchasable top-ups, and automatic fallback to regular access when the premium quota is exhausted.
+* 💳 **Multiple Payment Providers** – Accept payments via YooKassa, FreeKassa, Platega, SeverPay, CryptoPay, and Telegram Stars, with configurable provider order.
+* 🧩 **Admin Web App** – Manage tariffs, users, broadcasts, promocodes, logs, settings, and Remnawave data from a browser-based admin interface.
+* 📦 **Period & Traffic Tariffs** – Sell classic time-based subscriptions or GB packages without a fixed expiration, including RUB and Telegram Stars pricing.
+* 📊 **Traffic Top-Ups** – Let users add regular or premium traffic without losing their existing balance.
+* 🧪 **Trial Access** – Configure trial periods with their own duration, traffic limit, and squad assignment.
+* 📱 **HWID Device Limits** – Set device limits per tariff and offer paid device packages when extra slots are needed.
+* 🎟️ **Promocodes** – Create codes for bonus days, traffic, tariff activation, or discounts, with activation history.
+* 👥 **Referrals** – Provide Telegram and Web App referral links, welcome bonuses, purchase rewards, and invitation statistics.
+* 📢 **Broadcast Center** – Prepare targeted messages with media, HTML formatting, preview mode, and delivery stats.
+* 🔔 **Smart Notifications** – Alert users and admins about subscription dates, traffic thresholds, premium limits, payments, referrals, node status, and bot events.
+* 👤 **User Control** – Search, filter, block, inspect, and edit users with access to subscriptions, payments, traffic, premium usage, devices, and manual actions.
+* 🌐 **Localized Experience** – Use RU/EN texts, localized tariff names, descriptions, banners, and Mini App content.
