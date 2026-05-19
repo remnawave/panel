@@ -126,8 +126,8 @@ import {
 
 ## Scope: node
 
-OpenAPI Model: `RemnawaveWebhookServiceEventsDto​`  
-Model Link: https://docs.rw/api/#model/RemnawaveWebhookServiceEventsDto​
+OpenAPI Model: `RemnawaveWebhookNodeEventsDto​`  
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookNodeEventsDto
 
 Available events (`event` property):
 
