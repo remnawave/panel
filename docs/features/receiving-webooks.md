@@ -105,7 +105,7 @@ import { TRemnawaveWebhookUserEvent, RemnawaveWebhookUserEvents } from '@remnawa
 ## Scope: user_hwid_devices
 
 OpenAPI Model: `RemnawaveWebhookUserHwidDevicesEventsDto​`  
-Model Link: https://docs.rw/api/#model/RemnawaveWebhookUserHwidDevicesEventsDto​
+Model Link: https://docs.rw/api/#model/RemnawaveWebhookUserHwidDevicesEventsDto
 
 Available events (`event` property):
 
