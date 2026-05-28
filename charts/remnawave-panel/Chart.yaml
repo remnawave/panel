@@ -2,8 +2,8 @@ apiVersion: v2
 name: remnawave-panel
 description: A Helm chart for deploying Remnawave Panel on Kubernetes
 type: application
-version: 0.4.0
-appVersion: "2"
+version: 0.4.1
+appVersion: "2.7.4"
 home: https://remnawave.github.io/panel
 sources:
   - https://github.com/remnawave/backend
@@ -18,11 +18,7 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: |
-        Split the panel and subscription routing into separate Ingress
-        resources. The subscription Ingress is rendered only when
-        subscription.enabled=true and supports its own className and
-        annotations, falling back to ingress.className and
-        ingress.annotations when unset.
+        Pin appVersion to the latest stable backend release 2.7.4.
 dependencies:
   - name: cluster
     version: "0.6.0"
