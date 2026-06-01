@@ -306,12 +306,10 @@ title: Xray JSON – Advanced
         ],
         "rules": [
             {
-                "type": "field",
                 "protocol": ["bittorrent"],
                 "outboundTag": "direct"
             },
             {
-                "type": "field",
                 "network": "tcp,udp",
                 "balancerTag": "Super_Balancer"
             }
@@ -399,12 +397,10 @@ title: Xray JSON – Advanced
         "routing": {
             "rules": [
                 {
-                    "type": "field",
                     "protocol": ["bittorrent"],
                     "outboundTag": "direct"
                 },
                 {
-                    "type": "field",
                     "network": "tcp,udp",
                     "balancerTag": "Super_Balancer"
                 }
