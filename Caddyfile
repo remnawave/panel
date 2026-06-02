@@ -28,6 +28,7 @@
 	}
 
 	handle @mainDomain {
+		redir /prime* https://t.me/xrocket?start=sb_E6HxjZHitIM98el permanent
 		redir /blog/learn /docs/learn/quick-start permanent
 		redir /blog/learn/quick-start /docs/learn/quick-start permanent
 		redir /apps /docs/clients permanent
