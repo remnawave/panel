@@ -212,7 +212,12 @@ const config: Config = {
                     label: '📓 Docs'
                 },
                 {
-                    href: 'https://hub.remna.st/changelog',
+                    href: 'https://f.docs.rw',
+                    label: '💬 Forum',
+                    position: 'left'
+                },
+                {
+                    href: '/docs/changelog',
                     label: '🚀 Releases',
                     position: 'left'
                 },
