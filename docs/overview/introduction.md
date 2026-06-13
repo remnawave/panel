@@ -7,7 +7,7 @@ hide_table_of_contents: true
 ![Remnawave](/overview/introduction.webp)
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <Button label="🚀 Start using Remnawave" variant="secondary" size="large" outline link="/docs/overview/quick-start" />
+  <Button label="🚀 Start using Remnawave" variant="secondary" size="large" outline link="/overview/quick-start" />
 </div>
 
 ## About Remnawave

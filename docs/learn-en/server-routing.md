@@ -31,7 +31,7 @@ This type of server-side routing setup is often referred to as a "bridge".
 
 ## Create a Config Profile for DE {#create-de}
 
-Navigate to the Config Profiles section and [create a new Config Profile](/docs/learn-en/config-profiles), e.g. `DE Bridge Profile`.
+Navigate to the Config Profiles section and [create a new Config Profile](/learn-en/config-profiles), e.g. `DE Bridge Profile`.
 
 ```json title="DE Bridge Profile"
 {
@@ -72,16 +72,16 @@ Navigate to the Config Profiles section and [create a new Config Profile](/docs/
 ```
 
 :::warning Don't Forget to Assign the Profile and Create an Internal Squad
-[Assign the newly created Config Profile](/docs/learn-en/nodes#core-configuration) to the `DE` Node. Select the `BRIDGE_DE_IN` Inbound.
+[Assign the newly created Config Profile](/learn-en/nodes#core-configuration) to the `DE` Node. Select the `BRIDGE_DE_IN` Inbound.
 
 ---
 
-[Create a new Internal Squad](/docs/learn-en/squads#create-internal-squad), let's call it `Bridge Squad`. Enable the Inbound we created earlier — `BRIDGE_DE_IN`.
+[Create a new Internal Squad](/learn-en/squads#create-internal-squad), let's call it `Bridge Squad`. Enable the Inbound we created earlier — `BRIDGE_DE_IN`.
 :::
 
 ## Create a Service User {#create-service-user}
 
-For our bridge to work, we will need to [create a user](/docs/learn-en/users#create-user). Let's call it `bridge_user`.
+For our bridge to work, we will need to [create a user](/learn-en/users#create-user). Let's call it `bridge_user`.
 
 :::warning Don't Forget to Remove Traffic Limits and Extend the Expiry Date
 Since this is a service user, we obviously don't want its subscription to expire or be limited by traffic usage. Set the `Data Limit` to `0` and `Expiry Date` to `year 2099`.
@@ -101,7 +101,7 @@ Depending on the Inbound's protocol (Shadowsocks in our case), copy the appropri
 
 ## Configure a Public Profile {#create-pub-profile}
 
-Most likely, you already have a Config Profile that your users connect to. If not, refer to [this guide](/docs/learn-en/config-profiles).
+Most likely, you already have a Config Profile that your users connect to. If not, refer to [this guide](/learn-en/config-profiles).
 
 For this step, we're not interested in the `"inbounds"` — instead, we'll be modifying the `"outbounds"`, `"routing"`, and `"rules"` arrays of that Profile.
 

@@ -103,6 +103,6 @@ As promised, you can now view updated statistics on the Panel’s Home page and 
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Config Profiles', description: 'Define how Nodes behave by creating Config Profiles.', href: '/docs/learn-en/config-profiles' }}
+  item={{ type: 'link', label: 'Config Profiles', description: 'Define how Nodes behave by creating Config Profiles.', href: '/learn-en/config-profiles' }}
 />
 ```

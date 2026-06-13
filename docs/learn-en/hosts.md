@@ -86,6 +86,6 @@ For most use cases, it's best to leave this section as is — unless you're sure
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Internal Squads', description: 'With Hosts created, the next step is to create an Internal Squad.', href: '/docs/learn-en/squads' }}
+  item={{ type: 'link', label: 'Internal Squads', description: 'With Hosts created, the next step is to create an Internal Squad.', href: '/learn-en/squads' }}
 />
 ```

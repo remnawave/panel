@@ -6,7 +6,7 @@ sidebar_position: 99
 
 :::tip
 It is recommended to update the **Remnawave Panel** first, then the **Remnawave Nodes**.
-Make sure to check the [Changelog](/docs/changelog/remnawave-panel) for other changes.
+Make sure to check the [Changelog](https://docs.rw/changelog) for other changes.
 :::
 
 ## Remnawave Panel

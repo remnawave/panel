@@ -103,14 +103,13 @@ We want to send `geoip:private` to `BLOCK`, so your snippet should look like thi
 
 ```json title="Block Private"
 [
-  {
-    "ip": [
-      "geoip:private"
-    ],
-    "outboundTag": "BLOCK",
-  }
+    {
+        "ip": ["geoip:private"],
+        "outboundTag": "BLOCK"
+    }
 ]
 ```
+
 :::warning
 Remember to use square brackets `[]` at the beginning and end of your snippet.
 :::
@@ -135,6 +134,6 @@ Complete routing object will look like this:
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Templates', description: 'Define what client applications receive.', href: '/docs/learn-en/templates' }}
+  item={{ type: 'link', label: 'Templates', description: 'Define what client applications receive.', href: '/learn-en/templates' }}
 />
 ```
