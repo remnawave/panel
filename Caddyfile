@@ -36,6 +36,7 @@
 		redir /docs/changelog* https://f.docs.rw/c/announces/14 permanent
 		redir /changelog* https://f.docs.rw/c/announces/14 permanent
 		redir /blog* https://f.docs.rw/c/announces/blog/19 permanent
+		redir /docs/ /overview/quick-start permanent
 
 		redir @oldDocs /{re.olddocs.1} permanent
 
@@ -69,7 +70,7 @@
 			root * /app/docs
 			encode gzip
 			file_server
-			try_files {path} /index.html
+			try_files {path} {path}/ /404.html
 
 			header {
 				X-Content-Type-Options "nosniff"
