@@ -36,7 +36,7 @@
 		redir /docs/changelog* https://f.docs.rw/c/announces/14 permanent
 		redir /changelog* https://f.docs.rw/c/announces/14 permanent
 		redir /blog* https://f.docs.rw/c/announces/blog/19 permanent
-		redir /docs/ /overview/quick-start permanent
+		redir /docs /overview/quick-start permanent
 
 		redir @oldDocs /{re.olddocs.1} permanent
 

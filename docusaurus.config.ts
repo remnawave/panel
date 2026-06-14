@@ -193,7 +193,7 @@ const config: Config = {
                     title: 'Docs',
                     items: [
                         {
-                            label: 'Introduction',
+                            label: 'Quick Start',
                             to: '/overview/quick-start'
                         }
                     ]
