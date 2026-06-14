@@ -85,13 +85,14 @@ Available events (`event` property):
 - `user.limited` - User limited
 - `user.expired` - User expired
 - `user.traffic_reset` - User traffic reset
-- `user.expires_in_72_hours` - User expires in 72 hours
-- `user.expires_in_48_hours` - User expires in 48 hours
-- `user.expires_in_24_hours` - User expires in 24 hours
-- `user.expired_24_hours_ago` - User expired 24 hours ago
+- ~~`user.expires_in_72_hours` - User expires in 72 hours _(removed in v.2.8.0, use `user.expiration` instead)_~~
+- ~~`user.expires_in_48_hours` - User expires in 48 hours _(removed in v.2.8.0, use `user.expiration` instead)_~~
+- ~~`user.expires_in_24_hours` - User expires in 24 hours _(removed in v.2.8.0, use `user.expiration` instead)_~~
+- ~~`user.expired_24_hours_ago` - User expired 24 hours ago _(removed in v.2.8.0, use `user.expiration` instead)_~~
 - `user.first_connected` - User first connected
 - `user.bandwidth_usage_threshold_reached` - User bandwidth usage threshold reached
-- `user.not_connected` - User not connected (Active only when `NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED` is true in .env.)
+- `user.not_connected` - User not connected (Active only when `NOT_CONNECTED_USERS_NOTIFICATIONS_ENABLED` is true in `.env`.)
+- `user.expiration` - User expiration notifications (Active only when `EXPIRATION_NOTIFICATIONS_ENABLED` is true in `.env`.)
 
 Remnawave Typescript SDK types:
 
@@ -101,6 +102,32 @@ import { TRemnawaveWebhookUserEvent, RemnawaveWebhookUserEvents } from '@remnawa
 
 - `RemnawaveWebhookUserEvents` – raw Zod schema
 - `TRemnawaveWebhookUserEvent` – inferred type from the schema
+
+### `meta` object
+
+Most user events carry `meta: null`. It is populated **only** for notification-style
+events, where it provides the context that triggered the webhook.
+
+| Field                    | Type             | Present for          | Description                                                                                                                       |
+| ------------------------ | ---------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `notConnectedAfterHours` | `number \| null` | `user.not_connected` | Hours the user has been offline. Matches the threshold from `NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS` that fired the event. |
+| `expiration`             | `number \| null` | `user.expiration`    | Signed offset in **hours** relative to the user's expiration (`expireAt`). Matches a value from `EXPIRATION_NOTIFICATIONS`.       |
+
+#### Sign of `expiration` field
+
+The `expiration` value is **signed** and encodes the direction relative to the
+expiration moment:
+
+- **Negative** — fired **before** expiration: _expires in `|N|` hours_
+  (e.g. `-72` → expires in 72 hours).
+- **Positive** — fired **after** expiration: _expired `N` hours ago_
+  (e.g. `24` → expired 24 hours ago).
+
+:::note
+For every event other than `user.not_connected` and `user.expiration`, `meta` is
+`null`. When `meta` is present, only the field for the current event is set — the
+other field stays `null`.
+:::
 
 ## Scope: user_hwid_devices
 
