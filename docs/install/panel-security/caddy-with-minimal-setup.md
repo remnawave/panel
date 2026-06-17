@@ -136,7 +136,7 @@ curl -o Caddyfile https://raw.githubusercontent.com/remnawave/caddy-with-auth/re
 
 This setup exposes the `/api/sub/*` endpoints to the public internet.
 
-We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys and using [@remnawave/subscription-page](/docs/install/remnawave-subscription-page) for public subscription page.
+We recommend using [full security setup with MFA](#full) for production environments where you will be issuing API-keys and using [@remnawave/subscription-page](/install/remnawave-subscription-page) for public subscription page.
 
 :::
 

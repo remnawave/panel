@@ -126,7 +126,9 @@ Each rule is an object with the following fields:
       Each Host may have its own Xray Json Template. If you set this flag to `true`, the Xray Json Template defined by the SRR will be used. The Host's Xray Json Template will be ignored.  
     - `ignoreServeJsonAtBaseSubscription` (boolean) - optional  
       In certain scenarios you might want to serve `XRAY_BASE64` to client apps that are recognized by the Panel as capable of accepting `XRAY_JSON` when `Serve JSON at Base Subscription` is enabled.  
-      If you set this flag to `true`, the `Serve JSON at Base Subscription` setting will be ignored (set to `false`).  
+      If you set this flag to `true`, the `Serve JSON at Base Subscription` setting will be ignored (set to `false`).
+    - `disableHwidCheck` (boolean) - optional   
+      In some cases, client applications may need to ignore the HWID. If this flag is set to `true`, the HWID support check will be ignored
   
   ```json
   "responseType": "SINGBOX",

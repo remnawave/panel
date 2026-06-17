@@ -42,7 +42,7 @@ sed -i "s/^METRICS_PASS=.*/METRICS_PASS=$(openssl rand -hex 64)/" .env && sed -i
 ```
 
 It is strongly recommended to change the default Postgres password.
- 
+
 ```bash title="Change Postgres password"
 pw=$(openssl rand -hex 24) && sed -i "s/^POSTGRES_PASSWORD=.*/POSTGRES_PASSWORD=$pw/" .env && sed -i "s|^\(DATABASE_URL=\"postgresql://postgres:\)[^\@]*\(@.*\)|\1$pw\2|" .env
 ```
@@ -59,7 +59,7 @@ Example: `panel.yourdomain.com`.
 Example: `panel.yourdomain.com/api/sub`.
 
 :::tip More about environment variables
-You can find more information about the environment variables in the [Environment Variables](/docs/install/environment-variables.md) page.
+You can find more information about the environment variables in the [Environment Variables](/install/environment-variables.md) page.
 :::
 
 ## Step 3 – Start the containers
@@ -84,7 +84,7 @@ Do not expose the services to the public internet. Use only `127.0.0.1` for Remn
 
 You can now proceed to reverse proxy installation.
 
-<Button label="Reverse Proxy Installation" link="/docs/install/reverse-proxies/" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+<Button label="Reverse Proxy Installation" link="/install/reverse-proxies/" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
 
 [compose-file]: https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/docker-compose-prod.yml
 [env-file]: https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample

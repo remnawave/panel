@@ -23,16 +23,22 @@
 		redir https://docs.rw{uri} permanent
 	}
 
+	@oldDocs path_regexp olddocs ^/docs/(.+)$
+
 	@mainDomain {
 		header Host docs.rw
 	}
 
 	handle @mainDomain {
-		redir /blog/learn /docs/learn/quick-start permanent
-		redir /blog/learn/quick-start /docs/learn/quick-start permanent
-		redir /apps /docs/clients permanent
-		redir /clients /docs/clients permanent
-		redir /donate /docs/donate permanent
+		redir /prime* https://t.me/xrocket?start=sb_E6HxjZHitIM98el permanent
+		redir /apps /clients permanent
+		redir /docs/changelog* https://f.docs.rw/c/announces/14 permanent
+		redir /changelog* https://f.docs.rw/c/announces/14 permanent
+		redir /blog* https://f.docs.rw/c/announces/blog/19 permanent
+		redir /docs/ /overview/quick-start permanent
+		redir /docs /overview/quick-start permanent
+
+		redir @oldDocs /{re.olddocs.1} permanent
 
 		handle / {
 			root * /app/landing
@@ -64,7 +70,7 @@
 			root * /app/docs
 			encode gzip
 			file_server
-			try_files {path} /index.html
+			try_files {path} {path}/ /404.html
 
 			header {
 				X-Content-Type-Options "nosniff"

@@ -6,7 +6,7 @@ sidebar_position: 1
 import DocCard from '@theme/DocCard';
 
 :::warning Warning
-This article does not cover the installation process for a **Remnawave Node**. For detailed installation instructions, please refer to the [installation documentation](/docs/install/remnawave-node).
+This article does not cover the installation process for a **Remnawave Node**. For detailed installation instructions, please refer to the [installation documentation](/install/remnawave-node).
 :::
 
 The Remnawave Node is the component responsible for proxying user traffic through Xray-core within the Remnawave system.
@@ -130,6 +130,6 @@ The `More actions` button is now visible, giving you access to additional featur
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Hosts', description: 'After creating your first Node, the next step is to configure a Host.', href: '/docs/learn-en/hosts' }}
+  item={{ type: 'link', label: 'Hosts', description: 'After creating your first Node, the next step is to configure a Host.', href: '/learn-en/hosts' }}
 />
 ```
