@@ -391,8 +391,7 @@ export const CLIENTS: Client[] = [
         downloadLinks: {
             windows:
                 'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.exe',
-            macos:
-                'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_arm64.dmg',
+            macos: 'https://github.com/flowvy-proxy/desktop/releases/latest',
             linux: 'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.deb'
         },
         links: {
