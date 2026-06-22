@@ -27,7 +27,6 @@
 
 	@mainDomain {
 		header Host docs.rw
-		header Strict-Transport-Security "max-age=63072000; includeSubDomains"
 	}
 
 	handle @mainDomain {
@@ -51,6 +50,7 @@
 				X-Content-Type-Options "nosniff"
 				X-Frame-Options "DENY"
 				X-XSS-Protection "1; mode=block"
+				Strict-Transport-Security "max-age=63072000; includeSubDomains"
 			}
 		}
 
@@ -64,6 +64,7 @@
 				X-Content-Type-Options "nosniff"
 				X-Frame-Options "DENY"
 				X-XSS-Protection "1; mode=block"
+				Strict-Transport-Security "max-age=63072000; includeSubDomains"
 			}
 		}
 
@@ -77,6 +78,7 @@
 				X-Content-Type-Options "nosniff"
 				X-Frame-Options "DENY"
 				X-XSS-Protection "1; mode=block"
+				Strict-Transport-Security "max-age=63072000; includeSubDomains"
 			}
 		}
 	}
