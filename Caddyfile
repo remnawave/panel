@@ -27,6 +27,7 @@
 
 	@mainDomain {
 		header Host docs.rw
+		header Strict-Transport-Security "max-age=63072000; includeSubDomains"
 	}
 
 	handle @mainDomain {
