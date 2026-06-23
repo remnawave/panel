@@ -6,4 +6,4 @@ Open the configured domain name in the browser and you will see the login page.
 
 ## Troubleshooting
 
-<Button label="Ask community" link="https://t.me/+YxzE4bOmEog2Zjhi" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />
+<Button label="Ask community" link="https://t.me/+c8wKd62eIAE4ZDdi" variant="secondary" size="md" outline style={{ marginBottom: '1rem' }} />

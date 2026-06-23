@@ -207,7 +207,7 @@ const config: Config = {
                         },
                         {
                             label: 'Telegram Group',
-                            href: 'https://t.me/+cAFRGkqSWJcxNjE6'
+                            href: 'https://t.me/+c8wKd62eIAE4ZDdi'
                         }
                     ]
                 },
