@@ -3,7 +3,6 @@ sidebar_position: 2
 title: Nginx
 description: Popular reverse proxy with manual SSL certificates
 ---
-
 import PointDomainToIp from '/docs/partials/\_point_domain_to_ip.md';
 import OpenLoginPage from '/docs/partials/\_open_login_page.md';
 
@@ -93,7 +92,7 @@ Review the configuration below, look for red highlighted lines.
 
 :::
 
-```nginx title="nginx.conf"
+```nginx
 upstream remnawave {
     server remnawave:3000;
 }
@@ -168,7 +167,6 @@ server {
 
     ssl_reject_handshake on;
 }
-
 ```
 
 ### Create docker-compose.yml
@@ -181,10 +179,10 @@ cd /opt/remnawave/nginx && nano docker-compose.yml
 
 Paste the following configuration.
 
-```yaml title="docker-compose.yml"
+```yaml
 services:
     remnawave-nginx:
-        image: nginx:1.28
+        image: nginx:1.30
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:

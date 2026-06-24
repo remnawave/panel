@@ -2,20 +2,19 @@
 sidebar_position: 1
 title: Bundled
 ---
-
 Bundled installation means that you will install subscription page on the same server as Remnawave Panel.
 
-## Step 1 - Prepare .env file {#step-1}
+## Step 1 - Prepare .env file
 
 Edit the `/opt/remnawave/.env` file and change `SUB_PUBLIC_DOMAIN` to your subscription page domain name.
 
-```bash title="Editing .env file"
+```bash
 cd /opt/remnawave && nano .env
 ```
 
 Change `SUB_PUBLIC_DOMAIN` to your subscription page domain name. Domain name must be without http or https.
 
-```bash title=".env file content"
+```bash
 SUB_PUBLIC_DOMAIN=subscription.domain.com
 ```
 
@@ -25,13 +24,13 @@ Don't forget to restart Remnawave Panel container:
 cd /opt/remnawave && docker compose down remnawave && docker compose up -d && docker compose logs -f
 ```
 
-## Step 2 - Create docker-compose.yml file {#step-2}
+## Step 2 - Create docker-compose.yml file
 
-```bash title="Creating docker-compose.yml file"
+```bash
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano docker-compose.yml
 ```
 
-```yaml title="docker-compose.yml file content"
+```yaml
 services:
     remnawave-subscription-page:
         image: remnawave/subscription-page:latest
@@ -53,7 +52,7 @@ networks:
 
 Now create .env file:
 
-```bash title="Creating .env file"
+```bash
 mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano .env
 ```
 
@@ -61,7 +60,7 @@ Create API token in Remnawave dashboard. Remnawave Settings → API Tokens.
 
 Paste the following content into the .env file:
 
-```bash title=".env file"
+```bash
 APP_PORT=3010
 REMNAWAVE_PANEL_URL=http://remnawave:3000
 REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
@@ -70,7 +69,7 @@ REMNAWAVE_API_TOKEN=API_TOKEN_FROM_REMNAWAVE
 <details>
 <summary>Full .env file reference</summary>
 
-```bash title=".env file"
+```bash
 APP_PORT=3010
 
 ### Remnawave Panel URL, can be http://remnawave:3000 or https://panel.example.com
@@ -94,13 +93,13 @@ CADDY_AUTH_API_TOKEN=
 
 </details>
 
-## Step 3 - Start the container {#step-3}
+## Step 3 - Start the container
 
-```bash title="Starting the container"
+```bash
 docker compose up -d && docker compose logs -f
 ```
 
-## Step 4 - Configure reverse proxy {#step-4}
+## Step 4 - Configure reverse proxy
 
 :::danger
 
@@ -119,7 +118,7 @@ For custom path, you can use the `CUSTOM_SUB_PREFIX` parameter.
 
 If you have already configured Caddy all you need to do is add a new site block to the Caddyfile.
 
-```bash title="Editing Caddyfile"
+```bash
 cd /opt/remnawave/caddy && nano Caddyfile
 ```
 
@@ -141,7 +140,7 @@ Add a new site block to the end of configuration file.
 
 Pay attention to the green lines, they are the ones you need to add.
 
-```caddy title="Caddyfile"
+```caddy
 https://REPLACE_WITH_YOUR_DOMAIN {
         reverse_proxy * http://remnawave:3000
 }
@@ -196,7 +195,7 @@ Add a new upstream block to the top of the configuration file.
 
 Pay attention to the green lines, they are the ones you need to add.
 
-```nginx title="nginx.conf"
+```nginx
 upstream remnawave {
     server remnawave:3000;
 }
@@ -211,7 +210,7 @@ upstream remnawave-subscription-page {
 
 Now add a new server block to the bottom of the configuration file.
 
-```nginx title="nginx.conf"
+```nginx
 server {
     // highlight-next-line-red
     server_name SUBSCRIPTION_PAGE_DOMAIN;
@@ -287,10 +286,10 @@ Now lets modify the docker-compose.yml for Nginx to mount the new certificate fi
 cd /opt/remnawave/nginx && nano docker-compose.yml
 ```
 
-```yaml title="docker-compose.yml"
+```yaml
 services:
     remnawave-nginx:
-        image: nginx:1.28
+        image: nginx:1.30
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:
@@ -343,7 +342,7 @@ Review the configuration below, look for yellow highlighted lines.
 
 :::
 
-```yaml title="remnawave-sub-page.yml"
+```yaml
 http:
   routers:
     remnawave-sub-page:
@@ -371,11 +370,11 @@ http:
 
 </details>
 
-## Step 5 - Usage {#step-5}
+## Step 5 - Usage
 
 The subscription page will be available at `https://subdomain.panel.com/<shortUuid>`.
 
-## Configuring subscription page (optional) {#customization}
+## Configuring subscription page (optional)
 
 You can customize the subscription page in the Subpage Builder in Remnawave Dashboard. This allows you to:
 
