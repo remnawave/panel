@@ -100,6 +100,8 @@ TRUST_PROXY=1
 
 </details>
 
+### About `TRUST_PROXY` {#trust-proxy}
+
 :::info About `TRUST_PROXY`
 
 The subscription page runs behind a reverse proxy (Caddy / Nginx), so the client connects to the proxy, not directly to the app. To know the **real** client IP, the app reads the `X-Forwarded-For` header – but that header can be spoofed by the client unless the app is told which hops to trust.
