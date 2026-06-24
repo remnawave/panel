@@ -290,7 +290,7 @@ cd /opt/remnawave/nginx && nano docker-compose.yml
 ```yaml title="docker-compose.yml"
 services:
     remnawave-nginx:
-        image: nginx:1.28
+        image: nginx:1.30
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:
