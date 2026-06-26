@@ -632,6 +632,25 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/mihail-jdanov/DeskBox'
         }
+    },
+    {
+        id: 'inhive',
+        name: 'InHive',
+        core: 'singbox',
+        platforms: ['android', 'windows'],
+        description:
+            'Invite-only VPN client built on sing-box, with modern protocols (Reality, Hysteria2, TUIC).',
+        logo: '/clients/logo/inhive-dark.svg',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            android: 'https://github.com/TwilgateLabs/inhive-android/releases/latest',
+            windows: 'https://github.com/TwilgateLabs/inhive-windows/releases/latest'
+        },
+        links: {
+            website: 'https://inhive.ru'
+        }
     }
 ]
 
