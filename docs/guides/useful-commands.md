@@ -10,7 +10,7 @@ title: Useful commands
 Rescue CLI provides a few rescue commands like reset superadmin and other useful commands.
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 ### Restart Remnawave Panel
@@ -30,13 +30,7 @@ docker exec -it remnawave pm2 monit
 ### Access Xray Core logs {#logs}
 
 ```bash
-docker exec -it remnanode tail -n +1 -f /var/log/supervisor/xray.out.log
-```
-
-or
-
-```bash
-docker exec -it remnanode tail -n +1 -f /var/log/supervisor/xray.err.log
+docker exec remnanode xlogs
 ```
 
 ### Restart Remnawave Node
