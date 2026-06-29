@@ -98,7 +98,7 @@ jobs:
 
             - name: Deploy to Railway
               run: |
-                  curl -fsSL https://railway.app/install.sh | sh
+                  curl -fsSL https://railway.app/install.sh | bash
                   export PATH=$PATH:$HOME/.railway/bin
                   railway redeploy --service ${{ env.SVC_ID }} -y
               env:

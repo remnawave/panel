@@ -128,6 +128,8 @@ server {
 location /tinyauth {
   proxy_pass http://tinyauth/api/auth/nginx;
 
+  proxy_pass_request_body off;
+  proxy_set_header Content-Length "";
   proxy_set_header x-forwarded-proto $scheme;
   proxy_set_header x-forwarded-host $http_host;
   proxy_set_header x-forwarded-uri $request_uri;

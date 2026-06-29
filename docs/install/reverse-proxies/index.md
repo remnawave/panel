@@ -25,7 +25,7 @@ It has to be served on the root path of a domain or subdomain.
 
 You need to have a registered domain name to continue.
 
-If you don't have one, you can use [TryCloudflare](/docs/install/reverse-proxies/try-cloudflare) for development purposes.
+If you don't have one, you can use [TryCloudflare](/install/reverse-proxies/try-cloudflare) for development purposes.
 
 :::
 

@@ -23,9 +23,11 @@ import RemnawaveCloudflareNodes from '/docs/awesome-remnawave/\_install-guides/r
 import WarpNativeInstallerGuide from '/docs/awesome-remnawave/\_install-guides/warp-native-installer.md'
 import RemnavaweBedolagaBotGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-bedolaga-bot.md'
 import RemnashopGuide from '/docs/awesome-remnawave/\_install-guides/remnashop.md'
+import RemnawaveMinishopGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-minishop.md'
 import RemnawaveBackuperGuide from '/docs/awesome-remnawave/\_install-guides/remnawave-backuper.md'
 import XrayCheckerGuide from '/docs/awesome-remnawave/\_install-guides/xray-checker.md'
 import WhiteboxGuide from '/docs/awesome-remnawave/\_install-guides/whitebox.md'
+import XrayCheckerStatuspageGuide from '/docs/awesome-remnawave/\_install-guides/xray-checker-statuspage.md'
 import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remnawave.md'
 
 <HeroSection
@@ -83,6 +85,21 @@ import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remn
     >
         <WhiteboxGuide />
     </ProjectCard>
+    <ProjectCard
+        id="xray-checker-statuspage"
+        title="Xray Checker Statuspage (Go)"
+        description="A status page built on top of Xray Checker: a single static Go binary that serves the page, polls the checker, and is fully managed through a Telegram bot. Includes incidents, scheduled maintenance, multi-day uptime history, per-server visibility, admin alerts, and SQLite/PostgreSQL storage."
+        author="Mrvibecodic"
+        authorLink="https://github.com/Mrvibecodic"
+        image="/awesome/xray-checker-statuspage.webp"
+        githubRepo="Mrvibecodic/xray-checker-statuspage"
+        links={{
+            github: 'https://github.com/Mrvibecodic/xray-checker-statuspage/tree/go-build',
+            telegram: 'https://t.me/+O5jAhwcYdYhlY2Yy'
+        }}
+    >
+        <XrayCheckerStatuspageGuide />
+    </ProjectCard>
 </CategorySection>
 
 <CategorySection
@@ -95,7 +112,7 @@ import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remn
     <ProjectCard
         id="remnawave-telegram-shop-bot"
         title="RWP Shop"
-        description="A Telegram bot for selling subscriptions with integration to Remnawave. This service allows users to purchase and manage subscriptions through Telegram with multiple payment system options."
+        description="Full-featured platform for selling Remnawave subscriptions: admin panel, user cabinet, payments, subscriptions, traffic, support, affiliate tools, analytics, and file storage. Both user and admin interfaces are available in browser and PWA. 12+ payment providers: WATA, T-Bank, Heleket, Telegram Stars, Pally, Antilopay, Platega, CryptoPay, YooKassa, CloudPayments, Stripe, plus Мой Налог auto-receipts for self-employed."
         author="jolymmiles"
         authorLink="https://github.com/Jolymmiles"
         image="/awesome/rwp-shop-image.webp"
@@ -139,6 +156,23 @@ import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remn
         }}
     >
         <RemnashopGuide />
+    </ProjectCard>
+
+    <ProjectCard
+        id="remnawave-minishop"
+        title="Remnawave Minishop"
+        description="Modern Telegram bot, Web App/Telegram Mini App, customizable visual themes, email auth, tariffs, premium-squads, trial, referrals. Advanced web admin panel with users management and statistics."
+        author="3252a8"
+        authorLink="https://github.com/3252a8"
+        image="/awesome/remnawave-minishop.webp"
+        githubRepo="3252a8/remnawave-minishop"
+        links={{
+            github: 'https://github.com/3252a8/remnawave-minishop',
+            docs: 'https://minishop.minidoc.cc',
+            telegram: 'https://t.me/remnawave_minishop'
+        }}
+    >
+        <RemnawaveMinishopGuide />
     </ProjectCard>
 
 </CategorySection>
@@ -339,6 +373,58 @@ import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remn
         <McpRemnawaveGuide />
     </ProjectCard>
 
+    <ProjectCard
+        id="version-regex-generator"
+        title="Version Regex Generator"
+        description="Utility for generating regular expressions to match application versions greater than or equal to a specified base version."
+        author="Mitsuha44"
+        authorLink="https://github.com/mitsuha44"
+        image="/awesome/version-regex-generator.webp"
+        links={{
+            website: 'https://mitsuha44.github.io/version-regex-generator/'
+        }}
+    />
+
+    <ProjectCard
+        id="xray-config-ui-editor"
+        title="Xray Config UI Editor"
+        description="Not the simplest, but a fairly convenient X-Ray configuration editor that allows you to configure directly via the RemnaWave API. It also supports geofile viewing and outbound import, and includes a convenient Monaco editor for editing JSON directly if features are not available. Plus a couple of cosmetic features."
+        author="bropines & Gemini"
+        authorLink="https://github.com/bropines"
+        image="/awesome/xray-config-ui-editor.webp"
+        githubRepo="bropines/xray-config-ui-editor"
+        links={{
+            github: 'https://github.com/bropines/xray-config-ui-editor'
+        }}
+    />
+
+    <ProjectCard
+        id="remnawave-limiter"
+        title="Remnawave Limiter"
+        description="Automatic monitoring of simultaneous user connections from the Remnawave panel. Tracks IP addresses from all nodes via API, compares against each user's device limit, and notifies administrators via Telegram bot with instant management capabilities."
+        author="syvlech"
+        authorLink="https://github.com/syvlech"
+        image="/awesome/remnawave-limiter.webp"
+        githubRepo="syvlech/remnawave-limiter"
+        links={{
+            github: 'https://github.com/syvlech/remnawave-limiter'
+        }}
+    />
+
+    <ProjectCard
+        id="mrs-converter"
+        title="MRS Converter"
+        description="A converter for .mrs rule-set files used by the Mihomo core, containing domain lists and IP CIDR ranges."
+        author="MakostaDev"
+        authorLink="https://github.com/MakostaDev"
+        image="/awesome/mrs-converter.webp"
+        githubRepo="MakostaDev/mrs-converter"
+        links={{
+            github: 'https://github.com/MakostaDev/mrs-converter',
+            website: 'https://makostadev.github.io/mrs-converter'
+        }}
+    />
+
 </CategorySection>
 
 <CategorySection
@@ -393,26 +479,23 @@ import McpRemnawaveGuide from '/docs/awesome-remnawave/\_install-guides/mcp-remn
     />
     <ProjectCard
         id="flowvy"
-        title="Flowvy (fork of FlClash)"
-        description="Flowvy is a multi-platform (Windows, Android) client based on FlClash, featuring advanced notifications for traffic usage and subscription expiry. It offers a redesigned UI with Russian localization, a new home widget, and supports core setting overrides from the config."
+        title="Flowvy"
+        description="A polished Mihomo client that feels like a commercial VPN app, not a power-user dashboard. Connect, switch mode, and pick a host in two clicks from the tray."
         author="x_kit_"
-        authorLink="https://github.com/this-xkit/"
+        authorLink="https://github.com/this-xkit"
         image="/awesome/flowvy.webp"
-        githubRepo="this-xkit/Flowvy"
+        githubRepo="flowvy-proxy/desktop"
         hwidSupported={true}
         links={{
-            github: 'https://github.com/this-xkit/Flowvy'
+            github: 'https://github.com/flowvy-proxy/desktop',
+            telegram: 'https://t.me/flowvy_client',
+            website: 'https://docs.flowvy.io'
         }}
+        featured={true}
     />
 </CategorySection>
 
 ---
-
-<h2 id="remnafamily">💬 Join the chat list in Telegram</h2>
-
-### RemnaFamily
-
-[Join the chat list](https://t.me/addlist/_MNKSbbkAlQ3ZjQy)
 
 ## 🎯 Add Your Project
 

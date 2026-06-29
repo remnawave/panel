@@ -377,6 +377,30 @@ export const CLIENTS: Client[] = [
         }
     },
     {
+        id: 'flowvy',
+        name: 'Flowvy',
+        core: 'mihomo',
+        platforms: ['windows', 'macos', 'linux'],
+        description: 'A polished Mihomo client with the two-click ease of a commercial VPN app.',
+        logo: '/clients/logo/flowvy-dark.svg',
+        githubRepo: 'flowvy-proxy/desktop',
+        badges: {
+            hwid: true,
+            featured: true
+        },
+        downloadLinks: {
+            windows:
+                'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.exe',
+            macos: 'https://github.com/flowvy-proxy/desktop/releases/latest',
+            linux: 'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.deb'
+        },
+        links: {
+            github: 'https://github.com/flowvy-proxy/desktop',
+            telegram: 'https://t.me/flowvy_client',
+            docs: 'https://docs.flowvy.io'
+        }
+    },
+    {
         id: 'v2rayn',
         name: 'V2rayN',
         core: 'xray',
@@ -589,7 +613,7 @@ export const CLIENTS: Client[] = [
             website: 'https://incy.cc/'
         }
     },
-    {
+   {
         id: 'renoarx',
         name: 'RenoarX',
         core: 'xray',
@@ -601,6 +625,45 @@ export const CLIENTS: Client[] = [
         },
         downloadLinks: {
             windows: 'https://github.com/RonnyFX/RenoarX/releases/latest',
+        }
+    },
+    {
+        id: 'deskbox',
+        name: 'DeskBox',
+        core: 'singbox',
+        platforms: ['macos', 'windows', 'linux'],
+        description: 'Simple GUI app for sing-box management.',
+        logo: '/clients/logo/deskbox.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'mihail-jdanov/DeskBox',
+        downloadLinks: {
+            macos: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            windows: 'https://github.com/mihail-jdanov/DeskBox/releases/latest',
+            linux: 'https://github.com/mihail-jdanov/DeskBox/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/mihail-jdanov/DeskBox'
+        }
+    },
+    {
+        id: 'inhive',
+        name: 'InHive',
+        core: 'singbox',
+        platforms: ['android', 'windows'],
+        description:
+            'Invite-only VPN client built on sing-box, with modern protocols (Reality, Hysteria2, TUIC).',
+        logo: '/clients/logo/inhive-dark.svg',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            android: 'https://github.com/TwilgateLabs/inhive-android/releases/latest',
+            windows: 'https://github.com/TwilgateLabs/inhive-windows/releases/latest'
+        },
+        links: {
+            website: 'https://inhive.ru'
         }
     }
     

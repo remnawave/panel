@@ -58,7 +58,7 @@ Do not use domain zones: .ru, .su, .рф. Currently ZeroSSL does not support the
 :::
 
 ```bash
-acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --alpn --tlsport 8443
+acme.sh --issue --standalone -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --alpn --tlsport 8443 --reloadcmd "docker exec remnawave-nginx nginx -s reload"
 ```
 
 :::info
@@ -66,6 +66,10 @@ Make sure that port **8443** is open on your server. It is required for certific
 :::
 
 ![](/reverse-proxies/nginx/issue-cert.webp)
+
+```bash
+acme.sh --install-cert -d 'DOMAIN' --key-file /opt/remnawave/nginx/privkey.key --fullchain-file /opt/remnawave/nginx/fullchain.pem --reloadcmd "docker exec remnawave-nginx nginx -s reload"
+```
 
 This shows that the certificate is issued. `Acme.sh` will take care of automatically renewing the certificate every 60 days, just make sure that you have a **8443** port open (and not busy) on your server.
 
@@ -180,7 +184,7 @@ Paste the following configuration.
 ```yaml title="docker-compose.yml"
 services:
     remnawave-nginx:
-        image: nginx:1.28
+        image: nginx:1.30
         container_name: remnawave-nginx
         hostname: remnawave-nginx
         volumes:

@@ -74,13 +74,13 @@ On the left side you will see the navigation menu:
 
 1. **Overview** — Contains the `Home` page, which displays high-level statistics and system information. We covered this earlier in the guide.
 2. **Management** — This is the core section of the Panel — you'll spend most of your time here. It includes:
-    - `Users` - Create and manage [Users](/docs/learn-en/users).
-    - `Internal Squads` - Configure [Internal Squads](/docs/learn-en/squads).
-    - `External Squads` - Configure [External Squads](/docs/learn-en/squads#whats-external-squad).
-    - `Config Profiles` - Create and manage [Xray-core configurations](/docs/learn-en/config-profiles).
-    - `Hosts` - Manage [entry points](/docs/learn-en/hosts) for users.
+    - `Users` - Create and manage [Users](/learn-en/users).
+    - `Internal Squads` - Configure [Internal Squads](/learn-en/squads).
+    - `External Squads` - Configure [External Squads](/learn-en/squads#whats-external-squad).
+    - `Config Profiles` - Create and manage [Xray-core configurations](/learn-en/config-profiles).
+    - `Hosts` - Manage [entry points](/learn-en/hosts) for users.
     - `Nodes`:
-        - `Management` - View, edit, disable, or delete [Nodes](/docs/learn-en/nodes).
+        - `Management` - View, edit, disable, or delete [Nodes](/learn-en/nodes).
         - `Statistics` - Review detailed usage statistics per Node.
         - `Infra Billing` - Track infrastructure costs.
         - `Bandwidth` - Analyze traffic consumption across Nodes.
@@ -91,8 +91,8 @@ On the left side you will see the navigation menu:
     - `SRH Inspector` - Analyze subscription requests sent from client apps.
 4. **Subscription** - Configure what the client app receives when fetching the subscription.
     - `Settings` - Manage additional metadata sent to supported clients, such as Subscription Name.
-    - `Templates` - [Configure](/docs/learn-en/templates) client apps' configs.
-    - `Response Rulse` - [Define](/docs/learn-en/routing-rules) how the configuration is generated for the client apps'.
+    - `Templates` - [Configure](/learn-en/templates) client apps' configs.
+    - `Response Rulse` - [Define](/learn-en/routing-rules) how the configuration is generated for the client apps'.
 5. **Utilities** - Tools designed to simplify and automate common tasks.
     - `Happ Routing` - A rule builder for creating and managing routing rules for Happ.
 
@@ -255,6 +255,6 @@ docker exec -it remnawave remnawave
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Nodes', description: 'Once you’ve created a super-admin and explored the Home page, your next step is to set up your first Node.', href: '/docs/learn-en/nodes' }}
+  item={{ type: 'link', label: 'Nodes', description: 'Once you’ve created a super-admin and explored the Home page, your next step is to set up your first Node.', href: '/learn-en/nodes' }}
 />
 ```

@@ -59,9 +59,10 @@ Or you could apply custom routing per user group.
 Essentially, External Squads are there to override Templates and other settings.
 
 :::tip For example
+
 - You might have one External Squad for **Iran**, with Templates specific to that country.
 - And you might have another Squad for **China**, with appropriate configs given to users.
-:::
+  :::
 
 ### Create an External Squad {#create-external-squad}
 
@@ -83,6 +84,6 @@ In the `Settings` tab you can override the subscription information that you def
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Users', description: 'We are finally ready to create a user.', href: '/docs/learn-en/users' }}
+  item={{ type: 'link', label: 'Users', description: 'We are finally ready to create a user.', href: '/learn-en/users' }}
 />
 ```

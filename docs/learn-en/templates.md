@@ -2,6 +2,7 @@
 title: Templates
 sidebar_position: 6
 ---
+
 import DocCard from '@theme/DocCard';
 
 As mentioned earlier, when you create a user, they’re assigned a Subscription URL.
@@ -18,22 +19,23 @@ You can customize what the client app receives in the `Templates` section. Since
 
 Generally, subscription formats fall into four main families:
 
-* **Mihomo**
-* **Base64**
-* **Xray-json**
-* **Sing-box**
+- **Mihomo**
+- **Base64**
+- **Xray-json**
+- **Sing-box**
 
 ```mdx-code-block
 <DocCard
-  item={{ type: 'link', label: 'Client Apps', description: 'Browse all client applications compatible with Remnawave and the cores they use.', href: '/docs/clients' }}
+  item={{ type: 'link', label: 'Client Apps', description: 'Browse all client applications compatible with Remnawave and the cores they use.', href: '/clients' }}
 />
 ```
+
 <br></br>
 
 ---
 
 Since version 2.2.0, you can create multiple Templates for each core.  
-You can then either use [External Squads](/docs/learn-en/squads/#whats-external-squad) or [Routing Rules](/docs/learn-en/routing-rules) to manage which users or client apps get the needed Templates.
+You can then either use [External Squads](/learn-en/squads/#whats-external-squad) or [Routing Rules](/learn-en/routing-rules) to manage which users or client apps get the needed Templates.
 
 <img src={require('./images/51.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Templates menu" />
 
@@ -47,7 +49,7 @@ You can find the Mihomo documentation [here](https://wiki.metacubex.one/config/)
 
 ---
 
-Mihomo supports special Remnawave keys. Check out this [article](/docs/guides/templates/mihomo) to learn more.
+Mihomo supports special Remnawave keys. Check out this [article](/guides/templates/mihomo) to learn more.
 :::
 
 ### Xray-json {#xray-json}

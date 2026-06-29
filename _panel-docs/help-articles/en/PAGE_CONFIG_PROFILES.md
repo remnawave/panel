@@ -105,3 +105,15 @@ Since Remnawave needs to generate the client-side configuration, we have added a
 ```
 
 The `clientMtu` parameter (if present) will be converted to `mtu` on the client side. This way, you can set a custom MTU for the client side.
+
+In the same way, starting from version 2.8.0, the `clientTti` parameter is supported. It works the same way as `clientMtu`, but for the `tti` field.
+
+_The `clientTti` parameter is available only in version 2.8.0 and above._
+
+```json
+{
+    "clientTti": 50
+}
+```
+
+The `clientTti` parameter (if present) will be converted to `tti` on the client side. This way, you can set a custom TTI for the client side.

@@ -117,9 +117,34 @@ CADDY_AUTH_API_TOKEN=
 # If you use Cloudflare Zero Trust to protect your panel, please use this variables to bypass the security.
 CLOUDFLARE_ZERO_TRUST_CLIENT_ID=
 CLOUDFLARE_ZERO_TRUST_CLIENT_SECRET=
+
+# Express `trust proxy` setting, used so the real client IP is resolved from
+# the trusted hop and cannot be spoofed via X-Forwarded-For. Accepts:
+#   - "true" / "false"                          -> trust all / none
+#   - a non-negative integer (e.g. 1, 2)        -> number of trusted hops
+#   - a comma-separated list of preset names    -> loopback, linklocal, uniquelocal
+#     and/or IP addresses / CIDR subnets        -> e.g. 127.0.0.1, 172.16.0.0/12
+# See https://expressjs.com/en/guide/behind-proxies/
+TRUST_PROXY=1
 ```
 
 </details>
+
+### About `TRUST_PROXY` {#trust-proxy}
+
+:::info About `TRUST_PROXY`
+
+The subscription page runs behind a reverse proxy (Caddy / Nginx), so the client connects to the proxy, not directly to the app. To know the **real** client IP, the app reads the `X-Forwarded-For` header – but that header can be spoofed by the client unless the app is told which hops to trust.
+
+`TRUST_PROXY` is the Express [`trust proxy`](https://expressjs.com/en/guide/behind-proxies/) setting and controls exactly that. Accepted values:
+
+- `true` / `false` – trust all proxies / trust none.
+- a non-negative integer (e.g. `1`, `2`) – number of trusted hops between the app and the client.
+- a comma-separated list of preset names (`loopback`, `linklocal`, `uniquelocal`) and/or IP addresses / CIDR subnets (e.g. `127.0.0.1, 172.16.0.0/12`).
+
+For the standard single reverse proxy in front of the page, the default `TRUST_PROXY=1` is correct. Increase the hop count only if you have additional proxies in front (e.g. Cloudflare → Nginx → app).
+
+:::
 
 ## Step 3 - Start the container {#step-3}
 
