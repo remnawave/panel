@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="128 128 768 768">
   <defs>
     <!-- Background gradient -->
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
@@ -16,13 +16,7 @@
       <stop offset="0" stop-color="#ffffff"/>
       <stop offset="1" stop-color="#d0d0d4"/>
     </linearGradient>
-    <!-- Drop shadow -->
-    <filter id="sh" x="-.08" y="-.04" width="1.16" height="1.2">
-      <feDropShadow dx="0" dy="6" stdDeviation="18" flood-color="#000" flood-opacity=".55"/>
-    </filter>
   </defs>
-  <!-- Shadow layer -->
-  <rect x="128" y="128" width="768" height="768" rx="178" fill="#000" filter="url(#sh)"/>
   <!-- Background -->
   <rect x="128" y="128" width="768" height="768" rx="178" fill="url(#bg)"/>
   <!-- Top highlight -->
