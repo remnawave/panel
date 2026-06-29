@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="128 128 768 768">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2a2e"/>
+      <stop offset="1" stop-color="#111113"/>
+    </linearGradient>
+    <!-- Top edge highlight -->
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset=".04" stop-color="#fff" stop-opacity=".04"/>
+      <stop offset=".1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Symbol gradient -->
+    <linearGradient id="sym" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d0d0d4"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect x="128" y="128" width="768" height="768" rx="178" fill="url(#bg)"/>
+  <!-- Top highlight -->
+  <rect x="128" y="128" width="768" height="768" rx="178" fill="url(#edge)"/>
+  <!-- Symbol -->
+  <path fill="url(#sym)" fill-rule="evenodd" d="
+    M512 258 L659 343 L659 511 L569 564
+    C569 564 512 771 512 765
+    C512 771 455 564 455 564
+    L365 511 L365 343 Z
+    M512 297 L625 364 L625 490 L512 556 L399 490 L399 364 Z"/>
+</svg>
