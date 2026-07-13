@@ -665,6 +665,21 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://inhive.ru'
         }
+    },
+    {
+        id: 'lumen-kvn',
+        name: 'Lumen KVN',
+        core: 'xray',
+        platforms: ['windows'],
+        description: 'Open-source VPN client for Windows powered by Xray and sing-box.',
+        logo: '/clients/logo/lumen-kvn.png',
+        githubRepo: 'krambovic/Lumen-KVN',
+        downloadLinks: {
+            windows: 'https://github.com/krambovic/Lumen-KVN/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/krambovic/Lumen-KVN'
+        }
     }
     
 ]
