@@ -37,8 +37,10 @@ Review the configuration below, look for red highlighted lines.
 ```caddy title="Caddyfile"
 // highlight-next-line-red
 https://REPLACE_WITH_YOUR_DOMAIN {
-        reverse_proxy * http://remnawave:3000
+    encode
+    reverse_proxy * http://remnawave:3000
 }
+
 :443 {
     tls internal
     respond 204
@@ -58,7 +60,7 @@ Paste the following configuration.
 ```yaml title="docker-compose.yml"
 services:
     caddy:
-        image: caddy:2.9
+        image: caddy:2
         container_name: 'caddy'
         hostname: caddy
         restart: always
@@ -79,9 +81,9 @@ networks:
 
 volumes:
     caddy-ssl-data:
+        name: caddy-ssl-data
         driver: local
         external: false
-        name: caddy-ssl-data
 ```
 
 ### Start the container

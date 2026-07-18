@@ -165,13 +165,22 @@ Pay attention to the green lines, they are the ones you need to add.
 
 ```caddy title="Caddyfile"
 https://REPLACE_WITH_YOUR_DOMAIN {
-        reverse_proxy * http://remnawave:3000
+    encode
+    reverse_proxy * http://remnawave:3000
 }
+
 // highlight-next-line-green
 https://SUBSCRIPTION_PAGE_DOMAIN {
 // highlight-next-line-green
-        reverse_proxy * http://remnawave-subscription-page:3010
+    encode
 // highlight-next-line-green
+    reverse_proxy * http://remnawave-subscription-page:3010
+// highlight-next-line-green
+}
+
+:443 {
+    tls internal
+    respond 204
 }
 ```
 
@@ -188,155 +197,75 @@ docker compose down && docker compose up -d && docker compose logs -f
 <details>
 <summary>Nginx configuration</summary>
 
-If you have already configured Nginx, all you need to do is add a new location block to your configuration file.
+If you have already configured Nginx, all you need to do is create a new configuration file.
 
 Issue a certificate for the subscription page domain name:
 
 ```bash
-acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file /opt/remnawave/nginx/subdomain_privkey.key --fullchain-file /opt/remnawave/nginx/subdomain_fullchain.pem --alpn --tlsport 8443 --reloadcmd "docker exec remnawave-nginx nginx -s reload"
+acme.sh --issue --standalone -d 'SUBSCRIPTION_PAGE_DOMAIN' --key-file /opt/remnawave/nginx/ssl/subpage_privkey.key --fullchain-file /opt/remnawave/nginx/ssl/subpage_fullchain.pem --alpn --tlsport 8443 --reloadcmd "docker exec remnawave-nginx nginx -s reload"
 ```
 
-Open Nginx configuration file:
+Create new Nginx configuration file for subscription page:
 
 ```bash
-cd /opt/remnawave/nginx && nano nginx.conf
+cd /opt/remnawave/nginx/conf.d && nano subpage.conf
 ```
 
 :::warning
 
 Please replace `SUBSCRIPTION_PAGE_DOMAIN` with your subscription page domain name.
 
-:::
-
-:::danger
-
-Do not fully replace the existing configuration, only add a new location block to your existing configuration file.
+Review the configuration below, look for red highlighted lines.
 
 :::
 
-Add a new upstream block to the top of the configuration file.
-
-Pay attention to the green lines, they are the ones you need to add.
-
-```nginx title="nginx.conf"
-upstream remnawave {
-    server remnawave:3000;
-}
-
-// highlight-next-line-green
+```nginx title="subpage.conf"
 upstream remnawave-subscription-page {
-    // highlight-next-line-green
     server remnawave-subscription-page:3010;
-    // highlight-next-line-green
 }
-```
 
-Now add a new server block to the bottom of the configuration file.
-
-```nginx title="nginx.conf"
 server {
     // highlight-next-line-red
     server_name SUBSCRIPTION_PAGE_DOMAIN;
 
     listen 443 ssl;
-    listen [::]:443 ssl;
     http2 on;
+    gzip on;
 
     location / {
+        limit_except GET {
+            deny all;
+        }
+
         proxy_http_version 1.1;
         proxy_pass http://remnawave-subscription-page;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_set_header Authorization "";
 
-        proxy_send_timeout 60s;
-        proxy_read_timeout 60s;
+        proxy_intercept_errors on;
+        error_page 400 401 403 404 405 500 502 @redirect;
     }
 
-    # SSL Configuration (Mozilla Intermediate Guidelines)
-    ssl_protocols          TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
+    location @redirect {
+        return 404;
+    }
 
-    ssl_session_timeout 1d;
-    ssl_session_cache shared:MozSSL:10m;
-    ssl_session_tickets    off;
-    ssl_certificate "/etc/nginx/ssl/subdomain_fullchain.pem";
-    ssl_certificate_key "/etc/nginx/ssl/subdomain_privkey.key";
-    ssl_trusted_certificate "/etc/nginx/ssl/subdomain_fullchain.pem";
-
-    ssl_stapling           on;
-    ssl_stapling_verify    on;
-    resolver               1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220 valid=60s;
-    resolver_timeout       2s;
-
-    # Gzip Compression
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_comp_level 6;
-    gzip_buffers 16 8k;
-    gzip_http_version 1.1;
-    gzip_min_length 256;
-    gzip_types
-        application/atom+xml
-        application/geo+json
-        application/javascript
-        application/x-javascript
-        application/json
-        application/ld+json
-        application/manifest+json
-        application/rdf+xml
-        application/rss+xml
-        application/xhtml+xml
-        application/xml
-        font/eot
-        font/otf
-        font/ttf
-        image/svg+xml
-        text/css
-        text/javascript
-        text/plain
-        text/xml;
+    ssl_certificate "/etc/nginx/ssl/subpage_fullchain.pem";
+    ssl_certificate_key "/etc/nginx/ssl/subpage_privkey.key";
+    ssl_trusted_certificate "/etc/nginx/ssl/subpage_fullchain.pem";
 }
 ```
 
-Now lets modify the docker-compose.yml for Nginx to mount the new certificate files.
+Now you need to reload Nginx configuration.
 
 ```bash
-cd /opt/remnawave/nginx && nano docker-compose.yml
+docker exec remnawave-nginx nginx -t && docker exec remnawave-nginx nginx -s reload
 ```
 
-```yaml title="docker-compose.yml"
-services:
-    remnawave-nginx:
-        image: nginx:1.30
-        container_name: remnawave-nginx
-        hostname: remnawave-nginx
-        volumes:
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-            - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-            - ./privkey.key:/etc/nginx/ssl/privkey.key:ro
-            // highlight-next-line-green
-            - ./subdomain_fullchain.pem:/etc/nginx/ssl/subdomain_fullchain.pem:ro
-            // highlight-next-line-green
-            - ./subdomain_privkey.key:/etc/nginx/ssl/subdomain_privkey.key:ro
-        restart: always
-        ports:
-            - '0.0.0.0:443:443'
-        networks:
-            - remnawave-network
-
-networks:
-    remnawave-network:
-        name: remnawave-network
-        driver: bridge
-        external: true
-```
-
-Now you need to restart Nginx container.
+Or you can perform full restart of container.
 
 ```bash
 docker compose down && docker compose up -d && docker compose logs -f

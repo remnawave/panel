@@ -188,8 +188,10 @@ Review the configuration below, look for red highlighted lines.
 ```caddy title="Caddyfile"
 // highlight-next-line-red
 https://SUBSCRIPTION_PAGE_DOMAIN {
-        reverse_proxy * http://remnawave-subscription-page:3010
+    encode
+    reverse_proxy * http://remnawave-subscription-page:3010
 }
+
 :443 {
     tls internal
     respond 204
@@ -217,7 +219,7 @@ Paste the following configuration.
 ```yaml title="docker-compose.yml"
 services:
     caddy:
-        image: caddy:2.9
+        image: caddy:latest
         container_name: 'caddy'
         hostname: caddy
         restart: always
