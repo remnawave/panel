@@ -681,7 +681,6 @@ export const CLIENTS: Client[] = [
             github: 'https://github.com/krambovic/Lumen-KVN'
         }
     }
-    
 ]
 
 export function getClientsByPlatform(platform: Platform): Client[] {
