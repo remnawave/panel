@@ -667,13 +667,16 @@ export const CLIENTS: Client[] = [
         }
     },
     {
-        id: 'lumen-kvn',
+        id: 'lumen',
         name: 'Lumen KVN',
         core: 'xray',
         platforms: ['windows'],
-        description: 'Open-source VPN client for Windows powered by Xray and sing-box.',
+        description: 'A modern, fast VPN client supporting VLESS, AWG, Hysteria, and many more protocols.',
         logo: '/clients/logo/lumen-kvn.png',
         githubRepo: 'krambovic/Lumen-KVN',
+        badges: {
+            hwid: true
+        },
         downloadLinks: {
             windows: 'https://github.com/krambovic/Lumen-KVN/releases/latest'
         },
