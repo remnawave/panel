@@ -1,7 +1,7 @@
 ### What it manages
 
-- **19 resources** for users, nodes, hosts, squads, config profiles, subscriptions, billing, panel settings, API tokens, metadata, and HWID devices
-- **20 data sources** for inventory, system and bandwidth statistics, subscriptions, connection keys, request history, and HWID analytics
+- **26 resources** for users, nodes, hosts, squads, config profiles, subscriptions, billing, panel settings, API tokens, metadata, HWID devices, snippets, passkeys, and node plugins
+- **23 data sources** for inventory, system and bandwidth statistics, subscriptions, connection keys, request history, passkeys, and HWID analytics
 - **API token or username/password authentication**, with automatic JWT refresh for login-based sessions
 - **Remnawave 2.8.x compatibility**, verified by an acceptance suite against a real panel
 - **Terraform Registry documentation** indexed by [Context7](https://context7.com/batonogov/terraform-provider-remnawave) for AI coding assistants
@@ -15,7 +15,7 @@ terraform {
   required_providers {
     remnawave = {
       source  = "batonogov/remnawave"
-      version = "~> 0.2.0"
+      version = "~> 0.7.0"
     }
   }
 }
