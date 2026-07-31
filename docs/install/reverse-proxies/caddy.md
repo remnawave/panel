@@ -37,6 +37,7 @@ Review the configuration below, look for red highlighted lines.
 ```caddy title="Caddyfile"
 // highlight-next-line-red
 https://REPLACE_WITH_YOUR_DOMAIN {
+        encode
         reverse_proxy * http://remnawave:3000
 }
 :443 {
@@ -57,31 +58,31 @@ Paste the following configuration.
 
 ```yaml title="docker-compose.yml"
 services:
-    caddy:
-        image: caddy:2.9
-        container_name: 'caddy'
-        hostname: caddy
-        restart: always
-        ports:
-            - '0.0.0.0:443:443'
-            - '0.0.0.0:80:80'
-        networks:
-            - remnawave-network
-        volumes:
-            - ./Caddyfile:/etc/caddy/Caddyfile
-            - caddy-ssl-data:/data
+  caddy:
+    image: caddy:2.9
+    container_name: 'caddy'
+    hostname: caddy
+    restart: always
+    ports:
+      - '0.0.0.0:443:443'
+      - '0.0.0.0:80:80'
+    networks:
+      - remnawave-network
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-ssl-data:/data
 
 networks:
-    remnawave-network:
-        name: remnawave-network
-        driver: bridge
-        external: true
+  remnawave-network:
+    name: remnawave-network
+    driver: bridge
+    external: true
 
 volumes:
-    caddy-ssl-data:
-        driver: local
-        external: false
-        name: caddy-ssl-data
+  caddy-ssl-data:
+    driver: local
+    external: false
+    name: caddy-ssl-data
 ```
 
 ### Start the container

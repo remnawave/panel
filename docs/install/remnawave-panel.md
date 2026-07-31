@@ -19,26 +19,18 @@ mkdir /opt/remnawave && cd /opt/remnawave
 
 Download [`docker-compose.yml`][compose-file] and [`.env.sample`][env-file] by running these commands:
 
-```bash title="Get docker-compose.yml file"
-curl -o docker-compose.yml https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/docker-compose-prod.yml
-```
-
-```bash title="Get .env file"
-curl -o .env https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample
+```bash title="Get docker-compose.yml and .env.sample files"
+curl -o docker-compose.yml https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/docker-compose-prod.yml && curl -o .env https://raw.githubusercontent.com/remnawave/backend/refs/heads/main/.env.sample
 ```
 
 ## Step 2 – Configure the .env file
 
-`JWT_AUTH_SECRET` and `JWT_API_TOKENS_SECRET` are used for authentication and related security functions.
+`APP_SECRET`, `METRICS_PASS`, and `WEBHOOK_SECRET_HEADER` are used for authentication and related security functions.
 
-Generate secret key by running the following commands:
+Generate secure keys by running the following commands:
 
 ```bash title="Generate secure keys"
-sed -i "s/^JWT_AUTH_SECRET=.*/JWT_AUTH_SECRET=$(openssl rand -hex 64)/" .env && sed -i "s/^JWT_API_TOKENS_SECRET=.*/JWT_API_TOKENS_SECRET=$(openssl rand -hex 64)/" .env
-```
-
-```bash title="Generate passwords"
-sed -i "s/^METRICS_PASS=.*/METRICS_PASS=$(openssl rand -hex 64)/" .env && sed -i "s/^WEBHOOK_SECRET_HEADER=.*/WEBHOOK_SECRET_HEADER=$(openssl rand -hex 64)/" .env
+sed -i "s/^APP_SECRET=.*/APP_SECRET=$(openssl rand -hex 64)/" .env && sed -i "s/^METRICS_PASS=.*/METRICS_PASS=$(openssl rand -hex 64)/" .env && sed -i "s/^WEBHOOK_SECRET_HEADER=.*/WEBHOOK_SECRET_HEADER=$(openssl rand -hex 64)/" .env
 ```
 
 It is strongly recommended to change the default Postgres password.

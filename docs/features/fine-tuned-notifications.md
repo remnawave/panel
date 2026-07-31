@@ -45,18 +45,18 @@ The file contains all available events with default settings. Each event has two
 
 ```yaml
 events:
-    user.created:
-        telegram: false # Disable Telegram
-        webhook: true # Keep Webhook enabled
+  user.created:
+    telegram: false # Disable Telegram
+    webhook: true # Keep Webhook enabled
 ```
 
 **Disable all notifications for device connections:**
 
 ```yaml
 events:
-    user_hwid_devices.added:
-        telegram: false
-        webhook: false
+  user_hwid_devices.added:
+    telegram: false
+    webhook: false
 ```
 
 **Using anchors for bulk disabling:**
@@ -64,7 +64,7 @@ events:
 ```yaml
 events:
   user.expired:
-    <<: *bothDisabled  # Disable both channels
+    <<: *bothDisabled # Disable both channels
 ```
 
 ### Step 3: Mount to Docker container
@@ -78,7 +78,7 @@ cd /opt/remnawave && nano docker-compose.yml
 ```yaml
 services:
     remnawave:
-        image: remnawave/remnawave:2
+        image: remnawave/remnawave:3
         // highlight-next-line-green
         volumes:
         // highlight-next-line-green

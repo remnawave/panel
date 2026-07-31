@@ -139,17 +139,15 @@ Make sure to generate strong secrets!
 openssl rand -hex 64
 ```
 
-| Variable                | Description                           | Default     | Required |
-| ----------------------- | ------------------------------------- | ----------- | -------- |
-| `JWT_AUTH_SECRET`       | The secret key for the auth JWT       | `change_me` | Yes      |
-| `JWT_API_TOKENS_SECRET` | The secret key for the API tokens JWT | `change_me` | Yes      |
+| Variable     | Description                        | Default     | Required |
+| ------------ | ---------------------------------- | ----------- | -------- |
+| `APP_SECRET` | The secret key for the application | `change_me` | Yes      |
 
 <details>
 <summary>Example</summary>
 
 ```bash title=".env file"
-JWT_AUTH_SECRET=strong_secret_key
-JWT_API_TOKENS_SECRET=strong_secret_key
+APP_SECRET=strong_secret_key
 ```
 
 </details>
@@ -230,34 +228,6 @@ PANEL_DOMAIN=yourpanel.com
 
 </details>
 
-## Documentation
-
-| Variable          | Description                  | Default | Possible values |
-| ----------------- | ---------------------------- | ------- | --------------- |
-| `IS_DOCS_ENABLED` | Disable/Enable documentation | `false` | `true`, `false` |
-
-`IS_DOCS_ENABLED` is used to disable/enable the documentation.
-
-:::tip
-You can use the `API Keys` page in the admin dashboard (when `IS_DOCS_ENABLED` is set to `true`) for a quick link to the documentation.
-:::
-
-| Variable       | Description                | Default   |
-| -------------- | -------------------------- | --------- |
-| `SWAGGER_PATH` | The path to the Swagger UI | `/docs`   |
-| `SCALAR_PATH`  | The path to the Scalar UI  | `/scalar` |
-
-<details>
-<summary>Example</summary>
-
-```bash title=".env file"
-IS_DOCS_ENABLED=true
-SWAGGER_PATH=/docs
-SCALAR_PATH=/scalar
-```
-
-</details>
-
 ## Prometheus Metrics
 
 :::tip
@@ -289,19 +259,19 @@ Sample Prometheus config:
 
 ```yaml title="prometheus.yml"
 global:
-    # scrape_interval: 15s
-    scrape_timeout: 10s
-    evaluation_interval: 15s
+  # scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
 scrape_configs:
-    - job_name: 'remnawave'
-      scheme: http
-      metrics_path: /metrics
-      static_configs:
-          - targets: ['remnawave:3001']
-      scrape_interval: 30s
-      basic_auth:
-          username: admin
-          password: change_me
+  - job_name: 'remnawave'
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['remnawave:3001']
+    scrape_interval: 30s
+    basic_auth:
+      username: admin
+      password: change_me
 ```
 
 You can use the ready-made Grafana dashboard to visualize collected metrics: [Remnawave Panel Dashboard](https://grafana.com/grafana/dashboards/25064-remnawave-monitoring-dashboard/)
@@ -549,9 +519,9 @@ NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
 ## Expiration Notifications
 
 | Variable                           | Description                                                                                                                                                                                                                                                                                              | Default | Possible values |
-|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------------|
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------- |
 | `EXPIRATION_NOTIFICATIONS_ENABLED` | Enable/Disable expiration notifications                                                                                                                                                                                                                                                                  | `false` | `true`, `false` |
-| `EXPIRATION_NOTIFICATIONS`         | The number of hours at which notifications should be sent to users regarding an upcoming or expired subscription. Specified only in ASC format (e.g., [6, 12, 24]); must be a valid array of integers (min.: -168, max.: 168). No more than 5 values in each direction (up to 5 negative and 5 positive) |         |                 |
+| `EXPIRATION_NOTIFICATIONS`         | The number of hours at which notifications should be sent to users regarding an upcoming or expired subscription. Specified only in ASC format (e.g., [6, 12, 24]); must be a valid array of integers (min.: -744, max.: 744). No more than 5 values in each direction (up to 5 negative and 5 positive) |         |                 |
 
 <details>
 <summary>Example</summary>
@@ -561,6 +531,29 @@ NOT_CONNECTED_USERS_NOTIFICATIONS_AFTER_HOURS=[6, 24, 48]
 EXPIRATION_NOTIFICATIONS_ENABLED=true
 # negative = N hours BEFORE expiration, positive = N hours AFTER expiration
 EXPIRATION_NOTIFICATIONS=[-72, -48, -24, 24]
+```
+
+</details>
+
+## Export to Redis Streams
+
+Publishes panel events to Redis Streams for external consumers:
+
+- `ioraw:export:user_usage` - per-node user traffic deltas (fields: v, nodeId, ts, records "userId:totalBytes;...")
+- `ioraw:export:subscription_requests` - subscription fetches (fields: v, userId, requestAt, requestIp?, userAgent?)
+- `ioraw:export:node_connections` - per-node connection snapshots (fields: v, nodeUuid, ts, users JSON array; retention 1h)
+
+| Variable                   | Description                                                                                                              | Default | Possible values |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------- | --------------- |
+| `EXPORT_TO_STREAM_ENABLED` | Enable/Disable export to Redis Streams                                                                                   | `false` | `true`, `false` |
+| `EXPORT_TO_STREAM_MAXLEN`  | Approximate max number of messages kept in the stream (MAXLEN ~). Oldest messages are trimmed when consumers lag behind. | `3000`  |                 |
+
+<details>
+<summary>Example</summary>
+
+```bash title=".env file"
+EXPORT_TO_STREAM_ENABLED=true
+EXPORT_TO_STREAM_MAXLEN=3000
 ```
 
 </details>

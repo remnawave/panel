@@ -33,22 +33,22 @@ mkdir -p /opt/remnawave/subscription && cd /opt/remnawave/subscription && nano d
 
 ```yaml title="docker-compose.yml file content"
 services:
-    remnawave-subscription-page:
-        image: remnawave/subscription-page:latest
-        container_name: remnawave-subscription-page
-        hostname: remnawave-subscription-page
-        restart: always
-        env_file:
-            - .env
-        ports:
-            - '127.0.0.1:3010:3010'
-        networks:
-            - remnawave-network
+  remnawave-subscription-page:
+    image: remnawave/subscription-page:latest
+    container_name: remnawave-subscription-page
+    hostname: remnawave-subscription-page
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '127.0.0.1:3010:3010'
+    networks:
+      - remnawave-network
 
 networks:
-    remnawave-network:
-        driver: bridge
-        external: true
+  remnawave-network:
+    driver: bridge
+    external: true
 ```
 
 Now create .env file:
@@ -165,10 +165,13 @@ Pay attention to the green lines, they are the ones you need to add.
 
 ```caddy title="Caddyfile"
 https://REPLACE_WITH_YOUR_DOMAIN {
+        encode
         reverse_proxy * http://remnawave:3000
 }
 // highlight-next-line-green
 https://SUBSCRIPTION_PAGE_DOMAIN {
+// highlight-next-line-green
+        encode
 // highlight-next-line-green
         reverse_proxy * http://remnawave-subscription-page:3010
 // highlight-next-line-green

@@ -1,0 +1,45 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "plop",
+    "plopfile.js",
+    "**/*.cjs",
+    "public/locales/fa/**",
+    "public/locales/ru/**",
+    "public/locales/zh/**"
+  ],
+  "printWidth": 100,
+  "tabWidth": 4,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "sortImports": {
+    "newlinesBetween": true,
+    "customGroups": [
+      { "groupName": "shared", "elementNamePattern": ["@shared/**"] },
+      { "groupName": "entities", "elementNamePattern": ["@entities/**"] },
+      { "groupName": "features", "elementNamePattern": ["@features/**"] },
+      { "groupName": "widgets", "elementNamePattern": ["@widgets/**"] },
+      { "groupName": "pages", "elementNamePattern": ["@pages/**"] },
+      { "groupName": "app", "elementNamePattern": ["@app/**"] }
+    ],
+    "groups": [
+      "type-import",
+      ["value-builtin", "value-external"],
+      "shared",
+      "entities",
+      ["value-parent", "value-sibling", "value-index"],
+      "unknown"
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.json", "**/*.jsonc", "**/*.yaml", "**/*.yml", "**/*.md"],
+      "options": { "tabWidth": 2 }
+    }
+  ]
+}
