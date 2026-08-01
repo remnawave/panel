@@ -1,13 +1,19 @@
 ---
-sidebar_position: 2
+sidebar_position: 99
 title: Python SDK [community]
 ---
 
 import Admonition from '@theme/Admonition';
 import { FaPeopleGroup } from "react-icons/fa6";
+import { MdArchive } from "react-icons/md";
 
 <Admonition type="note" icon={<FaPeopleGroup />} title="Community SDK">
 This SDK is fully community-maintained.
+</Admonition>
+
+<Admonition type="warning" icon={<MdArchive style={{ color: '#b87a00' }}/>} title="Archived">
+<b>This SDK is no longer maintained.</b>
+If you need stable and up-to-date functionality, please consider using alternative community SDKs or refer directly to the <a href="https://docs.rw/api" target="_blank" rel="noopener noreferrer">Remnawave API documentation</a>.
 </Admonition>
 
 Remnawave Python SDK is a library for convenient interaction with the RestAPI types.
@@ -38,7 +44,7 @@ import asyncio
 
 from remnawave import RemnawaveSDK  # Updated import for new package
 from remnawave.models import (  # Updated import path
-    UsersResponseDto, 
+    UsersResponseDto,
     UserResponseDto,
     GetAllConfigProfilesResponseDto,
     CreateInternalSquadRequestDto
@@ -47,7 +53,7 @@ from remnawave.models import (  # Updated import path
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens) 
+    # Bearer Token from panel (section: API Tokens)
     token: str = os.getenv("REMNAWAVE_TOKEN")
 
     # Initialize the SDK
@@ -75,7 +81,7 @@ import asyncio
 
 from remnawave import RemnawaveSDK  # Updated import for new package
 from remnawave.models import (  # Updated import path
-    UsersResponseDto, 
+    UsersResponseDto,
     UserResponseDto,
     GetAllConfigProfilesResponseDto,
     CreateInternalSquadRequestDto
@@ -84,7 +90,7 @@ from remnawave.models import (  # Updated import path
 async def main():
     # URL to your panel (ex. https://vpn.com or http://127.0.0.1:3000)
     base_url: str = os.getenv("REMNAWAVE_BASE_URL")
-    # Bearer Token from panel (section: API Tokens) 
+    # Bearer Token from panel (section: API Tokens)
     token: str = os.getenv("REMNAWAVE_TOKEN")
     # Bearer Token for Caddy Auth
     caddy_token = os.getenv("CADDY_TOKEN_AUTH")
