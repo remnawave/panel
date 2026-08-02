@@ -151,6 +151,7 @@ server {
         application/rss+xml
         application/xhtml+xml
         application/xml
+        application/wasm
         font/eot
         font/otf
         font/ttf
