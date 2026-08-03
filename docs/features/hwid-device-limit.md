@@ -60,9 +60,9 @@ Not all client applications send a HWID header. Here is the list of applications
 - [Happ](https://happ.su)
 - [v2RayTun](https://docs.v2raytun.com/overview/supported-headers)
 - Forks by Remnawave community:
-    - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
-    - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
-    - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
+  - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
+  - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
+  - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
 - [Throne](https://github.com/throneproj/Throne/) - HWID [disabled by default](https://github.com/throneproj/Throne/pull/789)
 - [Shadowrocket](https://apps.apple.com/ru/app/shadowrocket/id932747118?l=en-GB) - HWID disabled by default
 - [Passwall-OpenWRT](https://github.com/Openwrt-Passwall/openwrt-passwall)
@@ -85,7 +85,7 @@ To enable support for the HWID feature in your client, the application should se
 ### HWID Format
 
 :::warning
-Starting from Remnawave Panel **v2.9.0**, the incoming `x-hwid` header is
+Starting from Remnawave Panel **v3.0.0**, the incoming `x-hwid` header is
 validated against the regular expression `/^[a-zA-Z0-9=-]{10,64}$/`.
 
 In simple terms: the HWID must be 10 to 64 characters long and may only
