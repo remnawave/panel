@@ -1,9 +1,10 @@
 ### What it manages
 
 - **26 resources** for users, nodes, hosts, squads, config profiles, subscriptions, billing, panel settings, API tokens, metadata, HWID devices, snippets, passkeys, and node plugins
-- **23 data sources** for inventory, system and bandwidth statistics, subscriptions, connection keys, request history, passkeys, and HWID analytics
+- **25 data sources** for inventory, system and bandwidth statistics, subscriptions, connection keys, request history, passkeys, and HWID analytics
 - **API token or username/password authentication**, with automatic JWT refresh for login-based sessions
-- **Remnawave 2.8.x compatibility**, verified by an acceptance suite against a real panel
+- **Remnawave 2.7.4–3.2.2 compatibility**, acceptance-tested against real, digest-pinned 2.7.4, 2.8.1, 3.0.0, 3.1.0, and 3.2.2 backends
+- **Node IP management** on Remnawave 3.2.2 and newer
 - **Terraform Registry documentation** indexed by [Context7](https://context7.com/batonogov/terraform-provider-remnawave) for AI coding assistants
 
 ### Quick start
@@ -15,20 +16,17 @@ terraform {
   required_providers {
     remnawave = {
       source  = "batonogov/remnawave"
-      version = "~> 0.7.0"
+      version = "~> 1.4.0"
     }
   }
 }
+```
 
-provider "remnawave" {
-  endpoint  = "https://panel.example.com"
-  api_token = var.remnawave_api_token
-}
+Keep credentials out of configuration by using environment variables:
 
-variable "remnawave_api_token" {
-  type      = string
-  sensitive = true
-}
+```bash
+export REMNAWAVE_ENDPOINT="https://panel.example.com"
+export REMNAWAVE_API_TOKEN="..."
 ```
 
 Create a Remnawave user as code:
