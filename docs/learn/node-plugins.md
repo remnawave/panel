@@ -599,7 +599,31 @@ Shared Lists – это список IP-адресов, которые могу�
     "blockDuration": 3600
 }
 ```
+## Pre Start {#pre-start}
 
+### Cleanup Sockets {#cleanup-sockets}
+
+Cleanup Sockets – удаляет указанные файлы при старте Xray-Core.
+
+#### Конфигурация {#cleanup-sockets-configuration}
+
+:::warning
+Для работы плагина необходима версия **Remnawave Node v3.0.0**
+:::
+
+```json
+"preStart": {
+    "enabled": true,
+    "cleanupSockets": {
+      "enabled": true,
+      "files": [
+        "/dev/shm/*.sock",
+        "/run/xray/vless-*.sock",
+        "/tmp/xray-fallback.sock"
+      ]
+    }
+}
+```
 ## Executor {#executor}
 
 <img src={require('/node-plugins/executor.webp').default} width="100%" style={{borderRadius: '8px'}} alt="Executor" />
