@@ -27,6 +27,12 @@ docker exec -it remnawave pm2 monit
 
 ## Remnawave Node
 
+### Rescue CLI
+
+```bash
+docker exec -it remnanode cli
+```
+
 ### Access Xray Core logs {#logs}
 
 ```bash

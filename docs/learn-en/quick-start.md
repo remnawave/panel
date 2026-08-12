@@ -26,7 +26,7 @@ First, you need to create a user. The first user to register automatically becom
 :::tip Tip
 If you ever forget your password, you can always recreate the super-admin account using the Rescue CLI.
 
-To access the Rescue CLI, use the command: `docker exec -it remnawave remnawave`
+To access the Rescue CLI, use the command: `docker exec -it remnawave cli`
 :::
 
 ## Home Page {#home}
@@ -246,7 +246,7 @@ If you disabled the password login and your OAuth doesn't work, you can enable i
 On a server hosting the Panel, run:
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 :::

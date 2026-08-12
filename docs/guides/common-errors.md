@@ -30,13 +30,7 @@ This errors occurs when Xray core failed to start, most likely due to the wrong 
 1. Check the **Xray core** logs for more details.
 
 ```bash
-docker exec -it remnanode tail -n +1 -f /var/log/supervisor/xray.out.log
-```
-
-or
-
-```bash
-docker exec -it remnanode tail -n +1 -f /var/log/supervisor/xray.err.log
+docker exec remnanode xlogs
 ```
 
 2. In most cases, you will see the reason why Xray core fails to start.
