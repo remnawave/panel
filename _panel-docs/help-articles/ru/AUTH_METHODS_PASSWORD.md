@@ -5,7 +5,7 @@
 Используйте `Rescue CLI` для сброса или изменения пароля.
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 После входа в `Rescue CLI` выберите пункт `Reset superadmin`.
@@ -15,7 +15,7 @@ docker exec -it remnawave remnawave
 Если вы отключили метод входа "Пароль", но в дальнейшем потеряли доступ к одному из других методов входа – вы можете включить метод входа "Пароль" с помощью `Rescue CLI`
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 После входа в `Rescue CLI` выберите пункт `Enable password authentication `.

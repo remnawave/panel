@@ -5,7 +5,7 @@
 使用 `Rescue CLI` 来重置或修改密码。
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 进入 `Rescue CLI` 后，选择 `Reset superadmin` 选项。
@@ -16,7 +16,7 @@ docker exec -it remnawave remnawave
 可以使用 `Rescue CLI` 重新启用“Password”认证方式。
 
 ```bash
-docker exec -it remnawave remnawave
+docker exec -it remnawave cli
 ```
 
 进入 `Rescue CLI` 后，选择 `Enable password authentication` 选项。
