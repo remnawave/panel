@@ -383,19 +383,19 @@ export const CLIENTS: Client[] = [
         platforms: ['windows', 'macos', 'linux'],
         description: 'A polished Mihomo client with the two-click ease of a commercial VPN app.',
         logo: '/clients/logo/flowvy-dark.svg',
-        githubRepo: 'flowvy-proxy/desktop',
+        githubRepo: 'flowvy/desktop',
         badges: {
             hwid: true,
             featured: true
         },
         downloadLinks: {
             windows:
-                'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.exe',
-            macos: 'https://github.com/flowvy-proxy/desktop/releases/latest',
-            linux: 'https://github.com/flowvy-proxy/desktop/releases/latest/download/Flowvy_x64.deb'
+                'https://github.com/flowvy/desktop/releases/latest/download/Flowvy_x64.exe',
+            macos: 'https://github.com/flowvy/desktop/releases/latest',
+            linux: 'https://github.com/flowvy/desktop/releases/latest/download/Flowvy_x64.deb'
         },
         links: {
-            github: 'https://github.com/flowvy-proxy/desktop',
+            github: 'https://github.com/flowvy/desktop',
             telegram: 'https://t.me/flowvy_client',
             docs: 'https://docs.flowvy.io'
         }
