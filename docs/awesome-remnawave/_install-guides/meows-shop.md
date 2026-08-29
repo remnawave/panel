@@ -41,7 +41,10 @@ docker compose up -d
 
 ### Update
 
+Run from the installation directory:
+
 ```bash
+cd /opt/remnawave-telegram-shop
 docker compose pull
 docker compose down && docker compose up -d
 ```
@@ -51,6 +54,7 @@ docker compose down && docker compose up -d
 Interactive tool that moves existing users and tariffs over.
 
 ```bash
+cd /opt/remnawave-telegram-shop
 ./scripts/meows-bedolaga-migrate.sh
 ```
 
