@@ -454,6 +454,21 @@ import InfraBillingGuide from '/docs/awesome-remnawave/\_install-guides/infra-bi
         }}
     />
 
+    <ProjectCard
+        id="caddy-tblocker"
+        title="Caddy Torrent Blocker"
+        description="A Caddy image with a native in-memory TTL blocklist fed by the node's torrent-blocker webhook. Behind a CDN the node's own nftables ban never sees the real client address, because every packet reaching the node comes from the reverse proxy. This moves the ban to Caddy: it matches its trusted-proxy-aware client IP against the reported one, refuses everything that address sends next, and can tear down the WebSocket or XHTTP session already in flight instead of waiting for a reconnect. Ships an internal admin route for listing and lifting bans, an ignore list for infrastructure addresses, and a configurable block response so a ban stays indistinguishable from what the site normally returns."
+        author="Peter Solomon"
+        authorLink="https://github.com/Medium1992"
+        image="/awesome/caddy-tblocker.webp"
+        githubRepo="Medium1992/caddy-tblocker"
+        aiPowered={true}
+        links={{
+            github: 'https://github.com/Medium1992/caddy-tblocker',
+            telegram: 'https://t.me/+96HVPF3Ww6o3YTNi'
+        }}
+    />
+
 </CategorySection>
 
 <CategorySection
