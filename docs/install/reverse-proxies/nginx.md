@@ -98,6 +98,11 @@ upstream remnawave {
     server remnawave:3000;
 }
 
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    "" close;
+}
+
 server {
     // highlight-next-line-red
     server_name REPLACE_WITH_YOUR_DOMAIN;
@@ -113,6 +118,8 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
     }
 
     # SSL Configuration (Mozilla Intermediate Guidelines)
