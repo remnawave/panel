@@ -114,7 +114,18 @@ import InfraBillingGuide from '/docs/awesome-remnawave/\_install-guides/infra-bi
         }}
     >
         <InfraBillingGuide />
-    </ProjectCard>
+</ProjectCard>
+<ProjectCard
+        id="remnawave-watchdog"
+        title="Remnawave Watchdog"
+        description="Self-healing agent for the panel server: watches containers, restarts what died, keeps backups, and reports to Telegram. Also exposes server health — disk, memory, load and CPU steal — plus an end-to-end traffic check that proves the VPN actually works, not just that the process is up."
+        author="vrezerni-netizen"
+        authorLink="https://github.com/vrezerni-netizen"
+        githubRepo="vrezerni-netizen/remnawave-watchdog"
+        links={{
+            github: 'https://github.com/vrezerni-netizen/remnawave-watchdog'
+        }}
+    />
 </CategorySection>
 
 <CategorySection
