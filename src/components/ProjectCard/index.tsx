@@ -1,7 +1,7 @@
-import GitHubStars from '@site/src/components/GitHubStars'
 import Link from '@docusaurus/Link'
-import React from 'react'
+import GitHubStars from '@site/src/components/GitHubStars'
 import clsx from 'clsx'
+import React from 'react'
 
 import styles from './styles.module.css'
 
@@ -19,6 +19,7 @@ interface ProjectCardProps {
     links?: {
         docs?: string
         github?: string
+        gitlab?: string
         private?: string
         telegram?: string
         website?: string
@@ -156,6 +157,37 @@ export default function ProjectCard({
                                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
                                     </svg>
                                     GitHub
+                                </Link>
+                            )}
+                            {links?.gitlab && (
+                                <Link
+                                    className={clsx(styles.link, styles.githubLink)}
+                                    to={links.gitlab}
+                                >
+                                    <svg
+                                        viewBox="0 0 32 32"
+                                        height="16"
+                                        width="16"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="m31.46 12.78-.04-.12-4.35-11.35A1.14 1.14 0 0 0 25.94.6c-.24 0-.47.1-.66.24-.19.15-.33.36-.39.6l-2.94 9h-11.9l-2.94-9A1.14 1.14 0 0 0 6.07.58a1.15 1.15 0 0 0-1.14.72L.58 12.68l-.05.11a8.1 8.1 0 0 0 2.68 9.34l.02.01.04.03 6.63 4.97 3.28 2.48 2 1.52a1.35 1.35 0 0 0 1.62 0l2-1.52 3.28-2.48 6.67-5h.02a8.09 8.09 0 0 0 2.7-9.36Z"
+                                            fill="#E24329"
+                                        />
+                                        <path
+                                            d="m31.46 12.78-.04-.12a14.75 14.75 0 0 0-5.86 2.64l-9.55 7.24 6.09 4.6 6.67-5h.02a8.09 8.09 0 0 0 2.67-9.36Z"
+                                            fill="#FC6D26"
+                                        />
+                                        <path
+                                            d="m9.9 27.14 3.28 2.48 2 1.52a1.35 1.35 0 0 0 1.62 0l2-1.52 3.28-2.48-6.1-4.6-6.07 4.6Z"
+                                            fill="#FCA326"
+                                        />
+                                        <path
+                                            d="M6.44 15.3a14.71 14.71 0 0 0-5.86-2.63l-.05.12a8.1 8.1 0 0 0 2.68 9.34l.02.01.04.03 6.63 4.97 6.1-4.6-9.56-7.24Z"
+                                            fill="#FC6D26"
+                                        />
+                                    </svg>
+                                    GitLab
                                 </Link>
                             )}
                             {links?.docs && (
