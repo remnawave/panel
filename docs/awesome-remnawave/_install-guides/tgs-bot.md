@@ -12,9 +12,23 @@
 
 ### 🚀 Installation
 
+The installation requires root privileges because TGS Bot is installed in `/opt/tgs-bot`.
+
 ```bash
+sudo -i
 git clone https://github.com/bruhxax/TGS-bot.git /opt/tgs-bot
 cd /opt/tgs-bot
+```
+
+Before running the installer, review the installation script:
+
+```bash
+less install.sh
+```
+
+Then start the installation:
+
+```bash
 chmod +x install.sh
 ./install.sh
 ```
