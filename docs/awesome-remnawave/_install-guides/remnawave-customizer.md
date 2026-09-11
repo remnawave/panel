@@ -13,11 +13,11 @@
 Remnawave Customizer must be installed **only on the server where Remnawave Panel is running**. Root privileges are required.
 :::
 
-Clone the repository:
+Clone the repository to a fixed location:
 
 ```bash
-git clone https://github.com/bruhxax/remnawave-customizer.git
-cd remnawave-customizer
+git clone https://github.com/bruhxax/remnawave-customizer.git ~/remnawave-customizer
+cd ~/remnawave-customizer
 ```
 
 Before running the installer, review it:
