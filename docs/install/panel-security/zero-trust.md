@@ -35,7 +35,7 @@ Go to https://one.dash.cloudflare.com and select your account. Then follow the s
 :::danger Breaks Let's Encrypt renewal
 SSL Strict + Proxied + an Access app covering the whole hostname permanently breaks Let's Encrypt renewal: tls-alpn-01 never reaches origin (Cloudflare terminates TLS at the edge), and http-01 gets intercepted by Access, returning a login page instead of the challenge token. Once the cert expires, every renewal attempt fails the same way — Error 526, indefinitely.
 
-**Fix:** add a second Access Application scoped to `panel.yourdomain.com/.well-known/acme-challenge/*` with a Bypass → Everyone policy (Cloudflare matches the more specific path first).
+**Fix:** add a second Access Application scoped to `panel.yourdomain.com/.well-known/acme-challenge/*` with a Bypass → Everyone policy (Cloudflare matches the more specific path first). This only unblocks http-01 — if your ACME client is configured for tls-alpn-01 (e.g. acme.sh --alpn), switch it to http-01 or dns-01 instead; no Access setting can make tls-alpn-01 work behind Cloudflare's proxy.
 :::
 
 :::info
