@@ -665,8 +665,25 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://inhive.ru'
         }
+    },
+    {
+        id: 'lumen',
+        name: 'Lumen KVN',
+        core: 'xray',
+        platforms: ['windows'],
+        description: 'A modern, fast VPN client supporting VLESS, AWG, Hysteria, and many more protocols.',
+        logo: '/clients/logo/lumen-kvn.png',
+        githubRepo: 'krambovic/Lumen-KVN',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            windows: 'https://github.com/krambovic/Lumen-KVN/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/krambovic/Lumen-KVN'
+        }
     }
-    
 ]
 
 export function getClientsByPlatform(platform: Platform): Client[] {
