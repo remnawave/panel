@@ -665,6 +665,24 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://inhive.ru'
         }
+    },
+    {
+        id: 'quadra',
+        name: 'Quadra',
+        core: 'xray',
+        platforms: ['windows'],
+        description: 'Fast desktop client with subscriptions, system proxy and TUN modes.',
+        logo: '/clients/logo/quadra.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'Omibranch/quadra',
+        downloadLinks: {
+            windows: 'https://github.com/Omibranch/quadra/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/Omibranch/quadra'
+        }
     }
     
 ]
