@@ -61,6 +61,7 @@ Not all client applications send a HWID header. Here is the list of applications
 - [v2RayTun](https://docs.v2raytun.com/overview/supported-headers)
 - Forks by Remnawave community:
   - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
+  - [Moclash](https://github.com/moltea/moclash-rev) (Clash Verge Rev fork)
   - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
   - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
 - [Throne](https://github.com/throneproj/Throne/) - HWID [disabled by default](https://github.com/throneproj/Throne/pull/789)
