@@ -377,6 +377,27 @@ export const CLIENTS: Client[] = [
         }
     },
     {
+        id: 'moclash',
+        name: 'Moclash',
+        core: 'mihomo',
+        platforms: ['windows', 'macos', 'linux'],
+        description:
+            'Fork of Clash Verge Rev with HWID support, a Happ compatibility mode for Xray subscriptions and a tray quick panel.',
+        logo: '/clients/logo/moclash-dark.svg',
+        githubRepo: 'moltea/moclash-rev',
+        badges: {
+            hwid: true
+        },
+        downloadLinks: {
+            windows: 'https://github.com/moltea/moclash-rev/releases/latest',
+            macos: 'https://github.com/moltea/moclash-rev/releases/latest',
+            linux: 'https://github.com/moltea/moclash-rev/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/moltea/moclash-rev'
+        }
+    },
+    {
         id: 'flowvy',
         name: 'Flowvy',
         core: 'mihomo',
