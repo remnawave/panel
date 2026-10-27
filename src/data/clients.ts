@@ -396,7 +396,7 @@ export const CLIENTS: Client[] = [
         },
         links: {
             github: 'https://github.com/flowvy/desktop',
-            telegram: 'https://t.me/flowvy_client',
+            telegram: 'https://t.me/flowvy_group',
             docs: 'https://docs.flowvy.io'
         }
     },
