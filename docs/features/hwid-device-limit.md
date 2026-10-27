@@ -63,6 +63,7 @@ Not all client applications send a HWID header. Here is the list of applications
   - [Koala Clash](https://github.com/coolcoala/clash-verge-rev-lite) (Clash Verge Rev fork)
   - [FlClashX](https://github.com/pluralplay/FlClashX) (FlClash fork)
   - [Prizrak-Box](https://github.com/legiz-ru/Prizrak-Box) (Pandora-Box fork)
+  - [dropweb](https://github.com/enkinvsh/dropweb) (FlClashX fork)
 - [Throne](https://github.com/throneproj/Throne/) - HWID [disabled by default](https://github.com/throneproj/Throne/pull/789)
 - [Shadowrocket](https://apps.apple.com/ru/app/shadowrocket/id932747118?l=en-GB) - HWID disabled by default
 - [Passwall-OpenWRT](https://github.com/Openwrt-Passwall/openwrt-passwall)

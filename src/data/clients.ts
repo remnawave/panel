@@ -109,6 +109,29 @@ export const CLIENTS: Client[] = [
         }
     },
     {
+        id: 'dropweb',
+        name: 'dropweb',
+        core: 'mihomo',
+        platforms: ['android', 'windows', 'macos', 'linux'],
+        description:
+            'Fork of FlClashX with one-tap country selection and subscription mirror failover.',
+        logo: '/clients/logo/dropweb-dark.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'enkinvsh/dropweb',
+        downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=app.dropweb',
+            windows: 'https://github.com/enkinvsh/dropweb/releases/latest',
+            macos: 'https://github.com/enkinvsh/dropweb/releases/latest',
+            linux: 'https://github.com/enkinvsh/dropweb/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/enkinvsh/dropweb',
+            telegram: 'https://t.me/dropwebdigital'
+        }
+    },
+    {
         id: 'rabbit-hole',
         name: 'Rabbit Hole',
         core: 'mihomo',
