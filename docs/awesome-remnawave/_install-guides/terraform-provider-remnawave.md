@@ -1,6 +1,6 @@
 ### What it manages
 
-- **Resources and data sources** for users, nodes, hosts, squads, config profiles, subscriptions, billing, panel settings, API tokens, metadata, HWID devices, snippets, passkeys, and node plugins
+- **Resources and data sources** for users, nodes, hosts, squads, config profiles, subscriptions, billing, panel settings, API tokens, metadata, HWID devices, snippets, passkeys, node plugins, node integrations, and shared lists
 - **Import support** for bringing existing panel objects under Terraform management
 - **API token or username/password authentication**, with automatic JWT refresh for login-based sessions
 - **Acceptance-tested compatibility** across multiple real, digest-pinned Remnawave backends; see the [current compatibility matrix](https://github.com/batonogov/terraform-provider-remnawave#compatibility)
@@ -15,7 +15,7 @@ terraform {
   required_providers {
     remnawave = {
       source  = "batonogov/remnawave"
-      version = ">= 1.4.0, < 2.0.0"
+      version = "~> 1.0"
     }
   }
 }
