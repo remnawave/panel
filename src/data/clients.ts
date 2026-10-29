@@ -665,6 +665,24 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://inhive.ru'
         }
+    },
+    {
+        id: 'superpupervpn',
+        name: 'SuperPuperVPN',
+        core: 'mihomo',
+        platforms: ['windows', 'linux'],
+        description:
+            'Open-source desktop client for VLESS + REALITY: paste a link or a subscription and connect with one button. System proxy or TUN, no telemetry.',
+        logo: '/clients/logo/superpupervpn.svg',
+        githubRepo: 'NikitaKnutov/superpupervpn',
+        downloadLinks: {
+            windows: 'https://github.com/NikitaKnutov/superpupervpn/releases/latest',
+            linux: 'https://github.com/NikitaKnutov/superpupervpn/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/NikitaKnutov/superpupervpn',
+            website: 'https://nikitaknutov.github.io/superpupervpn/'
+        }
     }
     
 ]
