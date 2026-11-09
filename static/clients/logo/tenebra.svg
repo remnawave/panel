@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="limb" x1="0.15" y1="0.9" x2="0.85" y2="0.1">
+      <stop offset="0" stop-color="#57e8d0"/>
+      <stop offset="0.55" stop-color="#6c8cff"/>
+      <stop offset="1" stop-color="#8aa2ff"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="0.42" cy="0.36" r="0.85">
+      <stop offset="0" stop-color="#171a24"/>
+      <stop offset="1" stop-color="#090a0f"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <mask id="crescent">
+      <rect width="1024" height="1024" fill="black"/>
+      <circle cx="512" cy="512" r="288" fill="white"/>
+      <circle cx="610" cy="430" r="300" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="1024" height="1024" rx="232" fill="url(#bg)"/>
+  <circle cx="512" cy="512" r="288" fill="#06070b"/>
+  <g filter="url(#glow)">
+    <rect width="1024" height="1024" fill="url(#limb)" mask="url(#crescent)"/>
+  </g>
+</svg>

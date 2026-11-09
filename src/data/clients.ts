@@ -665,6 +665,21 @@ export const CLIENTS: Client[] = [
         links: {
             website: 'https://inhive.ru'
         }
+    },
+    {
+        id: 'tenebra',
+        name: 'Tenebra',
+        core: 'singbox',
+        platforms: ['windows'],
+        description: 'Open-source VPN client for Windows built on sing-box.',
+        logo: '/clients/logo/tenebra.svg',
+        githubRepo: 'Divaaaan/tenebra',
+        downloadLinks: {
+            windows: 'https://github.com/Divaaaan/tenebra/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/Divaaaan/tenebra'
+        }
     }
     
 ]
