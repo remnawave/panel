@@ -147,10 +147,10 @@ You can login with your GitHub account to Remnawave.
 Visit [Developer Settings page](https://github.com/settings/applications/new) to register an app.
     - `Application name` — choose any name.
     - `Homepage URL` — `https://panel.example.com/` (replace `panel.example.com` with your Panel domain).
-    - `Authorization callback URL` — `https://panel.example.com/oauth2/callback/github` (replace `panel.example.com` with your Panel domain).
+    - `Redirect URIs` — `https://panel.example.com/oauth2/callback/github` (replace `panel.example.com` with your Panel domain).
     
 2. **Get Client ID and Client Secret**  
-Copy the `Client ID` and `Client Secret` from app page.
+Copy the `Client ID` from the app page, then click `Generate a new client secret` and copy the `Client Secret` — it is shown only once.
 
 3. **Set the Variables in Remnawave**
     - `Client ID`
