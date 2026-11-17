@@ -18,6 +18,10 @@ curl -o ~/backup-restore.sh https://raw.githubusercontent.com/distillium/remnawa
 
 Migration guides for moving the panel to a new server are in the [README](https://github.com/distillium/remnawave-backup-restore#readme).
 
+### Documentation
+
+The script is also included in [Remnawave Reverse Proxy](https://github.com/eGamesAPI/remnawave-reverse-proxy) by eGames. A step-by-step guide is available in the [eGames wiki](https://wiki.egam.es/configuration/backup-restore/).
+
 :::warning
 Restore on the same panel version the backup was made from. The script shows this version before restoring.
 :::
