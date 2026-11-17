@@ -1,26 +1,27 @@
 ### Features
 
-- creating a manual backup and configuring automatic scheduled backups
-- notifications in Telegram with backup file attached
-- supports sending backup to Google Drive
-- restore from backup
-- backups retention policy (7 days) implemented
-- quick access from anywhere on the system with the `rw-backup` command
+- Manual and scheduled backups of the panel, a Telegram shop bot, or both
+- Docker and external PostgreSQL databases
+- Upload to Telegram (direct chat or group topic) or up to 5 S3-compatible storages
+- Separate retention on the server and in each S3 storage, with disk and S3 usage shown in the menu
+- Optional encryption with [age](https://github.com/FiloSottile/age)
+- Selective restore: everything, database only, or files only
+- Quick access from anywhere with the `rw-backup` command
 
 ### Installation
+
+Requires root. On the first run the script asks for the language, the backup mode and your Telegram details.
 
 ```bash
 curl -o ~/backup-restore.sh https://raw.githubusercontent.com/distillium/remnawave-backup-restore/main/backup-restore.sh && chmod +x ~/backup-restore.sh && ~/backup-restore.sh
 ```
 
-:::danger
-As a precaution, use the restore function on the same panel version from which the backup was made (or create the backup from the latest panel version).
-:::
+Migration guides for moving the panel to a new server are in the [README](https://github.com/distillium/remnawave-backup-restore#readme).
 
 :::warning
-This script is designed to perform meaningful maintenance operations on the Remnawave database. Although it has been thoroughly tested, its functions affect the entire database and its components. It is recommended that you carefully follow the script's instructions before executing any commands.
+Restore on the same panel version the backup was made from. The script shows this version before restoring.
 :::
 
-:::tip
-The script backups and restores only the entire database, as well as the .env and .env-node files (if they exist in the /opt/remnawave/ or /root/remnawave/ directory). The backup and recovery of all other files and configurations are entirely the responsibility of the user.
+:::note
+The script backs up only the Remnawave directory and database, and optionally a Telegram shop bot. Other services and configurations are up to you.
 :::
