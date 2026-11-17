@@ -1,9 +1,11 @@
 ### Features
 
 - Manual and scheduled backups of the panel, a Telegram shop bot, or both
+- Extra files and folders in the same backup, such as nginx configs or certificates
 - Docker and external PostgreSQL databases
 - Upload to Telegram (direct chat or group topic) or up to 5 S3-compatible storages
-- Separate retention on the server and in each S3 storage, with disk and S3 usage shown in the menu
+- Retention by age or by count, on the server and in each S3 storage separately
+- Every backup is checked before upload: damaged archives and incomplete database dumps are caught
 - Optional encryption with [age](https://github.com/FiloSottile/age)
 - Selective restore: everything, database only, or files only
 - Quick access from anywhere with the `rw-backup` command
