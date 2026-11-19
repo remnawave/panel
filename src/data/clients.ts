@@ -646,6 +646,25 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/mihail-jdanov/DeskBox'
         }
+    },
+    {
+        id: 'blackwall',
+        name: 'BLACKWALL',
+        core: 'other',
+        platforms: ['android', 'windows', 'macos', 'linux'],
+        description:
+            'Small open source client in Zig with its own VLESS, REALITY, Trojan, VMess and Shadowsocks, and a route per application',
+        githubRepo: 'ANODs/blackwall',
+        downloadLinks: {
+            android: 'https://github.com/ANODs/blackwall/releases/latest',
+            windows: 'https://github.com/ANODs/blackwall/releases/latest',
+            macos: 'https://github.com/ANODs/blackwall/releases/latest',
+            linux: 'https://github.com/ANODs/blackwall/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/ANODs/blackwall',
+            website: 'https://blackwall.timoshkin.dev/'
+        }
     }
 ]
 
