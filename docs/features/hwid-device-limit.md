@@ -71,6 +71,7 @@ Not all client applications send a HWID header. Here is the list of applications
 - [Incy](https://incy.cc/)
 - [RenoarX](https://github.com/RonnyFX/RenoarX)
 - [DeskBox](https://github.com/mihail-jdanov/DeskBox)
+- [Anoya](https://github.com/annoya/anoya-client)
 
 ## For app developers
 

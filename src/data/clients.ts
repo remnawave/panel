@@ -646,6 +646,27 @@ export const CLIENTS: Client[] = [
         links: {
             github: 'https://github.com/mihail-jdanov/DeskBox'
         }
+    },
+    {
+        id: 'anoya',
+        name: 'Anoya',
+        core: 'mihomo',
+        platforms: ['android', 'windows', 'linux'],
+        description: 'Your VPN, with a cat. Your own links and subscriptions, one tap to connect.',
+        logo: '/clients/logo/anoya-dark.svg',
+        badges: {
+            hwid: true
+        },
+        githubRepo: 'annoya/anoya-client',
+        downloadLinks: {
+            android: 'https://play.google.com/store/apps/details?id=io.anoya.app',
+            windows: 'https://github.com/annoya/anoya-client/releases/latest',
+            linux: 'https://github.com/annoya/anoya-client/releases/latest'
+        },
+        links: {
+            github: 'https://github.com/annoya/anoya-client',
+            website: 'https://anoya.io'
+        }
     }
 ]
 
